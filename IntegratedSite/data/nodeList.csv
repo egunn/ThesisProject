@@ -1,21 +1,21 @@
 id,name,icon,photo,text,foodPriority,populationPriority,ecosystemPriority,setX,setY
-A,Soil and food,tree.png,test.png,All of the world's food comes from the soil,3,,,0.3,0.1
-B,What people eat,tree.png,test.png,Diets vary across cultures and over time,3,,,0.1,0.3
-C,How much people eat,tree.png,test.png,People eat more now than ever before,3,,,0.15,0.4
-D,Food flow,tree.png,./images/foodflow_sm.png,Food is a global issue,1,,,0.2,0.3
-E,Food demands,tree.png,test.png,World food supply needs are growing,3,,,0.3,0.4
-F,Agricultural practices,tree.png,test.png,Modern agriculture supports more food production than any time in history,1,,,0.7,0.4
-G,World food production,tree.png,test.png,A look at current and past world food production,1,,,0.1,0.6
-H,Soil degradation,tree.png,test.png,Meeting food demands has caused loss of soil fertility,2,,,0.75,0.6
-I,Threats to the soil,tree.png,test.png,"Current threats to the world's soil, according to the FAO-UNESCO",2,,,0.8,0.8
-J,Responses,tree.png,test.png,Recommendations for protecting the soil,2,,,0.82,0.8
-K,World population,tree.png,test.png,World population has increased dramatically in the past century,3,1,,0.15,0.2
-L,Land use,tree.png,test.png,Changes in land use directly affect soil quality,3,2,,0.7,0.7
-M,What is soil?,tree.png,test.png,Learn more about soil,3,,,0.1,0.1
-N,Soil ecosystem,tree.png,test.png,"Soil is an incredibly rich ecosystem, with global impacts",3,,,0.2,0.1
-O,Where does soil come from?,tree.png,test.png,How soil is created,3,,,0.3,0.1
+A,Soil and food,./tree.png,test.png,All of the world's food comes from the soil,3,,,0.3,0.1
+B,What people eat,./tree.png,test.png,Diets vary across cultures and over time,3,,,0.1,0.3
+C,How much people eat,./tree.png,test.png,People eat more now than ever before,3,,,0.15,0.4
+D,Food flow,./tree.png,./images/foodflow_sm.png,Food is a global issue,1,,,0.2,0.3
+E,Food demands,./tree.png,test.png,World food supply needs are growing,3,,,0.3,0.4
+F,Agricultural practices,./tree.png,test.png,Modern agriculture supports more food production than any time in history,1,,,0.7,0.4
+G,World food production,./tree.png,test.png,A look at current and past world food production,1,,,0.1,0.6
+H,Soil degradation,./tree.png,test.png,Meeting food demands has caused loss of soil fertility,2,,,0.75,0.6
+I,Threats to the soil,./tree.png,test.png,"Current threats to the world's soil, according to the FAO-UNESCO",2,,,0.8,0.8
+J,Responses,./tree.png,test.png,Recommendations for protecting the soil,2,,,0.82,0.8
+K,World population,./tree.png,test.png,World population has increased dramatically in the past century,3,1,,0.15,0.2
+L,Land use,./tree.png,test.png,Changes in land use directly affect soil quality,3,2,,0.7,0.7
+M,What is soil?,./tree.png,test.png,Learn more about soil,3,,,0.1,0.1
+N,Soil ecosystem,./tree.png,test.png,"Soil is an incredibly rich ecosystem, with global impacts",3,,,0.2,0.1
+O,Where does soil come from?,./tree.png,test.png,How soil is created,3,,,0.3,0.1
 P,Plant needs,./images/plant_sm.png,test.png,What plants need to grow,3,,,0.5,0.3
-Q,Rhizosphere,tree.png,test.png,Learn more about the soil community,3,,,0.6,0.4
-R,Soil quality,tree.png,test.png,What factors affect soil quality?,3,,,0.8,0.6
-S,Soil fertility,tree.png,test.png,Plants need soil organic carbon,3,,,0.85,0.65
-T,Climate change,tree.png,./images/globalC_sm.png,Soil stores carbon and can help to mitigate climate change,3,,,0.9,0.75
+Q,Rhizosphere,./tree.png,test.png,Learn more about the soil community,3,,,0.6,0.4
+R,Soil quality,./tree.png,test.png,What factors affect soil quality?,3,,,0.8,0.6
+S,Soil fertility,./tree.png,test.png,Plants need soil organic carbon,3,,,0.85,0.65
+T,Climate change,./tree.png,./images/globalC_sm.png,Soil stores carbon and can help to mitigate climate change,3,,,0.9,0.75

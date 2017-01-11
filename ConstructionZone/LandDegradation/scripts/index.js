@@ -33,25 +33,8 @@ var simulation;
 //http://jsfiddle.net/7DgUh/
 //http://stackoverflow.com/questions/14610954/can-an-svg-pattern-be-implemented-in-d3
 //https://jsfiddle.net/duhaime/q51ok9jc/
-/*var pattern = svg.append("defs")
-    .append("pattern")
-        .attr('id','testPattern')
-        .attr("x", "0")
-        .attr("y", "0")
-        .attr("width", 1)
-        .attr("height", 1)
-        //.attr('patternContentUnits',"objectBoundingBox")
-        //.attr('viewbox',"0 0 1 1")
-        .attr('preserveAspectRatio',"xMidYMid slice")
-    .append('image')
-        //.attr("x", "0")
-        //.attr("y", "0")
-        .attr("height", "70px")
-       // .attr("width", "70px")
-        .attr('preserveAspectRatio',"xMidYMid slice")
-        .attr("xlink:href", "./tree.png"); */
 
-
+/*
 var pattern = svg.append("defs")
     .append("pattern")
     .attr('id','testPattern')
@@ -69,7 +52,7 @@ var pattern = svg.append("defs")
     .attr("width", 1)
     .attr('preserveAspectRatio',"xMidYMid slice")
     .attr("xlink:href", "./tree.png");
-
+*/
 
 
 
@@ -167,6 +150,24 @@ function drawNetwork(linkList, nodeList){
         .enter()
         .append("g");
 
+    var pattern = nodeGroup.append("defs")
+        .append("pattern")
+        .attr('id',function(d){ return 'pattern-' + d.id;})
+        //.attr("x", "0")
+        //.attr("y", "0")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr('patternContentUnits',"objectBoundingBox")
+        .attr('viewBox',"0 0 1 1")
+        .attr('preserveAspectRatio',"xMidYMid slice")
+        .append('image')
+        //.attr("x", "0")
+        //.attr("y", "0")
+        .attr("height", 1)
+        .attr("width", 1)
+        .attr('preserveAspectRatio',"xMidYMid slice")
+        .attr("xlink:href", function(d){ return d.icon});
+
     node = nodeGroup
         .append("circle")
         .attr('class',function(d){return 'node-circ ' + 'node'+d.id})
@@ -175,7 +176,7 @@ function drawNetwork(linkList, nodeList){
         //.attr("y", function(d) { return height*d.setY; })
         .attr("r", 15)
         .attr('stroke','gray')
-        .style("fill", 'url(#testPattern)')
+        .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'})
         .on('mouseover',function(d){
 
             //d3.selectAll('.div-image').remove();
@@ -188,7 +189,6 @@ function drawNetwork(linkList, nodeList){
             div.style("left", (nodeSize(d.foodPriority) + +d3.select(this).attr('cx')) + "px")//d3.event.pageX + "px")
                 .style("top", d3.select(this).attr('cy') + "px");
 
-            console.log("url('./" + d.photo + "')");
 
             divImg
                 .style("background-image", "url('./" + d.photo + "')")
@@ -277,14 +277,6 @@ function drawNetwork(linkList, nodeList){
 
 
 }
-
-
-
-
-
-
-
-
 
 
 

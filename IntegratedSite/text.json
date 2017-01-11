@@ -1,2 +1,0 @@
-[ {"page":"A","title":"Page A", "text":"This is a JSON to test text loading from a file for use in a JS template.", "link":"index.html", "linkText":"Index"},
-  {"page":"B","title":"Page B", "text":"This is a JSON to test text reloading from a file for use in a JS template.", "link":"index.html", "linkText":"Index"}]

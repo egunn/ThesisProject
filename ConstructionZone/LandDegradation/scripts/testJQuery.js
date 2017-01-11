@@ -1,7 +1,7 @@
 
 var tracker = 'A';
 
-reloadTemplate();
+//reloadTemplate();
 
 function reloadTemplate() {
     if (tracker == 'A'){

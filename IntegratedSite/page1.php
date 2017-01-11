@@ -5,14 +5,44 @@
 <link rel="stylesheet" href="./scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/style.css">
 
-
 <body>
 
 <div class="container-fluid">
 
-    <h1>Page 1</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-9">
 
-    <a href="./index.html">Link to index</a>
+                    <h1 id="title">Test Template Page</h1>
+
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+
+                    <div id="vis-div">
+                        <svg class="vis-svg" id="vis"></svg>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+
+                    <div id="body-text">Put text here</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<a id="test-link" href="./index.html">Index</a>
+
+<button class="button" id="next-page" onClick="nextClicked()">Next Page</button>
+
 </div>
 
 <?php
@@ -40,6 +70,10 @@
 </script>
 </body>
 
-
+<script src="./scripts/vendor/d3.v4.2.6.min.js"></script>
+<script src="./scripts/vendor/topojson.v1.js"></script>
+<script src="./scripts/vendor/jquery-3.1.1.js"></script>
+<script src="./scripts/vendor/queue.min.js"></script>
 <script src="./scripts/page1.js"></script>
+
 </html>

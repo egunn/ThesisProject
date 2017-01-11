@@ -60,6 +60,12 @@ function dataLoaded(data){
 
 function changeMap() {
     console.log('clicked');
+
+    var extendedColorSet = d3.scaleOrdinal().domain([4,3,2,1,0]).range(['#E82320','#E49922','#FCAA13','#ffecaf','#c59c6d']);
+
+    var mapObjects = svg.selectAll("path")
+        .attr("d", path);
+
 }
 
 
@@ -72,7 +78,6 @@ function resizeView() {
     projection
         .fitSize([width, height], mapData);
 
-    var mapObjects = svg
-        .selectAll("path")
+    var mapObjects = svg.selectAll("path")
         .attr("d", path);
 }
