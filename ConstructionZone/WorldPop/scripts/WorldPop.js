@@ -10,6 +10,9 @@ var width = document.getElementById('vis').clientWidth - margin.left - margin.ri
 var height = document.getElementById('vis').clientHeight - margin.top - margin.bottom;
 var height2 = document.getElementById('vis').clientHeight - margin2.top - margin2.bottom;
 
+var extentX;
+var shiftMultiplier = 40;
+
 console.log(width, height, height2);
 
 //grab svg from template
@@ -89,6 +92,9 @@ function dataLoaded(data, events) {
     console.log(data);
     console.log(events);
 
+    //run the events array through the line spacing function
+    events = placeLines(events);
+
     //customize the axis label formatting to properly handle AD and BC dates
     xAxis.tickFormat(dateLabels);
     xAxis2.tickFormat(dateLabels);
@@ -101,6 +107,8 @@ function dataLoaded(data, events) {
             return d + " AD";
         }
     }
+
+    extentX = d3.extent(data, function(d) { return +d.year; })[0];
 
     x.domain(d3.extent(data, function(d) { return +d.year; }));
     y.domain([0, d3.max(data, function(d) { return +d.total_Lower; })]);
@@ -160,6 +168,7 @@ function dataLoaded(data, events) {
 
     eventColors =  d3.scaleOrdinal().domain(["weather","culture","technology","agriculture","context","deaths"]).range(["#1b9e77","#d95f02","#7570b3","#e7298a","#66a61e","#e6ab02"]);
 
+
     var lineGroup = focus.selectAll('.line-group')
         .append('g')
         .attr('class','line-group')
@@ -167,8 +176,24 @@ function dataLoaded(data, events) {
         .enter()
         .append('line')
         .attr('class','event-line')
-        .attr('x1',function(d){return x(+d.year); })
-        .attr('x2',function(d){return x(+d.year); })
+        .attr('x1',function(d) {
+            //check for the lines that fall off the end of the graph
+            if (x(+d.year_Actual + d.shift * shiftMultiplier) < x(extentX)) {
+                return x(+d.year_Actual + 2* Math.abs(d.shift) * shiftMultiplier);
+            }
+            else {
+                return x(+d.year_Actual + d.shift * shiftMultiplier);
+            }
+        })
+        .attr('x2',function(d){
+            //check for the lines that fall off the end of the graph
+            if (x(+d.year_Actual + d.shift * shiftMultiplier) <= x(extentX)) {
+                return x(+d.year_Actual + 2* Math.abs(d.shift) * shiftMultiplier);
+            }
+            else {
+                return x(+d.year_Actual + d.shift * shiftMultiplier);
+            }
+        })
         .attr('y1', y(0))
         .attr('y2',y(d3.max(data, function(d) { return +d.total_Lower; })))
         .attr('stroke', function(d){
@@ -181,6 +206,9 @@ function dataLoaded(data, events) {
             else{
                 return .1;//'gray'
             }
+        })
+        .on('mouseenter',function(d){
+            console.log(d.event);
         });
 
 
@@ -200,16 +228,41 @@ function dataLoaded(data, events) {
 }
 
 
-function brushed() {
+function brushed(data) {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
     var s = d3.event.selection || x2.range();
     x.domain(s.map(x2.invert, x2));
+
+    //reset shift ratio to scale line spacing with zoom
+    //ratio to compare width of current brush (s[1]-s[0]) with width of entire axis: x.range()[1]
+    shiftMultiplier = 40 * ((s[1]-s[0])/x.range()[1]);
+
+    //give it a minimum value
+    if (shiftMultiplier < 5){
+        shiftMultiplier = 5;
+    }
+
     y2.domain(s.map(y2.invert, y2));
     focus.select(".area").attr("d", area);
     focus.select(".area-upper").attr("d", areaUpper);
     focus.selectAll(".event-line")
-        .attr('x1',function(d){return x(+d.year); })
-        .attr('x2',function(d){return x(+d.year); });
+        .attr('x1',function(d){
+            //check for the lines that fall off the end of the graph
+            if (x(+d.year_Actual + d.shift * shiftMultiplier) < x(extentX)) {
+                return x(+d.year_Actual + 2* Math.abs(d.shift) * shiftMultiplier);
+            }
+            else {
+                return x(+d.year_Actual + d.shift * shiftMultiplier);
+            }
+        })
+        .attr('x2',function(d){
+            //check for the lines that fall off the end of the graph
+            if (x(+d.year_Actual + d.shift * shiftMultiplier) < x(extentX)) {
+                return x(+d.year_Actual + 2* Math.abs(d.shift) * shiftMultiplier);
+            }
+            else {
+                return x(+d.year_Actual + d.shift * shiftMultiplier);
+            }});
     focus.selectAll('.data-rect')
         .attr('x',x(1950))
         .attr('width',(x(2017)-x(1950)));
@@ -236,4 +289,80 @@ function resizeView() {
     width = document.getElementById('vis').clientWidth;
     height = document.getElementById('vis').clientHeight;
 
+}
+
+function placeLines(lines) {
+
+    var numLines = 1;
+    var shiftCounter = 0;
+    var shiftValue = 0;
+
+    //create a "shift" variable to be used with a multiplier and added to line x position, depending on zoom level
+    lines.forEach(function(d){
+
+        //check whether shiftCounter has been reset
+        //take the year value and filter the original array to see how many lines there are for that year
+        if (shiftCounter == 0){
+            numLines = lines.filter(function(e){ return e.year_Actual == d.year_Actual}).length;
+            console.log('first shift');
+        }
+
+        //calculate and store the initial shift offset
+
+        //if there's only one line, set its shift to zero and move on
+        if (numLines == 1){
+            d.shift = 0;
+        }
+
+        //if there's more than one line
+        else {
+
+            //check whether this is the first line
+            if (shiftCounter == 0){
+                //find the group center based on the length of the filter array (center on length/2)
+                //if numlines==even, add a half step to center shifts around zero
+                if (Math.floor(numLines/2) == numLines/2){
+                    shiftValue = -numLines/2 + 0.5
+                }
+                else {
+                    shiftValue = -Math.floor(numLines/2);
+                }
+
+                //store the shift value in the current object
+                d.shift = shiftValue;
+
+                //increment the shiftCounter and shiftValue
+                shiftCounter++;
+                shiftValue++;
+            }
+            //if it isn't the first line
+            else {
+                //check whether it's the last line
+                if (shiftCounter == numLines-1){
+
+                    //set the shift value for the current line
+                    d.shift = shiftValue;
+
+                    //reset the values of tracker variables
+                    numLines = 1;
+                    shiftCounter = 0;
+                    shiftValue = 0;
+                }
+                //if it's not the last line
+                else {
+                    //set the shift value
+                    d.shift = shiftValue;
+
+                    //increment the shiftCounter and shiftValue
+                    shiftCounter++;
+                    shiftValue++;
+                }
+            }
+
+
+        }
+
+    });
+
+    return lines;
 }
