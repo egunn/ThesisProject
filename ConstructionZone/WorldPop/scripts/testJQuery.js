@@ -12,6 +12,8 @@ function reloadTemplate() {
 
             $('#body-text').html(json[0].text);
 
+            $('#synopsis').html(json[0].synopsis);
+
             $("a#test-link").prop("href", json[0].link);
 
             $("a#test-link").text(json[0].linkText);

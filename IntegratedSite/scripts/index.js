@@ -176,7 +176,24 @@ function drawNetwork(linkList, nodeList){
         //.attr("x", function(d) { return width*d.setX; })   //set the initial x and y coordinates using the stored JSON data
         //.attr("y", function(d) { return height*d.setY; })
         .attr("r", 15)
-        .attr('stroke','gray')
+        .attr('stroke',function(d){
+            if (d.topic == "soil"){
+                return 'orange'
+            }
+            else if(d.topic == "population"){
+                return 'turquoise'
+            }
+            else if (d.topic == "food"){
+                return 'limegreen'
+            }
+            else if (d.topic == "environmental"){
+                return 'purple'
+            }
+            else {
+                return 'gray'
+            }
+        })
+        .attr('stroke-width', 3)
         .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'})
         .on('mouseover',function(d){
 

@@ -1,0 +1,2 @@
+[ {"page":"A","title":"Land per person", "synopsis": "This map shows how much land is needed to feed people living in different regions of the world.", "text":"The bar chart at left compares the number of calories eaten in different countries, their distribution, and the space available for people in the population", "link":"index.html", "linkText":"Index"},
+  {"page":"B","title":"Page B", "text":"This is a JSON to test text reloading from a file for use in a JS template.", "link":"index.html", "linkText":"Index"}]

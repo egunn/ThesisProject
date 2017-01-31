@@ -8,20 +8,43 @@
 
 <body>
 
+<!-- See http://stackoverflow.com/questions/17382979/responsive-background-image-in-div-full-width -->
+<div class="bg-image">
+    <img src="./roots.png">
+</div>
+
+
 <div class="container-fluid">
 
-    <h1>Index Page</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-8 button-div">
+                    <br>
+                    <button class="button" id="foodButton" onClick="foodClicked()">Food</button>
+                    <button class="button" id="populationButton" onClick="populationClicked()">Population</button>
+                    <button class="button" id="ecosystemButton" onClick="ecosystemClicked()">Ecosystem</button>
+                </div>
+                <div class="col-md-4">
+                    <div class="title">
+                        <h1>Index Page</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
 
-    <a href="./page1.php">Link to page 1</a>
-    <br>
+                    <div id="nav-div">
+                        <svg class="nav-svg" id="index-nav"></svg>
+                    </div>
 
-    <button class="button" id="foodButton" onClick="foodClicked()">Food</button>
-    <button class="button" id="populationButton" onClick="populationClicked()">Population</button>
-    <button class="button" id="ecosystemButton" onClick="ecosystemClicked()">Ecosystem</button>
-
-    <div id="nav-div">
-        <svg class="nav-svg" id="index-nav"></svg>
+                </div>
+                <a href="./page1.php">Link to page 1</a>
+                <br>
+            </div>
+        </div>
     </div>
+
 
 </div>
 
