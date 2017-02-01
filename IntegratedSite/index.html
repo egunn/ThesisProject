@@ -51,12 +51,12 @@
 <!-- PHP passing modified from https://www.boutell.com/newfaq/creating/scriptpass.html -->
 <!-- Set up hidden HTML form to transmit the data when the link is clicked-->
 <!-- Action parameter stores the link to open next (will need to auto-update, eventually)-->
-<form name="phpForm" method="POST" action="page1.php">
+<form name="phpForm" id="phpForm" method="POST" action="page1.php">
     <input type="hidden" name="tracker">
 </form>
 
 <!-- link that activates the sendData function and sends the data to the server -->
-<a href="javascript:sendData();">Next page</a>
+<!--<a href="javascript:sendData();">Next page</a>-->
 
 </body>
 

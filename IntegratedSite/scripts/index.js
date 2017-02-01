@@ -80,8 +80,8 @@ queue()
     .await(function (err, linkList, nodeList) {
 
         //chop off extra columns element added by new d3.csv
-        linkList = linkList.slice(0,linkList.length-1);
-        nodeList = nodeList.slice(0,nodeList.length-1);
+        linkList = linkList.slice(0,linkList.length);
+        nodeList = nodeList.slice(0,nodeList.length);
 
         drawNetwork(linkList, nodeList);
 
@@ -177,20 +177,23 @@ function drawNetwork(linkList, nodeList){
         //.attr("y", function(d) { return height*d.setY; })
         .attr("r", 15)
         .attr('stroke',function(d){
-            if (d.topic == "soil"){
-                return 'orange'
+            if (d.avail == "y"){
+                if (d.topic == "soil"){
+                    return 'orange'
+                }
+                else if(d.topic == "population"){
+                    return 'turquoise'
+                }
+                else if (d.topic == "food"){
+                    return 'limegreen'
+                }
+                else if (d.topic == "environmental"){
+                    return 'purple'
+                }
             }
-            else if(d.topic == "population"){
-                return 'turquoise'
-            }
-            else if (d.topic == "food"){
-                return 'limegreen'
-            }
-            else if (d.topic == "environmental"){
-                return 'purple'
-            }
+
             else {
-                return 'gray'
+                return 'gainsboro'
             }
         })
         .attr('stroke-width', 3)
@@ -230,7 +233,19 @@ function drawNetwork(linkList, nodeList){
             /*div.style("left", 0 + "px")//d3.event.pageX + "px")
                 .style("top", 0 + "px");*/
         })
-        //.on('click',sendData());
+        .on('click',function(d){
+            //when a user clicks on a node, update the node and previous node values in the tracker variable,
+            //then call the page reload function.
+            if (tracker[0].prevNode){
+                tracker[0].prevNode = tracker[0].node;
+            }
+            else {
+                tracker[0].prevNode = "none";
+            }
+
+            tracker[0].node = d.id;
+            sendData();
+        });
         //.call(d3.drag()
             //.on("start", dragstarted)
             //.on("drag", dragged)

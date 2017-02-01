@@ -11,29 +11,34 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-9">
+            <div class="row title-row">
+                            <div class="col-md-9 title-col">
+                                <!-- Test Template Page -->
+                                <h1 id="title"></h1>
 
-                    <h1 id="title">Test Template Page</h1>
+                            </div>
+                            <div class="col-md-3 synopsis-col">
+                                <!-- Put overview here -->
+                                <div id="synopsis"></div>
+                            </div>
+                            <!--<div id="rule-div"></div>
+                            <hr>-->
+                        </div>
 
-                </div>
-                <div class="col-md-3">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-9">
 
-                    <div id="vis-div">
-                        <svg class="vis-svg" id="vis"></svg>
-                    </div>
+                                <div id="vis-div">
+                                    <svg class="vis-svg" id="vis"></svg>
+                                </div>
 
-                </div>
-                <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3">
+                                <!-- Put text here -->
+                                <div id="body-text"></div>
 
-                    <div id="body-text">Put text here</div>
-
-                </div>
-            </div>
+                            </div>
+                        </div>
         </div>
     </div>
 </div>

@@ -1,27 +1,25 @@
 //called from page1.php
 //loads template components using JQuery, based on tracker variable
 
-var tracker = 'A';
+//read in the passed JSON in object format
+tracker = JSON.parse(tracker);
 
-//reloadTemplate();
-
-console.log('reload template');
+reloadTemplate();
 
 function reloadTemplate() {
-    if (tracker == 'A'){
 
-        $.getJSON("template.json", function(json) {
+    var currPage;
 
-            $('#title').html(json[0].title);
+    console.log(tracker);
 
-            $('#body-text').html(json[0].text);
+    if (typeof tracker[0].node == "undefined"){
 
-            $("a#test-link").prop("href", json[0].link);
+        console.log('tracker node is not defined!!');
 
-            $("a#test-link").text(json[0].linkText);
-        });
+        $('#title').html('Some other page');
+
     }
-    else if (tracker == 'B'){
+    /*else if (tracker == 'B'){
 
         $.getJSON("template.json", function(json) {
 
@@ -33,9 +31,44 @@ function reloadTemplate() {
 
             $("a#test-link").text(json[1].linkText);
         });
-    }
+    }*/
     else {
-        $('#title').html('Some other page');
+        //$('#title').html('Some other page');
+
+        $.getJSON("template.json", function(json) {
+
+            currPage = json.filter(function(d){
+                return tracker[0].node == d.page;
+            });
+
+            if (typeof currPage != "undefined" && currPage.length > 0){
+
+                $('#title').html(currPage[0].title);
+
+                $('#body-text').html(currPage[0].text);
+
+                $('#synopsis').html(currPage[0].synopsis);
+
+                $("a#test-link").prop("href", currPage[0].link);
+
+                $("a#test-link").text(currPage[0].linkText);
+            }
+            else {
+                console.log('node not found in template file!');
+
+                $('#title').html('Not found');
+
+                $('#body-text').html('Sorry, there is no data available for that node. Please go back to the index and select a new node.');
+
+                //$('#synopsis').html(currPage[0].synopsis);
+
+                $("a#test-link").prop("href", "index.html");
+
+                $("a#test-link").text("Index");
+            }
+
+        });
+
     }
 
     //loads script but doesn't run it
@@ -46,9 +79,18 @@ function reloadTemplate() {
 
     //loads script once document is done, and runs automatically
     //faster without the document ready, but might cause loading problems??
-    $(document).ready(function(){
+    $(document).ready(function() {
+
         //$.getScript("./scripts/vendor/topojson.js");  //added to HTML template for now
-        $.getScript("./scripts/landDegradation.js");
+        if (typeof currPage != "undefined" && currPage.length > 0){
+            console.log(tracker[0].node, currPage[0].page);
+
+            $.getScript(currPage[0].script);
+        }
+        else {
+            console.log('unknown node')
+        }
+
 
         //add a new button for map updating
         var r = $('<input/>', { type: "button", id: "changeMap", value: "1", onClick: "changeMap()" });

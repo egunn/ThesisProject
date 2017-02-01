@@ -1,10 +1,17 @@
-id,source,target,weight
-0,A,B,1
-1,B,C,1
-2,C,D,1
-3,D,E,1
-4,E,F,1
-5,F,G,1
-6,G,H,1
-7,H,I,1
-8,I,J,1
+narrative,id,source,target,weight
+food,0,A,B,1
+food,1,B,C,1
+food,2,C,D,1
+food,3,D,E,1
+food,4,E,F,1
+food,5,F,G,1
+food,6,G,H,1
+food,7,H,I,1
+food,8,I,J,1
+population ,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+ecosystem,,,,
