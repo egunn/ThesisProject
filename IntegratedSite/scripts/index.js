@@ -25,83 +25,30 @@ var height = document.getElementById('index-svg').clientHeight;
 
 var nodeSize = d3.scaleLinear().domain([1,3]).range([40,20]);
 
-var svg = d3.select('.index-svg')
-    .append('g')
-    .attr('class','index-g')
-    .attr('transform','translate(-75,75)');
-
-
+//http://jsfiddle.net/J8sp3/4/
 var roots = d3.xml("./index_roots.svg").mimeType("image/svg+xml").get(function(error, loadedSVG) {
     if (error) throw error;
-
-    /*var root = svg.append("g")
-        .attr("class","root")
-        .attr("transform", 'translate(200,200)');
-    */
-
-    //document.body.appendChild(xml.documentElement); //works
-
-    /*
-     <div id="map_container">
-     <svg id="map" width="100%"></svg>
-     </div>
-
-     var svg = null;
-     var maproot = null;
-
-     d3.xml("map.svg", function(error, xml) {
-     if (error) throw error;
-
-     // "xml" is the XML DOM tree
-     var htmlSVG = document.getElementById('map');  // the svg-element in our HTML file
-     // append the "maproot" group to the svg-element in our HTML file
-     htmlSVG.appendChild(xml.documentElement.getElementById('maproot'));
-
-     // d3 objects for later use
-     svg = d3.select(htmlSVG);
-     maproot = svg.select('#maproot');
-
-     // get the svg-element from the original SVG file
-     var xmlSVG = d3.select(xml.getElementsByTagName('svg')[0]);
-     // copy its "viewBox" attribute to the svg element in our HTML file
-     svg.attr('viewBox', xmlSVG.attr('viewBox'));
-     });
-    */
-
-    //var test = document.getElementById('index-svg').appendChild(xml.documentElement); //works
 
     var svgNode = loadedSVG
         .getElementsByTagName("svg")[0];
 
-    main_chart_svg = d3.select('.index-svg')
+    main_chart_svg = d3.select('.roots-svg');
 
     main_chart_svg.node().appendChild(svgNode);
 
     var innerSVG = main_chart_svg.select("svg");
 
     innerSVG.selectAll('path')
-        .attr('transform','translate(-45,10)');
-
-
-    /*var htmlSVG = document.getElementById('map');
-    htmlSVG.appendChild(xml.documentElement.getElementById('map'));
-    svg1 = d3.select(htmlSVG);
-    maproot = svg1.select('#map');
-
-    var xmlSVG = d3.select(xml.getElementsByTagName('svg')[0]);
-    svg1.attr('viewBox', xmlSVG.attr('viewBox'));
-    */
-
-
-    //d3.select('.index-svg').attr('transform','translate(100,100)');
-
-    //d3.select(".root")[0][0].appendChild(xml.documentElement);
-
-    //var importedNode = document.importNode(xml.documentElement, true);
-
-    //d3.select(".root")[0].appendChild(importedNode.cloneNode(true));
+        .attr('transform','translate(-70,-550)scale(1.5,1.3)')
+        .attr('fill-opacity',.3);
 
 });
+
+
+var svg = d3.select('.index-svg')
+    .append('g')
+    .attr('class','index-g')
+    .attr('transform','translate(-75,75)');
 
 var simulation;
 
@@ -131,9 +78,6 @@ var simulation;
     */
 
 
-
-
-
 var div = d3.select(".bg-image").append("div")
     .attr("class", "tooltip")
     .style('position','absolute');
@@ -147,6 +91,8 @@ var tooltip = d3.select('.tooltip')
     //.style('pointer-events','none') //this makes the div mouse-transparent; apply in css instead.
     .attr('class','tooltip-text')
     .style("opacity", 0);
+
+
 
 //import data from GeoJSON and csv files. Use parseData function to load the csv (not necessary for JSONs)
 queue()
@@ -217,7 +163,21 @@ function drawNetwork(linkList, nodeList){
         //.attr("x2", function(d) { return d.target.x; })
         //.attr("y2", function(d) { return d.target.y; })
         .attr('class','link')
-        .attr('stroke','gainsboro')
+        .attr('stroke',function(d){
+            console.log(d);
+            if (d.narrative == "population"){
+                return "orange";
+            }
+            if (d.narrative == "food"){
+                return "royalblue";
+            }
+            if (d.narrative == "soil"){
+                return "limegreen";
+            }
+            else{
+                return "gainsboro";
+            }
+        })
         .attr("stroke-width", function(d) {return +d.weight *2 ; });
 
 
@@ -462,7 +422,6 @@ function wrap(text, wordList, width) {
         }
     });
 }
-
 
 
 
