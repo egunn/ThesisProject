@@ -38,9 +38,8 @@ strong {
     font-family: "WorkSansExtraLight", Arial, sans-serif;
     /*margin-top: 1.5em;*/
     margin-bottom: 0em;
-    letter-spacing: 2px;
     font-weight: lighter;
-    word-spacing: 4px;
+    /*word-spacing: 4px;*/
     padding-left: 15px;
 }
 
@@ -68,6 +67,10 @@ a{
 
 .title-row{
     position:relative;
+}
+
+.title {
+    padding-top: 100px;
 }
 
 .synopsis-col{
@@ -115,6 +118,10 @@ a{
     height:100%;
 }
 
+.index-svg{
+    width:100vw;
+    height:100vh;
+}
 
 #vis {
     background: none;

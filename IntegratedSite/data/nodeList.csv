@@ -1,23 +1,14 @@
-id,avail,name,icon,photo,text,topic,overallPriority,foodPriority,populationPriority,ecosystemPriority,setX,setY
-A,n,Soil and food,./tree.png,test.png,All of the world's food comes from the soil,food,,3,,,0.3,0.1
-B,n,What people eat,./tree.png,test.png,Diets vary across cultures and over time,food,,3,,,0.1,0.3
-C,n,How much people eat,./tree.png,test.png,People eat more now than ever before,food,,3,,,0.15,0.4
-D,n,Food flow,./tree.png,./images/foodflow_sm.png,Food is a global issue,food,,1,,,0.2,0.3
-E,n,Food demands,./tree.png,test.png,World food supply needs are growing,population,,3,,,0.3,0.4
-F,n,Agricultural practices,./tree.png,test.png,Modern agriculture supports more food production than any time in history,food,,1,,,0.7,0.4
-G,n,World food production,./tree.png,test.png,A look at current and past world food production,food,,1,,,0.1,0.6
-H,y,Soil degradation,./tree.png,test.png,Meeting food demands has caused loss of soil fertility,environmental,,2,,,0.75,0.6
-I,n,Threats to the soil,./tree.png,test.png,"Current threats to the world's soil, according to the FAO-UNESCO",environmental,,2,,,0.8,0.8
-J,n,Responses,./tree.png,test.png,Recommendations for protecting the soil,soil,,2,,,0.82,0.8
-K,y,World population,./tree.png,test.png,World population has increased dramatically in the past century,population,,3,1,,0.15,0.2
-L,n,Land use,./tree.png,test.png,Changes in land use directly affect soil quality,soil,,3,2,,0.7,0.7
-M,n,What is soil?,./tree.png,test.png,Learn more about soil,soil,,3,,,0.1,0.1
-N,n,Soil ecosystem,./tree.png,test.png,"Soil is an incredibly rich ecosystem, with global impacts",environmental,,3,,,0.2,0.1
-O,n,Where does soil come from?,./tree.png,test.png,How soil is created,soil,,3,,,0.3,0.1
-P,n,Plant needs,./images/plant_sm.png,test.png,What plants need to grow,soil,,3,,,0.5,0.3
-Q,n,Rhizosphere,./tree.png,test.png,Learn more about the soil community,soil,,3,,,0.6,0.4
-R,n,Soil quality,./tree.png,test.png,What factors affect soil quality?,soil,,3,,,0.8,0.6
-S,n,Soil fertility,./tree.png,test.png,Plants need soil organic carbon,soil,,3,,,0.85,0.65
-T,y,Climate change,./tree.png,./images/globalC_sm.png,Soil stores carbon and can help to mitigate climate change,environmental,,3,,,0.9,0.75
-U,y,Land per person,./tree.png,test.png,The land needed to feed one person is decreasing,population,,3,1,,0.5,0.5
-V,y,People per farmer,./tree.png,test.png,One farmer can feed more people now than ever before,food,,1,1,,0.6,0.65
+id,avail,name,icon,photo,text,topic,overallPriority,foodPriority,populationPriority,ecosystemPriority,setX,setY,illustratorX,illustratorY,calcX,calcY,oldX,oldY
+M,n,What is soil?,./tree.png,test.png,"Soil is a complex ecosystem, with global impacts.",soil,,3,,,0.115384615,0.234592445,90,118,0.115384615,0.234592445,0.1,0.1
+N,n,Soil biodiversity,./tree.png,test.png,A quarter of the world's species live in the soil,environmental,,3,,,0.120512821,0.397614314,94,200,0.120512821,0.397614314,0.2,0.1
+T,y,Climate change,./tree.png,./images/globalC_sm.png,Soil stores carbon and can help to mitigate climate change,environmental,,3,,,0.192307692,0.479125249,150,241,0.192307692,0.479125249,0.9,0.75
+W,n,Global ecoregions,./tree.png,./images/globalC_sm.png,Different ecosystems store different amounts of carbon in the soil.,,,3,,,0.253846154,0.616302187,198,310,0.253846154,0.616302187,,
+A,n,Soil and food,./tree.png,test.png,Most of the world's food comes from the soil,food,,3,,,0.084615385,0.453280318,66,228,0.084615385,0.453280318,0.3,0.1
+K,y,World population,./tree.png,test.png,World population has increased dramatically in the past century,population,,3,1,,0.096153846,0.622266402,75,313,0.096153846,0.622266402,0.15,0.2
+E,n,Food demands,./tree.png,test.png,World food supply needs are growing,population,,3,,,0.174358974,0.707753479,136,356,0.174358974,0.707753479,0.3,0.4
+F,y,People per farmer,./tree.png,test.png,Modern agriculture allows one farmer to feed more people now than ever before,food,,1,,,0.147435897,0.779324056,115,392,0.147435897,0.779324056,0.7,0.4
+G,y,Land per person,./tree.png,test.png,"The land needed to feed one person is decreasing, but population growth continues to force land use change",food,,1,,,0.065384615,0.842942346,51,424,0.065384615,0.842942346,0.1,0.6
+D,n,Food flow,./tree.png,./images/foodflow_sm.png,Food is a global issue,food,,1,,,0.232051282,0.844930417,181,425,0.232051282,0.844930417,0.2,0.3
+H,y,Soil degradation,./tree.png,test.png,Increasing pressures have caused widespread loss of soil fertility,environmental,,2,,,0.314102564,0.773359841,245,389,0.314102564,0.773359841,0.75,0.6
+I,n,Threats to the soil,./tree.png,test.png,"Causes of soil depletion, according to the FAO-UNESCO",environmental,,2,,,0.507692308,0.827037773,396,416,0.507692308,0.827037773,0.8,0.8
+J,n,Responses,./tree.png,test.png,Recommendations for protecting the soil,soil,,2,,,0.893589744,0.900596421,697,453,0.893589744,0.900596421,0.82,0.8

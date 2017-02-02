@@ -10,37 +10,47 @@
 
 <!-- See http://stackoverflow.com/questions/17382979/responsive-background-image-in-div-full-width -->
 <div class="bg-image">
-    <img src="./roots.png">
+    <!--<img src="./roots.png">-->
+    <svg class="index-svg" id="index-svg" xmlns:xlink="./index_roots.svg"></svg>
 </div>
 
+
+<div id="map_container">
+    <svg id="map" width="100%"></svg>
+</div>
 
 <div class="container-fluid">
 
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-8 button-div">
-                    <br>
-                    <button class="button" id="foodButton" onClick="foodClicked()">Food</button>
-                    <button class="button" id="populationButton" onClick="populationClicked()">Population</button>
-                    <button class="button" id="ecosystemButton" onClick="ecosystemClicked()">Ecosystem</button>
+                <div class="col-md-6">
+
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="title">
-                        <h1>Index Page</h1>
+                        <h1>Talking Dirt</h1>
+                        <h4>An exploration of soil, and how it relates to human concerns</h4>
+                        <div class="button-div">
+                            <button class="button" id="ecosystemButton" onClick="ecosystemClicked()">Soil ecosystems</button>
+                            <button class="button" id="populationButton" onClick="populationClicked()">Population</button>
+                            <button class="button" id="foodButton" onClick="foodClicked()">World food supply</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
 
+                    <!--
                     <div id="nav-div">
                         <svg class="nav-svg" id="index-nav"></svg>
                     </div>
+                    -->
 
                 </div>
-                <a href="./page1.php">Link to page 1</a>
-                <br>
+                <!--<a href="./page1.php">Link to page 1</a>
+                <br>-->
             </div>
         </div>
     </div>
