@@ -1,0 +1,52 @@
+[ {
+    "name":"Soil",
+    "narrative":"soil",
+    "children":[
+      {"name":"Species",
+        "narrative":"environmental",
+        "children":[
+          {"name":"GlobalC",
+            "narrative":"environmental",
+            "children":[
+              {"name":"Ecosystems",
+                "narrative":"environmental",
+                "children":[
+                  {"name":"Soil Degradation",
+                    "narrative":"environmental",
+                    "children":[
+                      {"name":"Threats",
+                        "narrative":"environmental",
+                        "children":[
+                          {"name":"Responses",
+                            "narrative":"environmental"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {"name": "Food",
+       "narrative":"food",
+        "children":[
+          {"name":"World Population",
+            "narrative":"population",
+            "children":[
+              {"name":"Food Supply",
+                "narrative":"population"
+              },
+              {
+               "name":"Land per Person",
+                "narrative":"food"
+              }
+
+            ]
+          }
+        ]
+      }
+    ]
+  }]

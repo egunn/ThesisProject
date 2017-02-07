@@ -1,0 +1,47 @@
+
+[{
+  "name": "Soil",
+  "children": [
+    { //soil narrative
+    "name": "Species",
+    "children": [{
+      "name": "GlobalC",
+      "children": [
+        {
+          "name": "Ecosystems",
+          "children": [
+            {
+              "name": "Soil degradation",
+              "children": [
+                {
+                  "name": "Threats",
+                  "coupling_id": 1,
+                  "children": [
+                    {
+                      "name": "Responses",
+                      "size": 3938
+                    }
+                  ]}
+              ]}
+          ]}
+        ]
+    }
+    ]},
+    { //food narrative
+      "name": "Food",
+      "children": [
+        {
+          "name": "World population",
+          "children": [
+            {
+              "name": "Food supply",
+              "children": [
+                {
+                  "name": "Soil degradation"
+                  //cross connection
+                }
+              ]}
+          ]}
+      ]}
+  ]
+}]
