@@ -7,13 +7,26 @@ var height = document.getElementById('vis').clientHeight;
 //grab svg from template
 var svg = d3.selectAll('#vis');
 
+
+var canvas = d3.select("#vis-canvas");
+
+//need to set attr and styles with d3 if selection is with d3 (compare to JS-only version in Food Flow)
+canvas
+    .attr('width',width)
+    .attr('height', height)
+    .style('width','100%')
+    .style('height','450px');
+
+var context = canvas.node().getContext("2d");
+
 //make global for resize listener
 var mapData;
 
 var projection = d3.geoEquirectangular();
 
 var path = d3.geoPath()
-    .projection(projection);
+    .projection(projection)
+    .context(context);
 
 var worldMap = svg.append('g')
     .attr('class', 'worldmap');
@@ -23,10 +36,12 @@ d3.json('./data/Glasod_mapshaper.topojson', dataLoaded);  //removed GLSGEOID 208
 function dataLoaded(data){
     console.log(data);
 
-    mapData = topojson.feature(data, data.objects.Glasod);
+    mapData = topojson.feature(data, data.objects.Glasod).features;
+
+    console.log(mapData);
 
     projection
-        .fitSize([width, height], mapData);//topojson.feature(data, data.objects.Glasod.geometries));//data, data.features));
+        .fitSize([width, height], topojson.feature(data, data.objects.Glasod));//topojson.feature(data, data.objects.Glasod.geometries));//data, data.features));
 
     //var mapJson = topojson.feature(data, data.objects.worldcountries);
 
@@ -36,13 +51,29 @@ function dataLoaded(data){
     //	.fitSize([600, 400], topojson.feature(data, data.objects.worldcountries));
 
 
-    var mapObjects = worldMap
-        .selectAll("path")
-        .data(mapData.features)
-        .enter();
-
     var colorSet = d3.scaleOrdinal().domain([4,3,2,1,0]).range(['#E82320','#E49922','#FCAA13','#ffecaf','#c59c6d']);
     //very high red #E82320, high brown #E49922, medium yellow #FCAA13, low beige #ffecaf, stable tan #c59c6d
+
+    //map context coloring from http://bl.ocks.org/rveciana/f46df2272b289a9ce4e7
+    mapData.forEach(function (d, i) {
+
+            context.fillStyle = colorSet(d.properties.SEVERITY);//"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+            context.beginPath();
+            path(d);
+            context.fill();
+
+        //}
+
+    });
+
+
+    /*
+
+     var mapObjects = worldMap
+     .selectAll("path")
+     .data(mapData.features)
+     .enter();
+
 
     mapObjects
         .append("path")
@@ -54,7 +85,7 @@ function dataLoaded(data){
         .attr('stroke','none')
         .attr('fill',function(d){return colorSet(d.properties.SEVERITY)})
         .attr("d", path);//function(d){path(d.geometry.coordinates);});
-
+      */
 }
 
 

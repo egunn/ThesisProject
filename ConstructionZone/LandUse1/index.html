@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Map Navigator</title>
+    <meta charset="utf-8">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link href="./style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Country Explorer</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row no-pad">
+
+                <!-- SVG container column -->
+                <div class="col-md-10">
+                    <div id="map-container">
+                        <svg id="mainframe"></svg>
+                        <div class="overlay">
+                            <svg id="navigator"></svg>
+                        </div>
+                    </div>
+                    <div>
+                        <input id="slider" type="range" min="1960" max="2015" value="2010" step="1" />
+
+                        <button name="play" id="play">Play</button>
+                        <button name="stop" id="stop">Stop</button>
+                    </div>
+
+
+
+                </div>
+
+                <!-- Sidebar column -->
+                <div class="col-md-2">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="./scripts/vendor/d3.v4.2.6.min.js"></script>
+<script src="./scripts/vendor/topojson.v1.js"></script>
+<script src="./scripts/vendor/jquery-3.1.1.js"></script>
+<script src="./scripts/vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="./scripts/vendor/crossfilter.js"></script>
+<script src="./scripts/dataManager.js"></script>
+<script src="./scripts/pageSetup.js"></script>
+<script src="./scripts/playSlider.js"></script>
+<script src="./scripts/bar.js"></script>
+<script src="./scripts/navigator.js"></script>
+<script src="./scripts/d.js"></script>
+
+</html>

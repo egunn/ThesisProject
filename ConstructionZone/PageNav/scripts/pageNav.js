@@ -23,7 +23,9 @@ function dataLoaded(data){
     drawNav(data[0]);
 }
 
+var navHistory = {visited:["Soil","Species","GlobalC"],current:"Soil Degradation", selectedNarrative:"soil"};
 
+//based on
 function drawNav(treeData){
 
     //group to plot bars in
@@ -51,7 +53,7 @@ function drawNav(treeData){
         links = treeData.descendants().slice(1);
 
     // Normalize for fixed-depth.
-    nodes.forEach(function(d){ d.y = d.depth * width/6});
+    nodes.forEach(function(d){d.y = d.data.position * width/11});//d.depth * width/6});
 
     // Update the nodes...
     var node = navGroup.selectAll('g.node')
@@ -73,10 +75,36 @@ function drawNav(treeData){
         .attr('cy',function(d){
             return d.y0;
         })
-        .attr('r', 10)
-        .style("fill", 'white')
+        .attr('r', function(d){
+            if (d.data.name == navHistory.current){
+                return 13;
+            }
+            else{
+                return 6;
+            }
+        })
+        .style("fill", function(d){
+
+            var found = navHistory.visited.find(function(e){return e === d.data.name});
+            if (typeof found != "undefined"){
+                if (d.data.narrative == "population"){
+                    return "orange";
+                }
+                if (d.data.narrative == "food"){
+                    return "royalblue";
+                }
+                if (d.data.narrative == "soil" || d.data.narrative == "environmental" ){
+                    return "limegreen";
+                }
+                else{
+                    return "gainsboro";
+                }
+            }
+            else {
+                return "white";
+            }
+        })
         .attr('stroke',function(d){
-            console.log(d);
             if (d.data.narrative == "population"){
                 return "orange";
             }
@@ -90,15 +118,29 @@ function drawNav(treeData){
                 return "gainsboro";
             }
         })
-        .attr('stroke-width',2)
+        .attr('stroke-width',2.5)
+        .attr('fill-opacity',function(d){
+            if (navHistory.selectedNarrative == d.data.narrative){
+                return 1;
+            }
+            else {
+                return .5;
+            }
+        })
+        .attr('stroke-opacity',function(d){
+            if (navHistory.selectedNarrative == d.data.narrative){
+                return 1;
+            }
+            else {
+                return .5;
+            }
+        })
         .on('click',function(d){console.log(d.data.name)});
 
 
     // Update the links...
     var link = navGroup.selectAll('path.link')
         .data(links);
-
-    console.log(links);
 
     // Enter any new links at the parent's previous position.
     var linkEnter = link.enter().insert('path', "g")
@@ -126,15 +168,51 @@ function drawNav(treeData){
         d.y0 = d.y;
     });
 
+    //manually add the additional parent-child connections that cross categories
+    //based as http://bl.ocks.org/robschmuecker/6afc2ecb05b191359862
+    manualPairs = [
+        {parent: "Food Supply", child:"Soil Degradation"},
+        {parent: "Land per Person", child:"Food Supply"},
+        {parent: "Food Flow", child:"Soil Degradation"}
+    ];
+
+    manualLinks =[];
+
+    manualPairs.forEach(function(d){
+        manualLinks.push(findNode(d));
+    });
+
+    manualLinks.forEach(function(manualLink){
+
+        navGroup.append('path')
+            .attr('class','manual-link')
+            .attr('fill','none')
+            .attr('stroke','blue')
+            .attr('d',function(){
+                return diagonal({x:manualLink.parent.x,y:manualLink.parent.y},{x:manualLink.child.x,y:manualLink.child.y});
+
+            });
+
+    });
+
+    function findNode(manualPair){
+
+        var parentNode = root.descendants().filter(function(d){
+            return d.data.name === manualPair.parent;
+        })[0];
+
+        var childNode = root.descendants().filter(function(d){
+            return d.data.name === manualPair.child;
+        })[0];
+
+        return {parent:parentNode, child:childNode};
+    }
 
 }
 
 
 // Creates a curved (diagonal) path from parent to the child nodes
 function diagonal(s, d) {
-
-    //console.log(s,d);
-    console.log(s.y, s.x,(+s.y +d.y)/2, s.x , (+s.y +d.y)/2, d.x, d.y, d.x);
 
     path = 'M ' + s.y +  ' ' + s.x + ' ' +
             'C ' + ((+s.y + d.y) / 2) +  ' ' + s.x + ', ' +

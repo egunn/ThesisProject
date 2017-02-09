@@ -1,16 +1,22 @@
 
 var tracker = 'A';
 
-//reloadTemplate();
+reloadTemplate();
 
 function reloadTemplate() {
     if (tracker == 'A'){
 
-        $.getJSON("text.json", function(json) {
+        console.log('here');
+
+        $.getJSON("template.json", function(json) {
+
+            console.log(json);
 
             $('#title').html(json[0].title);
 
             $('#body-text').html(json[0].text);
+
+            $('#synopsis').html(json[0].synopsis);
 
             $("a#test-link").prop("href", json[0].link);
 

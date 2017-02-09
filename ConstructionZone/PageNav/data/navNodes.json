@@ -1,24 +1,31 @@
 [ {
     "name":"Soil",
     "narrative":"soil",
+    "position":1,
     "children":[
       {"name":"Species",
-        "narrative":"environmental",
+        "narrative":"soil",
+        "position":3,
         "children":[
           {"name":"GlobalC",
-            "narrative":"environmental",
+            "narrative":"soil",
+            "position":5,
             "children":[
               {"name":"Ecosystems",
-                "narrative":"environmental",
+                "narrative":"soil",
+                "position":7,
                 "children":[
                   {"name":"Soil Degradation",
-                    "narrative":"environmental",
+                    "narrative":"soil",
+                    "position":9,
                     "children":[
                       {"name":"Threats",
-                        "narrative":"environmental",
+                        "narrative":"soil",
+                        "position":10,
                         "children":[
                           {"name":"Responses",
-                            "narrative":"environmental"
+                            "narrative":"soil",
+                            "position":11
                           }
                         ]
                       }
@@ -32,16 +39,30 @@
       },
       {"name": "Food",
        "narrative":"food",
+        "position":2,
         "children":[
           {"name":"World Population",
             "narrative":"population",
+            "position":3,
             "children":[
               {"name":"Food Supply",
-                "narrative":"population"
+                "narrative":"population",
+                "position":5,
+                "children":[
+                    {"name":"People per Farmer",
+                      "narrative":"food",
+                      "position":6,
+                      "children":[
+                        {"name":"Food Flow",
+                          "narrative":"food",
+                          "position":7
+                        }]
+                  }]
               },
               {
                "name":"Land per Person",
-                "narrative":"food"
+                "narrative":"food",
+                "position":4
               }
 
             ]

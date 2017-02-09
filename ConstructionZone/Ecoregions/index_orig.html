@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+
+<link rel="stylesheet" href="./vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Mapping Ecoregions</h1>
+            <h5>CS7280 Hwk 4</h5>
+            <h5>By Erica Gunn</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <h4>Project Motivations</h4>
+
+                    <p>My thesis project is about visualizing the world's soil resources,
+                        so I chose to use this assignment as an opportunity to develop an interactive graphic that may
+                        be incorporated
+                        into my thesis project in the future. I wanted to create a visualization that would put a single
+                        figure from a scientific paper into a broader ecological perspective.
+                    </p>
+                    <p>
+                        I began with data on the distribution of soil organic carbon in different ecological
+                        biomes, with values read from a
+                        pdf of a <a href="http://www.tandfonline.com/doi/abs/10.4155/cmt.13.77">scientific paper</a>. I downloaded map shapefiles for the world from Natural Earth, and
+                        information on climate regions from the Nature Conservancy. The map data was cleaned and
+                        simplified (to 2.5%) to reduce file
+                        size using MapShaper, and exported in the topoJSON format. The climate region definitions for
+                        the paper and
+                        Nature Conservancy data were imported into MapShaper and exported as .csv. The climate
+                        definitions were assembled
+                        and cross-correlated by hand. The country id values in the map data also needed to be adjusted
+                        to match the other data files.
+                        Finally, I downloaded data on forest area for different countries from the FAO-UNESCO for 1990
+                        and 2013 (the earliest and most recent year where they had
+                        complete data).
+                    </p>
+                    <p>
+                        For the first pane, I wanted to allow users to realize the large differences in soil carbon
+                        distribution in different biomes. The
+                        central map pane identifies the location of different biomes across the globe. On hovering on
+                        the bar chart,
+                        the map updates to show only the biomes that relate to the selected bar, allowing the user to
+                        correlate the
+                        data in the bar charts with the geographic areas where those types of soil are found. When the
+                        user selects a region of the map
+                        using brushing, a third visualization is created to show the change in forest area for the top
+                        10 countries in the selection,
+                        over the time period measured. This helps the user to understand how forest area is changing in
+                        different parts of the world, and
+                        allows them to investigate particular countries or biomes of interest.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+                <!-- ecoregion bars -->
+                <div class="col-md-3" id="ecoColumn">
+                    <div class="row fixed-height">
+                        <p class="sidebar">
+                            This chart shows the distribution of organic carbon in different climate regions. Plant mass
+                            is shown aboveground in green,
+                            topsoil belowground in dark brown, and subsoil is shown in light brown. Hovering over a bar
+                            highlights the areas
+                            of the world map where this soil type is generally found.
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div id="ecoregions"></div>
+                    </div>
+                </div>
+
+                <!-- maps -->
+                <div class="col-md-6">
+                    <div class="row fixed-height">
+                        <p class="sidebar">
+                            The map below shows the different climatic regions of the world, according to the WWF
+                            definitions. When a region of the map
+                            is selected, the change in forested area for the top 10 countries in that region will be
+                            plotted at left.
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div id="dashboard">
+                            <div id="maps">
+                                <div id="mapCanvas"></div>
+                                <div class="floating">
+                                    <div id="majormap"></div>
+                                    <div id="minimap"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- land use bars -->
+                <div class="col-md-3">
+                    <div class="row fixed-height">
+                        <p class="sidebar"></p>
+                    </div>
+
+                    <div class="row">
+                        <div id="landuse"></div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+
+                <div class="col-md-8">
+                    <h4>Design Justifications</h4>
+                    <p>
+                        I chose to represent the carbon content and forest area data as bar charts for ease of comparison and
+                        quantitative accuracy. The original paper used a similar split for the above and belowground bars. I
+                        thought that approach was very effective at reducing the problems of making comparisons across stacked bars,
+                        and the metaphor was well suited to this particular data. Both bar chart axes are positive, since
+                        all bars encode information with length. Labels were added to the lower axis to emphasize that the values are positive.
+                        Bar colors were chosen to emphasize the distinction between plant matter and soil carbon content.
+                        The light gray bars were added both to visually connect the individual bar groups to their respective labels, and
+                        to simplify interaction by linking d3 mouse behavior to the area above and below bars as well as the bars themselves.
+                        On hover, the background bar changes opacity to indicate the current selection.
+                    </p>
+                    <p>
+                        The central map colors were based loosely off of the colorBrewer categorical scales, but were adjusted to
+                        better accommodate the 15 categories shown. This is really too many categories to distinguish easily, so
+                        regions with similar climate were given paired/sequential colors within the same hue, to make it easier to find
+                        related regions and simplify the interpretation of the data. The colors were further adjusted by hand to improve
+                        colorblind accessibility. Though not perfect, it is possible to distinguish most of the colors in a colorblind simulation.
+                    </p>
+                    <p>
+                        The map itself is built from a canvas element overlaid with an SVG. Showing the base map data as an SVG was
+                        untenable in the browser, due to the large number of points on the map. To speed up drawing and reduce memory,
+                        I used d3 to project the SVG paths onto canvas, creating a raster view. When the user selects a bar in the bar chart,
+                        the canvas is re-projected to show the appropriate biomes (stored only in the canvas source data file). Unfortunately, the response time for this step is still slow due to the need to parse and project all of the data points for a 7 MB topojson file. Pre-projecting the coordinates would help to improve the responsiveness for future versions.</p>
+<p>
+                        The SVG overlay is used to draw the country outlines and for brushing. Since the country shapes are not available
+                        in the biomes data, the SVG fill colors update to show only the relevant sections of the map when the user makes
+                        a country selection. An invisible rectangle is appended on top of the SVG element when brushing is complete, and
+                        this rectangle is used to detect when a user clicks on the background and reset the SVG fill colors. The map highlight
+                        colors change depending on the kind of selection the user has made, to make it easier to distinguish between the two
+                        kinds of selection. The third bar chart is only drawn in response to user interaction to further solidify this link.
+                    </p>
+                    <p>
+                        When the user selects a series of countries using brushing, the SVG element ids are recorded and passed to a draw function
+                        that filters the FAO-UNESCO data and returns only the countries selected. These are then sorted and displayed in descending order,
+                        with the largest current forest area shown first. The bar chart was rotated to simplify reading of country names in a
+                        compact space.
+                    </p>
+                </div>
+            </div>
+            <br>
+            <br>
+
+        </div>
+    </div>
+
+</body>
+<script src="./vendor/d3.v4.2.6.min.js"></script>
+<script src="./vendor/queue.min.js"></script>
+<script src="ecoregions.js"></script>
+<script src="mapbrushing.js"></script>
+<script src="countrylist.js"></script>
+<script src="landuse.js"></script>
+</html>
