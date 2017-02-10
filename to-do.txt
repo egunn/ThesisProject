@@ -1,0 +1,26 @@
+Food Flow:
+Russia balance timeline data food flow - two lines each?
+names still have typos S?o Tome
+country names not showing up as alphabetical in dropdown
+Need to add year info to sidebar pane
+Connect country selection to "top partners" plot
+Category selection has no effect on food balance plot
+No zero handling in the timeline plot
+
+Land Use 1: 
+Needs to be incorporated into another vis?
+
+Soil Degradation:
+Add interactivity, legend
+New (canvas) version needs to be integrated into main site
+
+Ecoregions:
+SVG needs to become responsive
+
+Soil organisms:
+Work out text width and placement as variables, make responsive
+Update/rethink design
+
+Integrated site: 
+tooltip placement - hovers far from mouse, can go off-screen
+re-connect node and root drawing coords.

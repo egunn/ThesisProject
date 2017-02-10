@@ -1,0 +1,147 @@
+
+@font-face {
+    font-family: 'WorkSansMedium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('WorkSansMedium'), local('WorkSansMedium'), url('../fonts/WorkSans-Medium.otf') format('opentype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+    font-family: 'WorkSansLight';
+    font-style: normal;
+    font-weight: normal;
+    src: local('WorkSansLight'), local('WorkSansLight'), url('../fonts/WorkSans-Light.otf') format('opentype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+    font-family: 'WorkSansExtraLight';
+    font-style: normal;
+    font-weight: normal;
+    src: local('WorkSansExtraLight'), local('WorkSansExtraLight'), url('../fonts/WorkSans-ExtraLight.otf') format('opentype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+
+* {
+    font-family: "WorkSansLight", Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+strong {
+    color: gray;
+    /*text-transform: uppercase;*/
+    font-family: "WorkSansExtraLight", Arial, sans-serif;
+    /*margin-top: 1.5em;*/
+    margin-bottom: 0em;
+    letter-spacing: 2px;
+    font-weight: lighter;
+    word-spacing: 4px;
+    padding-left: 15px;
+}
+
+h1 {
+    font-size: 75px;
+    letter-spacing: 1px;
+    color:gray; /*#482e1f;*/
+}
+
+.title-row{
+    position:relative;
+}
+
+.vis-row{
+    height:450px; /*need to set this height manually, otherwise pagenav floats in the middle of the screen!*/
+}
+
+
+.page-nav{
+    width:100%;
+    height:150px;
+    background: gainsboro;
+}
+
+
+.synopsis-col{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    vertical-align:bottom;
+}
+
+#synopsis{
+    font-family: "WorkSansMedium", Arial, sans-serif;
+    /*display: flex;
+    justify-content: flex-end;*/
+    /*height:100%;
+    display: table-cell;
+    vertical-align: bottom;*/
+    padding-top:15px;
+    padding-bottom:8px;
+}
+
+
+.tooltip{
+    background: gainsboro;
+    color:gray;
+    pointer-events: none;
+    border-radius: 5px;
+}
+
+.tooltip-text{
+    background:white;
+    width:185px;
+    padding-top:2px;
+    padding-left:3px;
+    padding-right:3px;
+    pointer-events: none;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.tooltip-image{
+    background: gray;
+    padding: 0px 3px 0px 3px;
+    border-radius: 5px 5px 0px 0px;
+    pointer-events: none;
+    min-height:100px;
+    width:100%;
+    height:100%;
+}
+
+
+#vis-canvas{
+    position:absolute;
+    width:100%;
+    height:450px;
+    background:none;
+}
+
+#vis {
+    z-index:1;
+    position:absolute;
+    background: transparent;
+    width:100%;
+    height:450px;
+}
+
+
+.content {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    padding-right:0;
+    padding-left:0;
+}

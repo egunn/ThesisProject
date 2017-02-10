@@ -47,7 +47,6 @@ function reloadTemplate() {
     //faster without the document ready, but might cause loading problems
     $(document).ready(function(){
         //$.getScript("./scripts/vendor/topojson.js");  //added to HTML template for now
-        $.getScript("./scripts/mapbrushing.js");
         $.getScript("./scripts/ecoregions.js");
 
         //add a new button for map updating

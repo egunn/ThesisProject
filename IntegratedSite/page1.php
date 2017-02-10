@@ -25,11 +25,12 @@
                             <hr>-->
                         </div>
 
-                        <div class="row">
+                        <div class="row vis-row">
                             <div class="col-md-9">
 
                                 <div id="vis-div">
                                     <svg class="vis-svg" id="vis"></svg>
+                                    <canvas class="vis-canvas" id="vis-canvas"></canvas>
                                 </div>
 
                             </div>
@@ -39,6 +40,18 @@
 
                             </div>
                         </div>
+
+                        <div class="row nav-row">
+                            <div class="col-md-9">
+
+                                <div id="nav-div">
+                                    <svg class="page-nav" id="nav"></svg>
+                                </div>
+
+                            </div>
+
+                        </div>
+
         </div>
     </div>
 </div>
