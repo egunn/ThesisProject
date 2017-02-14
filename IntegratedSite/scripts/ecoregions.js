@@ -42,7 +42,7 @@ barGroup = ecoPlot.append('g')
 
 wwfCategories = [];
 
-var tracker = {biomes:[1,6],countries:[],mouseover:false};
+var tracker = {biomes:[1,6],countries:[],mouseover:false, init:true};
 
 //code from http://jsfiddle.net/8L247yac/
 //found through SO post: http://stackoverflow.com/questions/20671015/d3-js-sophisticated-world-map-brush-thumbnail
@@ -89,53 +89,78 @@ function drawEcoMap(ecoMap) {
         toHighlight.push(ecoRegions.filter(function(e){return e.properties.BIOME == d}));
 	});
 
-	console.log(tracker.biomes);
+	console.log(toHighlight);
 
-	//map context coloring from http://bl.ocks.org/rveciana/f46df2272b289a9ce4e7
-	toHighlight.forEach(function(array,index){
+	if (toHighlight.length != 0){
 
-		console.log(index);
 
-		array.forEach(function (d, i) {
+		//map context coloring from http://bl.ocks.org/rveciana/f46df2272b289a9ce4e7
+		toHighlight.forEach(function(array,index){
 
-			if (tracker.biomes.length == 0){
+			console.log(index);
 
-				//console.log(d.properties.G200_BIOME);
-				if (index == 0){
-					var tempColor = "orange";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
-				}
-				else{
-					var tempColor = "purple";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
-				}
-				context.fillStyle = tempColor;//"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
-				context.beginPath();
-				path(d);
-				context.fill();
-			}
+			array.forEach(function (d, i) {
 
-			else {
-				var check = tracker.biomes.find(function(f){
-					//console.log(f,d.properties.BIOME);
-					return f == d.properties.BIOME;
-				});
+				/*if (tracker.biomes.length == 0){
 
-				if (check){
-					tempColor = 'blue';//"#ea822c";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
-				}
-				else {
-					tempColor = "white";
+					//console.log(d.properties.G200_BIOME);
+					if (index == 0){
+						var tempColor = "orange";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+					}
+					else{
+						var tempColor = "purple";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+					}
+					context.fillStyle = tempColor;//"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+                    context.strokeStyle = "white";
+					context.beginPath();
+					path(d);
+					context.fill();
 				}
 
-				context.fillStyle = tempColor;//"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
-				context.beginPath();
-				path(d);
-				context.fill();
+				else {*/
+					var check = tracker.biomes.find(function(f){
+						//console.log(f,d.properties.BIOME);
+						return f == d.properties.BIOME;
+					});
 
-			}
 
+					//console.log(d.properties.BIOME);
+
+					if (check){
+						if (tracker.init == true){
+                            if (d.properties.BIOME == 1 ){
+                                tempColor = 'green';//'#74a063';
+                            }
+                            else if (d.properties.BIOME == 6 ){
+                               // console.log(d);
+                            	tempColor = 'darkorange';
+                            }
+                            else{
+                                tempColor = 'gainsboro';
+                            }
+						}
+						else {
+                            tempColor = 'gainsboro';//"#ea822c";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+                        }
+					}
+					else {
+						tempColor = "white";
+					}
+
+					context.fillStyle = tempColor;//"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+                    context.strokeStyle = "white";
+					context.beginPath();
+					path(d);
+					context.fill();
+
+				/*}*/
+
+			});
 		});
-    });
-
+    }
+    else {
+		context.clearRect(0,0,width,height)
+	}
 }
 
 
@@ -309,6 +334,17 @@ function ecoregions(data, ecoMap){
         .call(d3.axisBottom(x));
     //.tickValues([1960,1965,1970,1975,1980,1985,1990,1995,2000,2005,2010,2015])); //come back and rebuild this!
 
+	d3.select('.axis--x')
+        .style('stroke','white');
+
+    barGroup.append('text')
+        .attr('fill','gray')
+        .style('font-size',12)
+        .attr('transform','rotate(-90)')
+        .attr("x", -ecoHeight/2 + 75)
+        .attr("y", -11)
+        .text('Trillion kg');
+
     xAxis
         .selectAll("text")
         .attr("y", 0)
@@ -361,6 +397,39 @@ function ecoregions(data, ecoMap){
         .attr('fill',"gray")
         .style('font-size', 12);
 
+    legendItems = [{name:'Plants',color:"#74a063"},{name:'Topsoil',color:"#77664c"},{name:'Subsoil',color:"#a38961"}];
+
+    var legend = barGroup.selectAll('.legend-box')
+		.data(legendItems)
+        .enter()
+		.append('g')
+		.attr('transform','translate(' + (ecoWidth-18) + ','+ (ecoHeight-34) + ')');
+
+    legend
+		.append('rect')
+		.attr('x', 0)
+		.attr('y', function (d,i){
+            return i*18;
+        })
+		.attr('width', 8)
+		.attr('height', 8)
+		.attr('fill', function(d){
+			return d.color;
+		});
+
+
+    legend
+        .append('text')
+        .attr('x', 15)
+        .attr('y', function (d,i){
+            return i*18 + 9;
+        })
+        .attr('width', 10)
+        .attr('height', 10)
+        .text(function(d){
+            return d.name;
+        });
+
     //draw bars
     stackGroup = barGroup.selectAll(".abovebar")
         .data(data)
@@ -370,7 +439,10 @@ function ecoregions(data, ecoMap){
         .on('mouseenter',function(d){
             //set the tracker to true when the bar is entered
             tracker.mouseover = true;
+            tracker.init = false;
+            ecoCanvas.node().getContext("2d").clearRect(0,0,width,height);
 
+            d3.selectAll('.backgroundbar').attr('fill','gray');
             d3.select(this).select('.backgroundbar').attr('fill-opacity',0.15);
             d3.selectAll('.ecoPlot').selectAll('.country').style('fill','orange');
             d3.selectAll('.landuseplot').selectAll('.countryBarGroup').remove();
@@ -483,8 +555,19 @@ function ecoregions(data, ecoMap){
         .attr("y", 10)
         .attr("width", x.bandwidth())
         .attr("height", ecoHeight )
-        .attr('fill', 'gray')
-        .attr('fill-opacity',0.05);
+        .attr('fill', function(d){
+			if (d.climateType == 'Trop moist'){
+                return 'green';//'#74a063';
+			}
+            else if (d.climateType == 'Boreal moist'){
+                return 'darkorange';
+            }
+
+			else{
+                return 'gray';
+			}
+		})
+        .attr('fill-opacity',0.1);
 
 
 

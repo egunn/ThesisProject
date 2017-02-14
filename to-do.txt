@@ -16,9 +16,10 @@ New (canvas) version needs to be integrated into main site
 
 Ecoregions:
 SVG needs to become responsive
-Update ecoregion selection to match bioregion defn's
-Link filtering to bar chart hover
-Update check in line 117 - not sure what it's currently looking at
+Update ecoregion selection to match bioregion defn's - redo linking!!
+Make x-axis white, remove ticks
+increase space btwn axis and bars
+Simplify map
 
 Soil organisms:
 Work out text width and placement as variables, make responsive
