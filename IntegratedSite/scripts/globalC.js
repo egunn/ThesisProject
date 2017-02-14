@@ -34,7 +34,7 @@ pieData = [
 ];
 
 drawBars(data);
-drawPie();
+//drawPie();
 
 
 function drawBars(data){
@@ -87,10 +87,22 @@ function drawBars(data){
      */
 
 
+    barGroup.append('text')
+        .attr('fill','gray')
+        .style('font-size',12)
+        .attr('transform','rotate(-90)')
+        .attr("x", -chartLoc.xheight + 2)
+        .attr("y", -5)
+        .text('Trillion kg Carbon Dioxide');
+
+
+
     var bars = barGroup
         .selectAll('bar')
         .data(data)
         .enter();
+
+
 
     bars
         .append("rect")
@@ -108,7 +120,7 @@ function drawBars(data){
         .attr("height", function(d){
             return chartLoc.xheight - y(d.value);
         })
-        .attr('fill', function(d){
+        .attr('fill',  '#74a063'/*function(d){
             if (d.class == "Soil"){
                 return "#7a533b";
             }
@@ -116,7 +128,7 @@ function drawBars(data){
                 return '#74a063'
             }
 
-        });
+        }*/);
 
     bars.append('text')
         .attr('class', 'bar-label')
@@ -132,7 +144,68 @@ function drawBars(data){
         .attr("y",  function(d){
             return (y(d.value)-4);
         })
-        .text(function(d){return d.value + ", " + d.percent});
+        .text(function(d){return d.value + " (" + d.percent + ")"});
+
+    livingLabel = barGroup.append('g')
+        .attr('class','living-label')
+        .attr('transform','translate('+ (x('Living')+ (x.bandwidth()/2) ) + ',' + (height/2 + 18) + ')');
+
+    arrow = livingLabel.append('line')
+        .attr('x1',0)
+        .attr('x2',0)
+        .attr('y1', 25)
+        .attr('y2', 80)
+        .attr('stroke','gray')
+        .attr('stroke-weight', 1);
+
+    livingLabel.append("path")
+        .attr('transform','translate(0,' + 75 + ')')
+        .attr("d", "M-4,0L0,10,L4,0")
+        .attr("class","arrowHead")
+        .attr('fill','gray');
+
+    livingLabel
+        //.attr('transform','translate()')
+        .append('text')
+        .attr('fill','gray')
+        .style('font-size',12)
+        .attr("x",0)
+        .attr("y", 0)
+        .style('text-anchor','middle')
+        .transition()
+        .on('start',function(d){
+            var text = d3.select(this);
+            wrap(text, 'All plant and animal life on earth' ,125);
+        });
+
+
+
+    soilLabel = barGroup.append('g')
+        .attr('class','soil-label')
+        .attr('transform','translate('+ (x('Soil')+ (x.bandwidth()/2) ) + ',' + height/2 + ')');
+
+    arrow = soilLabel.append('line')
+        .attr('x1',0)
+        .attr('x2',0)
+        .attr('y1', 25)
+        .attr('y2', 80)
+        .attr('stroke','gray')
+        .attr('stroke-weight', 1);
+
+    soilLabel.append("path")
+        .attr('transform','translate(0,' + 75+ ')')
+        .attr("d", "M-4,0L0,10,L4,0")
+        .attr("class","arrowHead")
+        .attr('fill','gray');
+
+    soilLabel.append('text')
+        .attr('fill','gray')
+        .style('font-size',12)
+        .attr("x", 0)
+        .attr("y", 15)
+        .style('text-anchor','middle')
+        .text('Carbon stored in soil');
+
 
 }
 
@@ -242,4 +315,39 @@ function resizeView() {
     width = document.getElementById('vis').clientWidth;
     height = document.getElementById('vis').clientHeight;
 
+}
+
+
+//from http://stackoverflow.com/questions/24784302/wrapping-text-in-d3
+function wrap(text, wordList, width) {
+    text.each(function () {
+        var text = d3.select(this),
+            words = wordList.split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.15, // ems
+            x = text.attr("x"),
+            y = text.attr("y"),
+            dy = 0, //parseFloat(text.attr("dy")),
+            tspan = text.text(null)
+                .append("tspan")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("dy", dy + "em");
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan")
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                    .text(word);
+            }
+        }
+    });
 }

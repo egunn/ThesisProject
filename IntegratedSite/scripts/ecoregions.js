@@ -11,15 +11,19 @@ ecoHeight = height;
 landWidth = 2*width/3;
 landHeight = height;
 
-ecoPlot = d3.select("#vis");
+ecoPlot = d3.select("#vis")
+    .attr('width',width)
+    .attr('height', height)
+    .style('width','100%')
+    .style('height','450px');
 
 countryListPlot = d3.select("#vis");
 
 ecoCanvas = d3.select("#vis-canvas")
     .attr('width',width)
     .attr('height', height)
-    .style('width','100%')
-    .style('height','450px');
+    .style('width','800px')
+    .style('height','400px');
 
 
 //set up scale factors
@@ -38,7 +42,7 @@ barGroup = ecoPlot.append('g')
 
 wwfCategories = [];
 
-var tracker = {biomes:[],countries:[],mouseover:false};
+var tracker = {biomes:[1,6],countries:[],mouseover:false};
 
 //code from http://jsfiddle.net/8L247yac/
 //found through SO post: http://stackoverflow.com/questions/20671015/d3-js-sophisticated-world-map-brush-thumbnail
@@ -52,12 +56,12 @@ queue()
 	//wait for a variable to be returned for each file loaded: blocks from blk_group file, neighborhoods from bos_neighborhoods, and income from the parsed acs.csv.
 	.await(function (err, mapData, ecomap, carbon) {
 
-		projection
+        projection
 			.fitSize([landWidth, landHeight], topojson.feature(ecomap, ecomap.objects.wwf_terr_ecos))
             .translate([ecoWidth+landWidth/2-margin.l, landHeight/2]);
 
 		ecoregions(carbon,ecomap);
-		drawMap2(mapData, projection);
+		drawMap2(mapData);
 		drawEcoMap(ecomap);
 		//countryList(forests, tracker.countries);
 
@@ -65,7 +69,6 @@ queue()
 
 
 function drawEcoMap(ecoMap) {
-	console.log(ecoMap);
 
     var context = ecoCanvas.node().getContext("2d");
 
@@ -75,46 +78,68 @@ function drawEcoMap(ecoMap) {
 
 	ecoRegions = topojson.feature(ecoMap, ecoMap.objects.wwf_terr_ecos).features;
 
+	console.log(ecoRegions);
+
+
+    //var highlight2 = ecoRegions.filter(function(d){return d.properties.BIOME == 6});
+
+    toHighlight = [];
+
+    tracker.biomes.forEach(function(d){
+        toHighlight.push(ecoRegions.filter(function(e){return e.properties.BIOME == d}));
+	});
+
 	console.log(tracker.biomes);
 
 	//map context coloring from http://bl.ocks.org/rveciana/f46df2272b289a9ce4e7
-	ecoRegions.forEach(function (d, i) {
+	toHighlight.forEach(function(array,index){
 
-		if (tracker.biomes.length == 0){
-			//console.log(d.properties.G200_BIOME);
-			var tempColor = ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
-			context.fillStyle = tempColor;//"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
-			context.beginPath();
-			path(d);
-			context.fill();
-		}
+		console.log(index);
 
-		else {
-			var check = tracker.biomes.find(function(f){
-				//console.log(f,d.properties.BIOME);
-				return f == d.properties.BIOME;
-			});
+		array.forEach(function (d, i) {
 
-			if (check){
-				tempColor = "#ea822c";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+			if (tracker.biomes.length == 0){
+
+				//console.log(d.properties.G200_BIOME);
+				if (index == 0){
+					var tempColor = "orange";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+				}
+				else{
+					var tempColor = "purple";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+				}
+				context.fillStyle = tempColor;//"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+				context.beginPath();
+				path(d);
+				context.fill();
 			}
+
 			else {
-				tempColor = "white";
+				var check = tracker.biomes.find(function(f){
+					//console.log(f,d.properties.BIOME);
+					return f == d.properties.BIOME;
+				});
+
+				if (check){
+					tempColor = 'blue';//"#ea822c";//ecoColors(d.properties.BIOME); //"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+				}
+				else {
+					tempColor = "white";
+				}
+
+				context.fillStyle = tempColor;//"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
+				context.beginPath();
+				path(d);
+				context.fill();
+
 			}
 
-			context.fillStyle = tempColor;//"\"" + ecoColors(d.properties.G200_BIOME) + "\"";
-			context.beginPath();
-			path(d);
-			context.fill();
-
-		}
-
-	});
+		});
+    });
 
 }
 
 
-function drawMap2 (data, projection){
+function drawMap2 (data){
 
 	var mapJson = topojson.feature(data, data.objects.worldcountries);
 
@@ -126,13 +151,13 @@ function drawMap2 (data, projection){
 	var path = d3.geoPath()
 		.projection(projection);
 
-	var svg = d3.selectAll('#majormap')
-		.append('svg')
-		.attr('width',600)
+	/*var svg = d3.selectAll('#ecoPlot')
+		//.append('svg')
+		.attr('width',800)
 		.attr('height',400)
-		.attr('class', 'majormap');
+		.attr('class', 'majormap');*/
 
-	var worldMap = svg.append('g')
+	var worldMap = ecoPlot.append('g')
 		.attr('class', 'worldmap');
 
 	var mapObjects = worldMap
@@ -145,8 +170,9 @@ function drawMap2 (data, projection){
 		.attr('class', function(d){
 			return 'country '+ d.id;
 		})
-		.attr('strokeWidth',4)
-		.attr('stroke','black')
+		.attr('strokeWidth',1)
+		.attr('stroke','gray')
+		.attr('fill','none')
 		.attr("d", path);
 
 	var legendY = d3.scaleBand().rangeRound([155,355]).domain([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]).padding(4);
@@ -169,6 +195,7 @@ function drawMap2 (data, projection){
 		{name: "Not classified", biome: 99}
 	];
 
+	/*
 	//append a legend for the canvas map (do it here in the SVG because it only gets called once)
 	var legend = ecoPlot.selectAll('.legend')
 		.data(climateTypes)
@@ -176,6 +203,7 @@ function drawMap2 (data, projection){
 		.append('g')
 		.attr('transform','translate(' + ecoWidth + ','+ (ecoHeight-legendY(8)+ 48) +')')
 		.attr('class','legend');
+
 
 	legend.append('circle')
 		.attr('class','legendCirc')
@@ -225,8 +253,11 @@ function drawMap2 (data, projection){
 		.style("text-anchor", "start")
 		.text(function(d){return d.name;});
 
+	*/
+
 	//console.log(mapJson.features);
 
+	/*
 	var centers = mapJson.features.map(function (d) {
 
 		var centroid = path.centroid(d); //provides two numbers [x,y] indicating the screen coordinates of the state
@@ -240,6 +271,7 @@ function drawMap2 (data, projection){
 			y: centroid[1]
 		}
 	});
+	*/
 
 
 }
@@ -322,7 +354,7 @@ function ecoregions(data, ecoMap){
         .style('font-size', 14)
         .attr('fill',"gray")
         .style('text-anchor', 'middle')
-        .text('Distribution of carbon in the soil');
+        .text('Carbon above and below ground');
 
     barGroup.append('text')
         .attr('class', 'bar-label')
@@ -340,7 +372,7 @@ function ecoregions(data, ecoMap){
             tracker.mouseover = true;
 
             d3.select(this).select('.backgroundbar').attr('fill-opacity',0.15);
-            d3.selectAll('.majormap').selectAll('.country').style('fill','none');
+            d3.selectAll('.ecoPlot').selectAll('.country').style('fill','orange');
             d3.selectAll('.landuseplot').selectAll('.countryBarGroup').remove();
             d3.selectAll('.landuseplot').selectAll('text').remove();
             d3.selectAll('.landuseplot').selectAll('.axis').remove();
