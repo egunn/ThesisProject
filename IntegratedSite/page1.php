@@ -12,45 +12,54 @@
     <div class="row">
         <div class="col-md-12">
             <div class="row title-row">
-                            <div class="col-md-9 title-col">
-                                <!-- Test Template Page -->
-                                <h1 id="title"></h1>
+                    <div class="col-md-9 title-col">
+                        <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top  navbar-row" role="navigation">
 
-                            </div>
-                            <div class="col-md-3 synopsis-col">
-                                <!-- Put overview here -->
-                                <div id="synopsis"></div>
-                            </div>
-                            <!--<div id="rule-div"></div>
-                            <hr>-->
-                        </div>
+                        <!-- <h1 id="title">Test Template Page</h1> -->
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="container">
+                            <div class="navbar-header">
 
-                        <div class="row vis-row">
-                            <div class="col-md-9">
-
-                                <div id="vis-div">
-                                    <svg class="vis-svg" id="vis"></svg>
-                                    <canvas class="vis-canvas" id="vis-canvas"></canvas>
-                                </div>
-
-                            </div>
-                            <div class="col-md-3">
-                                <!-- Put text here -->
-                                <div id="body-text"></div>
-
-                            </div>
-                        </div>
-
-                        <div class="row nav-row">
-                            <div class="col-md-9">
-
-                                <div id="nav-div">
-                                    <svg class="page-nav" id="nav"></svg>
-                                </div>
+                                <div class="nav-title">Title</div>
 
                             </div>
 
                         </div>
+
+                        </nav>
+                    </div>
+
+                    <!--<div id="rule-div"></div>
+                    <hr>-->
+            </div>
+
+            <div class="row vis-row">
+                <div class="col-md-9">
+
+                    <div id="vis-div">
+                        <svg class="vis-svg" id="vis"></svg>
+                        <canvas class="vis-canvas" id="vis-canvas"></canvas>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <!-- Put text here -->
+                    <div id="synopsis"></div>
+                    <div id="body-text"></div>
+
+                </div>
+            </div>
+
+            <div class="row nav-row">
+                <div class="col-md-9">
+
+                    <div id="nav-div">
+                        <svg class="page-nav" id="nav"></svg>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
     </div>

@@ -43,7 +43,7 @@ function reloadTemplate() {
 
             if (typeof currPage != "undefined" && currPage.length > 0){
 
-                $('#title').html(currPage[0].title);
+                $('.nav-title').html(currPage[0].title);
 
                 $('#body-text').html(currPage[0].text);
 

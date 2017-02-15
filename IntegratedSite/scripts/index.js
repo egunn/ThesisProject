@@ -164,7 +164,6 @@ function drawNetwork(linkList, nodeList){
         //.attr("y2", function(d) { return d.target.y; })
         .attr('class','link')
         .attr('stroke',function(d){
-            console.log(d);
             if (d.narrative == "population"){
                 return "orange";
             }
@@ -204,7 +203,7 @@ function drawNetwork(linkList, nodeList){
         .attr("height", 1)
         .attr("width", 1)
         .attr('preserveAspectRatio',"xMidYMid slice")
-        .attr("xlink:href", function(d){ return d.icon});
+        .attr("xlink:href", function(d){ return d.photo});//icon});
 
     node = nodeGroup
         .append("circle")
@@ -212,7 +211,7 @@ function drawNetwork(linkList, nodeList){
         //static layout - set positions here, do not update in tick
         //.attr("x", function(d) { return width*d.setX; })   //set the initial x and y coordinates using the stored JSON data
         //.attr("y", function(d) { return height*d.setY; })
-        .attr("r", 15)
+        .attr("r", function(d){nodeSize(d.foodPriority)})
         .attr('stroke',function(d){
             if (d.avail == "y"){
                 if (d.topic == "soil"){
@@ -239,7 +238,12 @@ function drawNetwork(linkList, nodeList){
 
             //d3.selectAll('.div-image').remove();
 
-            div.transition()
+            d3.select(this)
+                .transition()
+                .attr('r',75)
+                .style("background-image", "url('./" + d.photo + "')");
+
+           /* div.transition()
                 .duration(200)
                 .style("opacity", .9);
 
@@ -253,6 +257,7 @@ function drawNetwork(linkList, nodeList){
                 .style("background-repeat", "no-repeat")
                 .style("background-position", "center center")
                 .style('opacity', .9);
+            */
 
             /*
                 .attr('src',d.photo);*/
@@ -262,6 +267,10 @@ function drawNetwork(linkList, nodeList){
 
         })
         .on('mouseout',function(d){
+
+            d3.select(this)
+                .transition()
+                .attr('r',nodeSize(d.foodPriority));
 
             div.style('opacity', 0);
             tooltip.style('opacity', 0);

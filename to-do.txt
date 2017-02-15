@@ -11,8 +11,7 @@ Land Use 1:
 Needs to be incorporated into another vis?
 
 Soil Degradation:
-Add interactivity, legend
-New (canvas) version needs to be integrated into main site
+add pie chart to show % degradation classes? 
 
 Ecoregions:
 SVG needs to become responsive
@@ -28,3 +27,8 @@ Update/rethink design
 Integrated site: 
 tooltip placement - hovers far from mouse, can go off-screen
 re-connect node and root drawing coords.
+
+World pop
+resize on page change
+distinguish between prediction, reconstructed data, and World Bank data paths
+show event line info

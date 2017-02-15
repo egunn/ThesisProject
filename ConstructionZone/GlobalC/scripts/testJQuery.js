@@ -18,6 +18,8 @@ function reloadTemplate() {
             $('#synopsis').html(json[0].synopsis);
 
             $("a#test-link").text(json[0].linkText);
+
+            $('.nav-title').html("Global C");
         });
     }
     else if (tracker == 'B'){
