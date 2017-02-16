@@ -106,7 +106,6 @@ function drawEcoMap(ecoMap) {
 			context.beginPath();
 			path(d);
 			context.fill();
-
 		}
 
 	});

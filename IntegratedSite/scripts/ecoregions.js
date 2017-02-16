@@ -27,7 +27,7 @@ ecoCanvas = d3.select("#vis-canvas")
 
 
 //set up scale factors
-var x = d3.scaleBand().rangeRound([0, ((ecoWidth-30))]).padding(0.1); //offsets added to keep bars from exiting SVG
+var x = d3.scaleBand().rangeRound([0, ((ecoWidth-30))]).round(true).padding(0.2); //offsets added to keep bars from exiting SVG
 var y = d3.scaleLinear().rangeRound([ecoHeight/4+30, ecoHeight/2]);
 var yNeg = d3.scaleLinear().rangeRound([ecoHeight/2, ecoHeight-30]);
 //var ecoColors = d3.scaleOrdinal(d3.schemeCategory10);
@@ -42,7 +42,7 @@ barGroup = ecoPlot.append('g')
 
 wwfCategories = [];
 
-var tracker = {biomes:[1,6],countries:[],mouseover:false, init:true};
+var tracker = {biomes:[1,3,4,5,9,10],countries:[],mouseover:false, init:true};
 
 //code from http://jsfiddle.net/8L247yac/
 //found through SO post: http://stackoverflow.com/questions/20671015/d3-js-sophisticated-world-map-brush-thumbnail
@@ -93,7 +93,6 @@ function drawEcoMap(ecoMap) {
 
 	if (toHighlight.length != 0){
 
-
 		//map context coloring from http://bl.ocks.org/rveciana/f46df2272b289a9ce4e7
 		toHighlight.forEach(function(array,index){
 
@@ -128,10 +127,12 @@ function drawEcoMap(ecoMap) {
 
 					if (check){
 						if (tracker.init == true){
-                            if (d.properties.BIOME == 1 ){
+                            //if (d.properties.BIOME == 1 ){
+                            if (d.properties.BIOME == 1 || d.properties.BIOME == 3 ){
                                 tempColor = 'green';//'#74a063';
                             }
-                            else if (d.properties.BIOME == 6 ){
+                            //else if (d.properties.BIOME == 6 ){
+                            else if (d.properties.BIOME == 4 || d.properties.BIOME == 5 || d.properties.BIOME == 9 || d.properties.BIOME == 10 ){
                                // console.log(d);
                             	tempColor = 'darkorange';
                             }
@@ -195,12 +196,14 @@ function drawMap2 (data){
 		.attr('class', function(d){
 			return 'country '+ d.id;
 		})
-		.attr('strokeWidth',1)
+		.attr('strokeWidth',0.5)
 		.attr('stroke','gray')
 		.attr('fill','none')
 		.attr("d", path);
 
+	/*
 	var legendY = d3.scaleBand().rangeRound([155,355]).domain([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]).padding(4);
+
 
 	var climateTypes = [
 		{name: "Tropical/subtropical moist broadleaf", biome: 1},
@@ -220,7 +223,7 @@ function drawMap2 (data){
 		{name: "Not classified", biome: 99}
 	];
 
-	/*
+
 	//append a legend for the canvas map (do it here in the SVG because it only gets called once)
 	var legend = ecoPlot.selectAll('.legend')
 		.data(climateTypes)
@@ -331,11 +334,13 @@ function ecoregions(data, ecoMap){
     var xAxis = barGroup.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + ecoHeight/2 + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x).tickSizeOuter([0]));
     //.tickValues([1960,1965,1970,1975,1980,1985,1990,1995,2000,2005,2010,2015])); //come back and rebuild this!
 
-	d3.select('.axis--x')
-        .style('stroke','white');
+    //https://plnkr.co/edit/1ClBpXpAQEIBQ2rSXJ6Y?p=preview
+	/*xAxis.selectAll('.domain')
+        .style('stroke','orange')
+		.style('stroke-width',3);*/
 
     barGroup.append('text')
         .attr('fill','gray')
@@ -354,6 +359,7 @@ function ecoregions(data, ecoMap){
         .attr('font-size','12px')
         .attr("transform", "translate(0,"+ -ecoHeight/2 + ")rotate(-90)")
         .attr('fill','gray')
+		.style('stroke','none')
         .style("text-anchor", "end");
 
     var yAxis = barGroup.append("g")
@@ -391,11 +397,6 @@ function ecoregions(data, ecoMap){
         .attr('fill',"gray")
         .style('text-anchor', 'middle')
         .text('Carbon above and below ground');
-
-    barGroup.append('text')
-        .attr('class', 'bar-label')
-        .attr('fill',"gray")
-        .style('font-size', 12);
 
     legendItems = [{name:'Plants',color:"#74a063"},{name:'Topsoil',color:"#77664c"},{name:'Subsoil',color:"#a38961"}];
 
@@ -442,12 +443,14 @@ function ecoregions(data, ecoMap){
             tracker.init = false;
             ecoCanvas.node().getContext("2d").clearRect(0,0,width,height);
 
+            console.log(d);
+
             d3.selectAll('.backgroundbar').attr('fill','gray');
-            d3.select(this).select('.backgroundbar').attr('fill-opacity',0.15);
-            d3.selectAll('.ecoPlot').selectAll('.country').style('fill','orange');
-            d3.selectAll('.landuseplot').selectAll('.countryBarGroup').remove();
-            d3.selectAll('.landuseplot').selectAll('text').remove();
-            d3.selectAll('.landuseplot').selectAll('.axis').remove();
+            d3.select(this).select('.backgroundbar').attr('fill-opacity',0.1);
+            //d3.selectAll('.ecoPlot').selectAll('.country').style('fill','blue');
+            //d3.selectAll('.landuseplot').selectAll('.countryBarGroup').remove();
+            //d3.selectAll('.landuseplot').selectAll('text').remove();
+            //d3.selectAll('.landuseplot').selectAll('.axis').remove();
             tracker.biomes = JSON.parse("[" + d.wwfDescript + "]");
             drawEcoMap(ecoMap);
         })
@@ -471,7 +474,7 @@ function ecoregions(data, ecoMap){
 
 				 }*/
 
-            },200);
+            },100);
 
         });
 
@@ -533,6 +536,13 @@ function ecoregions(data, ecoMap){
         })
         .attr('fill', '#a38961');//'#3b5c91');
 
+
+    /*stackGroup.append('text')
+        .attr('class', 'bar-label')
+        .attr('fill',"purple")
+        .style('font-size', 12)
+		.text('test');*/
+
 	/*
 	 stackGroup.append('circle')
 	 .attr('cx',function (d) {
@@ -555,6 +565,7 @@ function ecoregions(data, ecoMap){
         .attr("y", 10)
         .attr("width", x.bandwidth())
         .attr("height", ecoHeight )
+        .attr('fill-opacity',0.05)
         .attr('fill', function(d){
 			if (d.climateType == 'Trop moist'){
                 return 'green';//'#74a063';
@@ -562,12 +573,10 @@ function ecoregions(data, ecoMap){
             else if (d.climateType == 'Boreal moist'){
                 return 'darkorange';
             }
-
 			else{
                 return 'gray';
 			}
-		})
-        .attr('fill-opacity',0.1);
+		});
 
 
 

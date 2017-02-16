@@ -785,6 +785,8 @@ function update(value, impExp, year) {
 
         d3.csv('data/food' + impExp + '_byYear/food' + impExp + '_' + value + '.csv', function (data) {
 
+            console.log(data);
+
             selectedCountry = value;
 
             if(typeof data[0] !== "undefined"){

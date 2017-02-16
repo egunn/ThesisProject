@@ -14,10 +14,11 @@ add pie chart to show % degradation classes?
 Ecoregions:
 SVG needs to become responsive
 Map mismatch on window size change
-Update ecoregion selection to match bioregion defn's - redo linking!!
 Make x-axis white, remove ticks
 increase space btwn axis and bars
-Simplify map
+Simplify map outlines
+try removing timeout on 458
+redo biome definitions mapping
 
 Soil organisms:
 Work out text width and placement as variables, make responsive
