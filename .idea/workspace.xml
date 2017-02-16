@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/GlobalC/css/style.css" afterPath="$PROJECT_DIR$/ConstructionZone/GlobalC/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/GlobalC/index.html" afterPath="$PROJECT_DIR$/ConstructionZone/GlobalC/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/GlobalC/scripts/testJQuery.js" afterPath="$PROJECT_DIR$/ConstructionZone/GlobalC/scripts/testJQuery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/css/style.css" afterPath="$PROJECT_DIR$/IntegratedSite/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/page1.php" afterPath="$PROJECT_DIR$/IntegratedSite/page1.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/index.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/landDegradation.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/landDegradation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/page1.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/page1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/FoodFlow/data/balanceSheetData.csv" afterPath="$PROJECT_DIR$/ConstructionZone/FoodFlow/data/balanceSheetData.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html" afterPath="$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js" afterPath="$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css" afterPath="$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/to-do.txt" afterPath="$PROJECT_DIR$/to-do.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,7 +26,38 @@
     <favorites_list name="ThesisProject" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="68" column="45" lean-forward="false" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="117" column="19" lean-forward="false" selection-start-line="117" selection-start-column="19" selection-end-line="117" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="857" column="28" lean-forward="false" selection-start-line="857" selection-start-column="28" selection-end-line="857" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -44,23 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>zoom</find>
-      <find>brushed</find>
-      <find>data</find>
-      <find>tool</find>
-      <find>tree</find>
-      <find>14730</find>
-      <find>14797</find>
-      <find>13905</find>
-      <find>13909</find>
-      <find>13902</find>
-      <find>14769</find>
-      <find>13895</find>
-      <find>13900</find>
-      <find>14739</find>
-      <find>14713</find>
-      <find>14690</find>
-      <find>13546</find>
       <find>14650</find>
       <find>14667</find>
       <find>14778</find>
@@ -74,6 +83,23 @@
       <find>translate</find>
       <find>tropi</find>
       <find>legend</find>
+      <find>html</find>
+      <find>text</find>
+      <find>country-nam</find>
+      <find>scale</find>
+      <find>range</find>
+      <find>domain</find>
+      <find>timelineDa</find>
+      <find>categorie</find>
+      <find>selectedDire</find>
+      <find>topP</find>
+      <find>axis</find>
+      <find>drawCa</find>
+      <find>canvas</find>
+      <find>context</find>
+      <find>trade</find>
+      <find>Imports</find>
+      <find>Exports</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -96,7 +122,6 @@
         <option value="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes_broken.json" />
         <option value="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json" />
         <option value="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/dataManager.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/navigator.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandUse1/style.css" />
@@ -106,7 +131,6 @@
         <option value="$PROJECT_DIR$/ConstructionZone/LandPerPerson/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/scripts/index.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/mapbrushing.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/scripts/landDegradation.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/css/style.css" />
@@ -127,12 +151,14 @@
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/landDegradation.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/GlobalC/scripts/testJQuery.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/GlobalC/index.html" />
         <option value="$PROJECT_DIR$/IntegratedSite/page1.php" />
-        <option value="$PROJECT_DIR$/ConstructionZone/GlobalC/css/style.css" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/page1.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/css/style.css" />
+        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html" />
+        <option value="$PROJECT_DIR$/ConstructionZone/GlobalC/css/style.css" />
+        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css" />
+        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js" />
       </list>
     </option>
   </component>
@@ -206,7 +232,91 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="GlobalC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ConstructionZone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GlobalC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ConstructionZone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="FoodFlow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ConstructionZone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FoodFlow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ConstructionZone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FoodFlow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fonts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -324,18 +434,18 @@
       <workItem from="1486426231584" duration="56515000" />
       <workItem from="1486961432529" duration="4593000" />
       <workItem from="1487034725316" duration="2124000" />
-      <workItem from="1487083898419" duration="22085000" />
+      <workItem from="1487083898419" duration="37653000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258233000" />
+    <option name="totallyTimeSpent" value="273801000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16517857" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16517857" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -410,13 +520,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/LandDegradation/scripts/index.js" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/style.css" />
     <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/mapbrushing.js" />
     <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/bg-nav.js" />
@@ -603,22 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="41" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="384" column="16" lean-forward="true" selection-start-line="384" selection-start-column="16" selection-end-line="384" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/GlobalC/scripts/globalC.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -643,14 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/GlobalC/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="63" column="1" lean-forward="true" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/GlobalC/scripts/testJQuery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -667,6 +746,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/GlobalC/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
@@ -675,10 +762,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/GlobalC/index.html">
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        <state relative-caret-position="207">
+          <caret line="68" column="45" lean-forward="false" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/GlobalC/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="117" column="19" lean-forward="false" selection-start-line="117" selection-start-column="19" selection-end-line="117" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="857" column="28" lean-forward="false" selection-start-line="857" selection-start-column="28" selection-end-line="857" selection-end-column="39" />
           <folding />
         </state>
       </provider>

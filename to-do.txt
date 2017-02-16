@@ -1,11 +1,9 @@
 Food Flow:
 Russia balance timeline data food flow - two lines each?
-names still have typos S?o Tome
 country names not showing up as alphabetical in dropdown
-Need to add year info to sidebar pane
-Connect country selection to "top partners" plot
-Category selection has no effect on food balance plot
+Category selection has no effect on food balance plot		
 No zero handling in the timeline plot
+timeline labels wrong!
 
 Land Use 1: 
 Needs to be incorporated into another vis?
@@ -15,6 +13,7 @@ add pie chart to show % degradation classes?
 
 Ecoregions:
 SVG needs to become responsive
+Map mismatch on window size change
 Update ecoregion selection to match bioregion defn's - redo linking!!
 Make x-axis white, remove ticks
 increase space btwn axis and bars

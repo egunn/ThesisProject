@@ -1,11 +1,37 @@
 
 @font-face {
-    font-family: 'Work Sans';
+    font-family: 'WorkSansMedium';
     font-style: normal;
-    font-weight: 400;
-    src: local('Work Sans'), local('WorkSans'), url('./fonts/WorkSans-light.ttf') format('woff2');
+    font-weight: normal;
+    src: local('WorkSansMedium'), local('WorkSansMedium'), url('./fonts/WorkSans-Medium.otf') format('opentype');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
+
+
+@font-face {
+    font-family: 'WorkSansRegular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('WorkSansRegular'), local('WorkSansRegular'), url('./fonts/WorkSans-Regular.otf') format('opentype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+    font-family: 'WorkSansLight';
+    font-style: normal;
+    font-weight: normal;
+    src: local('WorkSansLight'), local('WorkSansLight'), url('./fonts/WorkSans-Light.otf') format('opentype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+    font-family: 'WorkSansExtraLight';
+    font-style: normal;
+    font-weight: normal;
+    src: local('WorkSansExtraLight'), local('WorkSansExtraLight'), url('./fonts/WorkSans-ExtraLight.otf') format('opentype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
 
 h1,
 h2,
@@ -15,11 +41,11 @@ h5,
 strong {
     color: #ecd9c6;
     text-transform: uppercase;
-    font-family: "Work Sans", Arial, sans-serif;
+    font-family: "WorkSansLight", Arial, sans-serif;
     margin-bottom: 0em;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     font-weight: lighter;
-    word-spacing: 4px;
+    word-spacing: 2px;
     padding-left: 15px;
 }
 
@@ -36,7 +62,7 @@ h2 {
 
 .map-title{
     font-size: 20px;
-    font-family: "Work Sans", Arial, sans-serif;
+    font-family: "WorkSansLight", Arial, sans-serif;
     fill:  #ecd9c6;
 }
 
@@ -46,7 +72,7 @@ p {
 
 body{
     background:#595753;/*#4f4034; /*#482e1f;*/
-    font-family:'Work Sans', sans-serif;
+    font-family:'WorkSansLight', sans-serif;
     font-weight: 300;
     font-size: 14px;
     line-height: 1.4em;
@@ -82,23 +108,20 @@ body{
 #country-name{
     padding-top:24px;
     font-size: 24px;
-    font-family: "Work Sans", Arial, sans-serif;
-    color:  #c6c6c6;
+    color:  #a09f9d;
 }
 
-#stats{
+#stats, #trade-partners{
     padding-top:16px;
-    font-size: 16px;
-    font-family: "Work Sans", Arial, sans-serif;
-    color:  #c6c6c6;
+    font-size: 14px;
+    font-family: "WorkSansLight", Arial, sans-serif;
+    color:  #a09f9d;
 }
 
-#top-partners{
-    padding-top:16px;
-    font-size: 16px;
-    font-family: "Work Sans", Arial, sans-serif;
-    color:  #c6c6c6;
+#country-name, #totals-label, #top-partners{
+    font-family: "WorkSansRegular", Arial, sans-serif;
 }
+
 /*background canvas element for index page*/
 .background {
     z-index:2;
@@ -389,9 +412,13 @@ button:focus{
 
 }
 
+.container{
+    margin-left: 30px;
+}
+
 .nav-title {
     color: #edebe6;
-    text-transform: uppercase;
+    /*text-transform: uppercase;
     font-family: "Work Sans", Arial, sans-serif;
     /*margin-top: 1.5em;*/
     margin-bottom: 0em;
@@ -402,6 +429,7 @@ button:focus{
     padding-left: 0px;
     padding-right: 75px;
     padding-top: 14px;
+
 }
 
 .countryDropdown{

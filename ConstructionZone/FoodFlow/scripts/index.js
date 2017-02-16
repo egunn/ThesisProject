@@ -27,9 +27,9 @@ var trade;
 var selectedYear = "2013";
 var clickedYear = "2013";
 var selectedCountry = "US";
-var selectedDirection = "Exports";
+var selectedDirection = "exports";
 var balanceSelected = false;
-var selectedCategory = "totalTons"
+var selectedCategory = "totalTons";
 var playSelected = false;
 
 var arcColor = "#c1b69c";
@@ -213,11 +213,11 @@ function resetScales(){
             .attr('width', xBar.bandwidth())
             .attr('height', function (d) {
                 return 80
-            })
+            });
     d3.selectAll('.axis--x').call(d3.axisBottom(x));
     d3.selectAll('.axis--y').call(d3.axisLeft(y));
 
-    update(selectedCountry, 'Exports', selectedYear);
+    update(selectedCountry, 'exports', selectedYear);
 
 }
 
@@ -258,7 +258,7 @@ queue()
                 ]);
         });
 
-        console.log(countryTable);
+        //console.log(countryTable);
 
         //parse country list for dropdown
         countryTable.forEach(function (n) {
@@ -284,7 +284,7 @@ queue()
             var destTotal = d.totalTons;
             d.nP = numParticles(destTotal);
 
-            if(selectedDirection == "Imports"){
+            if(selectedDirection == "imports"){
                 d.bezPoints = {
                     p0: {x: source[0], y: source[1]},
                     p1: {x: source[0] + 0, y: source[1] - (20)},//control 1 y
@@ -292,7 +292,7 @@ queue()
                     p3: {x: dest[0], y: dest[1]}
                 };
             }
-            else if (selectedDirection == "Exports"){
+            else if (selectedDirection == "exports"){
                 d.bezPoints = {
                     p0: {x: source[0], y: source[1]},
                     p1: {x: source[0] + 0, y: source[1] - (250)},//control 1 y
@@ -659,6 +659,7 @@ function drawCanvas() {
     //for(var i=0;i<10;i++){
     if (trade) {
 
+        //if (trade.length > 0){
         trade.forEach(function (d) {
 
             //max distance between countries is ~ 20000 mi.
@@ -717,9 +718,7 @@ function drawCanvas() {
 
     }
 
-
     //}
-
 
 }
 
@@ -789,14 +788,15 @@ function update(value, impExp, year) {
             selectedCountry = value;
 
             if(typeof data[0] !== "undefined"){
-                if (selectedDirection == "Exports"){
+                //update dropdowns
+                if (selectedDirection == "exports"){
                     //since data is already filtered, can grab any value and print sourceName/destName
-                    d3.selectAll('#country-name').html(data[0].sourceName);
+                    d3.selectAll('#country-name').html(data[0].sourceName + ', ' + selectedYear);
                 }
 
-                else if (selectedDirection == "Imports"){
+                else if (selectedDirection == "imports"){
                     //since data is already filtered, can grab any value and print sourceName/destName
-                    d3.selectAll('#country-name').html(data[0].destName);
+                    d3.selectAll('#country-name').html(data[0].destName + ', ' + selectedYear);
                 }
             }
             else{
@@ -804,7 +804,7 @@ function update(value, impExp, year) {
                 //because it's not stored in the dropdown for some reason...
                 //console.log(d3.selectAll('#dot' + value).data()[0].FULLNAME);
                 //read in the full country name from the dropdown HTML
-                var tempName = d3.selectAll('#dot' + value).data()[0].FULLNAME
+                var tempName = d3.selectAll('#dot' + value).data()[0].FULLNAME;
                 //and use it to set the sidebar heading
                 d3.selectAll('#country-name').html(tempName);
             }
@@ -815,7 +815,77 @@ function update(value, impExp, year) {
                 .attr('fill', mapColor)
                 .style('fill-opacity', '.5');
 
-            data.forEach(function (d) {
+            //filter the data by category and year
+            var filteredData;
+
+            if (selectedCategory == "totalTons"){
+                filteredData = data;
+            }
+            else{
+                filteredData = data.filter(function(d){return ((!isNaN(+d[selectedCategory]) == true) && +d[selectedCategory] != 0)});
+
+            }
+
+
+
+            //filter to get data for just one year
+            categoryYearData = filteredData.filter(function(d){return d.year == selectedYear});
+
+            //calculate the total ton values for the selected category
+            var yearTotal = 0;
+            categoryYearData.forEach(function(d){ yearTotal = yearTotal + +d[selectedCategory]});
+
+            //update the sidebar to show totals
+            if (selectedCategory == "totalTons"){
+                d3.selectAll('#totals-label').html("Total " + selectedDirection +":");
+            }
+            else {
+                var catName = categories.filter(function(d){ return d.header == selectedCategory})[0].display;
+                d3.selectAll('#totals-label').html(catName + ' ' + selectedDirection +":");
+            }
+            d3.selectAll('#top-partners').html("Top Partners:");
+            if (!isNaN(yearTotal) && categoryYearData.length != 0){
+                d3.selectAll('#export_totals').html(yearTotal.toLocaleString() + ' tonnes');
+
+                var topPartners = categoryYearData.sort(function(a,b){return b[selectedCategory]-a[selectedCategory]}).slice(0,5);
+
+                //print top 5 trade partners to screen
+                if(selectedDirection == 'exports'){
+                    d3.selectAll('#partner-list').html(
+                        function(d){
+                            var strCat = '';
+
+                            topPartners.forEach(function(e,i){
+                                strCat += topPartners[i].destName + "<br/>";
+                            });
+
+                            return strCat;
+                        });
+                }
+
+                else if(selectedDirection == 'imports'){
+                    d3.selectAll('#partner-list').html(
+                        function(d){
+                            var strCat = '';
+
+                            topPartners.forEach(function(e,i){
+                                strCat += topPartners[i].sourceName + "<br/>";
+                            });
+
+                            return strCat;
+                        });
+                }
+                else{
+                    console.log('no selected direction?')
+                }
+            }
+            else{
+                d3.selectAll('#export_totals').html('0 tonnes');
+                d3.selectAll('#partner-list').html('');
+
+            }
+
+            categoryYearData.forEach(function (d) {
                 var dest = proj([d.destLong, d.destLat]);
                 var source = proj([d.sourceLong, d.sourceLat]);
                 var destTotal = d.distance;
@@ -849,14 +919,14 @@ function update(value, impExp, year) {
                 d.particles = particleArray;
             });
 
-            var tradeLong = data;
+            var tradeLong = categoryYearData;
 
-            trade = tradeLong.filter(function (d) {
+            trade = categoryYearData; /*tradeLong.filter(function (d) {
                 return d.year == selectedYear;
-            });
+            });*/
 
 
-            if (impExp == "Imports") {
+            if (impExp == "imports") {
 
                 countryDots = map.selectAll('.dot')
                     .attr('fill', function (d) {
@@ -960,10 +1030,10 @@ function update(value, impExp, year) {
 
             var getCountry = map.selectAll("#" + value);
 
-            if (impExp == "Exports") {
+            if (impExp == "exports") {
                 getCountry.attr('fill', mapHighlightColor);
             }
-            if (impExp == "Imports") {
+            if (impExp == "imports") {
                 getCountry.attr('fill', mapHighlightColor);
             }
 
@@ -1064,7 +1134,7 @@ countryDispatch.on("changeCountry", function (countrySelected, i) { //country is
     //d3.selectAll('#countryDropdown').node().innerHTML = 'test';
     //console.log(d3.selectAll('#countryDropdown').node().value);
 
-    update(countrySelected, 'Exports', selectedYear);
+    update(countrySelected, 'exports', selectedYear);
 
 });
 
@@ -1085,8 +1155,8 @@ categoryDispatch.on("changeCategory", function (categorySelected, i) { //country
 
 function importClicked() {
 
-    selectedDirection = "Imports";
-    selectedCategory = "totalTons";
+    selectedDirection = "imports";
+    //selectedCategory = "totalTons";
 
     balanceSelected = false;
 
@@ -1105,15 +1175,15 @@ function importClicked() {
 
     d3.csv('./data/importsbyYear.csv', function (data) {
         timelineData = data;
-        update(selectedCountry, 'Imports', selectedYear);
+        update(selectedCountry, 'imports', selectedYear);
     });
 
 }
 
 function exportClicked() {
 
-    selectedDirection = "Exports";
-    selectedCategory = "totalTons";
+    selectedDirection = "exports";
+    //selectedCategory = "totalTons";
 
     balanceSelected = false;
 
@@ -1132,7 +1202,7 @@ function exportClicked() {
 
     d3.csv('./data/exportsbyYear.csv', function (data) {
         timelineData = data;
-        update(selectedCountry, 'Exports', selectedYear);
+        update(selectedCountry, 'exports', selectedYear);
     });
 }
 
