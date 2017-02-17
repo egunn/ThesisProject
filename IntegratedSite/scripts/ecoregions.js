@@ -22,8 +22,8 @@ countryListPlot = d3.select("#vis");
 ecoCanvas = d3.select("#vis-canvas")
     .attr('width',width)
     .attr('height', height)
-    .style('width','800px')
-    .style('height','400px');
+    .style('width','100%')
+    .style('height','450px');
 
 
 //set up scale factors
@@ -199,7 +199,8 @@ function drawMap2 (data){
 		.attr('strokeWidth',0.5)
 		.attr('stroke','gray')
 		.attr('fill','none')
-		.attr("d", path);
+		.attr("d", path)
+		.attr('transform','translate(10,35)');
 
 	/*
 	var legendY = d3.scaleBand().rangeRound([155,355]).domain([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]).padding(4);

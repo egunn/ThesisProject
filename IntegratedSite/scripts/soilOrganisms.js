@@ -55,31 +55,6 @@ var pattern = organismNodes.append("defs")
     .attr("xlink:href", function(d){ return d.link});
 
 
-
-organismNodes.append('circle')
-	.attr('cx',function(d,i){
-		if(i<3){
-			return 70;
-		}
-		else{
-            return width/2+50; //+ 150*Math.sin((i+1)*Math.PI/3);
-		}
-	})
-	.attr('cy',function(d,i){
-        if(i==0 || i==4){
-            return 70;
-        }
-        else if(i==1 || i==5){
-            return 220;
-		}
-        else{
-            return 370; //+ 150*Math.sin((i+1)*Math.PI/3);
-        }
-     // + 150*Math.cos((i+1)*Math.PI/3);
-    })
-	.attr('r',radius)
-    .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'});
-
 organismNodes.append('text')
 	.attr('x',function(d,i){
         if(i<3){
@@ -107,9 +82,8 @@ organismNodes.append('text')
 	.attr('fill','gray')
 	.text(function(d){return d.name;});
 
-
 var text = organismNodes.append('text')
-	.attr('class','to-wrap')
+    .attr('class','to-wrap')
     .attr('x',function(d,i){
         if(i<3){
             return 70 + radius + padding;
@@ -130,18 +104,54 @@ var text = organismNodes.append('text')
         }
         // + 150*Math.cos((i+1)*Math.PI/3);
     })
+    .attr('id',function(d){
+        return d.name;
+    })
     .style('text-anchor','begin')
-	.attr('font-size',12)
+    .attr('font-size',12)
     .attr('fill','gray')
-	.text(null);
+    .text(null);
+
+organismNodes.append('circle')
+    .attr('cx',function(d,i){
+        if(i<3){
+            return 70;
+        }
+        else{
+            return width/2+50; //+ 150*Math.sin((i+1)*Math.PI/3);
+        }
+    })
+    .attr('cy',function(d,i){
+        if(i==0 || i==4){
+            return 70;
+        }
+        else if(i==1 || i==5){
+            return 220;
+        }
+        else{
+            return 370; //+ 150*Math.sin((i+1)*Math.PI/3);
+        }
+        // + 150*Math.cos((i+1)*Math.PI/3);
+    })
+    .attr('r',radius)
+    .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'})
+    .on('mouseover',function(d){
+        wrap(d3.select('#'+ d.name).text('test'), d.text ,225);
+    })
+    .on('mouseout',function(d){
+        d3.select('#'+ d.name).text(null);
+    });
+
+
+/*
 
 text
 	.transition()
 	.on('start',function(d){
         var text = d3.select(this);
-        wrap(text, d.text ,225);
-    });
 
+    });
+*/
 
 //from http://stackoverflow.com/questions/24784302/wrapping-text-in-d3
 function wrap(text, wordList, width) {
