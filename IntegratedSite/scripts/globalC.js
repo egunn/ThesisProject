@@ -148,18 +148,18 @@ function drawBars(data){
 
     livingLabel = barGroup.append('g')
         .attr('class','living-label')
-        .attr('transform','translate('+ (x('Living')+ (x.bandwidth()/2) ) + ',' + (height/2 + 18) + ')');
+        .attr('transform','translate('+ (x('Living')+ (x.bandwidth()/2) ) + ',' + (height/2 + 38) + ')');
 
     arrow = livingLabel.append('line')
         .attr('x1',0)
         .attr('x2',0)
         .attr('y1', 25)
-        .attr('y2', 80)
+        .attr('y2', 60)
         .attr('stroke','gray')
         .attr('stroke-weight', 1);
 
     livingLabel.append("path")
-        .attr('transform','translate(0,' + 75 + ')')
+        .attr('transform','translate(0,' + 55 + ')')
         .attr("d", "M-4,0L0,10,L4,0")
         .attr("class","arrowHead")
         .attr('fill','gray');
@@ -182,18 +182,18 @@ function drawBars(data){
 
     soilLabel = barGroup.append('g')
         .attr('class','soil-label')
-        .attr('transform','translate('+ (x('Soil')+ (x.bandwidth()/2) ) + ',' + height/2 + ')');
+        .attr('transform','translate('+ (x('Soil')+ (x.bandwidth()/2) ) + ',' + (height/2 +20) + ')');
 
     arrow = soilLabel.append('line')
         .attr('x1',0)
         .attr('x2',0)
         .attr('y1', 25)
-        .attr('y2', 80)
+        .attr('y2', 60)
         .attr('stroke','gray')
         .attr('stroke-weight', 1);
 
     soilLabel.append("path")
-        .attr('transform','translate(0,' + 75+ ')')
+        .attr('transform','translate(0,' + 55+ ')')
         .attr("d", "M-4,0L0,10,L4,0")
         .attr("class","arrowHead")
         .attr('fill','gray');

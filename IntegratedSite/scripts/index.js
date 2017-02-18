@@ -328,7 +328,16 @@ function drawNetwork(linkList, nodeList){
         node
             .attr("cx", function(d) {return d.x})//nodeX.push(width*d.cx-5); return width*d.cx; })
             .attr("cy", function(d) {return d.y})//nodeY.push(height*d.cy+3); return height*d.cy; })
-            .attr('r',function(d){return nodeSize(d.foodPriority)});
+            .attr('r',function(d){
+                if (d3.select(this).attr('r') == null){
+                    return nodeSize(d.foodPriority)
+                }
+                else{
+                        return d3.select(this).attr('r');
+                }
+            });
+
+
 
 
         //textLabels

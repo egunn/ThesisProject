@@ -134,13 +134,14 @@ function dataLoaded(data, events) {
         .style('fill','gray')
         .style('clip-path', 'url(#clip)');
 
+    /*
     focus.append("path")
         .datum(data)
         .attr("class", "area-upper")
         .attr("d", areaUpper)
         .style('fill','gray')
         .attr('fill-opacity',.5)
-        .style('clip-path', 'url(#clip)');
+        .style('clip-path', 'url(#clip)');*/
 
     focus.append("g")
         .attr("class", "axis axis--x")

@@ -18,12 +18,8 @@ Make x-axis white (Move axis to front, turn it back to white)
 Try implementing map mesh?
 redo biome definitions mapping
 
-from working: ,"translate":[-180,-85.60903777459767]}
-teow: ,"translate":[-179.99998860061166,-89.89197327740294]
-
 Soil organisms:
-Work out text width and placement as variables, make responsive
-Update/rethink design
+Make responsive
 
 Integrated site: 
 tooltip placement - hovers far from mouse, can go off-screen
@@ -32,5 +28,6 @@ jumpy mouseover
 
 World pop
 resize on page change
+add event info
 distinguish between prediction, reconstructed data, and World Bank data paths
-show event line info
+set initial selection to 0AD-current
