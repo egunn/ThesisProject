@@ -16,18 +16,18 @@ var canvas = d3.select("#vis-canvas")
     .style('height','450px');
 
 var organismData = [
-	{name:"Arthropods", link:"./images/arthropods.png",
+	{name:"Arthropods", link:"./data/arthropods.png",
 		text:"Soil arthropods include spiders, mites, millipedes, centipedes, and ants. The smaller species shred and eat plant matter. Larger arthropods often prey on smaller species, and other soil organisms."
 	},
-    {name:"Bacteria", link:"./images/bacteria.png",
+    {name:"Bacteria", link:"./data/bacteria.png",
 		text:"Soil bacteria play a number of roles in the soil ecosystem. Most bacteria decompose plant material or minerals, making nutrients available for plants and other organisms. Some bacteria convert nitrogen into a form that is useful for plants. Others are pathogens and cause disease."},
-    {name:"Fungi", link:"./images/fungi.png",
+    {name:"Fungi", link:"./data/fungi.png",
 		text:"Soil fungi grow in long threads called hyphae, and make mushrooms to release spores. Microscopic hyphae hold soil particles together, improving soil structure. Fungae decompose wood and other materials that bacteria cannot, and extract phosphorus, nitrogen, and other nutrients from soil."},
-    {name:"Invertebrates", link:"./images/invertebrates.png",
+    {name:"Invertebrates", link:"./data/invertebrates.png",
 		text:"Earthworms and nematodes are common soil invertebrates. Nematodes are microscopic worms that eat plant roots, bacteria and fungi, or each other. Earthworms are large worms that eat soil, playing a vital role in breaking plant matter down. Their tunnels also help to aerate the soil."},
-    {name:"Plants", link:"./images/plants.png",
+    {name:"Plants", link:"./data/plants.png",
 		text:"Plants constantly communicate with their environment by giving off chemical signals and hormones that encourage soil organisms to colonize their roots. Understanding the details of this interaction will help to improve plant and soil health, and increase food production."},
-    {name:"Protozoa", link:"./images/protozoa.png",
+    {name:"Protozoa", link:"./data/protozoa.png",
 		text:"Protozoa are small, single-celled organisms, usually ten to a hundred times larger than bacteria. They feed primarily on soil bacteria, but can also eat fungi and soil organic matter as well. When protozoa feed on bacteria, they release nitrogen into the soil, which plants use to grow."}
 ];
 
