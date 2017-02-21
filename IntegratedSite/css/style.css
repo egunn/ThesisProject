@@ -211,7 +211,9 @@ a{
 }
 
 
-
+.controls{
+    z-index:2;
+}
 
 .button-div{
     margin-top:17px;

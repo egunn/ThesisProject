@@ -1,0 +1,122 @@
+body {
+    font-family: "Raleway",Arial;
+    background-color: white;/*hsla(180, 10%, 95%, 1.0);*/
+    color: hsla(0, 10%, 10%, 1.0);
+    margin: 2em;
+    font-size: 10pt;
+    padding-left: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+strong {
+    color: hsla(0, 15%, 40%, 1.0);
+    text-transform: uppercase;
+    font-family: "Raleway", Arial, sans-serif;
+    margin-top: 1.5em;
+    margin-bottom: 0em;
+    letter-spacing: 2.5px;
+    font-weight: lighter;
+    word-spacing: 4px;
+}
+
+h1 {
+    margin-bottom: 8px;
+}
+
+h4 {
+    margin-bottom: 6px;
+}
+h5 {
+    margin-top: 6px;
+    letter-spacing: 2px;
+    word-spacing: 1px;
+}
+
+p {
+    font-family: "Raleway",Arial;
+    min-width: 300px; 
+    max-width: 650px;
+    line-height: 1.5em;
+    font-size: 11pt;
+    float:left;
+}
+
+p.sidebar{
+    padding-top: 10pt;
+    font-size: 8pt;
+    line-height: 1.4em;
+    padding-left:20px;
+}
+
+.fixed-height{
+    height:120px;
+}
+
+/*div to hold rest of index page elements*/
+.floating{
+    z-index:2;
+    position:relative;
+}
+
+
+#mapCanvas {
+    z-index:1;
+    position:absolute;
+    top:0vw;
+    left:0vw;
+}
+
+#ecoregions{
+    width:100%;
+    height:400px;
+}
+
+
+#landuse{
+    width:100%;
+    height:400px;
+}
+
+#dashboard{
+    overflow:hidden;
+    width: 1012px;
+}
+#dashboard #maps{
+    float:left;
+    position: relative;
+}
+#dashboard #easy-as-pie-chart{
+    float:right;
+}
+
+#majormap svg {
+    background-color: transparent;
+}
+
+
+
+
+.brush .extent {
+    /*stroke: #000;*/
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
+}
+
+
+.worldmap path {
+    fill: none; /*#f1f1f1;*/
+    stroke: #666;
+    stroke-width: .5px;
+}
+
+.circle_path{
+    fill: #eeeeee;
+}
+
+.stroke_path{
+    stroke: #333333;
+}

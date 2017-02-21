@@ -23,6 +23,16 @@ function sendData()
 var width = document.getElementById('index-svg').clientWidth;
 var height = document.getElementById('index-svg').clientHeight;
 
+//set global colors
+var soilEcoColor = '#9643b2'; //purple
+var popColor = '#02a6cc';//blue
+var foodColor = '#efb804';//orange
+
+//change buttons to match
+d3.select('#ecosystemButton').style('background',soilEcoColor).style('border', '1px solid ' + soilEcoColor);
+d3.select('#populationButton').style('background',popColor).style('border', '1px solid ' + popColor);
+d3.select('#foodButton').style('background',foodColor).style('border', '1px solid ' + foodColor);
+
 var nodeSize = d3.scaleLinear().domain([1,3]).range([40,20]);
 
 //http://jsfiddle.net/J8sp3/4/
@@ -165,19 +175,19 @@ function drawNetwork(linkList, nodeList){
         .attr('class','link')
         .attr('stroke',function(d){
             if (d.narrative == "population"){
-                return "orange";
+                return popColor;
             }
             if (d.narrative == "food"){
-                return "royalblue";
+                return foodColor;
             }
             if (d.narrative == "soil"){
-                return "limegreen";
+                return soilEcoColor;
             }
             else{
                 return "gainsboro";
             }
         })
-        .attr("stroke-width", function(d) {return +d.weight *2 ; });
+        .attr("stroke-width", function(d) {return +d.weight ; });
 
 
     var nodeGroup = svg.append("g")
@@ -215,16 +225,13 @@ function drawNetwork(linkList, nodeList){
         .attr('stroke',function(d){
             if (d.avail == "y"){
                 if (d.topic == "soil"){
-                    return 'orange'
+                    return soilEcoColor;
                 }
                 else if(d.topic == "population"){
-                    return 'turquoise'
+                    return popColor;
                 }
                 else if (d.topic == "food"){
-                    return 'limegreen'
-                }
-                else if (d.topic == "environmental"){
-                    return 'purple'
+                    return foodColor;
                 }
             }
 
@@ -232,20 +239,96 @@ function drawNetwork(linkList, nodeList){
                 return 'gainsboro'
             }
         })
-        .attr('stroke-width', 3)
+        .attr('stroke-width', 2)
         .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'})
         .on('mouseover',function(d){
 
+
+            //console.log(d3.select('#' + d.id +'-text-rect').style('fill'));
+            //console.log(d3.select('#' + d.id +'-text-rect').attr('fill'));
+
             //d3.selectAll('.div-image').remove();
+
 
             d3.select(this)
                 .transition()
                 .attr('r',75)
-                .style("background-image", "url('./" + d.photo + "')");
+                //.style("background-image", "url('./" + d.photo + "')")
+                .on('end', function(){
+                    d3.select('#' + d.id +'-text-label').attr('fill-opacity',1);
+
+                    //d3.select('#' + d.id +'-text-rect').style('fill',"red").attr('fill','red').attr('fill-opacity',.3);//.attr("clip-path", "url(#node-clip)");
+
+                    var textRects = d3.select(this.parentNode).append("rect")
+                        .attr('x',function(d){
+                            //console.log(d3.select(this.parentNode).data()[0].x);
+                            return d3.select(this.parentNode).data()[0].x - 75})
+                        .attr('y',function(d){
+                            return d3.select(this.parentNode).data()[0].y - 13})
+                        .attr('width',150)
+                        .attr('height', 18)
+                        .attr('class','text-labels')
+                        .attr('id', function(d){return d.id +'-text-rect'})
+                        .style('pointer-events','none')
+                        .style('fill','white')
+                        .attr('fill-opacity',1);
+                    //.attr("clip-path", "url(#node-clip)");
+
+
+                    var textLabels = d3.select(this.parentNode).append("text")
+                        .attr('x',function(d){
+                            //console.log(d3.select(this.parentNode).data()[0].x);
+                            return d3.select(this.parentNode).data()[0].x})
+                        .attr('y',function(d){
+                            return d3.select(this.parentNode).data()[0].y})
+                        .attr('class','text-labels')
+                        .attr('id', function(d){return d.id +'-text-label'})
+                        .attr('font-size',11)
+                        .attr('text-anchor','middle')
+                        .style('letter-spacing','.15em')
+                        .style('pointer-events','none')
+                        .style('text-transform','uppercase')
+                        .style('fill','gray')
+                        .attr('fill-opacity',1)
+                        .text(function(d) { return d.name; });
+
+                    //totally hack this because clipping paths can't be updated, for some silly reason in Chrome
+                    var textLabels = d3.select(this.parentNode).append("circle")
+                        .attr('class','fake-node')
+                        .attr("cx", d.x)
+                        .attr("cy", d.y)
+                        .attr("r", 75)
+                        .attr('stroke',function(d){
+                            if (d.avail == "y"){
+                                if (d.topic == "soil"){
+                                    return soilEcoColor;
+                                }
+                                else if(d.topic == "population"){
+                                    return popColor;
+                                }
+                                else if (d.topic == "food"){
+                                    return foodColor;
+                                }
+                            }
+                            else {
+                                return 'gainsboro'
+                            }
+                        })
+                        .attr('fill','none')
+                        .attr('pointer-events','none')
+                        .attr('stroke-width', 2);
+
+                });
+
+            //console.log(d3.select('#' + d.id +'-text-rect').style('fill'));
+
+
 
            /* div.transition()
                 .duration(200)
                 .style("opacity", .9);
+
+
 
 
             div.style("left", (nodeSize(d.foodPriority) + +d3.select(this).attr('cx')) + "px")//d3.event.pageX + "px")
@@ -276,6 +359,10 @@ function drawNetwork(linkList, nodeList){
             tooltip.style('opacity', 0);
             divImg.style('opacity',0);
 
+            d3.select('#' + d.id +'-text-label').remove();
+            d3.select('#' + d.id +'-text-rect').remove();
+            d3.select('.fake-node').remove();
+
             /*div.style("left", 0 + "px")//d3.event.pageX + "px")
                 .style("top", 0 + "px");*/
         })
@@ -298,17 +385,16 @@ function drawNetwork(linkList, nodeList){
             //.on("end", dragended));
 
 
-    /*
-    var textLabels = nodeGroup.append("text")
-        .attr('x',function(d){
-            //console.log(d3.select(this.parentNode).data()[0].x);
-            return 0})
-        .attr('y',0)
-        .attr('class','text-labels')
-        .attr('text-align','center')
-        .style('pointer-events','none')
-        .style('fill','black')
-        .text(function(d) { return d.id; });*/
+    // define the clipPath
+    clipPaths = nodeGroup.append("clipPath")
+        .attr("id", "node-clip")
+        .append("circle")
+        .attr("cx", function(d){
+            return d3.select(this.parentNode).data()[0].x +.5})
+        .attr("cy", function(d){
+            return d3.select(this.parentNode).data()[0].y})
+        .attr("r", 74);
+
 
 
 
