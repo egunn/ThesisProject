@@ -16,38 +16,37 @@ var canvas = d3.select("#vis-canvas")
     .style('width','100%')
     .style('height','450px');
 
-var impactsData = [
-    {name:"Chemicals", link:"./images/chemicals.png",
-        coords:{relX:.70,relY:.265},
-        textCoords:{relX:.766,relY:.208,width:200},
-        text:"Chemical threats can come from accidental spills, salt water invasion of fertile land, residue from pesticides and chemical fertilizers, or from heavy metals leached from mines and landfills."
-    },
-    {name:"Compaction", link:"./images/compaction.png",
-        coords:{relX:.423,relY:.76},
-        textCoords:{relX:.369,relY:.866,width:300},
-        text:"Compaction occurs when the soil becomes too hard-packed for plants to grow. This usually occurs because of heavy traffic, caused by construction or agricultural equipment, grazing herds of animals, or excessive foot traffic in an area."},
-    {name:"Erosion", link:"./images/erosion.png",
-        coords:{relX:.48,relY:.34},
-        textCoords:{relX:.428,relY:.45,width:250},
-        text:"Erosion happens when soil is carried away by water or wind. Soil that is not held in place by plant roots is especially vulnerable to erosion from rainfall, flooding, windstorms, and other natural events."},
-    {name:"Overfarming", link:"./images/overfarming.png",
-        coords:{relX:.70,relY:.64},
-        textCoords:{relX:.761,relY:.584,width:180},
-        text:"Overfarming damages the soil structure through compaction and erosion from repeated tilling, loss of soil nutrients, and buildup of chemical fertilizers in the soil."},
-    {name:"Sealing", link:"./images/sealing.png",
-        coords:{relX:.43,relY:.13},
-        textCoords:{relX:.04,relY:.061,width:200},
-        text:"Sealing is any process that covers soil with permanent structures that plant roots and rain cannot penetrate. Buildings, paved roads and parking lots are primary sources of sealing. Soil that is sealed cannot absorb rainfall, and often leads to flooding and erosion nearby."},
-    {name:"Urbanization", link:"./images/urbanization.png",
-        coords:{relX:.28,relY:.46},
-        textCoords:{relX:-.02500,relY:.404,width:165},
-        text:"As cities grow, they take up more land. Heavy traffic and land development often leads to compaction and sealing of surrounding soil, and can promote flooding as well. Cities also require large amounts of food and roads for transportation, and may have a large footprint outside of the city limits."}
+var layerData = [
+    {name:"Leaf litter and humus", link:"./images/compaction.png",
+        coords:{relX:.174,relY:.238,relW:.269,relH:0.011},
+        textCoords:{relX:.435,relY:.322,width:300},
+        text:"Humus comes mostly from discarded plant leaves and bark."},
+    {name:"Topsoil", link:"./images/erosion.png",
+        coords:{relX:.174,relY:.248,relW:.269,relH:0.137},
+        textCoords:{relX:.085,relY:.795,width:225},
+        text:"Topsoil contains a large quantity of humus, mixed with mineral components, and is the fertile soil where most plant growth occurs."},
+    {name:"Eluviation Layer", link:"./images/overfarming.png",
+        coords:{relX:.174,relY:.386,relW:.269,relH:0.085},
+        textCoords:{relX:.82,relY:.583,width:180},
+        text:"The eluviation layer is a lighter color because most of its mineral content has leached away, leaving only sand and silt behind."},
+    {name:"Subsoil", link:"./images/sealing.png",
+        coords:{relX:.174,relY:.471,relW:.269,relH:0.185},
+        textCoords:{relX:.04,relY:.493,width:130},
+        text:"Subsoil is a dense, mineral-rich layer where silt and mineral nutrients washed out of the eluviation layer tend to accumulate."},
+    {name:"Regolith", link:"./images/urbanization.png",
+        coords:{relX:.174,relY:.656,relW:.269,relH:0.125},
+        textCoords:{relX:.020,relY:.145,width:225},
+        text:"The regolith separates the upper soil layers from the rock below. It is mostly made up of rocks and gravel, and contains almost no organic material. Plant roots do not grow into this layer."},
+    {name:"Bedrock", link:"./images/urbanization.png",
+        coords:{relX:.174,relY:.781,relW:.269,relH:0.164},
+        textCoords:{relX:.020,relY:.145,width:225},
+        text:"The bedrock layer is made up of soil rock in the earth's crust, and forms the foundation for all soil."}
 ];
 
 
 //http://jsfiddle.net/J8sp3/4/
 
-var roots = d3.xml("./images/impacts connectors-04.svg").mimeType("image/svg+xml").get(function(error, loadedSVG) {
+var roots = d3.xml("./images/soil horizons-01.svg").mimeType("image/svg+xml").get(function(error, loadedSVG) {
     if (error) throw error;
 
     var svgNode = loadedSVG
@@ -63,7 +62,7 @@ var roots = d3.xml("./images/impacts connectors-04.svg").mimeType("image/svg+xml
 
 });
 
-var radius = 40;
+var radius = 50;
 var padding = 10;
 
 heightScale = 552/heightNM;
@@ -73,15 +72,15 @@ illustratorScaledRadius =  .077*heightNM; // radius is 42.5/552 px in illustrato
 
 console.log(heightScale);
 
-var impactNodes = svg.selectAll('.impacts')
-    .data(impactData)
-    .enter()
-    .append('g')
+var layerNodes = svg.selectAll('.layers')
+	.data(layerData)
+	.enter()
+	.append('g')
     .attr('transform','translate(' + illustratorOffset + ',' + 0 + ')');
 
+/*
 
-
-var pattern = impactNodes.append("defs")
+var pattern = layerNodes.append("defs")
     .append("pattern")
     .attr('id',function(d){ return 'pattern-' + d.id;})
     .attr("width", "100%")
@@ -94,60 +93,61 @@ var pattern = impactNodes.append("defs")
     .attr("width", 1)
     .attr('preserveAspectRatio',"xMidYMid slice")
     .attr("xlink:href", function(d){ return d.link});
+    */
 
-impactNodes.append('text')
-    .attr('x',function(d,i){
-        return d.coords.relX*heightNM*(1/illustratorAR);
+layerNodes.append('text')
+	.attr('x',function(d,i){
+	    return d.coords.relX*heightNM*(1/illustratorAR);
         /*if(i<3){
-         return 70 + radius + padding;
-         }
-         else{
-         return width/2+50 + radius + padding; //+ 150*Math.sin((i+1)*Math.PI/3);
-         }*/
+            return 70 + radius + padding;
+        }
+        else{
+            return width/2+50 + radius + padding; //+ 150*Math.sin((i+1)*Math.PI/3);
+        }*/
     })
-    .attr('y',function(d,i){
-        return heightNM*d.coords.relY - illustratorScaledRadius -4;
+	.attr('y',function(d,i){
+        return heightNM*d.coords.relY - illustratorScaledRadius -6;
         /*if(i==0 || i==4){
-         return 70 - radius/2 - 15;
-         }
-         else if(i==1 || i==5){
-         return 220 - radius/2 - 15;
-         }
-         else{
-         return 370 - radius/2 - 15; //+ 150*Math.sin((i+1)*Math.PI/3);
-         }*/
+            return 70 - radius/2 - 15;
+        }
+        else if(i==1 || i==5){
+            return 220 - radius/2 - 15;
+        }
+        else{
+            return 370 - radius/2 - 15; //+ 150*Math.sin((i+1)*Math.PI/3);
+        }*/
         // + 150*Math.cos((i+1)*Math.PI/3);
     })
-    .style('text-transform','uppercase')
-    .style('letter-spacing','.15em')
-    .style('text-anchor','middle')
-    .attr('fill','gray')
-    .text(function(d){return d.name;});
+	.style('text-transform','uppercase')
+	.style('letter-spacing','.15em')
+	.style('text-anchor','middle')
+	.attr('fill','gray')
+	.text(function(d){return d.name;});
 
-var text = impactNodes.append('text')
+var text = layerNodes.append('text')
     .attr('class','to-wrap')
     .attr('x',function(d,i){
         return d.textCoords.relX*heightNM*(1/illustratorAR);
         /*
-         if(i<3){
-         return 70 + radius + padding;
-         }
-         else{
-         return width/2+50 + radius + padding; //+ 150*Math.sin((i+1)*Math.PI/3);
-         }*/
+        if(i<3){
+            return 70 + radius + padding;
+        }
+        else{
+            return width/2+50 + radius + padding; //+ 150*Math.sin((i+1)*Math.PI/3);
+        }*/
     })
     .attr('y',function(d,i){
         return heightNM*d.textCoords.relY ;
         /*
-         if(i==0 || i==4){
-         return 70 - radius/2 + 2;
-         }
-         else if(i==1 || i==5){
-         return 220 - radius/2 + 2;
-         }
-         else{
-         return 370 - radius/2 + 2; //+ 150*Math.sin((i+1)*Math.PI/3);
-         }*/
+        if(i==0 || i==4){
+            return 70 - radius/2 + 2;
+        }
+        else if(i==1 || i==5){
+            return 220 - radius/2 + 2;
+        }
+        else{
+            return 370 - radius/2 + 2; //+ 150*Math.sin((i+1)*Math.PI/3);
+        }*/
         // + 150*Math.cos((i+1)*Math.PI/3);
     })
     .attr('id',function(d){
@@ -159,38 +159,43 @@ var text = impactNodes.append('text')
     .attr('background','white')
     .text(null);
 
-impactNodes.append('circle')
-    .attr('cx',function(d,i){
+layerNodes.append('rect')
+    .attr('x',function(d,i){
         return d.coords.relX*heightNM*(1/illustratorAR);
         /*if(i<3){
-         return 70;
-         }
-         else{
-         return width/2+50; //+ 150*Math.sin((i+1)*Math.PI/3);
-         }*/
+            return 70;
+        }
+        else{
+            return width/2+50; //+ 150*Math.sin((i+1)*Math.PI/3);
+        }*/
     })
-    .attr('cy',function(d,i){
+    .attr('y',function(d,i){
         return heightNM*d.coords.relY;
         /*if(i==0 || i==4){
-         return 70;
-         }
-         else if(i==1 || i==5){
-         return 220;
-         }
-         else{
-         return 370; //+ 150*Math.sin((i+1)*Math.PI/3);
-         }*/
+            return 70;
+        }
+        else if(i==1 || i==5){
+            return 220;
+        }
+        else{
+            return 370; //+ 150*Math.sin((i+1)*Math.PI/3);
+        }*/
         // + 150*Math.cos((i+1)*Math.PI/3);
     })
-    .attr('r',illustratorScaledRadius)
-    .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'})
+    .attr('width', function(d,i){
+        return 250;//d.coords.relW*heightNM*(1/illustratorAR);
+    })
+    .attr('height', function(d,i){
+        return heightNM*d.coords.relH;
+    })
+    .style("fill", 'blue')
     .on('mouseover',function(d){
-        if (d.name == "Erosion"){
+        if (d.name == "Compaction"){
 
             //d3.select(this.parentNode)
             svg
                 .append('rect')
-                .attr('id','fungi-box')
+                .attr('id','compaction-box')
                 .attr('x',function(e){
                     return d.textCoords.relX*heightNM*(1/illustratorAR) - 3 + illustratorOffset;
                 })
@@ -198,13 +203,13 @@ impactNodes.append('circle')
                     return heightNM*d.textCoords.relY - 11;
                 })
                 .attr('width',260)
-                .attr('height',112)
+                .attr('height',70)
                 .attr('fill-opacity',.85)
                 .attr('fill','white');
 
             svg
                 .append('text')
-                .attr('id','fungi-text')
+                .attr('id','compaction-text')
                 .attr('x',function(e){
                     return d.textCoords.relX*heightNM*(1/illustratorAR)+ illustratorOffset;
                 })
@@ -217,7 +222,7 @@ impactNodes.append('circle')
                 .attr('background','white')
                 .text(null);
 
-            wrap(d3.select('#fungi-text').text('test'), d.text, d.textCoords.width);
+            wrap(d3.select('#compaction-text').text('test'), d.text, d.textCoords.width);
         }
         else{
             wrap(d3.select('#'+ d.name).text('test'), d.text, d.textCoords.width);
@@ -227,21 +232,21 @@ impactNodes.append('circle')
     .on('mouseout',function(d){
         d3.select('#'+ d.name).text(null);
 
-        d3.select('#fungi-box').remove();
-        d3.select('#fungi-text').remove();
+        d3.select('#compaction-box').remove();
+        d3.select('#compaction-text').remove();
     });
 
 
 
 /*
 
- text
- .transition()
- .on('start',function(d){
- var text = d3.select(this);
+text
+	.transition()
+	.on('start',function(d){
+        var text = d3.select(this);
 
- });
- */
+    });
+*/
 
 //from http://stackoverflow.com/questions/24784302/wrapping-text-in-d3
 function wrap(text, wordList, width) {

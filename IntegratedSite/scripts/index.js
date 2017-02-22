@@ -172,7 +172,7 @@ function drawNetwork(linkList, nodeList){
         //.attr("y1", function(d) { return d.source.y; })
         //.attr("x2", function(d) { return d.target.x; })
         //.attr("y2", function(d) { return d.target.y; })
-        .attr('class','link')
+        .attr('class',function(d){return 'link ' + d.narrative + '-link'})
         .attr('stroke',function(d){
             if (d.narrative == "population"){
                 return popColor;
@@ -293,6 +293,8 @@ function drawNetwork(linkList, nodeList){
                         .text(function(d) { return d.name; });
 
                     //totally hack this because clipping paths can't be updated, for some silly reason in Chrome
+                    //almost-working example and bug descriipts here: https://www.smashingmagazine.com/2015/05/creating-responsive-shapes-with-clip-path/
+                    //http://bl.ocks.org/couchand/6399221
                     var textLabels = d3.select(this.parentNode).append("circle")
                         .attr('class','fake-node')
                         .attr("cx", d.x)
@@ -468,16 +470,30 @@ function foodClicked() {
 
     tracker[0].narrative = "food";
     console.log('food clicked');
+
+    d3.selectAll('.population-link').attr('stroke-width',2);
+    d3.selectAll('.soil-link').attr('stroke-width',2);
+    d3.selectAll('.food-link').attr('stroke-width',7);
+
 }
 
 function populationClicked() {
     tracker[0].narrative = "population";
     console.log('population clicked');
+
+    d3.selectAll('.population-link').attr('stroke-width',7);
+    d3.selectAll('.soil-link').attr('stroke-width',2);
+    d3.selectAll('.food-link').attr('stroke-width',2);
+
 }
 
 function ecosystemClicked() {
     tracker[0].narrative = "ecosystem";
     console.log('ecosystem clicked');
+
+    d3.selectAll('.population-link').attr('stroke-width',2);
+    d3.selectAll('.soil-link').attr('stroke-width',7);
+    d3.selectAll('.food-link').attr('stroke-width',2);
 }
 
 

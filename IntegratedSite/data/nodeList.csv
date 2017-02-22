@@ -1,5 +1,5 @@
 id,avail,name,icon,photo,text,topic,overallPriority,foodPriority,populationPriority,ecosystemPriority,setX,setY,illustratorX,illustratorY,calcX,calcY,oldX,oldY
-M,n,What is soil?,./tree.png,test.png,"Soil is a complex ecosystem, with global impacts.",soil,,2,,,0.115384615,0.234592445,90,118,0.115384615,0.234592445,0.1,0.1
+M,y,What is soil?,./tree.png,test.png,"Soil is a complex ecosystem, with global impacts.",soil,,2,,,0.115384615,0.234592445,90,118,0.115384615,0.234592445,0.1,0.1
 N,y,Soil biodiversity,./tree.png,./images/soilorganisms_2_sm.png,A quarter of the world's species live in the soil,soil,,2,,,0.120512821,0.397614314,94,200,0.120512821,0.397614314,0.2,0.1
 T,y,Climate change,./tree.png,./images/globalC_2_sm.png,Soil stores carbon and can help to slow climate change,soil,,2,,,0.192307692,0.479125249,150,241,0.192307692,0.479125249,0.9,0.75
 W,y,Global ecoregions,./tree.png,./images/ecoregions_3_sm.png,Different ecosystems store different amounts of carbon in the soil.,soil,,2,,,0.253846154,0.616302187,198,310,0.253846154,0.616302187,,
@@ -7,8 +7,8 @@ A,n,Soil and food,./tree.png,test.png,Most of the world's food comes from the so
 K,y,World population,./tree.png,./images/worldpop_2_sm.png,World population has increased dramatically in the past century,population,,2,1,,0.096153846,0.622266402,75,313,0.096153846,0.622266402,0.15,0.2
 E,n,Food demands,./tree.png,test.png,World food supply needs are growing,population,,2,,,0.174358974,0.707753479,136,356,0.174358974,0.707753479,0.3,0.4
 F,y,People per farmer,./tree.png,./images/peopleperfarmer_2_sm.png,Modern agriculture allows a single farmer to feed more people now than ever before,food,,2,,,0.147435897,0.779324056,115,392,0.147435897,0.779324056,0.7,0.4
-G,y,Land per person,./tree.png,test.png,"The land needed to feed one person is decreasing, but population growth continues to force land use change",food,,2,,,0.065384615,0.842942346,51,424,0.065384615,0.842942346,0.1,0.6
+G,y,Land per person,./tree.png,test.png,"The land needed to feed one person is decreasing, but population growth continues to force land use change",population,,2,,,0.065384615,0.842942346,51,424,0.065384615,0.842942346,0.1,0.6
 D,n,Food flow,./tree.png,./images/foodflow_sm.png,Food is a global issue,food,,2,,,0.232051282,0.844930417,181,425,0.232051282,0.844930417,0.2,0.3
 H,y,Soil degradation,./tree.png,./images/soildegradation_2_sm.png,Much of the world's soil is becoming less fertile,soil,,2,,,0.314102564,0.773359841,245,389,0.314102564,0.773359841,0.75,0.6
-I,n,Threats to the soil,./tree.png,test.png,"Causes of soil depletion, according to the FAO-UNESCO",soil,,2,,,0.507692308,0.827037773,396,416,0.507692308,0.827037773,0.8,0.8
+I,y,Threats to the soil,./tree.png,./images/impacts_icons_icon.png,"Causes of soil depletion, according to the FAO-UNESCO",soil,,2,,,0.507692308,0.827037773,396,416,0.507692308,0.827037773,0.8,0.8
 J,n,Responses,./tree.png,test.png,Recommendations for protecting the soil,soil,,2,,,0.893589744,0.900596421,697,453,0.893589744,0.900596421,0.82,0.8

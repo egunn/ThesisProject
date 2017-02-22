@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/chemicals.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/chemicals.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/compaction.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/compaction.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/overfarming.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/overfarming.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/sealing.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/sealing.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/urbanization.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/urbanization.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/FoodFlow/data/balanceSheetData.csv" afterPath="$PROJECT_DIR$/ConstructionZone/FoodFlow/data/balanceSheetData.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/css/style.css" afterPath="$PROJECT_DIR$/IntegratedSite/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/scripts/Impacts.js" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/scripts/Impacts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/data/linkList.csv" afterPath="$PROJECT_DIR$/IntegratedSite/data/linkList.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/data/nodeList.csv" afterPath="$PROJECT_DIR$/IntegratedSite/data/nodeList.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/index.html" afterPath="$PROJECT_DIR$/IntegratedSite/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/index.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/template.json" afterPath="$PROJECT_DIR$/IntegratedSite/template.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,52 +33,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="testJQuery.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/scripts/testJQuery.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="46" column="55" lean-forward="false" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Impacts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/scripts/Impacts.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3162">
-              <caret line="187" column="30" lean-forward="false" selection-start-line="187" selection-start-column="30" selection-end-line="187" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="363" column="24" lean-forward="false" selection-start-line="363" selection-start-column="24" selection-end-line="363" selection-end-column="24" />
+            <state relative-caret-position="129">
+              <caret line="475" column="52" lean-forward="false" selection-start-line="475" selection-start-column="52" selection-end-line="475" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/css/style.css">
+      <file leaf-file-name="impacts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/impacts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="226" column="19" lean-forward="false" selection-start-line="226" selection-start-column="13" selection-end-line="226" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="404">
+              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="soilOrganisms.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/soilOrganisms.js">
+      <file leaf-file-name="soilLayers.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="156" column="3" lean-forward="false" selection-start-line="156" selection-start-column="3" selection-end-line="156" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="280">
+              <caret line="185" column="19" lean-forward="false" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,11 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>axis</find>
-      <find>drawCa</find>
-      <find>canvas</find>
-      <find>context</find>
-      <find>trade</find>
       <find>Imports</find>
       <find>Exports</find>
       <find>fill-opa</find>
@@ -118,9 +102,14 @@
       <find>append</find>
       <find>root</find>
       <find>Talking</find>
-      <find>roots</find>
       <find>upper</find>
       <find>center</find>
+      <find>organism</find>
+      <find>fungi</find>
+      <find>links</find>
+      <find>impact</find>
+      <find>line</find>
+      <find>roots</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -129,8 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/IntegratedSite/scripts/peoplePerFarmer.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/PageNav/css/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/testJQuery.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes_broken.json" />
@@ -155,7 +142,6 @@
         <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/testJQuery.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilOrganisms/scripts/testJQuery.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilOrganisms/template.json" />
-        <option value="$PROJECT_DIR$/IntegratedSite/template.json" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/landDegradation.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/GlobalC/scripts/testJQuery.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/GlobalC/index.html" />
@@ -180,6 +166,9 @@
         <option value="$PROJECT_DIR$/ConstructionZone/Impacts/scripts/testJQuery.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/Impacts/scripts/Impacts.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
+        <option value="$PROJECT_DIR$/IntegratedSite/scripts/impacts.js" />
+        <option value="$PROJECT_DIR$/IntegratedSite/template.json" />
+        <option value="$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js" />
       </list>
     </option>
   </component>
@@ -328,6 +317,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ConstructionZone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Impacts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -444,12 +455,12 @@
       <workItem from="1486961432529" duration="4593000" />
       <workItem from="1487034725316" duration="2124000" />
       <workItem from="1487083898419" duration="58572000" />
-      <workItem from="1487362876705" duration="29212000" />
+      <workItem from="1487362876705" duration="37600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="323932000" />
+    <option name="totallyTimeSpent" value="332320000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -502,7 +513,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/IntegratedSite/scripts/index.js</url>
-          <line>404</line>
+          <line>406</line>
           <properties />
           <option name="temporary" value="true" />
           <option name="timeStamp" value="1" />
@@ -513,9 +524,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/style.css" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/mapbrushing.js" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/bg-nav.js" />
     <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/index.js" />
     <entry file="file://$PROJECT_DIR$/ConstructionZone/LandDegradation/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -595,13 +603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/template.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -785,26 +786,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/scripts/testJQuery.js">
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="46" column="55" lean-forward="false" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
+        <state relative-caret-position="176">
+          <caret line="226" column="19" lean-forward="false" selection-start-line="226" selection-start-column="13" selection-end-line="226" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/template.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/scripts/Impacts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3162">
-          <caret line="187" column="30" lean-forward="false" selection-start-line="187" selection-start-column="30" selection-end-line="187" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="226" column="19" lean-forward="false" selection-start-line="226" selection-start-column="13" selection-end-line="226" selection-end-column="19" />
+        <state relative-caret-position="401">
+          <caret line="49" column="19" lean-forward="false" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -817,11 +818,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/scripts/testJQuery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="46" column="55" lean-forward="false" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="363" column="24" lean-forward="false" selection-start-line="363" selection-start-column="24" selection-end-line="363" selection-end-column="24" />
+        <state relative-caret-position="129">
+          <caret line="475" column="52" lean-forward="false" selection-start-line="475" selection-start-column="52" selection-end-line="475" selection-end-column="52" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/impacts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/template.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="87" lean-forward="false" selection-start-line="2" selection-start-column="87" selection-end-line="2" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="185" column="19" lean-forward="false" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
