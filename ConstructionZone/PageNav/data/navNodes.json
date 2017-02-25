@@ -1,30 +1,37 @@
 [ {
     "name":"Soil",
-    "narrative":"soil",
+    "nodeID":"M",
+    "narrative":{"soil":true, "food":true, "population":true},
     "position":1,
     "children":[
       {"name":"Species",
-        "narrative":"soil",
+        "narrative":{"soil":true, "food":false, "population":false},
+        "nodeID":"N",
         "position":3,
         "children":[
           {"name":"GlobalC",
-            "narrative":"soil",
+            "narrative":{"soil":true, "food":false, "population":false},
+            "nodeID":"T",
             "position":5,
             "children":[
               {"name":"Ecosystems",
-                "narrative":"soil",
+                "narrative":{"soil":true, "food":false, "population":false},
+                "nodeID":"W",
                 "position":7,
                 "children":[
                   {"name":"Soil Degradation",
-                    "narrative":"soil",
+                    "narrative":{"soil":true, "food":true, "population":true},
+                    "nodeID":"H",
                     "position":9,
                     "children":[
                       {"name":"Threats",
-                        "narrative":"soil",
+                        "narrative":{"soil":true, "food":true, "population":true},
+                        "nodeID":"I",
                         "position":10,
                         "children":[
                           {"name":"Responses",
-                            "narrative":"soil",
+                            "narrative":{"soil":true, "food":true, "population":true},
+                            "nodeID":"J",
                             "position":11
                           }
                         ]
@@ -38,30 +45,36 @@
         ]
       },
       {"name": "Food",
-       "narrative":"food",
+       "narrative":{"soil":false, "food":true, "population":true},
+        "nodeID":"A",
         "position":2,
         "children":[
           {"name":"World Population",
-            "narrative":"population",
+            "narrative":{"soil":false, "food":true, "population":true},
+            "nodeID":"K",
             "position":3,
             "children":[
               {"name":"Food Supply",
-                "narrative":"population",
+                "narrative":{"soil":false, "food":true, "population":true},
+                "nodeID":"E",
                 "position":5,
                 "children":[
                     {"name":"People per Farmer",
-                      "narrative":"food",
+                      "narrative":{"soil":false, "food":true, "population":false},
+                      "nodeID":"F",
                       "position":6,
                       "children":[
                         {"name":"Food Flow",
-                          "narrative":"food",
+                          "narrative":{"soil":false, "food":true, "population":false},
+                          "nodeID":"D",
                           "position":7
                         }]
                   }]
               },
               {
                "name":"Land per Person",
-                "narrative":"food",
+                "narrative":{"soil":false, "food":false, "population":true},
+                "nodeID":"G",
                 "position":4
               }
 

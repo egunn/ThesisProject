@@ -2,16 +2,75 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/chemicals.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/chemicals.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/compaction.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/compaction.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/overfarming.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/overfarming.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/sealing.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/sealing.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/images/urbanization.png" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/images/urbanization.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/soilsite.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/workspace.xml.orig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/colorpalette.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/data/soilDataMapNames_mergingkeys_2_cut.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/data/soilData_allyrs1019.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/data/worldcountries_fromWorking_noAntartc.topojson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/Apache License.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Black.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Bold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-ExtraBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-ExtraLight.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Light.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Medium.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-SemiBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Thin.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/Work_Sans.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/bar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/d.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/dataManager.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/mapsketch.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/navigator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/pageSetup.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/playSlider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/D3-LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/js/npm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/colorbrewer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/crossfilter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/d3-tip.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/d3.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/d3.v3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/d3.v4.2.6.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/jquery-3.1.1.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/less.v2.7.1.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/queue.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/topojson-master.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/topojson.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/topojson.v1.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/powerpoint.pptm" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/Impacts/scripts/Impacts.js" afterPath="$PROJECT_DIR$/ConstructionZone/Impacts/scripts/Impacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/data/linkList.csv" afterPath="$PROJECT_DIR$/IntegratedSite/data/linkList.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json" afterPath="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/PageNav/index.html" afterPath="$PROJECT_DIR$/ConstructionZone/PageNav/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js" afterPath="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/PageNav/template.json" afterPath="$PROJECT_DIR$/ConstructionZone/PageNav/template.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/data/nodeList.csv" afterPath="$PROJECT_DIR$/IntegratedSite/data/nodeList.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/index.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/images/soil horizons-01.svg" afterPath="$PROJECT_DIR$/IntegratedSite/images/soil horizons-01.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/ecoregions.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/ecoregions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/template.json" afterPath="$PROJECT_DIR$/IntegratedSite/template.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -33,36 +92,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/index.js">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="475" column="52" lean-forward="false" selection-start-line="475" selection-start-column="52" selection-end-line="475" selection-end-column="52" />
+            <state relative-caret-position="265">
+              <caret line="134" column="22" lean-forward="false" selection-start-line="134" selection-start-column="22" selection-end-line="134" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="impacts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/impacts.js">
+      <file leaf-file-name="navNodes.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="462">
+              <caret line="76" column="27" lean-forward="false" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="soilLayers.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js">
+      <file leaf-file-name="pageNav.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="185" column="19" lean-forward="false" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="17">
+              <caret line="98" column="12" lean-forward="false" selection-start-line="98" selection-start-column="12" selection-end-line="98" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,36 +135,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Imports</find>
-      <find>Exports</find>
-      <find>fill-opa</find>
-      <find>fill</find>
-      <find>bar-la</find>
-      <find>background</find>
-      <find>.text</find>
-      <find>biome</find>
-      <find>xAxis</find>
-      <find>climate</find>
-      <find>backgroun</find>
-      <find>orange</find>
-      <find>width</find>
-      <find>transform</find>
-      <find>projection</find>
-      <find>text</find>
-      <find>climateType</find>
-      <find>translate</find>
-      <find>selection</find>
-      <find>append</find>
-      <find>root</find>
       <find>Talking</find>
-      <find>upper</find>
       <find>center</find>
       <find>organism</find>
       <find>fungi</find>
       <find>links</find>
       <find>impact</find>
-      <find>line</find>
       <find>roots</find>
+      <find>eluvia</find>
+      <find>Eluvia</find>
+      <find>parentNode</find>
+      <find>br</find>
+      <find>blue</find>
+      <find>line</find>
+      <find>clientWidth</find>
+      <find>plot</find>
+      <find>navba</find>
+      <find>form-control</find>
+      <find>nav</find>
+      <find>select</find>
+      <find>countryD</find>
+      <find>countryr</find>
+      <find>dispat</find>
+      <find>dropdown</find>
+      <find>navH</find>
+      <find>tracker</find>
+      <find>&quot;r&quot;</find>
+      <find>opacity</find>
+      <find>data.narrative</find>
+      <find>Color</find>
+      <find>upper</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,23 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/css/style.css" />
-        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/testJQuery.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes_broken.json" />
-        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json" />
-        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/dataManager.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/navigator.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandUse1/style.css" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandUse1/index.html" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/scripts/testJQuery.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/template.json" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandPerPerson/index.html" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/index.html" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/scripts/index.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/mapbrushing.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/scripts/landDegradation.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/LandDegradation/css/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/template.json" />
         <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/css/style.css" />
@@ -156,7 +194,6 @@
         <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/data/worldcountries_fromWorking_noAntartc.topojson" />
         <option value="$PROJECT_DIR$/IntegratedSite/data/worldcountries_fromWorking_noAntartc.topojson" />
         <option value="$PROJECT_DIR$/IntegratedSite/data/teow_2.5p_noAntarct.topojson" />
-        <option value="$PROJECT_DIR$/IntegratedSite/scripts/ecoregions.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilOrganisms/scripts/soilOrganisms.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/soilOrganisms.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/WorldPop.js" />
@@ -167,8 +204,26 @@
         <option value="$PROJECT_DIR$/ConstructionZone/Impacts/scripts/Impacts.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/impacts.js" />
-        <option value="$PROJECT_DIR$/IntegratedSite/template.json" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js" />
+        <option value="$PROJECT_DIR$/IntegratedSite/template.json" />
+        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/index.html" />
+        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/template.json" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/template.json" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/mapsketch.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/dataManager.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/d.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/bar.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/playSlider.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/navigator.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/pageSetup.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/testJQuery.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/index.php" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/css/style.css" />
+        <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/landUseDashboard.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/css/style.css" />
+        <option value="$PROJECT_DIR$/IntegratedSite/scripts/ecoregions.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json" />
+        <option value="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js" />
       </list>
     </option>
   </component>
@@ -200,7 +255,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -255,24 +309,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="IntegratedSite" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="ConstructionZone" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -291,7 +327,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Impacts" />
+              <option name="myItemId" value="PageNav" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -309,7 +345,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Impacts" />
+              <option name="myItemId" value="PageNav" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -331,16 +367,17 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Impacts" />
+              <option name="myItemId" value="PageNav" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -455,18 +492,19 @@
       <workItem from="1486961432529" duration="4593000" />
       <workItem from="1487034725316" duration="2124000" />
       <workItem from="1487083898419" duration="58572000" />
-      <workItem from="1487362876705" duration="37600000" />
+      <workItem from="1487362876705" duration="46552000" />
+      <workItem from="1487863921496" duration="26061000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="332320000" />
+    <option name="totallyTimeSpent" value="367333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16517857" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16369048" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -493,7 +531,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16517857" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16516517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -514,118 +552,15 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/IntegratedSite/scripts/index.js</url>
           <line>406</line>
-          <properties />
           <option name="temporary" value="true" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/index.js" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandDegradation/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="136" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/landuse.js" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/countrylist.js" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/data/Terrestrial_Ecoregions_of_the_World_TEOW.csv" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/mapbrushing.js" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/testJQuery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="49" column="41" lean-forward="false" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="54" column="18" lean-forward="true" selection-start-line="45" selection-start-column="12" selection-end-line="54" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="31" column="28" lean-forward="true" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/template.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="505" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="505" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/template.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/PeoplePerFarmer/template.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/SoilOrganisms/scripts/testJQuery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/SoilOrganisms/template.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="507" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/SoilOrganisms/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/test.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandDegradation/scripts/landDegradation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="113" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandDegradation/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="26" column="22" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/landDegradation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
@@ -642,24 +577,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/page1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/GlobalC/scripts/testJQuery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="12" lean-forward="false" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/page1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="45" column="56" lean-forward="false" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -674,14 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="68" column="45" lean-forward="false" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,34 +659,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/ecoregions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="64" column="27" lean-forward="false" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/globalC.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
           <caret line="200" column="28" lean-forward="true" selection-start-line="200" selection-start-column="28" selection-end-line="200" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="38" column="16" lean-forward="false" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="117" column="19" lean-forward="false" selection-start-line="117" selection-start-column="19" selection-end-line="117" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -798,7 +687,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -810,27 +698,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/soilOrganisms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="156" column="3" lean-forward="false" selection-start-line="156" selection-start-column="3" selection-end-line="156" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/scripts/testJQuery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="46" column="55" lean-forward="false" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/index.js">
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/template.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="475" column="52" lean-forward="false" selection-start-line="475" selection-start-column="52" selection-end-line="475" selection-end-column="52" />
-          <folding />
+        <state relative-caret-position="85">
+          <caret line="5" column="258" lean-forward="false" selection-start-line="5" selection-start-column="258" selection-end-line="5" selection-end-column="258" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2166">
+          <caret line="136" column="6" lean-forward="true" selection-start-line="136" selection-start-column="6" selection-end-line="136" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -839,26 +727,222 @@
         <state relative-caret-position="404">
           <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/template.json">
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/template.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="87" lean-forward="false" selection-start-line="2" selection-start-column="87" selection-end-line="2" selection-end-column="87" />
+        <state relative-caret-position="0">
+          <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js">
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/index_toMigrate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="185" column="19" lean-forward="false" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="494">
+          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/mapsketch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="86" column="20" lean-forward="true" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/dataManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/bar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/playSlider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/navigator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/pageSetup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="745" column="2" lean-forward="false" selection-start-line="745" selection-start-column="2" selection-end-line="745" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/testJQuery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="15" column="50" lean-forward="true" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/template.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="118" lean-forward="false" selection-start-line="0" selection-start-column="118" selection-end-line="0" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/page1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="45" column="16" lean-forward="false" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="22" column="66" lean-forward="false" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="434" column="9" lean-forward="false" selection-start-line="434" selection-start-column="1" selection-end-line="434" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="109" column="25" lean-forward="false" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="1146" column="92" lean-forward="false" selection-start-line="1146" selection-start-column="84" selection-end-line="1146" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/landUseDashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="102" column="32" lean-forward="true" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="134" column="22" lean-forward="false" selection-start-line="134" selection-start-column="22" selection-end-line="134" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/page1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/ecoregions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="44" column="21" lean-forward="false" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="28" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/soilOrganisms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1328">
+          <caret line="132" column="15" lean-forward="true" selection-start-line="132" selection-start-column="15" selection-end-line="132" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="76" column="27" lean-forward="false" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="98" column="12" lean-forward="false" selection-start-line="98" selection-start-column="12" selection-end-line="98" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>

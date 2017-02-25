@@ -1,0 +1,2 @@
+[ {"page":"A","title":"Land Use", "synopsis":"Test case", "text":"Examination of land use, population, and food trends.", "link":"index.html", "linkText":"Index"},
+  {"page":"B","title":"Page B", "text":"This is a JSON to test text reloading from a file for use in a JS template.", "link":"index.html", "linkText":"Index"}]

@@ -17,30 +17,30 @@ var canvas = d3.select("#vis-canvas")
     .style('height','450px');
 
 var layerData = [
-    {name:"Leaf litter and humus", link:"./images/compaction.png",
-        coords:{relX:.174,relY:.238,relW:.269,relH:0.011},
-        textCoords:{relX:.435,relY:.322,width:300},
+    {name:"Humus", displayName:"Humus", link:"./images/compaction.png",
+        coords:{relX:.174,relY:.228,relW:.269,relH:0.021},
+        textCoords:{relX:.48,relY:.228,width:200},
         text:"Humus comes mostly from discarded plant leaves and bark."},
-    {name:"Topsoil", link:"./images/erosion.png",
+    {name:"Topsoil", displayName:"Topsoil", link:"./images/erosion.png",
         coords:{relX:.174,relY:.248,relW:.269,relH:0.137},
-        textCoords:{relX:.085,relY:.795,width:225},
-        text:"Topsoil contains a large quantity of humus, mixed with mineral components, and is the fertile soil where most plant growth occurs."},
-    {name:"Eluviation Layer", link:"./images/overfarming.png",
+        textCoords:{relX:.48,relY:.248,width:200},
+        text:"Topsoil contains a large quantity of humus, mixed with mineral components, and is where most plant growth occurs."},
+    {name:"Eluviation", displayName:"Eluviation Layer", link:"./images/overfarming.png",
         coords:{relX:.174,relY:.386,relW:.269,relH:0.085},
-        textCoords:{relX:.82,relY:.583,width:180},
-        text:"The eluviation layer is a lighter color because most of its mineral content has leached away, leaving only sand and silt behind."},
-    {name:"Subsoil", link:"./images/sealing.png",
+        textCoords:{relX:.48,relY:.386,width:200},
+        text:"The eluviation layer is a lighter color because water has leached most of its mineral content away, leaving only sand and silt behind."},
+    {name:"Subsoil", displayName:"Subsoil", link:"./images/sealing.png",
         coords:{relX:.174,relY:.471,relW:.269,relH:0.185},
-        textCoords:{relX:.04,relY:.493,width:130},
+        textCoords:{relX:.48, relY:.471,width:200},
         text:"Subsoil is a dense, mineral-rich layer where silt and mineral nutrients washed out of the eluviation layer tend to accumulate."},
-    {name:"Regolith", link:"./images/urbanization.png",
+    {name:"Regolith", displayName:"Regolith", link:"./images/urbanization.png",
         coords:{relX:.174,relY:.656,relW:.269,relH:0.125},
-        textCoords:{relX:.020,relY:.145,width:225},
+        textCoords:{relX:.48,relY:.656,width:200},
         text:"The regolith separates the upper soil layers from the rock below. It is mostly made up of rocks and gravel, and contains almost no organic material. Plant roots do not grow into this layer."},
-    {name:"Bedrock", link:"./images/urbanization.png",
+    {name:"Bedrock", displayName:"Bedrock", link:"./images/urbanization.png",
         coords:{relX:.174,relY:.781,relW:.269,relH:0.164},
-        textCoords:{relX:.020,relY:.145,width:225},
-        text:"The bedrock layer is made up of soil rock in the earth's crust, and forms the foundation for all soil."}
+        textCoords:{relX:.48,relY:.781,width:200},
+        text:"The bedrock layer is made up of rock in the earth's crust, and forms the foundation for all soil."}
 ];
 
 
@@ -62,6 +62,9 @@ var roots = d3.xml("./images/soil horizons-01.svg").mimeType("image/svg+xml").ge
 
 });
 
+//because the loaded SVG insists on showing up on top, turn off all pointer events for it (looks like it's applied globally until turned back on below)
+d3.selectAll('*').attr('pointer-events','none');
+
 var radius = 50;
 var padding = 10;
 
@@ -73,10 +76,12 @@ illustratorScaledRadius =  .077*heightNM; // radius is 42.5/552 px in illustrato
 console.log(heightScale);
 
 var layerNodes = svg.selectAll('.layers')
-	.data(layerData)
+	.data(layerData, function(d){return d.name})
 	.enter()
 	.append('g')
-    .attr('transform','translate(' + illustratorOffset + ',' + 0 + ')');
+    .attr('class','drawing-group')
+    .attr('transform','translate(' + illustratorOffset + ',' + 0 + ')')
+    .attr('pointer-events','all');  //turn mouse events back on for hidden selection rectangles
 
 /*
 
@@ -97,7 +102,7 @@ var pattern = layerNodes.append("defs")
 
 layerNodes.append('text')
 	.attr('x',function(d,i){
-	    return d.coords.relX*heightNM*(1/illustratorAR);
+	    return d.textCoords.relX*heightNM*(1/illustratorAR) - 220;
         /*if(i<3){
             return 70 + radius + padding;
         }
@@ -106,7 +111,19 @@ layerNodes.append('text')
         }*/
     })
 	.attr('y',function(d,i){
-        return heightNM*d.coords.relY - illustratorScaledRadius -6;
+	    if (d.name =="Humus"){
+            return heightNM*d.textCoords.relY + 8;
+        }
+        else if (d.name == "Topsoil"){
+            return heightNM*d.textCoords.relY + heightNM*d.coords.relH/2;
+        }
+        else if (d.name == "Eluviation"){
+            return heightNM*d.textCoords.relY + 12;
+        }
+        else{
+            return heightNM*d.textCoords.relY + heightNM*d.coords.relH/2;
+        }
+
         /*if(i==0 || i==4){
             return 70 - radius/2 - 15;
         }
@@ -120,9 +137,23 @@ layerNodes.append('text')
     })
 	.style('text-transform','uppercase')
 	.style('letter-spacing','.15em')
-	.style('text-anchor','middle')
+	.style('text-anchor','end')
 	.attr('fill','gray')
-	.text(function(d){return d.name;});
+	.text(function(d){
+	    //append second line for eluviation (can't insert a linebreak)
+	    if (d.name == "Eluviation"){
+	        console.log( d3.select(this));
+            d3.select(this.parentNode).append("text")
+                .attr("y", function(d,i){return heightNM*d.textCoords.relY + 28;})
+                .attr("x",function(d,i){
+                    return d.textCoords.relX*heightNM*(1/illustratorAR) - 220;})
+                .style('text-transform','uppercase')
+                .style('letter-spacing','.15em')
+                .style('text-anchor','end')
+                .attr('fill','gray')
+                .text("Layer");
+        }
+	    return d.name;});
 
 var text = layerNodes.append('text')
     .attr('class','to-wrap')
@@ -137,7 +168,13 @@ var text = layerNodes.append('text')
         }*/
     })
     .attr('y',function(d,i){
-        return heightNM*d.textCoords.relY ;
+        if (d.name =="Humus"){
+            return heightNM*d.textCoords.relY + 8;
+        }
+        else {
+            return heightNM*d.textCoords.relY + 8;//heightNM*d.coords.relH/2;
+        }
+
         /*
         if(i==0 || i==4){
             return 70 - radius/2 + 2;
@@ -188,8 +225,10 @@ layerNodes.append('rect')
     .attr('height', function(d,i){
         return heightNM*d.coords.relH;
     })
-    .style("fill", 'blue')
+    .style("fill", 'transparent')//'blue'
+    .attr('fill-opacity',.2)
     .on('mouseover',function(d){
+
         if (d.name == "Compaction"){
 
             //d3.select(this.parentNode)

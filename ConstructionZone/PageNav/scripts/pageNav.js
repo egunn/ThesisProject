@@ -9,11 +9,25 @@ var height = document.getElementById('nav').clientHeight- margin.t - margin.b;
 
 chartLoc = {xwidth:width-30, xheight:5*height/6, ytop:margin.t};
 
+//set global colors
+var soilEcoColor = '#9643b2'; //purple
+var popColor = '#02a6cc';//blue
+var foodColor = '#efb804';//orange
+
+var nodeRadius = 6;
+var nodeHighlightedRadius = 18;
+var nodeCurrentRadius = 10;
+
 //grab svg from template
 var svg = d3.selectAll('#nav');
 
 //make global for resize listener
 var mapData;
+
+//mock up the tracker variable passed in by php (note:renamed node to currentNode)
+var tracker = [{"narrative":"soil","prevNode":"none","visitedNodes":["M","N","T","W"],"currentNode":"W"}];
+
+//var navHistory = {visited:["Soil","Species","GlobalC"],current:"Soil Degradation", selectedNarrative:"soil"};
 
 d3.json('./data/navNodes.json', dataLoaded);
 
@@ -22,8 +36,6 @@ function dataLoaded(data){
 
     drawNav(data[0]);
 }
-
-var navHistory = {visited:["Soil","Species","GlobalC"],current:"Soil Degradation", selectedNarrative:"soil"};
 
 //based on
 function drawNav(treeData){
@@ -76,25 +88,49 @@ function drawNav(treeData){
             return d.y0;
         })
         .attr('r', function(d){
-            if (d.data.name == navHistory.current){
-                return 13;
+            if (d.data.nodeID == tracker[0].currentNode){
+                return nodeCurrentRadius;
             }
             else{
-                return 6;
+                return nodeRadius;
             }
         })
         .style("fill", function(d){
+            
+            if (tracker[0].narrative == "population" && d.data.narrative.population == true){
+                return popColor;
+            }
+            else if (tracker[0].narrative == "food" && d.data.narrative.food == true){
+                return foodColor;
+            }
+            else if (tracker[0].narrative == "soil" && d.data.narrative.soil == true ){
+                return soilEcoColor;
+            }
+            else{
+                if (d.data.narrative.population == true){
+                    return popColor;
+                }
+                else if (d.data.narrative.food == true){
+                    return foodColor;
+                }
+                else if (d.data.narrative.soil == true ){
+                    return soilEcoColor;
+                }
+                else {
+                    return "gainsboro";
+                }
+            }
 
-            var found = navHistory.visited.find(function(e){return e === d.data.name});
+            /*var found = tracker[0].visitedNodes.find(function(e){return e === d.data.nodeID});
             if (typeof found != "undefined"){
                 if (d.data.narrative == "population"){
-                    return "orange";
+                    return popColor;
                 }
                 if (d.data.narrative == "food"){
-                    return "royalblue";
+                    return foodColor;
                 }
                 if (d.data.narrative == "soil" || d.data.narrative == "environmental" ){
-                    return "limegreen";
+                    return soilEcoColor;
                 }
                 else{
                     return "gainsboro";
@@ -102,41 +138,107 @@ function drawNav(treeData){
             }
             else {
                 return "white";
-            }
+            }*/
         })
-        .attr('stroke',function(d){
+        /*.attr('stroke',function(d){
+            if(tracker[0].narrative == "soil" && d.data.narrative.soil == true){
+                return soilEcoColor;
+            }
+            else if(tracker[0].narrative == "population" && d.data.narrative.population == true){
+                return popColor;
+            }
+            if(tracker[0].narrative == "food" && d.data.narrative.food == true){
+                return foodColor;
+            }
+            else {
+                return "gainsboro";
+            }
+            /*
             if (d.data.narrative == "population"){
-                return "orange";
+                return popColor;
             }
             if (d.data.narrative == "food"){
-                return "royalblue";
+                return foodColor;
             }
             if (d.data.narrative == "soil" || d.data.narrative == "environmental" ){
-                return "limegreen";
+                return soilEcoColor;
             }
             else{
                 return "gainsboro";
             }
-        })
-        .attr('stroke-width',2.5)
+        })*/
+        //.attr('stroke-width',0)
         .attr('fill-opacity',function(d){
-            if (navHistory.selectedNarrative == d.data.narrative){
+            var found = tracker[0].visitedNodes.find(function(e){return e === d.data.nodeID});
+            if (typeof found != "undefined"){
+               return 1;
+            }
+            else {
+                return .2;
+            }
+            /*if (tracker.narrative == d.data.narrative){
                 return 1;
             }
             else {
                 return .5;
-            }
+            }*/
         })
-        .attr('stroke-opacity',function(d){
-            if (navHistory.selectedNarrative == d.data.narrative){
-                return 1;
+        /*.attr('stroke-opacity',function(d){
+            if (tracker[0].narrative == d.data.narrative){
+                var found = tracker[0].visitedNodes.find(function(e){return e === d.data.nodeID});
+                if (typeof found != "undefined"){
+                    return 1;
+                }
+                else {
+                    return .2;
+                }
             }
             else {
-                return .5;
+                return .2;
+            }
+        })*/
+        .on('mouseover',function(d){
+            d3.select(this).transition()
+                .attr('r',nodeHighlightedRadius)
+                .on('end',function(){
+                    d3.select('#' + d.data.nodeID + '-label').attr('fill-opacity',1);
+                });
+
+        })
+        .on('mouseout',function(d){
+
+            d3.select('#' + d.data.nodeID + '-label').attr('fill-opacity',0);
+
+            if (d.data.nodeID == tracker[0].currentNode){
+                d3.select(this).transition().attr('r', nodeCurrentRadius);
+            }
+            else{
+                d3.select(this).transition().attr('r', nodeRadius);
             }
         })
         .on('click',function(d){console.log(d.data.name)});
 
+
+    //add text labels for nodes (hidden for now, activated on mouseover node)
+    nodeEnter.append('text')
+        .attr('x',function(d){
+            return d.data.x0;
+        })
+        .attr('y',function(d){
+            console.log(d);
+            return d.data.y0;
+        })
+        .attr('id',function(d){
+            return d.data.nodeID + '-label';
+        })
+        .attr('transform','translate(0,' + -(nodeHighlightedRadius+6) + ')')
+        .style('text-transform','uppercase')
+        .style('letter-spacing','.15em')
+        .style('text-anchor','middle')
+        .attr('fill','gray')
+        .attr('fill-opacity',0)
+        .attr('pointer-events','none')
+        .text(function(d){return d.data.name;});
 
     // Update the links...
     var link = navGroup.selectAll('path.link')
@@ -144,7 +246,8 @@ function drawNav(treeData){
 
     // Enter any new links at the parent's previous position.
     var linkEnter = link.enter().insert('path', "g")
-        .attr("class", "link")
+        .attr("class", function(d){return "link "})// + d.data.narrative +-"link"})
+        .attr('id',function(d){return d.nodeID})
         .attr('d', function(d){
             if (d.depth != 0){
                 var parento = {x: d.parent.x, y: d.parent.y};
@@ -157,10 +260,102 @@ function drawNav(treeData){
                 var o = {x: d.x, y: d.y};
                 return diagonal(o, o);
             }
-
         })
         .attr('fill','none')
-        .attr('stroke','blue');
+        .attr('stroke',function(d){
+            console.log(d);
+            //manage manual link exceptions
+            if(d.data.nodeID == "H"){
+                return soilEcoColor
+            }
+            else if(d.data.nodeID == "E"){
+                return foodColor;
+            }
+            else if (tracker[0].narrative == "population" && d.data.narrative.population == true){
+                return popColor;
+            }
+            else if (tracker[0].narrative == "food" && d.data.narrative.food == true){
+                return foodColor;
+            }
+            else if (tracker[0].narrative == "soil" && d.data.narrative.soil == true ){
+                return soilEcoColor;
+            }
+            else{
+                if (d.data.narrative.population == true){
+                    return popColor;
+                }
+                else if (d.data.narrative.food == true){
+                    return foodColor;
+                }
+                else if (d.data.narrative.soil == true ){
+                    return soilEcoColor;
+                }
+                return "gainsboro";
+            }
+        })
+        .attr('stroke-width',function(d){
+            //manage manual link exceptions
+            if((d.data.nodeID == "H" && tracker[0].narrative == "population") ||
+                (d.data.nodeID == "H" && tracker[0].narrative == "food") ||
+                (d.data.nodeID == "E" && tracker[0].narrative == "population")){
+                return 1;
+            }
+            if(tracker[0].narrative == "soil" && d.data.narrative.soil == true){
+                return 5;
+            }
+            else if(tracker[0].narrative == "population" && d.data.narrative.population == true){
+                return 5;
+            }
+            if(tracker[0].narrative == "food" && d.data.narrative.food == true){
+                return 5;
+            }
+            else {
+                return 1;
+            }
+
+            /*
+            if (tracker[0].narrative == d.data.narrative){
+                return 5;
+            }
+            else {
+                return 1;
+            }*/
+        })
+        .attr('stroke-opacity',function(d){
+            //manage manual link exceptions
+            if((d.data.nodeID == "H" && tracker[0].narrative == "population") ||
+                (d.data.nodeID == "H" && tracker[0].narrative == "food") ||
+                (d.data.nodeID == "E" && tracker[0].narrative == "population")){
+                return .2;
+            }
+            if(tracker[0].narrative == "soil" && d.data.narrative.soil == true){
+                return 1;
+            }
+            else if(tracker[0].narrative == "population" && d.data.narrative.population == true){
+                return 1;
+            }
+            if(tracker[0].narrative == "food" && d.data.narrative.food == true){
+                return 1;
+            }
+            else {
+                return .2;
+            }
+            /*
+            if (tracker[0].narrative == d.data.narrative) {
+                var found = tracker[0].visitedNodes.find(function (e) {
+                    return e === d.data.nodeID
+                });
+                if (typeof found != "undefined") {
+                    return 1;
+                }
+                else {
+                    return .2;
+                }
+            }
+            else {
+                return .2;
+        }*/
+        });
 
     // Store the old positions for transition.
     nodes.forEach(function(d){
@@ -171,9 +366,9 @@ function drawNav(treeData){
     //manually add the additional parent-child connections that cross categories
     //based as http://bl.ocks.org/robschmuecker/6afc2ecb05b191359862
     manualPairs = [
-        {parent: "Food Supply", child:"Soil Degradation"},
-        {parent: "Land per Person", child:"Food Supply"},
-        {parent: "Food Flow", child:"Soil Degradation"}
+        {parent: "Food Supply", child:"Soil Degradation",linkNarrative:"population",nodeID:"E"},
+        {parent: "Land per Person", child:"Food Supply",linkNarrative:"population",nodeID:"G"},
+        {parent: "Food Flow", child:"Soil Degradation",linkNarrative:"food",nodeID:"D"}
     ];
 
     manualLinks =[];
@@ -184,10 +379,54 @@ function drawNav(treeData){
 
     manualLinks.forEach(function(manualLink){
 
+        console.log(manualLink);
         navGroup.append('path')
             .attr('class','manual-link')
             .attr('fill','none')
-            .attr('stroke','blue')
+            .attr('stroke',function(){
+                if(manualLink.linkNarrative == "food"){
+                    return foodColor;
+                }
+                else if(manualLink.linkNarrative == "population"){
+                    return popColor
+                }
+                else if(manualLink.linkNarrative == "soil"){
+                    return soilEcoColor
+                }
+                else{
+                    return "gainsboro";
+                }
+            })
+            .attr('stroke-width',function(d) {
+
+                if(tracker[0].narrative == "food" && manualLink.linkNarrative == "food"){
+                    return 5;
+                }
+                else if(tracker[0].narrative == "population" && manualLink.linkNarrative == "population"){
+                    return 5
+                }
+                else if(tracker[0].narrative == "soil" && manualLink.linkNarrative == "soil"){
+                    return 5
+                }
+                else{
+                    return 1;
+                }
+            })
+            .attr('stroke-opacity',function(){
+
+                if(tracker[0].narrative == "food" && manualLink.linkNarrative == "food"){
+                    return 1;
+                }
+                else if(tracker[0].narrative == "population" && manualLink.linkNarrative == "population"){
+                    return 1
+                }
+                else if(tracker[0].narrative == "soil" && manualLink.linkNarrative == "soil"){
+                    return 1
+                }
+                else{
+                    return .2;
+                }
+            })
             .attr('d',function(){
                 return diagonal({x:manualLink.parent.x,y:manualLink.parent.y},{x:manualLink.child.x,y:manualLink.child.y});
 
@@ -205,7 +444,7 @@ function drawNav(treeData){
             return d.data.name === manualPair.child;
         })[0];
 
-        return {parent:parentNode, child:childNode};
+        return {parent:parentNode, child:childNode, linkNarrative: manualPair.linkNarrative};
     }
 
 }

@@ -42,7 +42,9 @@ barGroup = ecoPlot.append('g')
 
 wwfCategories = [];
 
-var tracker = {biomes:[1,3,4,5,9,10],countries:[],mouseover:false, init:true};
+console.log(tracker);
+
+var localTracker = {biomes:[1,3,4,5,9,10],countries:[],mouseover:false, init:true};
 
 //code from http://jsfiddle.net/8L247yac/
 //found through SO post: http://stackoverflow.com/questions/20671015/d3-js-sophisticated-world-map-brush-thumbnail
@@ -85,7 +87,7 @@ function drawEcoMap(ecoMap) {
 
     toHighlight = [];
 
-    tracker.biomes.forEach(function(d){
+    localTracker.biomes.forEach(function(d){
         toHighlight.push(ecoRegions.filter(function(e){return e.properties.BIOME == d}));
 	});
 
@@ -117,7 +119,7 @@ function drawEcoMap(ecoMap) {
 				}
 
 				else {*/
-					var check = tracker.biomes.find(function(f){
+					var check = localTracker.biomes.find(function(f){
 						//console.log(f,d.properties.BIOME);
 						return f == d.properties.BIOME;
 					});
@@ -126,7 +128,7 @@ function drawEcoMap(ecoMap) {
 					//console.log(d.properties.BIOME);
 
 					if (check){
-						if (tracker.init == true){
+						if (localTracker.init == true){
                             //if (d.properties.BIOME == 1 ){
                             if (d.properties.BIOME == 1 || d.properties.BIOME == 3 ){
                                 tempColor = 'green';//'#74a063';
@@ -440,8 +442,8 @@ function ecoregions(data, ecoMap){
         .attr('class','stackgroup')
         .on('mouseenter',function(d){
             //set the tracker to true when the bar is entered
-            tracker.mouseover = true;
-            tracker.init = false;
+            localTracker.mouseover = true;
+            localTracker.init = false;
             ecoCanvas.node().getContext("2d").clearRect(0,0,width,height);
 
             console.log(d);
@@ -452,15 +454,15 @@ function ecoregions(data, ecoMap){
             //d3.selectAll('.landuseplot').selectAll('.countryBarGroup').remove();
             //d3.selectAll('.landuseplot').selectAll('text').remove();
             //d3.selectAll('.landuseplot').selectAll('.axis').remove();
-            tracker.biomes = JSON.parse("[" + d.wwfDescript + "]");
+            localTracker.biomes = JSON.parse("[" + d.wwfDescript + "]");
             drawEcoMap(ecoMap);
         })
         .on('mouseleave', function(d){
             //set the tracker back to false when the mouse leaves
-            tracker.mouseover = false;
+            localTracker.mouseover = false;
 
             d3.select(this).select('.backgroundbar').attr('fill-opacity',0.05);
-            tracker.biomes = [];
+            localTracker.biomes = [];
 
             setTimeout(function(){
                 drawEcoMap(ecoMap);

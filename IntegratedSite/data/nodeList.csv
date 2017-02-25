@@ -1,5 +1,5 @@
 id,avail,name,icon,photo,text,topic,overallPriority,foodPriority,populationPriority,ecosystemPriority,setX,setY,illustratorX,illustratorY,calcX,calcY,oldX,oldY
-M,y,What is soil?,./tree.png,test.png,"Soil is a complex ecosystem, with global impacts.",soil,,2,,,0.115384615,0.234592445,90,118,0.115384615,0.234592445,0.1,0.1
+M,y,What is soil?,./tree.png,./images/soilLayers_sm_2.png,"Soil is a complex ecosystem, with global impacts.",soil,,2,,,0.115384615,0.234592445,90,118,0.115384615,0.234592445,0.1,0.1
 N,y,Soil biodiversity,./tree.png,./images/soilorganisms_2_sm.png,A quarter of the world's species live in the soil,soil,,2,,,0.120512821,0.397614314,94,200,0.120512821,0.397614314,0.2,0.1
 T,y,Climate change,./tree.png,./images/globalC_2_sm.png,Soil stores carbon and can help to slow climate change,soil,,2,,,0.192307692,0.479125249,150,241,0.192307692,0.479125249,0.9,0.75
 W,y,Global ecoregions,./tree.png,./images/ecoregions_3_sm.png,Different ecosystems store different amounts of carbon in the soil.,soil,,2,,,0.253846154,0.616302187,198,310,0.253846154,0.616302187,,
