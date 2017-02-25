@@ -25,7 +25,7 @@ var svg = d3.selectAll('#nav');
 var mapData;
 
 //mock up the tracker variable passed in by php (note:renamed node to currentNode)
-var tracker = [{"narrative":"soil","prevNode":"none","visitedNodes":["M","N","T","W"],"currentNode":"W"}];
+var tracker = [{"narrative":"soil","prevNode":"none","visitedNodes":["M","N","W","H"],"currentNode":"W"}];
 
 //var navHistory = {visited:["Soil","Species","GlobalC"],current:"Soil Degradation", selectedNarrative:"soil"};
 
@@ -36,6 +36,25 @@ function dataLoaded(data){
 
     drawNav(data[0]);
 }
+
+/*
+var table = d3.csv('./data/test.csv',csvTest);
+function csvTest(table){
+
+    table = table.slice();
+
+    console.log(table);
+
+    var root = d3.stratify()
+        .id(function(d) { return d.name; })
+        .parentId(function(d) { return d.parent; })
+        (table);
+
+    console.log(root);
+
+}
+*/
+
 
 //based on
 function drawNav(treeData){
@@ -54,6 +73,15 @@ function drawNav(treeData){
 
     // Assigns parent, children, height, depth
     root = d3.hierarchy(treeData, function(d) { return d.children; });
+        /*.sort(function(a,b){
+            console.log(a.data.name, b.data.name);
+            if (a.data.name == "Species" && tracker[0].narrative == "soil"){
+                return +1;
+            }
+            else{
+                return -1;
+            }
+        });*/
     root.x0 = 0;
     root.y0 = 0;
 
@@ -95,115 +123,47 @@ function drawNav(treeData){
                 return nodeRadius;
             }
         })
-        .style("fill", function(d){
-            
-            if (tracker[0].narrative == "population" && d.data.narrative.population == true){
+        .style("fill", function(d) {
+
+            if (tracker[0].narrative == "population" && d.data.narrative.population == true) {
                 return popColor;
             }
-            else if (tracker[0].narrative == "food" && d.data.narrative.food == true){
+            else if (tracker[0].narrative == "food" && d.data.narrative.food == true) {
                 return foodColor;
             }
-            else if (tracker[0].narrative == "soil" && d.data.narrative.soil == true ){
+            else if (tracker[0].narrative == "soil" && d.data.narrative.soil == true) {
                 return soilEcoColor;
             }
-            else{
-                if (d.data.narrative.population == true){
+            else {
+                if (d.data.narrative.population == true) {
                     return popColor;
                 }
-                else if (d.data.narrative.food == true){
+                else if (d.data.narrative.food == true) {
                     return foodColor;
                 }
-                else if (d.data.narrative.soil == true ){
+                else if (d.data.narrative.soil == true) {
                     return soilEcoColor;
                 }
                 else {
                     return "gainsboro";
                 }
             }
-
-            /*var found = tracker[0].visitedNodes.find(function(e){return e === d.data.nodeID});
-            if (typeof found != "undefined"){
-                if (d.data.narrative == "population"){
-                    return popColor;
-                }
-                if (d.data.narrative == "food"){
-                    return foodColor;
-                }
-                if (d.data.narrative == "soil" || d.data.narrative == "environmental" ){
-                    return soilEcoColor;
-                }
-                else{
-                    return "gainsboro";
-                }
-            }
-            else {
-                return "white";
-            }*/
         })
-        /*.attr('stroke',function(d){
-            if(tracker[0].narrative == "soil" && d.data.narrative.soil == true){
-                return soilEcoColor;
-            }
-            else if(tracker[0].narrative == "population" && d.data.narrative.population == true){
-                return popColor;
-            }
-            if(tracker[0].narrative == "food" && d.data.narrative.food == true){
-                return foodColor;
-            }
-            else {
-                return "gainsboro";
-            }
-            /*
-            if (d.data.narrative == "population"){
-                return popColor;
-            }
-            if (d.data.narrative == "food"){
-                return foodColor;
-            }
-            if (d.data.narrative == "soil" || d.data.narrative == "environmental" ){
-                return soilEcoColor;
-            }
-            else{
-                return "gainsboro";
-            }
-        })*/
-        //.attr('stroke-width',0)
         .attr('fill-opacity',function(d){
             var found = tracker[0].visitedNodes.find(function(e){return e === d.data.nodeID});
             if (typeof found != "undefined"){
                return 1;
             }
             else {
-                return .2;
+                return .3;
             }
-            /*if (tracker.narrative == d.data.narrative){
-                return 1;
-            }
-            else {
-                return .5;
-            }*/
         })
-        /*.attr('stroke-opacity',function(d){
-            if (tracker[0].narrative == d.data.narrative){
-                var found = tracker[0].visitedNodes.find(function(e){return e === d.data.nodeID});
-                if (typeof found != "undefined"){
-                    return 1;
-                }
-                else {
-                    return .2;
-                }
-            }
-            else {
-                return .2;
-            }
-        })*/
         .on('mouseover',function(d){
             d3.select(this).transition()
                 .attr('r',nodeHighlightedRadius)
                 .on('end',function(){
                     d3.select('#' + d.data.nodeID + '-label').attr('fill-opacity',1);
                 });
-
         })
         .on('mouseout',function(d){
 
@@ -225,7 +185,6 @@ function drawNav(treeData){
             return d.data.x0;
         })
         .attr('y',function(d){
-            console.log(d);
             return d.data.y0;
         })
         .attr('id',function(d){
@@ -263,7 +222,6 @@ function drawNav(treeData){
         })
         .attr('fill','none')
         .attr('stroke',function(d){
-            console.log(d);
             //manage manual link exceptions
             if(d.data.nodeID == "H"){
                 return soilEcoColor
@@ -312,14 +270,6 @@ function drawNav(treeData){
             else {
                 return 1;
             }
-
-            /*
-            if (tracker[0].narrative == d.data.narrative){
-                return 5;
-            }
-            else {
-                return 1;
-            }*/
         })
         .attr('stroke-opacity',function(d){
             //manage manual link exceptions
@@ -328,33 +278,37 @@ function drawNav(treeData){
                 (d.data.nodeID == "E" && tracker[0].narrative == "population")){
                 return .2;
             }
+
+            //check to see if the end nodes have been visited
+            var foundSelf = tracker[0].visitedNodes.find(function(e){return e === d.data.nodeID});
+            var foundParent = tracker[0].visitedNodes.find(function(e){return e === d.parent.data.nodeID});
             if(tracker[0].narrative == "soil" && d.data.narrative.soil == true){
-                return 1;
-            }
-            else if(tracker[0].narrative == "population" && d.data.narrative.population == true){
-                return 1;
-            }
-            if(tracker[0].narrative == "food" && d.data.narrative.food == true){
-                return 1;
-            }
-            else {
-                return .2;
-            }
-            /*
-            if (tracker[0].narrative == d.data.narrative) {
-                var found = tracker[0].visitedNodes.find(function (e) {
-                    return e === d.data.nodeID
-                });
-                if (typeof found != "undefined") {
+                if (typeof foundSelf != "undefined" && typeof foundParent != "undefined" ){
                     return 1;
                 }
                 else {
-                    return .2;
+                    return .5;
+                }
+            }
+            else if(tracker[0].narrative == "population" && d.data.narrative.population == true){
+                if (typeof foundSelf != "undefined" && typeof foundParent != "undefined" ){
+                    return 1;
+                }
+                else {
+                    return .5;
+                }
+            }
+            if(tracker[0].narrative == "food" && d.data.narrative.food == true){
+                if (typeof foundSelf != "undefined" && typeof foundParent != "undefined" ){
+                    return 1;
+                }
+                else {
+                    return .5;
                 }
             }
             else {
                 return .2;
-        }*/
+            }
         });
 
     // Store the old positions for transition.
@@ -378,8 +332,6 @@ function drawNav(treeData){
     });
 
     manualLinks.forEach(function(manualLink){
-
-        console.log(manualLink);
         navGroup.append('path')
             .attr('class','manual-link')
             .attr('fill','none')
@@ -413,15 +365,33 @@ function drawNav(treeData){
                 }
             })
             .attr('stroke-opacity',function(){
+                //check that both of the end nodes have been visited
+                var foundSelf = tracker[0].visitedNodes.find(function(e){return e === manualLink.child.data.nodeID});
+                var foundParent = tracker[0].visitedNodes.find(function(e){return e === manualLink.parent.data.nodeID});
 
                 if(tracker[0].narrative == "food" && manualLink.linkNarrative == "food"){
-                    return 1;
+                    if (typeof foundSelf != "undefined" && typeof foundParent != "undefined" ){
+                        return 1;
+                    }
+                    else {
+                        return .5;
+                    }
                 }
                 else if(tracker[0].narrative == "population" && manualLink.linkNarrative == "population"){
-                    return 1
+                    if (typeof foundSelf != "undefined" && typeof foundParent != "undefined" ){
+                        return 1;
+                    }
+                    else {
+                        return .5;
+                    }
                 }
                 else if(tracker[0].narrative == "soil" && manualLink.linkNarrative == "soil"){
-                    return 1
+                    if (typeof foundSelf != "undefined" && typeof foundParent != "undefined" ){
+                        return 1;
+                    }
+                    else {
+                        return .5;
+                    }
                 }
                 else{
                     return .2;

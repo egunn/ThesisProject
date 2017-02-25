@@ -2,76 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/soilsite.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/.idea/workspace.xml.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/colorpalette.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/data/soilDataMapNames_mergingkeys_2_cut.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/data/soilData_allyrs1019.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/data/worldcountries_fromWorking_noAntartc.topojson" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/Apache License.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Black.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Bold.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-ExtraBold.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-ExtraLight.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Light.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Medium.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-SemiBold.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/WorkSans-Thin.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/fonts/Work_Sans.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/bar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/dataManager.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/mapsketch.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/navigator.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/pageSetup.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/playSlider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/D3-LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/bootstrap-3.3.7-dist/js/npm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/colorbrewer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/crossfilter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/d3-tip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/d3.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/d3.v3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/d3.v4.2.6.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/jquery-3.1.1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/less.v2.7.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/queue.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/topojson-master.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/topojson.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/scripts/vendor/topojson.v1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ConstructionZone/LandUse1/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/powerpoint.pptm" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json" afterPath="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/PageNav/index.html" afterPath="$PROJECT_DIR$/ConstructionZone/PageNav/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js" afterPath="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/PageNav/template.json" afterPath="$PROJECT_DIR$/ConstructionZone/PageNav/template.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/data/nodeList.csv" afterPath="$PROJECT_DIR$/IntegratedSite/data/nodeList.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/images/soil horizons-01.svg" afterPath="$PROJECT_DIR$/IntegratedSite/images/soil horizons-01.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/ecoregions.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/ecoregions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/template.json" afterPath="$PROJECT_DIR$/IntegratedSite/template.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -105,7 +36,7 @@
       <file leaf-file-name="navNodes.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
+            <state relative-caret-position="1292">
               <caret line="76" column="27" lean-forward="false" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
               <folding />
             </state>
@@ -115,8 +46,8 @@
       <file leaf-file-name="pageNav.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="98" column="12" lean-forward="false" selection-start-line="98" selection-start-column="12" selection-end-line="98" selection-end-column="12" />
+            <state relative-caret-position="239">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -135,7 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Talking</find>
       <find>center</find>
       <find>organism</find>
       <find>fungi</find>
@@ -165,6 +95,7 @@
       <find>data.narrative</find>
       <find>Color</find>
       <find>upper</find>
+      <find>visited</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -493,12 +424,12 @@
       <workItem from="1487034725316" duration="2124000" />
       <workItem from="1487083898419" duration="58572000" />
       <workItem from="1487362876705" duration="46552000" />
-      <workItem from="1487863921496" duration="26061000" />
+      <workItem from="1487863921496" duration="32412000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="367333000" />
+    <option name="totallyTimeSpent" value="373684000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -932,7 +863,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
+        <state relative-caret-position="1292">
           <caret line="76" column="27" lean-forward="false" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
           <folding />
         </state>
@@ -940,8 +871,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="98" column="12" lean-forward="false" selection-start-line="98" selection-start-column="12" selection-end-line="98" selection-end-column="12" />
+        <state relative-caret-position="239">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
