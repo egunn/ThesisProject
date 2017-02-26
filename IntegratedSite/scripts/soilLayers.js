@@ -64,6 +64,7 @@ var roots = d3.xml("./images/soil horizons-01.svg").mimeType("image/svg+xml").ge
 
 //because the loaded SVG insists on showing up on top, turn off all pointer events for it (looks like it's applied globally until turned back on below)
 d3.selectAll('*').attr('pointer-events','none');
+d3.selectAll('.page-nav').attr('pointer-events','all');
 
 var radius = 50;
 var padding = 10;
@@ -99,6 +100,24 @@ var pattern = layerNodes.append("defs")
     .attr('preserveAspectRatio',"xMidYMid slice")
     .attr("xlink:href", function(d){ return d.link});
     */
+
+var introText = svg.append('text')
+    .attr('class','init-text')
+    .attr('x', .55*heightNM*(1/illustratorAR))
+    .attr('y',.26*heightNM)
+    .style('text-anchor','begin')
+    .attr('font-size',12)
+    .attr('font-family','WorkSansExtraLight')
+    .attr('fill','gray')
+    .text(null);
+
+introText.transition()
+    .on('end',function(){
+
+        wrap(d3.select('.init-text').text('test'),'Soil is a complicated substance made up of several layers. Hover over each layer to learn more about it.', 200);
+
+    });
+
 
 layerNodes.append('text')
 	.attr('x',function(d,i){
@@ -228,6 +247,8 @@ layerNodes.append('rect')
     .style("fill", 'transparent')//'blue'
     .attr('fill-opacity',.2)
     .on('mouseover',function(d){
+
+        d3.selectAll('.init-text').remove();
 
         if (d.name == "Compaction"){
 

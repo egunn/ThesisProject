@@ -2,12 +2,12 @@
 window.addEventListener('resize', resizeView, false);
 
 //set some margins and record width and height of window
-margin = {t: 15, r: 20, b: 0, l: 20};
+var navMargin = {t: 15, r: 20, b: 0, l: 20};
 
-var width = document.getElementById('nav').clientWidth- margin.r - margin.l;
-var height = document.getElementById('nav').clientHeight- margin.t - margin.b;
+var navWidth = document.getElementById('nav').clientWidth- navMargin.r - navMargin.l;
+var navHeight = document.getElementById('nav').clientHeight- navMargin.t - navMargin.b;
 
-chartLoc = {xwidth:width-30, xheight:5*height/6, ytop:margin.t};
+//chartLoc = {xwidth:navWidth-30, xheight:5*navHeight/6, ytop:navMargin.t};
 
 //set global colors
 var soilEcoColor = '#9643b2'; //purple
@@ -19,22 +19,24 @@ var nodeHighlightedRadius = 18;
 var nodeCurrentRadius = 10;
 
 //grab svg from template
-var svg = d3.selectAll('#nav');
+var navSvg = d3.selectAll('#nav');
 
 //make global for resize listener
 var mapData;
 
 //mock up the tracker variable passed in by php (note:renamed node to currentNode)
-var tracker = [{"narrative":"population","prevNode":"none","visitedNodes":["M","N","W","H"],"currentNode":"W"}];
+//var tracker = [{"narrative":"population","prevNode":"none","visitedNodes":["M","N","W","H"],"currentNode":"W"}];
+
+console.log(tracker);
 
 //var navHistory = {visited:["Soil","Species","GlobalC"],current:"Soil Degradation", selectedNarrative:"soil"};
 
-d3.json('./data/navNodes.json', dataLoaded);
+d3.json('./data/navNodes.json', navDataLoaded);
 
-function dataLoaded(data){
-    console.log(data[0]);
+function navDataLoaded(navData){
+    console.log(navData[0]);
 
-    drawNav(data[0]);
+    drawNav(navData[0]);
 }
 
 /*
@@ -60,19 +62,20 @@ function csvTest(table){
 function drawNav(treeData){
 
     //group to plot bars in
-    navGroup = svg.append('g')
+    navGroup = navSvg.append('g')
         .attr('class','nav-group')
-        .attr('transform','translate('+ margin.l + ','+ (margin.t) + ')');
+        .attr('transform','translate('+ navMargin.l + ','+ (navMargin.t) + ')');
+
 
     // declares a tree layout and assigns the size
-    var treemap = d3.tree().size([height, (width-margin.l-margin.r)]);
+    var treemap = d3.tree().size([navHeight, navWidth]);
 
     var i = 0,
         duration = 750,
-        root;
+        navRoot;
 
     // Assigns parent, children, height, depth
-    root = d3.hierarchy(treeData, function(d) { return d.children; });
+    navRoot = d3.hierarchy(treeData, function(d) { return d.children; });
         /*.sort(function(a,b){
             console.log(a.data.name, b.data.name);
             if (a.data.name == "Species" && tracker[0].narrative == "soil"){
@@ -82,18 +85,18 @@ function drawNav(treeData){
                 return -1;
             }
         });*/
-    root.x0 = 0;
-    root.y0 = 0;
+    navRoot.x0 = 0;
+    navRoot.y0 = 0;
 
     // Assigns the x and y position for the nodes
-    var treeData = treemap(root);
+    treeData = treemap(navRoot);
 
     // Compute the new tree layout.
     var nodes = treeData.descendants(),
         links = treeData.descendants().slice(1);
 
     // Normalize for fixed-depth.
-    nodes.forEach(function(d){d.y = (d.data.position-1) * width/12});//d.depth * width/6});
+    nodes.forEach(function(d){d.y = (d.data.position-1) * navWidth/11 + navMargin.l});//d.depth * navWidth/6});
 
     // Update the nodes...
     var node = navGroup.selectAll('g.node')
@@ -176,7 +179,22 @@ function drawNav(treeData){
                 d3.select(this).transition().attr('r', nodeRadius);
             }
         })
-        .on('click',function(d){console.log(d.data.name)});
+        .on('click',function(d){
+
+            //when a user clicks on a node, update the node and previous node values in the tracker variable,
+            //then call the page reload function.
+            if (tracker[0].prevNode){
+                tracker[0].prevNode = tracker[0].currentNode;
+            }
+            else {
+                tracker[0].prevNode = "none";
+            }
+
+            tracker[0].currentNode = d.data.nodeID;
+            tracker[0].node = d.data.nodeID;
+            tracker[0].visitedNodes.push(d.data.nodeID);
+            sendData(tracker);
+        });
 
 
     //add text labels for nodes (hidden for now, activated on mouseover node)
@@ -215,7 +233,7 @@ function drawNav(treeData){
             }
             else{
                 console.log(d);
-                var parento = {x: root.x, y: root.y};
+                var parento = {x: navRoot.x, y: navRoot.y};
                 var o = {x: d.x, y: d.y};
                 return diagonal(o, o);
             }
@@ -406,11 +424,11 @@ function drawNav(treeData){
 
     function findNode(manualPair){
 
-        var parentNode = root.descendants().filter(function(d){
+        var parentNode = navRoot.descendants().filter(function(d){
             return d.data.name === manualPair.parent;
         })[0];
 
-        var childNode = root.descendants().filter(function(d){
+        var childNode = navRoot.descendants().filter(function(d){
             return d.data.name === manualPair.child;
         })[0];
 
@@ -423,7 +441,7 @@ function drawNav(treeData){
 // Creates a curved (diagonal) path from parent to the child nodes
 function diagonal(s, d) {
 
-    path = 'M ' + s.y +  ' ' + s.x + ' ' +
+    var path = 'M ' + s.y +  ' ' + s.x + ' ' +
             'C ' + ((+s.y + d.y) / 2) +  ' ' + s.x + ', ' +
             ((+s.y + d.y) / 2) +  ' ' + d.x + ', ' +
               d.y +  ' ' + d.x;
@@ -434,7 +452,7 @@ function diagonal(s, d) {
 //runs on window resize, calls scale update and draw functions
 function resizeView() {
 
-    width = document.getElementById('vis').clientWidth;
-    height = document.getElementById('vis').clientHeight;
+    navWidth = document.getElementById('vis').clientWidth;
+    navHeight = document.getElementById('vis').clientHeight;
 
 }

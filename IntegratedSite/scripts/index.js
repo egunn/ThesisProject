@@ -6,7 +6,7 @@ window.addEventListener('resize', resizeView, false);
 //****************************************************************************
 
 //create a JSON object for passing between webpages via PHP (to record user choices and prev. history)
-var tracker = [{"narrative":"none"}];
+var tracker = [{"narrative":"none", "prevNode":"none","visitedNodes":[],"currentNode":"M"}];
 console.log(tracker);
 //JS function to preprocess and send the data to the server
 function sendData()
@@ -379,6 +379,8 @@ function drawNetwork(linkList, nodeList){
             }
 
             tracker[0].node = d.id;
+            tracker[0].currentNode = d.id;
+            tracker[0].visitedNodes.push(d.id);
             sendData();
         });
         //.call(d3.drag()
@@ -451,13 +453,7 @@ function drawNetwork(linkList, nodeList){
     }
     */
 
-
 }
-
-
-
-
-
 
 
 
@@ -467,33 +463,49 @@ function drawNetwork(linkList, nodeList){
 
 //buttons for choosing narrative preference
 function foodClicked() {
-
     tracker[0].narrative = "food";
     console.log('food clicked');
 
-    d3.selectAll('.population-link').attr('stroke-width',2);
-    d3.selectAll('.soil-link').attr('stroke-width',2);
-    d3.selectAll('.food-link').attr('stroke-width',7);
+    tracker[0].prevNode = "none";
 
+    tracker[0].node = "M";
+    tracker[0].currentNode = "M";
+    tracker[0].visitedNodes.push("M");
 }
 
 function populationClicked() {
+
     tracker[0].narrative = "population";
     console.log('population clicked');
 
-    d3.selectAll('.population-link').attr('stroke-width',7);
-    d3.selectAll('.soil-link').attr('stroke-width',2);
-    d3.selectAll('.food-link').attr('stroke-width',2);
+    tracker[0].prevNode = "none";
+
+    tracker[0].node = "M";
+    tracker[0].currentNode = "M";
+    tracker[0].visitedNodes.push("M");
+    sendData();
 
 }
 
-function ecosystemClicked() {
-    tracker[0].narrative = "ecosystem";
-    console.log('ecosystem clicked');
+function buttonHover(value){
+    d3.selectAll('.link').attr('stroke-width',2);
+    d3.selectAll('.' + value + '-link').attr('stroke-width',7);
+}
 
-    d3.selectAll('.population-link').attr('stroke-width',2);
-    d3.selectAll('.soil-link').attr('stroke-width',7);
-    d3.selectAll('.food-link').attr('stroke-width',2);
+function buttonLeave(){
+    d3.selectAll('.link').attr('stroke-width',2);
+}
+
+function ecosystemClicked() {
+    tracker[0].narrative = "soil";
+    console.log('soil clicked');
+
+    tracker[0].prevNode = "none";
+
+    tracker[0].node = "M";
+    tracker[0].currentNode = "M";
+    tracker[0].visitedNodes.push("M");
+    sendData();
 }
 
 

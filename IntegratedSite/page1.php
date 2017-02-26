@@ -50,8 +50,8 @@
                 </div>
             </div>
 
-            <div class="row nav-row">
-                <div class="col-md-9">
+            <div class="row nav-row no-gutter">
+                <div class="col-md-12 nopadding">
 
                     <div id="nav-div">
                         <svg class="page-nav" id="nav"></svg>
@@ -67,8 +67,6 @@
 
 
 <a id="test-link" href="./index.html">Index</a>
-
-<button class="button" id="next-page" onClick="nextClicked()">Next Page</button>
 
 </div>
 
@@ -95,6 +93,14 @@
     console.log(tracker);
     console.log(JSON.parse(tracker));
 </script>
+
+<!-- PHP passing modified from https://www.boutell.com/newfaq/creating/scriptpass.html -->
+<!-- Set up hidden HTML form to transmit the data when the link is clicked-->
+<!-- Action parameter stores the link to open next (will need to auto-update, eventually)-->
+<form name="phpForm" id="phpForm" method="POST" action="page1.php">
+    <input type="hidden" name="tracker">
+</form>
+
 </body>
 
 <script src="./scripts/vendor/d3.v4.2.6.min.js"></script>

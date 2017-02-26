@@ -86,6 +86,8 @@ function reloadTemplate() {
             console.log(tracker[0].node, currPage[0].page);
 
             $.getScript(currPage[0].script);
+
+            $.getScript('./scripts/pageNav.js');
         }
         else {
             console.log('unknown node')
@@ -111,3 +113,26 @@ function nextClicked(){
     }
     reloadTemplate();
 }
+
+
+
+//JS function to preprocess and send the data to the server
+function sendData(tracker)
+{
+    //console.log(tracker);
+    //create a JSON object for passing between webpages via PHP (to record user choices and prev. history)
+    if (!tracker){
+
+        console.log('tracker overwritten!');
+
+        var tracker = [{"narrative":"none"}];
+
+    }
+
+    //convert the JSON object to a string using JS
+    packed = JSON.stringify(tracker);
+    document.phpForm.tracker.value = packed;
+    document.phpForm.submit();
+}
+
+//****************************************************************************
