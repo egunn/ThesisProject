@@ -16,8 +16,7 @@
                         <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top  navbar-row" role="navigation">
 
                         <!-- <h1 id="title">Test Template Page</h1> -->
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="container">
+                        <div class="container" id="navbar-container">
                             <div class="navbar-header">
 
                                 <div class="nav-title">Title</div>

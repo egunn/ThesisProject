@@ -16,6 +16,10 @@ landBarGroup = mainPlot.append('g')
     .attr('class','land-bar-group')
     .attr('transform','translate(75,0)');
 
+foodBarGroup = mainPlot.append('g')
+    .attr('class','food-bar-group')
+    .attr('transform','translate('+ ((width/2)+70) + ',' + -height/4 +')');
+
 //console.log(width, height);
 
 //set colors
@@ -29,8 +33,9 @@ typeCol = 'gray';//'#ecd9c6';
 mapCol = '#b2a394';
 mapHighlightCol = '#e8e1da';/*'#e0cebc';*/
 
-tracker = {country:"USA", year:1975};
+tracker = {country:"US", year:1975};
 importedData = [];
+balanceData =[];
 
 /*
  var forestSize = d3.scaleLinear().range([1,10]).domain([1,10]);
@@ -50,14 +55,18 @@ popLineScale = d3.scaleLinear().domain([0, 1750000000]).range([0, 1525]);
 x = d3.scaleBand().rangeRound([0, ((width/2)-50)]).padding(0.1);
 y = d3.scaleLinear().rangeRound([height, height/2]);
 
+foodX = d3.scaleBand().rangeRound([0, ((width/2)-50)]).padding(0.1); //offsets added to keep bars from exiting SVG
+foodY = d3.scaleLinear().rangeRound([height/4, height/2])//[height/4+30, height/2]);
+foodNeg = d3.scaleLinear().rangeRound([height/2, 3*height/4-30]);//[height/2, 3*height/4-30]);
 
 //append selection (will populate later with d3)
 //http://stackoverflow.com/questions/4814512/how-to-create-dropdown-list-dynamically-using-jquery
 var s = $('<select/>'); //class=""
-s.appendTo('.navbar-header').addClass('type-list form-control countryDropdown');
+s.appendTo('#navbar-container').addClass('type-list form-control countryDropdown');
 
 //set up change function for dropdown
 d3.select(".countryDropdown").on("change", function () {
+    console.log(this.value);
     countryDispatch.call("changeCountry", this, this.value);
 });
 
@@ -74,31 +83,30 @@ countryDispatch.on("changeCountry", function (countrySelected, i) { //country is
 
 //used to be dataManager.js
 
-d3.csv('./data/soilData_allyrs1019.csv', dataLoaded); //soilDataMapNames_mergingkeys_2_cut.csv', dataLoaded);
+/*d3.csv('./data/soilData_allyrs1019.csv', dataLoaded); //soilDataMapNames_mergingkeys_2_cut.csv', dataLoaded);
 
 function dataLoaded(soilData) {
     console.log(soilData);
 
-    importedData = soilData;
-    updateData();
-}
+
+}*/
+
+
+queue()
+    .defer(d3.csv, "./data/soilData_allyrs1019.csv")
+    .defer(d3.csv, './data/balanceSheetData.csv')
+    //wait for a variable to be returned for each file loaded: blocks from blk_group file, neighborhoods from bos_neighborhoods, and income from the parsed acs.csv.
+    .await(function (err, soilData, balanceDataIn) {
+
+        //balanceData.filter(function(d){return d.countryName == tracker.country});
+        importedData = soilData;
+        balanceData = balanceDataIn;
+
+        updateData();
+    });
+
 
 function updateData() {
-
-    //.reduce()
-    //.groupAll()
-    /*var byContinent = cf.dimension(function (d) {
-     return d.continent;
-     });*/
-
-    /*
-     var byYear = cf.dimension(function(d){
-     return +d.year;
-     });
-     var data2013 = byYear.filterExact("2013").top(Infinity);
-     */
-
-    console.log(tracker.year, tracker.country);
 
     //set up initial crossfilter
     var cf = crossfilter(importedData);
@@ -111,7 +119,7 @@ function updateData() {
     //add another dimension that groups by country
     var byCountry = cf.dimension(function (d) {
         //console.log(d);
-        return d.country;
+        return d.NAME;
     });
 
     //console.log(byCountry.top(Infinity));  //returns the entire original array of objects
@@ -141,44 +149,200 @@ function updateData() {
         d3.select(".countryDropdown") //class in the html file
             .append("option") //it has to be called this name
             .html(n.FULLNAME) //what is going to be written in the text
-            .attr("value", n.country); //what is going to be written in value
+            .attr("value", n.NAME); //what is going to be written in value
     });
 
     //console.log(testSort.slice(0,4));
 
-    /*var byPop2013 = byYear.filter(function(d){ //filter the same dimension again, with a population condition
-     //console.log(d);
+    countryBalance = balanceData.filter(function(d){return d.countryCode == tracker.country});
+    //console.log(countryBalance);
+
+    drawLandBars(countryPop);
+    drawBars(countryPop,'totalPop');
+    drawSquares(countryYear[0]);
+    drawFoodBars(countryBalance);
+
+}
+
+
+function drawFoodBars(){
+
+    foodBarGroup.selectAll('*').remove();
+
+    var sorted = countryBalance.sort(function(a,b){return a.year-b.year});
+    console.log(sorted);
+
+
+    //data.sort(function(b,a){return b.year-a.year;});
+
+    /*console.log(d3.max(data, function (d) {
      return +d.totalPop;
-     });*/
-    //console.log(byPop2013.top(Infinity));
+     }));*/
 
-    //var test = byYear.filterExact("totalPop").top(Infinity);
+    console.log(2*d3.max(sorted, function (d) {
+            return +d.exportQuantity;
+        }))
 
-    //console.log(test);
+    //map axes onto data
+    foodX.domain(sorted.map(function (d) {
+        return d.year;
+    }));
+    foodY.domain([d3.max(sorted, function (d) {
+        return +d.importQuantity;
+    }),0]);
+    foodNeg.domain([0,2*d3.max(sorted, function (d) {
+        return +d.exportQuantity;
+    })]);
 
-    //var groupByContinent = byContinent.group();
-    //console.log(groupByContinent.top(2));
 
-    //sort the entire array by the totalPop column (need to convert to number; otherwise, reads as string)
-    /*var byPopulation = cf.dimension(function (d) {
-     return +d.totalPop;
+    //add axes and titles
+    var xAxis = foodBarGroup.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + height/2 + ")")
+        .call(d3.axisBottom(foodX).tickValues([1960,1965,1970,1975,1980,1985,1990,1995,2000,2005,2010]));
+    //.tickValues([1960,1965,1970,1975,1980,1985,1990,1995,2000,2005,2010,2015])); //come back and rebuild this!
+
+    xAxis
+        .selectAll("text")
+        .attr("y", 0)
+        .attr("x", 9)
+        .attr('dx','-2em')
+        .attr("dy", ".35em")
+        .attr('font-size','12px')
+        .attr("transform", "translate(0,"+ 0 + ")rotate(-90)")
+        .attr('fill','gray')
+        .style("text-anchor", "end");
+
+    var yAxis = foodBarGroup.append("g")
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(foodY)
+            .ticks(5));
+    //.tickFormat(d3.formatPrefix(",.0", 1e6)));
+
+    var yAxisNeg = foodBarGroup.append("g")
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(foodNeg)
+            .ticks(10));
+
+    yAxis.selectAll('text')
+        .attr('fill',"gray");
+
+    yAxisNeg.selectAll('text')
+        .attr('fill',"gray");
+
+    //d3.selectAll('.axis').selectAll('ticks').attr('fill',typeCol);
+
+    /*.append("text")
+     .style('fill', 'gray')
+     .style('font-size', '12px')
+     .attr("transform", "rotate(-90)")
+     .attr("y", 6)
+     .attr("dy", "0.71em")
+     .attr("text-anchor", "end")
+     .text("Minutes");*/
+
+    foodBarGroup.append('text')
+        .attr('x', width/2-15)
+        .attr('y', 0)
+        .style('font-size', 14)
+        .attr('fill',"gray")
+        .style('text-anchor', 'middle')
+        .text('Distribution of carbon in the soil');
+
+    foodBarGroup.append('text')
+        .attr('class', 'bar-label')
+        .attr('fill',"gray")
+        .style('font-size', 12);
+
+    //draw bars
+    stackGroup = foodBarGroup.selectAll(".abovebar")
+        .data(sorted)
+        .enter()
+        .append('g')
+        .attr('class','stackgroup');
+
+    stackGroup
+        .append("rect")
+        .attr("class", "abovebar")
+        .attr("x", function (d) {
+            return foodX(d.year);
+        })
+        .attr("y", function (d) {
+            return  foodY(d.importQuantity);
+        })
+        .attr("width", foodX.bandwidth())
+        .attr("height", function (d) {
+            return height/2 - foodY(d.importQuantity);
+        })
+        .attr('fill', '#74a063');
+
+
+    //draw bars
+    stackGroup//.selectAll(".topsoilbar")
+    //.data(data)
+    //.enter()
+        .append("rect")
+        .attr("class", "topsoilbar")
+        .attr("x", function (d) {
+            return foodX(d.year);
+        })
+        .attr("y", function (d) {
+            //console.log(d);
+            return  height/2;//foodNeg(d.subsoil);
+        })
+        .attr("width", foodX.bandwidth())
+        .attr("height", function (d) {
+            //console.log(yNeg(d.topsoil));
+            console.log(foodNeg(d.exportQuantity), d.exportQuantity)
+            return foodNeg(d.exportQuantity) - (height/2);
+        })
+        .attr('fill', '#77664c');//'#3b5c91');
+
+/*
+    //draw bars
+    stackGroup//.selectAll(".subsoilbar")
+    //.data(data)
+    //.enter()
+        .append("rect")
+        .attr("class", "subsoilbar")
+        .attr("x", function (d) {
+            return foodX(d.year);
+        })
+        .attr("y", function (d) {
+            //console.log(d);
+            return  height - foodNeg(d.exportQuantity); //sets pos'n of tops of bars (close to y axis)
+        })
+        .attr("width", foodX.bandwidth())
+        .attr("height", function (d) {
+            //console.log(d.topsoil, d.subsoil);
+            //console.log(yNeg(d.topsoil),yNeg(d.subsoil));
+            return foodNeg(d.exportQuantity) - height/2;
+        })
+        .attr('fill', '#a38961');//'#3b5c91');
+
+    /*
+     stackGroup.append('circle')
+     .attr('cx',function (d) {
+     var barWidth = x("Trop moist");  //use second category to find the bar width assigned, to use in translating circs
+     return x(d.climateType) + barWidth/2 - 3;
+     })
+     .attr('cy',5)
+     .attr('r', 4)
+     .attr('fill', function(d){
+     //console.log(ecoColors(d.climateType));
+     return ecoColors(d.climateType)
      });
      */
 
-    //console.log(testSort.slice(0));  //this gives an array of 200 objects!
 
-    drawSquares(countryYear[0]);
-    drawLandBars(countryPop);
-    drawBars(countryPop,'totalPop');
+
+
 }
-
 
 
 //used to be d.js
 
 function drawSquares(countryObject) {
-
-    console.log(countryObject);
 
     //can't bind to an object - need to put it in an array first
     var testArray = [];
@@ -367,6 +531,8 @@ function drawBars(data, variable) {
      return +d.totalPop;
      }));*/
 
+    barGroup.selectAll('*').remove();
+
     //map axes onto data
     x.domain(data.map(function (d) {
         return +d.year;
@@ -448,6 +614,8 @@ function drawBars(data, variable) {
 
 
 function drawLandBars(data) {
+
+    landBarGroup.selectAll('*').remove();
 
     data.sort(function(b,a){return b.year-a.year;});
 

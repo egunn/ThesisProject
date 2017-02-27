@@ -208,8 +208,46 @@ function dataLoaded(data, events) {
                 return .1;//'gray'
             }
         })
-        .on('mouseenter',function(d){
-            console.log(d.event);
+        .on('mouseover',function(d){
+            //console.log(x(d.year_Actual));
+
+            /*var infoBox = focus.append('rect')
+                .attr('id','focus-box')
+                .attr('x',x(d.year_Actual) - 5)
+                .attr('y',y(0)/3 - 18)
+                .attr('width',176)
+                .attr('height',112)
+                .attr('fill-opacity',.85)
+                .attr('pointer-events','none')
+                .attr('fill','white');*/
+
+            var infoText = focus.append('text')
+                .attr('class','info-text')
+                .attr('x', x(d.year_Actual))
+                .attr('y',y(0)/3)
+                .style('text-anchor','begin')
+                .attr('font-size',12)
+                .attr('font-family','WorkSansExtraLight')
+                .attr('fill','gray')
+                .text(null);
+
+            infoText.transition()
+                .on('end',function(){
+                    if (d.year_Actual < 0){
+                        date = Math.abs(d.year_Actual) + " B.C.: "
+                    }
+                    else{
+                        date = d.year_Actual + " A.D.: "
+                    }
+
+                    wrap(d3.select('.info-text').text('test'), date + d.event, 150);
+                });
+
+
+        })
+        .on('mouseout',function(d){
+            d3.selectAll('info-text').remove();
+            d3.selectAll('info-box').remove();
         });
 
 
@@ -366,4 +404,38 @@ function placeLines(lines) {
     });
 
     return lines;
+}
+
+//from http://stackoverflow.com/questions/24784302/wrapping-text-in-d3
+function wrap(text, wordList, width) {
+    text.each(function () {
+        var text = d3.select(this),
+            words = wordList.split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.15, // ems
+            x = text.attr("x"),
+            y = text.attr("y"),
+            dy = 0, //parseFloat(text.attr("dy")),
+            tspan = text.text(null)
+                .append("tspan")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("dy", dy + "em");
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan")
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                    .text(word);
+            }
+        }
+    });
 }
