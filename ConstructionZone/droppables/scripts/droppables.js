@@ -1,3 +1,34 @@
+//add a new button for map updating
+//var testDrag = $('<input/>', { type: "button", class:"draggable ui-widget-content", value: "drag me"});
+//$("#button-column").append(testDrag);
+
+// listen for new divs added with class draggable, make these new elements draggable
+$("body").on("DOMNodeInserted", ".draggable", makeDraggable);
+
+//apply the draggable function, turn off the button click behavior (otherwise won't drag)
+function makeDraggable() {
+    $(this).draggable({cancel:false});
+}
+
+$( function() {
+    //left over from original sample - duplicated above, for new structure (with dynamic add)
+    //$( ".draggable" ).draggable({
+    //    cancel: false  //from http://jsfiddle.net/SirDerpington/wzaJH/; turn off default button click behav so it doesn't interfere w/ draggable
+
+    //});
+    //sets the behavior for the droppable box (the div under the SVG)
+    $( "#droppable" ).droppable({
+        cancel: false,
+        drop: function( event, ui ) {
+            $( this )
+                .addClass( "ui-state-highlight" )
+                //.find( ".draggable" )
+                //.html( "Dropped!" );
+        }
+    });
+} );
+
+
 //used to be pageSetup
 
 //set some margins and record width and height of window
@@ -151,6 +182,22 @@ function updateData() {
             .html(n.FULLNAME) //what is going to be written in the text
             .attr("value", n.NAME); //what is going to be written in value
     });
+
+    //for each element in the sorted array
+    testSort.forEach(function(n){
+        //add a new button for map updating
+        var testDrag = $('<input/>', { type: "button", class:"draggable ui-widget-content", value: n.NAME});
+
+        //add event listener to each button to tell when it is dropped
+        testDrag.on( "dragstop", function( event, ui ) {
+            //use jQuery to extract the value and print it to the console.
+            console.log($(this).val());
+        } );
+
+        //add the new button element to the button column
+        $("#button-column").append(testDrag);
+    });
+
 
     //console.log(testSort.slice(0,4));
 

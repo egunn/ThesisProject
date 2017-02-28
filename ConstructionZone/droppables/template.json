@@ -1,0 +1,2 @@
+[ {"page":"A","title":"Droppables", "synopsis":"Test case", "text":"Test.", "link":"index.html", "linkText":"Index"},
+  {"page":"B","title":"Page B", "text":"This is a JSON to test text reloading from a file for use in a JS template.", "link":"index.html", "linkText":"Index"}]
