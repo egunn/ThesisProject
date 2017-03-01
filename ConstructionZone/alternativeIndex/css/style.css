@@ -1,0 +1,294 @@
+@font-face {
+    font-family: 'WorkSansMedium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('WorkSansMedium'), local('WorkSansMedium'), url('../fonts/WorkSans-Medium.otf') format('opentype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+    font-family: 'WorkSansLight';
+    font-style: normal;
+    font-weight: normal;
+    src: local('WorkSansLight'), local('WorkSansLight'), url('../fonts/WorkSans-Light.otf') format('opentype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+    font-family: 'WorkSansExtraLight';
+    font-style: normal;
+    font-weight: normal;
+    src: local('WorkSansExtraLight'), local('WorkSansExtraLight'), url('../fonts/WorkSans-ExtraLight.otf') format('opentype');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+
+* {
+    font-family: "WorkSansLight", Arial, sans-serif;
+}
+
+body{
+    padding-top: 50px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+strong {
+    color: gray;
+    /*text-transform: uppercase;*/
+    font-family: "WorkSansExtraLight", Arial, sans-serif;
+    /*margin-top: 1.5em;*/
+    margin-bottom: 0em;
+    font-weight: lighter;
+    /*word-spacing: 4px;*/
+    padding-left: 15px;
+}
+
+h1 {
+    font-size: 60px;
+    letter-spacing: 1px;
+    color:gray; /*#482e1f;*/
+    margin-top: 20px;
+    padding-left:0px;
+}
+
+h4 {
+    margin-top:7px;
+    line-height: 1.4em;
+}
+
+a{
+    padding-left:15px;
+}
+
+/*Top navigation window*/
+.navbar{
+    background: #FAFAFA;
+    color: white;
+    min-height: 45px;
+    border-width: 0 0 0px;
+}
+
+/*controls title left padding*/
+.container{
+    margin-left:30px;
+}
+
+.nav-title {
+    color: gray;
+    /*text-transform: uppercase;
+    font-family: "Work Sans", Arial, sans-serif;*/
+    /*margin-top: 1.5em;*/
+    margin-bottom: 0em;
+    letter-spacing: 2px;
+    font-size: 24px;
+    /*font-weight: bolder;*/
+    word-spacing: 4px;
+    padding-left: 0px;
+    padding-right: 75px;
+    padding-top: 7px;
+}
+
+/*System navigation pane (bottom)*/
+#nav-div{
+    width:100%;
+    height:100%;
+    pointer-events: all !important;
+}
+
+#index-nav{
+    width:100%;
+    height:100%;
+}
+
+.title-row{
+    position:relative;
+}
+
+.title {
+    padding-top: 50px;
+    padding-left: 40px; /*added for left-hand version*/
+}
+
+.synopsis-col{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    vertical-align:bottom;
+}
+
+#synopsis{
+    font-family: "WorkSansMedium", Arial, sans-serif;
+    /*display: flex;
+    justify-content: flex-end;*/
+    /*height:100%;
+    display: table-cell;
+    vertical-align: bottom;*/
+    padding-top:15px;
+    padding-bottom:8px;
+}
+
+.vis-row{
+    height:450px; /*need to set this height manually, otherwise pagenav floats in the middle of the screen!*/
+}
+
+
+.page-nav{
+    width:100%;
+    height:150px;
+    background: #FAFAFA;
+}
+
+
+.tooltip{
+    background: gainsboro;
+    color:gray;
+    pointer-events: none;
+    border-radius: 5px;
+}
+
+.tooltip-text{
+    background:white;
+    width:185px;
+    padding-top:2px;
+    padding-left:3px;
+    padding-right:3px;
+    pointer-events: none;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.tooltip-image{
+    background: gray;
+    padding: 0px 3px 0px 3px;
+    border-radius: 5px 5px 0px 0px;
+    pointer-events: none;
+    min-height:100px;
+    width:100%;
+    height:100%;
+}
+
+.index-svg{
+    width:100vw;
+    height:100vh;
+}
+
+
+#vis-canvas{
+    position:absolute;
+    width:100%;
+    height:450px;
+    background:none;
+}
+
+#vis {
+    z-index:1;
+    position:absolute;
+    background: transparent;
+    width:100%;
+    height:450px;
+}
+.content {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.roots-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.bg-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.bg-image img {
+    display: block;
+    width: 100%;
+    max-width: 1200px; /* corresponds to max height of 450px */
+    margin: 0 auto;
+}
+
+
+.controls{
+    z-index:2;
+}
+
+.button-div{
+    margin-top:17px;
+}
+
+button {
+    background-color: gray; /* Green */
+    border: 1px solid gray;/*hsl(0, 10%, 90%);*/
+    color: white;
+    padding: 6px 12px;
+    x-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    margin-right: 5px;
+    margin-left:15px;
+}
+
+button:focus{
+    outline:gray;
+}
+
+.animation-div{
+    z-index:3;
+    position:fixed;
+    top:82vh;
+    left:0vw;
+    width:5vw;
+    height:20vh;
+    margin-left:3vw;
+}
+
+.anim-button{
+    background-color: gray; /* Green */
+    border: 1px solid gray;
+    color:#dddcd7;/*#555;*/
+    margin-bottom: 10px;
+    min-width: 20px;
+    width:50px;
+    padding: 6px 6px;
+}
+
+.anim-button.selected{
+    background-color: #595959;
+    color:#dddcd7;
+}
+
+
+.nav-button{
+    background-color: darkgray; /* Green */
+    color:#3b3b3b;/*#555;*/
+    margin-bottom: 0px;
+}
+
+.nav-button.selected{
+    background-color: #666666;
+    color:#dddcd7;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}

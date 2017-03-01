@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/landUseDashboard.js" afterPath="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/landUseDashboard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/droppables/css/style.css" afterPath="$PROJECT_DIR$/ConstructionZone/droppables/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/droppables/scripts/droppables.js" afterPath="$PROJECT_DIR$/ConstructionZone/droppables/scripts/droppables.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,43 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/droppables/index.php">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="36" column="48" lean-forward="false" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+            <state relative-caret-position="160">
+              <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/droppables/css/style.css">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="290" column="1" lean-forward="false" selection-start-line="290" selection-start-column="1" selection-end-line="290" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="droppables.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/droppables/scripts/droppables.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="93" lean-forward="false" selection-start-line="13" selection-start-column="93" selection-end-line="13" selection-end-column="93" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testJQuery.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/droppables/scripts/testJQuery.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="283">
+              <caret line="29" column="52" lean-forward="false" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -117,11 +96,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ConstructionZone/GlobalC/scripts/testJQuery.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/GlobalC/index.html" />
-        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/index.html" />
-        <option value="$PROJECT_DIR$/ConstructionZone/GlobalC/css/style.css" />
-        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/ecoregions.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/data/teow_2.5p_noAntarct.topojson" />
@@ -165,9 +139,14 @@
         <option value="$PROJECT_DIR$/ConstructionZone/droppables/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/droppables/index_template.php" />
         <option value="$PROJECT_DIR$/ConstructionZone/droppables/scripts/testJQuery.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/droppables/css/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/droppables/index.php" />
         <option value="$PROJECT_DIR$/ConstructionZone/droppables/scripts/droppables.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/droppables/css/style.css" />
+        <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/data/navNodes.json" />
+        <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/frontNav.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/index.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/index.html" />
+        <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/css/style.css" />
       </list>
     </option>
   </component>
@@ -272,7 +251,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="LandUseDashboard1" />
+              <option name="myItemId" value="alternativeIndex" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -290,47 +269,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="LandUseDashboard1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ConstructionZone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ecoregions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ConstructionZone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ecoregions" />
+              <option name="myItemId" value="alternativeIndex" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -352,47 +291,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="droppables" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ConstructionZone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="droppables" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ConstructionZone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="droppables" />
+              <option name="myItemId" value="alternativeIndex" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -518,12 +417,12 @@
       <workItem from="1487083898419" duration="58572000" />
       <workItem from="1487362876705" duration="46552000" />
       <workItem from="1487863921496" duration="57654000" />
-      <workItem from="1488224305823" duration="12694000" />
+      <workItem from="1488224305823" duration="22840000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411620000" />
+    <option name="totallyTimeSpent" value="421766000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -586,36 +485,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/data/output.topojson" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/SoilOrganisms/scripts/soilOrganisms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="70" column="9" lean-forward="true" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/globalC.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="200" column="28" lean-forward="true" selection-start-line="200" selection-start-column="28" selection-end-line="200" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/template.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/scripts/Impacts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="49" column="19" lean-forward="false" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/scripts/testJQuery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
@@ -698,6 +567,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
           <caret line="95" column="36" lean-forward="true" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -763,6 +633,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="192" column="12" lean-forward="false" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -770,6 +641,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
           <caret line="38" column="26" lean-forward="true" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -871,10 +743,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/droppables/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="36" column="48" lean-forward="false" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/droppables/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="290" column="1" lean-forward="false" selection-start-line="290" selection-start-column="1" selection-end-line="290" selection-end-column="1" />
+        <state relative-caret-position="336">
+          <caret line="283" column="23" lean-forward="false" selection-start-line="283" selection-start-column="23" selection-end-line="283" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/droppables/scripts/droppables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -887,21 +775,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/droppables/index.php">
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/frontNav.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="36" column="48" lean-forward="false" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+        <state relative-caret-position="136">
+          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/droppables/scripts/droppables.js">
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/data/navNodes.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="93" lean-forward="false" selection-start-line="13" selection-start-column="93" selection-end-line="13" selection-end-column="93" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="11" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="29" column="52" lean-forward="false" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="225" column="17" lean-forward="false" selection-start-line="225" selection-start-column="17" selection-end-line="225" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

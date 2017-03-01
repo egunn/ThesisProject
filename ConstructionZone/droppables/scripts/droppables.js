@@ -1,3 +1,6 @@
+
+
+
 //add a new button for map updating
 //var testDrag = $('<input/>', { type: "button", class:"draggable ui-widget-content", value: "drag me"});
 //$("#button-column").append(testDrag);
