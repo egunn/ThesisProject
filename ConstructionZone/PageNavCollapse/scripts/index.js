@@ -6,7 +6,7 @@ window.addEventListener('resize', resizeView, false);
 //****************************************************************************
 
 //create a JSON object for passing between webpages via PHP (to record user choices and prev. history)
-var tracker = [{"narrative":"none", "prevNode":"none","visitedNodes":[],"currentNode":"M"}];
+var tracker = [{"narrative":"none"}];
 console.log(tracker);
 //JS function to preprocess and send the data to the server
 function sendData()
@@ -20,46 +20,12 @@ function sendData()
 //****************************************************************************
 
 
-var width = document.getElementById('index-svg').clientWidth;
-var height = document.getElementById('index-svg').clientHeight;
-
-//set global colors
-var soilEcoColor = '#9643b2'; //purple
-var popColor = '#02a6cc';//blue
-var foodColor = '#efb804';//orange
-
-//change buttons to match
-d3.select('#ecosystemButton').style('background',soilEcoColor).style('border', '1px solid ' + soilEcoColor);
-d3.select('#populationButton').style('background',popColor).style('border', '1px solid ' + popColor);
-d3.select('#foodButton').style('background',foodColor).style('border', '1px solid ' + foodColor);
+var width = document.getElementById('nav-div').clientWidth;
+var height = document.getElementById('nav-div').clientHeight;
 
 var nodeSize = d3.scaleLinear().domain([1,3]).range([40,20]);
 
-//http://jsfiddle.net/J8sp3/4/
-var roots = d3.xml("./index_roots.svg").mimeType("image/svg+xml").get(function(error, loadedSVG) {
-    if (error) throw error;
-
-    var svgNode = loadedSVG
-        .getElementsByTagName("svg")[0];
-
-    main_chart_svg = d3.select('.roots-svg');
-
-    main_chart_svg.node().appendChild(svgNode);
-
-    var innerSVG = main_chart_svg.select("svg");
-
-    innerSVG.selectAll('path')
-        .attr('transform','translate(-70,-550)scale(1.5,1.3)')
-        .attr('fill-opacity',.3);
-
-});
-
-
-var svg = d3.select('.index-svg')
-    .append('g')
-    .attr('class','index-g')
-    .attr('transform','translate(-75,75)');
-
+var svg = d3.select('#index-nav');
 var simulation;
 
 //Pattern injection from http://bl.ocks.org/hugolpz/98cef20c4d7cb05c7b26
@@ -68,7 +34,8 @@ var simulation;
 //http://stackoverflow.com/questions/14610954/can-an-svg-pattern-be-implemented-in-d3
 //https://jsfiddle.net/duhaime/q51ok9jc/
 
-/*var pattern = svg.append("defs")
+/*
+var pattern = svg.append("defs")
     .append("pattern")
     .attr('id','testPattern')
     //.attr("x", "0")
@@ -85,10 +52,11 @@ var simulation;
     .attr("width", 1)
     .attr('preserveAspectRatio',"xMidYMid slice")
     .attr("xlink:href", "./tree.png");
-    */
+*/
 
 
-var div = d3.select(".bg-image").append("div")
+
+var div = d3.select("#nav-div").append("div")
     .attr("class", "tooltip")
     .style('position','absolute');
 
@@ -102,8 +70,6 @@ var tooltip = d3.select('.tooltip')
     .attr('class','tooltip-text')
     .style("opacity", 0);
 
-
-
 //import data from GeoJSON and csv files. Use parseData function to load the csv (not necessary for JSONs)
 queue()
     .defer(d3.csv, "./data/linkList.csv")
@@ -113,8 +79,8 @@ queue()
     .await(function (err, linkList, nodeList) {
 
         //chop off extra columns element added by new d3.csv
-        linkList = linkList.slice(0,linkList.length);
-        nodeList = nodeList.slice(0,nodeList.length);
+        linkList = linkList.slice(0,linkList.length-1);
+        nodeList = nodeList.slice(0,nodeList.length-1);
 
         drawNetwork(linkList, nodeList);
 
@@ -136,7 +102,7 @@ function drawNetwork(linkList, nodeList){
         .radius(function(d){return d.r + 5}).iterations(10).strength(1);
     var forceLink = d3.forceLink()
         .links(linkList).id(function(d) {return d.id; }).strength(.01);  //this strength easily overwhelms the rest of the layout!
-    var forceCenter = d3.forceCenter(width / 3, height / 2);
+    var forceCenter = d3.forceCenter(width / 2, height / 2);
     var forceManyBody = d3.forceManyBody().strength(-150).distanceMin(70);  //repulsive force with min distance req't
 
     //set up simulation, with forces defined above
@@ -172,22 +138,9 @@ function drawNetwork(linkList, nodeList){
         //.attr("y1", function(d) { return d.source.y; })
         //.attr("x2", function(d) { return d.target.x; })
         //.attr("y2", function(d) { return d.target.y; })
-        .attr('class',function(d){return 'link ' + d.narrative + '-link'})
-        .attr('stroke',function(d){
-            if (d.narrative == "population"){
-                return popColor;
-            }
-            if (d.narrative == "food"){
-                return foodColor;
-            }
-            if (d.narrative == "soil"){
-                return soilEcoColor;
-            }
-            else{
-                return "gainsboro";
-            }
-        })
-        .attr("stroke-width", function(d) {return +d.weight ; });
+        .attr('class','link')
+        .attr('stroke','gainsboro')
+        .attr("stroke-width", function(d) {return +d.weight *2 ; });
 
 
     var nodeGroup = svg.append("g")
@@ -213,7 +166,7 @@ function drawNetwork(linkList, nodeList){
         .attr("height", 1)
         .attr("width", 1)
         .attr('preserveAspectRatio',"xMidYMid slice")
-        .attr("xlink:href", function(d){ return d.photo});//icon});
+        .attr("xlink:href", function(d){ return d.icon});
 
     node = nodeGroup
         .append("circle")
@@ -221,116 +174,16 @@ function drawNetwork(linkList, nodeList){
         //static layout - set positions here, do not update in tick
         //.attr("x", function(d) { return width*d.setX; })   //set the initial x and y coordinates using the stored JSON data
         //.attr("y", function(d) { return height*d.setY; })
-        .attr("r", function(d){nodeSize(d.foodPriority)})
-        .attr('stroke',function(d){
-            if (d.avail == "y"){
-                if (d.topic == "soil"){
-                    return soilEcoColor;
-                }
-                else if(d.topic == "population"){
-                    return popColor;
-                }
-                else if (d.topic == "food"){
-                    return foodColor;
-                }
-            }
-
-            else {
-                return 'gainsboro'
-            }
-        })
-        .attr('stroke-width', 2)
+        .attr("r", 15)
+        .attr('stroke','gray')
         .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'})
         .on('mouseover',function(d){
 
-
-            //console.log(d3.select('#' + d.id +'-text-rect').style('fill'));
-            //console.log(d3.select('#' + d.id +'-text-rect').attr('fill'));
-
             //d3.selectAll('.div-image').remove();
 
-
-            d3.select(this)
-                .transition()
-                .attr('r',75)
-                //.style("background-image", "url('./" + d.photo + "')")
-                .on('end', function(){
-                    d3.select('#' + d.id +'-text-label').attr('fill-opacity',1);
-
-                    //d3.select('#' + d.id +'-text-rect').style('fill',"red").attr('fill','red').attr('fill-opacity',.3);//.attr("clip-path", "url(#node-clip)");
-
-                    var textRects = d3.select(this.parentNode).append("rect")
-                        .attr('x',function(d){
-                            //console.log(d3.select(this.parentNode).data()[0].x);
-                            return d3.select(this.parentNode).data()[0].x - 75})
-                        .attr('y',function(d){
-                            return d3.select(this.parentNode).data()[0].y - 13})
-                        .attr('width',150)
-                        .attr('height', 18)
-                        .attr('class','text-labels')
-                        .attr('id', function(d){return d.id +'-text-rect'})
-                        .style('pointer-events','none')
-                        .style('fill','white')
-                        .attr('fill-opacity',1);
-                    //.attr("clip-path", "url(#node-clip)");
-
-
-                    var textLabels = d3.select(this.parentNode).append("text")
-                        .attr('x',function(d){
-                            //console.log(d3.select(this.parentNode).data()[0].x);
-                            return d3.select(this.parentNode).data()[0].x})
-                        .attr('y',function(d){
-                            return d3.select(this.parentNode).data()[0].y})
-                        .attr('class','text-labels')
-                        .attr('id', function(d){return d.id +'-text-label'})
-                        .attr('font-size',11)
-                        .attr('text-anchor','middle')
-                        .style('letter-spacing','.15em')
-                        .style('pointer-events','none')
-                        .style('text-transform','uppercase')
-                        .style('fill','gray')
-                        .attr('fill-opacity',1)
-                        .text(function(d) { return d.name; });
-
-                    //totally hack this because clipping paths can't be updated, for some silly reason in Chrome
-                    //almost-working example and bug descriipts here: https://www.smashingmagazine.com/2015/05/creating-responsive-shapes-with-clip-path/
-                    //http://bl.ocks.org/couchand/6399221
-                    var textLabels = d3.select(this.parentNode).append("circle")
-                        .attr('class','fake-node')
-                        .attr("cx", d.x)
-                        .attr("cy", d.y)
-                        .attr("r", 75)
-                        .attr('stroke',function(d){
-                            if (d.avail == "y"){
-                                if (d.topic == "soil"){
-                                    return soilEcoColor;
-                                }
-                                else if(d.topic == "population"){
-                                    return popColor;
-                                }
-                                else if (d.topic == "food"){
-                                    return foodColor;
-                                }
-                            }
-                            else {
-                                return 'gainsboro'
-                            }
-                        })
-                        .attr('fill','none')
-                        .attr('pointer-events','none')
-                        .attr('stroke-width', 2);
-
-                });
-
-            //console.log(d3.select('#' + d.id +'-text-rect').style('fill'));
-
-
-
-           /* div.transition()
+            div.transition()
                 .duration(200)
                 .style("opacity", .9);
-
-
 
 
             div.style("left", (nodeSize(d.foodPriority) + +d3.select(this).attr('cx')) + "px")//d3.event.pageX + "px")
@@ -342,7 +195,6 @@ function drawNetwork(linkList, nodeList){
                 .style("background-repeat", "no-repeat")
                 .style("background-position", "center center")
                 .style('opacity', .9);
-            */
 
             /*
                 .attr('src',d.photo);*/
@@ -353,35 +205,12 @@ function drawNetwork(linkList, nodeList){
         })
         .on('mouseout',function(d){
 
-            d3.select(this)
-                .transition()
-                .attr('r',nodeSize(d.foodPriority));
-
             div.style('opacity', 0);
             tooltip.style('opacity', 0);
             divImg.style('opacity',0);
 
-            d3.select('#' + d.id +'-text-label').remove();
-            d3.select('#' + d.id +'-text-rect').remove();
-            d3.select('.fake-node').remove();
-
             /*div.style("left", 0 + "px")//d3.event.pageX + "px")
                 .style("top", 0 + "px");*/
-        })
-        .on('click',function(d){
-            //when a user clicks on a node, update the node and previous node values in the tracker variable,
-            //then call the page reload function.
-            if (tracker[0].prevNode){
-                tracker[0].prevNode = tracker[0].node;
-            }
-            else {
-                tracker[0].prevNode = "none";
-            }
-
-            tracker[0].node = d.id;
-            tracker[0].currentNode = d.id;
-            tracker[0].visitedNodes.push(d.id);
-            sendData();
         });
         //.call(d3.drag()
             //.on("start", dragstarted)
@@ -389,22 +218,24 @@ function drawNetwork(linkList, nodeList){
             //.on("end", dragended));
 
 
-    // define the clipPath
-    clipPaths = nodeGroup.append("clipPath")
-        .attr("id", "node-clip")
-        .append("circle")
-        .attr("cx", function(d){
-            return d3.select(this.parentNode).data()[0].x +.5})
-        .attr("cy", function(d){
-            return d3.select(this.parentNode).data()[0].y})
-        .attr("r", 74);
-
+    /*
+    var textLabels = nodeGroup.append("text")
+        .attr('x',function(d){
+            //console.log(d3.select(this.parentNode).data()[0].x);
+            return 0})
+        .attr('y',0)
+        .attr('class','text-labels')
+        .attr('text-align','center')
+        .style('pointer-events','none')
+        .style('fill','black')
+        .text(function(d) { return d.id; });*/
 
 
 
 
     //update to use a minimal collide function, with gravities at desired locations!
     function ticked() {
+        console.log('here');
 
         link
             .attr("x1", function(d) { return d.source.x; })
@@ -418,16 +249,7 @@ function drawNetwork(linkList, nodeList){
         node
             .attr("cx", function(d) {return d.x})//nodeX.push(width*d.cx-5); return width*d.cx; })
             .attr("cy", function(d) {return d.y})//nodeY.push(height*d.cy+3); return height*d.cy; })
-            .attr('r',function(d){
-                if (d3.select(this).attr('r') == null){
-                    return nodeSize(d.foodPriority)
-                }
-                else{
-                        return d3.select(this).attr('r');
-                }
-            });
-
-
+            .attr('r',function(d){return nodeSize(d.foodPriority)});
 
 
         //textLabels
@@ -453,61 +275,27 @@ function drawNetwork(linkList, nodeList){
     }
     */
 
+
 }
-
-
-
 
 
 
 
 //buttons for choosing narrative preference
 function foodClicked() {
+
     tracker[0].narrative = "food";
     console.log('food clicked');
-
-    tracker[0].prevNode = "none";
-
-    tracker[0].node = "M";
-    tracker[0].currentNode = "M";
-    tracker[0].visitedNodes.push("M");
-
-    sendData();
 }
 
 function populationClicked() {
-
     tracker[0].narrative = "population";
     console.log('population clicked');
-
-    tracker[0].prevNode = "none";
-
-    tracker[0].node = "M";
-    tracker[0].currentNode = "M";
-    tracker[0].visitedNodes.push("M");
-    sendData();
-
-}
-
-function buttonHover(value){
-    d3.selectAll('.link').attr('stroke-width',2);
-    d3.selectAll('.' + value + '-link').attr('stroke-width',7);
-}
-
-function buttonLeave(){
-    d3.selectAll('.link').attr('stroke-width',2);
 }
 
 function ecosystemClicked() {
-    tracker[0].narrative = "soil";
-    console.log('soil clicked');
-
-    tracker[0].prevNode = "none";
-
-    tracker[0].node = "M";
-    tracker[0].currentNode = "M";
-    tracker[0].visitedNodes.push("M");
-    sendData();
+    tracker[0].narrative = "ecosystem";
+    console.log('ecosystem clicked');
 }
 
 
@@ -556,6 +344,7 @@ function wrap(text, wordList, width) {
         }
     });
 }
+
 
 
 
@@ -633,3 +422,6 @@ function resetScales(){
 //    update(selectedCountry, 'Exports', selectedYear);
 
 }
+
+
+

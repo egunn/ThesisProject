@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/droppables/css/style.css" afterPath="$PROJECT_DIR$/ConstructionZone/droppables/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/droppables/scripts/droppables.js" afterPath="$PROJECT_DIR$/ConstructionZone/droppables/scripts/droppables.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/index.js" afterPath="$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/index.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,21 +25,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/index.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+            <state relative-caret-position="265">
+              <caret line="61" column="41" lean-forward="true" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/index.html">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/scripts/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="29" column="52" lean-forward="false" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="56" />
+            <state relative-caret-position="469">
+              <caret line="426" column="0" lean-forward="false" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testJQuery.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/scripts/testJQuery.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="270" column="14" lean-forward="false" selection-start-line="270" selection-start-column="14" selection-end-line="270" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -58,8 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nav</find>
-      <find>select</find>
       <find>countryD</find>
       <find>countryr</find>
       <find>dispat</find>
@@ -88,6 +106,8 @@
       <find>font-</find>
       <find>.country</find>
       <find>value</find>
+      <find>no-</find>
+      <find>$</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -96,10 +116,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/ecoregions.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/data/teow_2.5p_noAntarct.topojson" />
-        <option value="$PROJECT_DIR$/ConstructionZone/Ecoregions/data/worldcountries_fromWorking_noAntartc.topojson" />
         <option value="$PROJECT_DIR$/IntegratedSite/data/worldcountries_fromWorking_noAntartc.topojson" />
         <option value="$PROJECT_DIR$/IntegratedSite/data/teow_2.5p_noAntarct.topojson" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilOrganisms/scripts/soilOrganisms.js" />
@@ -124,13 +140,11 @@
         <option value="$PROJECT_DIR$/ConstructionZone/PageNav/data/navNodes.json" />
         <option value="$PROJECT_DIR$/ConstructionZone/PageNav/scripts/pageNav.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/page1.php" />
-        <option value="$PROJECT_DIR$/IntegratedSite/css/style.css" />
         <option value="$PROJECT_DIR$/IntegratedSite/template.json" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/soilLayers.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/page1.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/index.html" />
-        <option value="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/WorldPop.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/index.php" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/css/style.css" />
@@ -144,9 +158,15 @@
         <option value="$PROJECT_DIR$/ConstructionZone/droppables/css/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/data/navNodes.json" />
         <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/frontNav.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/index.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/css/style.css" />
+        <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/index.js" />
+        <option value="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/PageNavCollapse/scripts/index.js" />
+        <option value="$PROJECT_DIR$/IntegratedSite/css/style.css" />
+        <option value="$PROJECT_DIR$/ConstructionZone/PageNavCollapse/scripts/testJQuery.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/PageNavCollapse/index.html" />
+        <option value="$PROJECT_DIR$/ConstructionZone/PageNavCollapse/css/style.css" />
       </list>
     </option>
   </component>
@@ -233,6 +253,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="IntegratedSite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="ConstructionZone" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -251,7 +289,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="alternativeIndex" />
+              <option name="myItemId" value="SoilOrganisms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -269,7 +307,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="alternativeIndex" />
+              <option name="myItemId" value="PageNavCollapse" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ConstructionZone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PageNavCollapse" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -291,7 +347,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="alternativeIndex" />
+              <option name="myItemId" value="PageNavCollapse" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -417,12 +473,12 @@
       <workItem from="1487083898419" duration="58572000" />
       <workItem from="1487362876705" duration="46552000" />
       <workItem from="1487863921496" duration="57654000" />
-      <workItem from="1488224305823" duration="22840000" />
+      <workItem from="1488224305823" duration="29032000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="421766000" />
+    <option name="totallyTimeSpent" value="427958000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -485,43 +541,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Impacts/scripts/testJQuery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="46" column="55" lean-forward="false" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/impacts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/template.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNav/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/index.html" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/index_toMigrate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/mapsketch.js" />
     <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/dataManager.js" />
     <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/d.js" />
     <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/bar.js" />
@@ -614,14 +633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="467" column="0" lean-forward="true" selection-start-line="467" selection-start-column="0" selection-end-line="467" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/page1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1398">
@@ -634,21 +645,6 @@
         <state relative-caret-position="168">
           <caret line="192" column="12" lean-forward="false" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="38" column="26" lean-forward="true" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1634">
-          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -809,8 +805,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+        <state relative-caret-position="228">
+          <caret line="91" column="18" lean-forward="false" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/scripts/bg-nav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/template.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/scripts/pageNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="474" column="15" lean-forward="false" selection-start-line="474" selection-start-column="15" selection-end-line="474" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="135" column="24" lean-forward="false" selection-start-line="135" selection-start-column="24" selection-end-line="135" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/scripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="426" column="0" lean-forward="false" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/scripts/testJQuery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="61" column="41" lean-forward="true" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/PageNavCollapse/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="270" column="14" lean-forward="false" selection-start-line="270" selection-start-column="14" selection-end-line="270" selection-end-column="14" />
           <folding />
         </state>
       </provider>

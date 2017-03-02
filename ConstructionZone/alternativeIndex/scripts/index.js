@@ -102,7 +102,6 @@ function drawNav(treeData){
         .attr('class','nav-group')
         .attr('transform','translate('+ (navMargin.l) + ','+ (navHeight/2 + navMargin.t) + ')');
 
-
     // declares a tree layout and assigns the size
     var treemap = d3.tree().size([navHeight/3, navWidth]);
 
