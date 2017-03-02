@@ -7,9 +7,11 @@ function navButtonClicked(value){
     //console.log(tempClass.substr(tempClass.length-3,tempClass.length));
     if (tempClass.substr(tempClass.length-3,tempClass.length) == "out"){
         d3.select('.to-collapse').attr('class','to-collapse in');
+        d3.select('.collapse-button').html('Hide Nav');
     }
     else{
         d3.select('.to-collapse').attr('class','to-collapse out');
+        d3.select('.collapse-button').html('Show Nav');
     }
 }
 
