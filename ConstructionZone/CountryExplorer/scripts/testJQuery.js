@@ -5,12 +5,12 @@
 //to use, replace HTML form in page1.php action with: "javascript:phpAction()"
 //currently, conditional statement works, but returns only the text index.html or page1.php; doesn't load the new page
 //function phpAction(){
-    /*if(tracker[0].currentNode == "Z"){
-        return "index.html";
-    }
-    else{
-        return "page1.php";
-    }*/
+/*if(tracker[0].currentNode == "Z"){
+ return "index.html";
+ }
+ else{
+ return "page1.php";
+ }*/
 //}
 
 function navButtonClicked(value){
@@ -28,10 +28,11 @@ function navButtonClicked(value){
     }
 }
 
-
 //read in the passed JSON in object format
 //tracker = JSON.parse(tracker);
 
+
+/*
 //set header background color based on narrative selected
 if(tracker[0].narrative == "soil"){
     d3.select('#myNavbar').style('background','#f6eff7');//'#eadcef'
@@ -43,14 +44,15 @@ else if(tracker[0].narrative == "population"){
 else if(tracker[0].narrative == "food"){
     d3.select('#myNavbar').style('background','#f9f7ef');//#f9f7ef
 }
+*/
 
 reloadTemplate();
 
 function reloadTemplate() {
 
-    var currPage;
+    //var currPage;
 
-    console.log(tracker);
+    /*console.log(tracker);
 
     if (typeof tracker[0].node == "undefined"){
 
@@ -59,58 +61,41 @@ function reloadTemplate() {
         $('#title').html('Some other page');
 
     }
-    /*else if (tracker == 'B'){
+   else if (tracker == 'B'){
 
-        $.getJSON("template.json", function(json) {
+     $.getJSON("template.json", function(json) {
 
-            $('#title').html(json[1].title);
+     $('#title').html(json[1].title);
 
-            $('#body-text').html(json[1].text);
+     $('#body-text').html(json[1].text);
 
-            $("a#test-link").prop("href", json[1].link);
+     $("a#test-link").prop("href", json[1].link);
 
-            $("a#test-link").text(json[1].linkText);
-        });
-    }*/
-    else {
+     $("a#test-link").text(json[1].linkText);
+     });
+     }*/
+    //else {
         //$('#title').html('Some other page');
 
         $.getJSON("template.json", function(json) {
 
-            currPage = json.filter(function(d){
-                return tracker[0].node == d.page;
+            $.getJSON("template.json", function(json) {
+
+                $('#body-text').html(json[0].text);
+
+                $("a#test-link").prop("href", json[0].link);
+
+                $('#synopsis').html(json[0].synopsis);
+
+                $("a#test-link").text(json[0].linkText);
+
+                $('.nav-title').html(json[0].title);
             });
 
-            if (typeof currPage != "undefined" && currPage.length > 0){
-
-                $('.nav-title').html(currPage[0].title);
-
-                $('#body-text').html(currPage[0].text);
-
-                $('#synopsis').html(currPage[0].synopsis);
-
-                $("a#test-link").prop("href", currPage[0].link);
-
-                $("a#test-link").text(currPage[0].linkText);
-            }
-            else {
-                console.log('node not found in template file!');
-
-                $('#title').html('Not found');
-
-                $('#body-text').html('Sorry, there is no data available for that node. Please go back to the index and select a new node. ' +
-                    '<br><a href="./index.html">Index</a>');
-
-                //$('#synopsis').html(currPage[0].synopsis);
-
-                $("a#test-link").prop("href", "index.html");
-
-                $("a#test-link").text("Index");
-            }
 
         });
 
-    }
+    //}
 
     //loads script but doesn't run it
     // var newScript = $(document.createElement('script'));
@@ -123,16 +108,16 @@ function reloadTemplate() {
     $(document).ready(function() {
 
         //$.getScript("./scripts/vendor/topojson.js");  //added to HTML template for now
-        if (typeof currPage != "undefined" && currPage.length > 0){
-            console.log(tracker[0].node, currPage[0].page);
+        //if (typeof currPage != "undefined" && currPage.length > 0){
+            //console.log(tracker[0].node, currPage[0].page);
+            $.getScript("./scripts/vendor/crossfilter.js");
+            $.getScript('./scripts/countryExplorer.js');
 
-            $.getScript(currPage[0].script);
-
-            $.getScript('./scripts/pageNav.js');
-        }
-        else {
+            //$.getScript('./scripts/pageNav.js');
+        //}
+        /*else {
             console.log('unknown node')
-        }
+        }*/
 
 
         //add a new button for map updating

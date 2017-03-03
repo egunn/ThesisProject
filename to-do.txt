@@ -8,6 +8,9 @@ remove food balance plot
 Land Use 1: 
 Needs to be incorporated into another vis?
 
+Country Explorer
+move slider and div creation to jQuery to work with default template
+
 Soil Degradation:
 add pie chart to show % degradation classes? 
 
