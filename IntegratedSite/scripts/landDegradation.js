@@ -59,7 +59,7 @@ function dataLoaded(data){
 
     var legend = worldMap
         .append('g')
-        .attr('transform','translate(' + (0) + ','+ (height - 100) + ')');
+        .attr('transform','translate(' + (0) + ','+ (height - 110) + ')');
 
     legend.append('text')
         .attr('x', 0)

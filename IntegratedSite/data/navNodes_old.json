@@ -1,52 +1,38 @@
 [ {
-  "name":"Index",
-  "nodeID":"Z",
-  "narrative":{"soil":true, "food":true, "population":true},
-  "photo":"tree.png",
-  "position":1,
-  "children":[
-    {
     "name":"Soil",
     "nodeID":"M",
     "narrative":{"soil":true, "food":true, "population":true},
-    "photo":"./images/soilLayers_sm_2.png",
-    "position":2,
+    "position":1,
     "children":[
       {"name":"Species",
         "narrative":{"soil":true, "food":false, "population":false},
-        "photo":"./images/soilorganisms_2_sm.png",
         "nodeID":"N",
-        "position":4,
+        "position":3,
         "children":[
           {"name":"GlobalC",
             "narrative":{"soil":true, "food":false, "population":false},
-            "photo":"./images/globalC_2_sm.png",
             "nodeID":"T",
-            "position":6,
+            "position":5,
             "children":[
               {"name":"Ecosystems",
                 "narrative":{"soil":true, "food":false, "population":false},
-                "photo":"./images/ecoregions_3_sm.png",
                 "nodeID":"W",
-                "position":8,
+                "position":7,
                 "children":[
                   {"name":"Soil Degradation",
                     "narrative":{"soil":true, "food":true, "population":true},
-                    "photo":"./images/soildegradation_2_sm.png",
                     "nodeID":"H",
-                    "position":10,
+                    "position":9,
                     "children":[
                       {"name":"Threats",
                         "narrative":{"soil":true, "food":true, "population":true},
-                        "photo":"./images/impacts_icons_icon.png",
                         "nodeID":"I",
-                        "position":11,
+                        "position":10,
                         "children":[
                           {"name":"Responses",
                             "narrative":{"soil":true, "food":true, "population":true},
-                            "photo":"test.png",
                             "nodeID":"J",
-                            "position":12
+                            "position":11
                           }
                         ]
                       }
@@ -60,42 +46,36 @@
       },
       {"name": "Food",
        "narrative":{"soil":false, "food":true, "population":true},
-        "photo":"test.png",
         "nodeID":"A",
-        "position":3,
+        "position":2,
         "children":[
           {"name":"World Population",
             "narrative":{"soil":false, "food":true, "population":true},
-            "photo":"./images/worldpop_2_sm.png",
             "nodeID":"K",
-            "position":4,
+            "position":3,
             "children":[
               {"name":"Food Supply",
                 "narrative":{"soil":false, "food":true, "population":true},
-                "photo":"test.png",
                 "nodeID":"E",
-                "position":6,
+                "position":5,
                 "children":[
                     {"name":"People per Farmer",
                       "narrative":{"soil":false, "food":true, "population":false},
-                      "photo":"./images/peopleperfarmer_2_sm.png",
                       "nodeID":"F",
-                      "position":7,
+                      "position":6,
                       "children":[
                         {"name":"Food Flow",
                           "narrative":{"soil":false, "food":true, "population":false},
-                          "photo":"./images/foodflow_sm.png",
                           "nodeID":"D",
-                          "position":8
+                          "position":7
                         }]
                   }]
               },
               {
                "name":"Land per Person",
                 "narrative":{"soil":false, "food":false, "population":true},
-                "photo":"test.png",
                 "nodeID":"G",
-                "position":5
+                "position":4
               }
 
             ]
@@ -104,4 +84,3 @@
       }
     ]
   }]
-}]

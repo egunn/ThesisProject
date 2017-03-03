@@ -1,9 +1,9 @@
 Food Flow:
-Russia balance timeline data food flow - two lines each?
 country names not showing up as alphabetical in dropdown
 Category selection has no effect on food balance plot		
 No zero handling in the timeline plot
 timeline labels wrong!
+remove food balance plot
 
 Land Use 1: 
 Needs to be incorporated into another vis?
@@ -15,7 +15,7 @@ Ecoregions:
 SVG needs to become responsive
 Map mismatch on window size change
 Make x-axis white (Move axis to front, turn it back to white)
-Try implementing map mesh?
+Try implementing map mesh to speed drawing?
 redo biome definitions mapping
 
 Soil organisms:
@@ -25,6 +25,9 @@ Integrated site:
 tooltip placement - hovers far from mouse, can go off-screen
 re-connect node and root drawing coords.
 jumpy mouseover
+
+Page navigation and alternative index:
+Link index node to page navigation (not in template architecture; need to include an exception to navigate to index.html and pass tracker from page1.php to index.html)
 
 World pop
 resize on page change

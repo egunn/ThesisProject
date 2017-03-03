@@ -1,6 +1,22 @@
 //called from page1.php
 //loads template components using JQuery, based on tracker variable
 
+function navButtonClicked(value){
+
+    //d3.select('.to-collapse').attr('class','to-collapse out');
+    var tempClass =  d3.select('.to-collapse').attr('class')
+    //console.log(tempClass.substr(tempClass.length-3,tempClass.length));
+    if (tempClass.substr(tempClass.length-3,tempClass.length) == "out"){
+        d3.select('.to-collapse').attr('class','to-collapse in');
+        d3.select('.collapse-button').html('Hide Nav');
+    }
+    else{
+        d3.select('.to-collapse').attr('class','to-collapse out');
+        d3.select('.collapse-button').html('Show Nav');
+    }
+}
+
+
 //read in the passed JSON in object format
 tracker = JSON.parse(tracker);
 
@@ -58,7 +74,8 @@ function reloadTemplate() {
 
                 $('#title').html('Not found');
 
-                $('#body-text').html('Sorry, there is no data available for that node. Please go back to the index and select a new node.');
+                $('#body-text').html('Sorry, there is no data available for that node. Please go back to the index and select a new node. ' +
+                    '<br><a href="./index.html">Index</a>');
 
                 //$('#synopsis').html(currPage[0].synopsis);
 
@@ -95,8 +112,8 @@ function reloadTemplate() {
 
 
         //add a new button for map updating
-        var r = $('<input/>', { type: "button", id: "changeMap", value: "1", onClick: "changeMap()" });
-        $("body").append(r);
+        //var r = $('<input/>', { type: "button", id: "changeMap", value: "1", onClick: "changeMap()" });
+        //$("body").append(r);
     });
 }
 

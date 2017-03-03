@@ -50,6 +50,7 @@
                 </div>
             </div>
 
+            <!--
             <div class="row nav-row no-gutter">
                 <div class="col-md-12 nopadding">
 
@@ -60,13 +61,25 @@
                 </div>
 
             </div>
+            -->
 
         </div>
     </div>
 </div>
 
 
-<a id="test-link" href="./index.html">Index</a>
+</div>
+
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container to-collapse collapse in nopadding">
+        <button class="collapse-button" onClick="navButtonClicked()">Hide Nav</button>
+
+        <div id="nav-div">
+            <svg class="page-nav" id="nav"></svg>
+        </div>
+
+    </div>
 
 </div>
 

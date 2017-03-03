@@ -1,8 +1,10 @@
+//button click to control drawer collapse is in page1.php (needed before script loads)
+
 //setup resize event listener on window (resizeView defined in view js file, since it contains d3 updates)
 window.addEventListener('resize', resizeView, false);
 
 //set some margins and record width and height of window
-var navMargin = {t: 15, r: 20, b: 0, l: 20};
+var navMargin = {t: 20, r: 20, b: 0, l: 20};
 
 var navWidth = document.getElementById('nav').clientWidth- navMargin.r - navMargin.l;
 var navHeight = document.getElementById('nav').clientHeight- navMargin.t - navMargin.b;
@@ -96,7 +98,7 @@ function drawNav(treeData){
         links = treeData.descendants().slice(1);
 
     // Normalize for fixed-depth.
-    nodes.forEach(function(d){d.y = (d.data.position-1) * navWidth/11 + navMargin.l});//d.depth * navWidth/6});
+    nodes.forEach(function(d){d.y = (d.data.position-1) * navWidth/12 + navMargin.l});//d.depth * navWidth/6});
 
     // Update the nodes...
     var node = navGroup.selectAll('g.node')
@@ -128,24 +130,24 @@ function drawNav(treeData){
         })
         .style("fill", function(d) {
 
-            if (tracker[0].narrative == "population" && d.data.narrative.population == true) {
-                return popColor;
-            }
-            else if (tracker[0].narrative == "food" && d.data.narrative.food == true) {
+            if (tracker[0].narrative == "food" && d.data.narrative.food == true) {
                 return foodColor;
+            }
+            else if (tracker[0].narrative == "population" && d.data.narrative.population == true) {
+                return popColor;
             }
             else if (tracker[0].narrative == "soil" && d.data.narrative.soil == true) {
                 return soilEcoColor;
             }
             else {
-                if (d.data.narrative.population == true) {
+                 if (d.data.narrative.soil == true) {
+                    return soilEcoColor;
+                }
+                else if (d.data.narrative.population == true) {
                     return popColor;
                 }
                 else if (d.data.narrative.food == true) {
                     return foodColor;
-                }
-                else if (d.data.narrative.soil == true) {
-                    return soilEcoColor;
                 }
                 else {
                     return "gainsboro";
