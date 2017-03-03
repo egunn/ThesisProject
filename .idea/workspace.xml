@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/js/sketch1tall_popboxes.js" afterPath="$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/js/sketch1tall_popboxes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/page1.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/page1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,31 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pageNav.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js">
+      <file leaf-file-name="sketch1tall_popboxes.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/js/sketch1tall_popboxes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page1.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/page1.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-851">
-              <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <state relative-caret-position="317">
+              <caret line="127" column="24" lean-forward="false" selection-start-line="127" selection-start-column="24" selection-end-line="127" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -149,13 +131,13 @@
         <option value="$PROJECT_DIR$/ConstructionZone/PageNavCollapse/css/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/sketch1tall_nopeople.html" />
-        <option value="$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/js/sketch1tall_popboxes.js" />
-        <option value="$PROJECT_DIR$/IntegratedSite/page1.php" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/landDegradation.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/css/style.css" />
         <option value="$PROJECT_DIR$/IntegratedSite/template.json" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js" />
+        <option value="$PROJECT_DIR$/IntegratedSite/page1.php" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/page1.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/js/sketch1tall_popboxes.js" />
       </list>
     </option>
   </component>
@@ -211,43 +193,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="IntegratedSite" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IntegratedSite" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ThesisProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IntegratedSite" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="ConstructionZone" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -262,6 +208,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ConstructionZone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="popBoxesPregenerator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ConstructionZone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="popBoxesPregenerator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -383,12 +355,12 @@
       <workItem from="1487362876705" duration="46552000" />
       <workItem from="1487863921496" duration="57654000" />
       <workItem from="1488224305823" duration="32551000" />
-      <workItem from="1488478890767" duration="8816000" />
+      <workItem from="1488478890767" duration="11367000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="440293000" />
+    <option name="totallyTimeSpent" value="442844000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -672,16 +644,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/index.html" />
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/js/sketch1tall_popboxes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="50" column="24" lean-forward="false" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/sketch1tall_nopeople.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -710,14 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="29" lean-forward="true" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -770,22 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/page1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="15" column="40" lean-forward="true" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-851">
@@ -794,10 +732,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/page1.js">
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/page1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="101" column="64" lean-forward="true" selection-start-line="101" selection-start-column="64" selection-end-line="101" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
-          <caret line="24" column="6" lean-forward="false" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+          <caret line="63" column="54" lean-forward="false" selection-start-line="63" selection-start-column="54" selection-end-line="63" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="195" column="30" lean-forward="true" selection-start-line="195" selection-start-column="30" selection-end-line="195" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/page1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="118" lean-forward="false" selection-start-line="5" selection-start-column="118" selection-end-line="5" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/popBoxesPregenerator/js/sketch1tall_popboxes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="127" column="24" lean-forward="false" selection-start-line="127" selection-start-column="24" selection-end-line="127" selection-end-column="24" />
           <folding />
         </state>
       </provider>

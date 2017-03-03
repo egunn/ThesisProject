@@ -1,6 +1,18 @@
 //called from page1.php
 //loads template components using JQuery, based on tracker variable
 
+//decide whether submitting the PHP form should reload the template or point to another page
+//to use, replace HTML form in page1.php action with: "javascript:phpAction()"
+//currently, conditional statement works, but returns only the text index.html or page1.php; doesn't load the new page
+//function phpAction(){
+    /*if(tracker[0].currentNode == "Z"){
+        return "index.html";
+    }
+    else{
+        return "page1.php";
+    }*/
+//}
+
 function navButtonClicked(value){
 
     //d3.select('.to-collapse').attr('class','to-collapse out');
@@ -16,9 +28,20 @@ function navButtonClicked(value){
     }
 }
 
-
 //read in the passed JSON in object format
 tracker = JSON.parse(tracker);
+
+//set header background color based on narrative selected
+if(tracker[0].narrative == "soil"){
+    d3.select('#myNavbar').style('background','#f6eff7');//'#eadcef'
+    //d3.select('.page-nav').style('background','#f6eff7');
+}
+else if(tracker[0].narrative == "population"){
+    d3.select('#myNavbar').style('background','#eff8f9');//#edf8f9
+}
+else if(tracker[0].narrative == "food"){
+    d3.select('#myNavbar').style('background','#f9f7ef');//#f9f7ef
+}
 
 reloadTemplate();
 

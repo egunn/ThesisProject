@@ -45,12 +45,10 @@ plot = canvas.append('svg')
         parse(data);
 })*/
 
-var fakeData = [];
 var columnHeight = 1650;
+var clickTracker = 1;
 
-for (i=7000; i < 7002   ; i++){
-    fakeData.push({peoplePerKm:i, peoplePerKmUrban:i, column:1+Math.floor(i/10), baseX:50, baseY:150+i*150});
-}
+fakeData = [{peoplePerKm:clickTracker, peoplePerKmUrban:clickTracker, column:1, baseX:50, baseY:150}];
 
 console.log(fakeData);
 
@@ -60,46 +58,31 @@ var countryRectGroups = plot.selectAll('.rect-group')
 
 drawPopBoxes();
 
+//add click listener to svg to update clickTracker value
+d3.selectAll('svg')
+    .on('click',function(){
+        clickTracker ++;
+        fakeData = [{peoplePerKm:clickTracker, peoplePerKmUrban:clickTracker, column:1, baseX:50, baseY:150}];
+        console.log(fakeData[0].peoplePerKm);
+        d3.selectAll('.pop-box-g').remove('*');
+        d3.selectAll('.rect-group').remove();
+        countryRectGroups = plot.selectAll('.rect-group')
+            .data(fakeData)
+            .enter();
+        drawPopBoxes();
+    });
+
 
 function drawPopBoxes(){
 
-
     shiftPopBox1 = 50;
-    shiftPopBox2 = 150;
-    shiftPopBox3 = 250;
-    shiftPopBox4 = 350;
-    shiftPopBox5 = 450;
-    shiftPopBox6 = 550;
-    shiftPopBox7 = 650;
-    shiftPopBox8 = 750;
-    shiftPopBox9 = 850;
-    shiftPopBox10 = 950;
-
-
 
     var popBox = countryRectGroups.append('g').attr('class','pop-box-g')
         .attr('transform', function(d){
             if (d.column == 1){
                 return 'translate('+(d.baseX-50 + shiftPopBox1)+','+ (d.baseY-100)+ ')';
             }
-            else if (d.column == 2){
-                return 'translate('+(d.baseX-50 + shiftPopBox2)+','+ (d.baseY-100)+ ')';
-            }
-            else if (d.column == 3){
-                return 'translate('+(d.baseX-50 + shiftPopBox3)+','+ (d.baseY-100)+ ')';
-            }
-            else if (d.column == 4){
-                return 'translate('+(d.baseX-50 + shiftPopBox4)+','+ (d.baseY-100)+ ')';
-            }
-            else if (d.column == 5){
-                return 'translate('+(d.baseX-50 + shiftPopBox5)+','+ (d.baseY-100)+ ')';
-            }
-            else if (d.column == 6){
-                return 'translate('+(d.baseX-50 + shiftPopBox6)+','+ (d.baseY-100)+ ')';
-            }
-            else {
-                return 'translate('+(d.baseX-50 + shiftPopBox7)+','+ (d.baseY-100)+ ')';
-            }
+
         });
 
 
@@ -113,6 +96,7 @@ function drawPopBoxes(){
 
             //make an array of ones of length = # of people/km
             for(var i=0; i < d.peoplePerKm; i++){
+                console.log(d);
                 if (i<d.peoplePerKmUrban){
                     peopleArray.push({type:0});
                 }
@@ -125,11 +109,11 @@ function drawPopBoxes(){
         })
         .attr('x', 0 )//function(d,i){return d.baseX-50 + 700; })
         .attr('y', 0)//function(d,i){return d.baseY-100;})
-        .attr('width', 100) //function(d){ return landAreaScale(d.forestArea);})
-        .attr('height', 100)//function(d){ return landAreaScale(d.forestArea); })
+        .attr('width', 300) //function(d){ return landAreaScale(d.forestArea);})
+        .attr('height', 300)//function(d){ return landAreaScale(d.forestArea); })
         .style('fill','none')
         .style('stroke','gray')
-        .style('stroke-weight','1px')
+        .style('stroke-weight','3px')
         .attr('class','pop-box');
 
     popBox.selectAll('pop-circs')
@@ -137,26 +121,26 @@ function drawPopBoxes(){
         .enter()
         .append('circle')
         .attr('cx',function(d){
-            var pos = Math.random()*100;
-            if (pos > 95){
+            var pos = Math.random()*300;
+            if (pos > 290){
                 pos =- 7
             }
-            if (pos < 5){
-                pos =+ 7
+            if (pos < 12){
+                pos =+ 9
             }
             return pos;
         })
         .attr('cy',function(d){
-            var pos = Math.random()*100;
-            if (pos > 95){
+            var pos = Math.random()*300;
+            if (pos > 290){
                 pos -= 7
             }
-            if (pos < 5){
-                pos += 7
+            if (pos < 12){
+                pos += 9
             }
             return pos;
         })
-        .attr('r',2)
+        .attr('r',6)
         .style('fill',function(d){
             if(d.type == 0){
                 return 'rgb(50,50, 50)';

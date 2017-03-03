@@ -29,8 +29,6 @@ var mapData;
 //mock up the tracker variable passed in by php (note:renamed node to currentNode)
 //var tracker = [{"narrative":"population","prevNode":"none","visitedNodes":["M","N","W","H"],"currentNode":"W"}];
 
-console.log(tracker);
-
 //var navHistory = {visited:["Soil","Species","GlobalC"],current:"Soil Degradation", selectedNarrative:"soil"};
 
 d3.json('./data/navNodes.json', navDataLoaded);
