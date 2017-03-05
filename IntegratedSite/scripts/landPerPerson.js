@@ -96,6 +96,8 @@ function resizeView() {
     width = document.getElementById('vis').clientWidth;
     height = document.getElementById('vis').clientHeight;
 
+    d3.selectAll('svg').style('width',width).style('height',height);
+
     projection
         .fitSize([width, height], mapData);
 

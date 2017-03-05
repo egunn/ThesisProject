@@ -41,7 +41,7 @@ typeCol = 'gray';//'#ecd9c6';
 mapCol = '#b2a394';
 mapHighlightCol = '#e8e1da';/*'#e0cebc';*/
 
-tracker = {country:"US", region:"Northern America",year:1975};
+tracker = {country:"US", init:true,year:1975};
 importedData = [];
 balanceData =[];
 pcLandUse=[];
@@ -104,6 +104,12 @@ b2.appendTo('#navbar-container').addClass('nav-button');
 //http://stackoverflow.com/questions/4814512/how-to-create-dropdown-list-dynamically-using-jquery
 var s = $('<select/>'); //class=""
 s.appendTo('#navbar-container').addClass('type-list form-control countryDropdown');
+
+//add default option to dropdown menu (otherwise, won't show US as first selection)
+d3.select(".countryDropdown") //class in the html file
+    .append("option") //it has to be called this name
+    .html("United States") //what is going to be written in the text
+    .attr("value", "US");
 
 //set up change function for dropdown
 d3.select(".countryDropdown").on("change", function () {
@@ -198,11 +204,13 @@ function updateData() {
         return d;
     });
 
-    countryArray = databyCountry.top(Infinity);
+    countryArray = databyCountry.top(Infinity).slice();
 
-    var testSort = countryArray.sort(function(b,a){
-        return +a.totalPop - +b.totalPop;
+    var testSort = countryArray.sort(function(a,b){
+        //needs a case-insensitive alphabetical sort
+        return a.country.toLowerCase().localeCompare(b.country.toLowerCase());
     });
+
 
     //parse country list for dropdown
     testSort.forEach(function (n) {
@@ -210,21 +218,33 @@ function updateData() {
             .append("option") //it has to be called this name
             .html(n.FULLNAME) //what is going to be written in the text
             .attr("value", n.NAME); //what is going to be written in value
+            //.style('background','blue'); //change background color (useful for styling multiple levels of aggregation)
     });
+
+
 
     //console.log(testSort.slice(0,4));
 
+    //balanceData.max(function(d){return })
+
+    //Math.max(balanceData.map(function(o){return o.total;}))
+
     countryBalance = balanceData.filter(function(d){return d.countryCode == tracker.country && d.year == tracker.year});
-    //console.log(countryBalance);
 
-    //drawLandBars(countryPop);
-    //drawBars(countryPop,'totalPop')
-    drawPopBars(countryYear);
-    drawLandSquares(countryYear[0]);
-    drawCrowdingSquares(countryYear[0]);
-    drawFoodBars(countryBalance);
-    drawCalories(pcRegionYear);
+    if (tracker.init == true){
+        drawPopBars(countryYear);
+        drawLandSquares(countryYear[0]);
+        drawCrowdingSquares(countryYear[0]);
+        drawFoodBars(countryBalance);
+        drawCalories(pcRegionYear);
+        //drawLandReqts
 
+        tracker.init = false;
+    }
+
+    else {
+        updateDrawings(countryYear, countryBalance, pcRegionYear);
+    }
 
 
 }
@@ -232,6 +252,7 @@ function updateData() {
 centerScaleX = d3.scaleLinear().domain([0, 1]).range([0, width]);
 centerScaleY = d3.scaleLinear().domain([0, 1]).range([0, height]);
 
+//array for drawing positioning dots
 centers = [
     {name:"popBars", x:.06, y:.1},
     {name:"landSquares", x:.2, y:.4},
@@ -239,8 +260,21 @@ centers = [
     {name:"crowdingSquares", x:.6, y:.4},
     {name:"foodBar1", x:.06, y:.7},
     {name:"foodBar2", x:.16, y:.7},
-    {name:"calories", x:.4, y:.8}
+    {name:"calories", x:.4, y:.8},
+    {name:"perCapita",x:.6,y:.8}
 ];
+
+//controls transform/translate properties of each subdrawing
+centerCoords = {
+    popBars:[.06,.1],
+    landSquares:[.2,.4],
+    degradedSquares:[.4,.4],
+    crowdingSquares:[.6,.4],
+    foodBar1:[.06,.7],
+    foodBar2:[.16,.7],
+    calories:[.4,.8],
+    perCapita:[.6,.8]
+};
 
 svg.selectAll('.center-dots')
     .data(centers)
@@ -256,34 +290,16 @@ svg.selectAll('.center-dots')
     .attr('fill','gray');
 
 
-
 function drawPopBars(dataIn){
 
     var popBars = svg.append('g')
         .attr('class','pop-bars')
-        .attr('transform','translate(' + centerScaleX(.06) + ',' + centerScaleY(.1) + ')');
-
-    popBars.data(dataIn);
-
-    /*
-    svg.append('rect')
-        .attr('x',function(d){
-            return centerScaleX(.06)
-        })
-        .attr('y',function(d){
-            return centerScaleY(.1)
-        })
-        .attr('width',function(d){
-            return centerScaleX(.8)
-        })
-        .attr('height',function(d){
-            return 10
-        })
-        .attr('fill', 'gainsboro');
-    */
+        .attr('transform','translate(' + centerScaleX(centerCoords.popBars[0]) + ',' + centerScaleY(centerCoords.popBars[1]) + ')')
+        .data(dataIn);
 
     popBars
         .append('rect')
+        .attr('class','total-pop-bar')
         .attr('x', 0)
         .attr('y', 0)
         .attr('width', function(d){
@@ -299,6 +315,7 @@ function drawPopBars(dataIn){
 
     popBars
         .append('rect')
+        .attr('class','urban-pop-bar')
         .attr('x', 0)
         .attr('y', 0) //+ popScale(d.totalPop)-popScale(d.urbanPop)})
         .attr('width', function(d){
@@ -315,6 +332,7 @@ function drawPopBars(dataIn){
 
     popBars
         .append('rect')
+        .attr('class','pop-2050-bar')
         .attr('x', 0)
         .attr('y', 0)// + popScale(d.totalPop)-popScale(d.totalPop2050)})
         .attr('width', function(d){
@@ -351,14 +369,14 @@ function drawLandSquares(countryObject){
         .enter()
         .append('g')
         .attr('class', 'squares-group')
-        .attr('transform', 'translate(' + centerScaleX(.2) + ',' + centerScaleY(.4) + ')');
+        .attr('transform', 'translate(' + centerScaleX(centerCoords.landSquares[0]) + ',' + centerScaleY(centerCoords.landSquares[1]) + ')');
 
     var degradedSquareGroup = svg.selectAll('.degradedSquares-group')
         .data(testArray)
         .enter()
         .append('g')
         .attr('class', 'degraded-squares-group')
-        .attr('transform', 'translate(' + centerScaleX(.4) + ',' + centerScaleY(.4) + ')');
+        .attr('transform', 'translate(' + centerScaleX(centerCoords.degradedSquares[0]) + ',' + centerScaleY(centerCoords.degradedSquares[1]) + ')');
 
     var statsGroup = svg.selectAll('.stats-group')
         .data(testArray)
@@ -367,6 +385,7 @@ function drawLandSquares(countryObject){
         .attr('class', 'stats-group')
         .attr('transform', 'translate(' + (margin.l + .70*width) + ',' + margin.t + ')');
 
+   /*
     statsGroup.append('text')
         .attr('x', 0)
         .attr('y', 0)
@@ -376,7 +395,7 @@ function drawLandSquares(countryObject){
     /*.text(function (d) {
      console.log('here');
      return d.FULLNAME + ', ' + d.year
-     });*/
+     });
 
     d3.selectAll('.country-name')
         .text(function(d){
@@ -401,105 +420,111 @@ function drawLandSquares(countryObject){
             return "Total Land Area: " + Number(d.landArea).toLocaleString()
         });
 
-
-
-     landSquaresGroup
-     .append('rect')
-     .attr('x', function (d) {
-     return -1;
-     })
-     .attr('y', function (d) {
-     return -.5;
-     })
-     .attr('width', function (d) {
-     return landAreaScale(d.urbanLand2050)
-     })
-     .attr('height', function (d) {
-     return landAreaScale(d.urbanLand2050)
-     })
-     .attr('fill', 'none')
-     .attr('stroke', 'grey')
-     .attr('stroke-dasharray', '4,4');
+    */
 
     landSquaresGroup
-     .append('rect')
-     .attr('x', function (d) {
-     return 0;
-     })
-     .attr('y', function (d) {
-     return -landAreaScale(d.forestArea)
-     })
-     .attr('width', function (d) {
-     return landAreaScale(d.forestArea)
-     })
-     .attr('height', function (d) {
-     return landAreaScale(d.forestArea)
-     })
-     .attr('fill', forestCol);
+        .append('rect')
+         .attr('class','urban2050-square')
+        .attr('x', function (d) {
+            return -1;
+        })
+        .attr('y', function (d) {
+            return -.5;
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.urbanLand2050)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.urbanLand2050)
+        })
+         .attr('fill', 'none')
+         .attr('stroke', 'grey')
+         .attr('stroke-dasharray', '4,4');
 
     landSquaresGroup
-     .append('rect')
-     .attr('x', function (d) {
-     return -landAreaScale(d.agriculturalLand)
-     })
-     .attr('y', function (d) {
-     return -landAreaScale(d.agriculturalLand)
-     })
-     .attr('width', function (d) {
-     return landAreaScale(d.agriculturalLand)
-     })
-     .attr('height', function (d) {
-     return landAreaScale(d.agriculturalLand)
-     })
-     .attr('fill', agricCol);
+        .append('rect')
+        .attr('class','forest-square')
+        .attr('x', function (d) {
+            return 0;
+        })
+        .attr('y', function (d) {
+            return -landAreaScale(d.forestArea)
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.forestArea)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.forestArea)
+        })
+        .attr('fill', forestCol);
 
     landSquaresGroup
-     .append('rect')
-     .attr('x', function (d) {
-     return -landAreaScale(d.arableLand)
-     })
-     .attr('y', function (d) {
-     return -landAreaScale(d.arableLand)
-     })
-     .attr('width', function (d) {
-     return landAreaScale(d.arableLand)
-     })
-     .attr('height', function (d) {
-     return landAreaScale(d.arableLand)
-     })
-     .attr('fill', arableCol);
+        .append('rect')
+        .attr('class','agriculture-square')
+        .attr('x', function (d) {
+            return -landAreaScale(d.agriculturalLand)
+        })
+        .attr('y', function (d) {
+            return -landAreaScale(d.agriculturalLand)
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.agriculturalLand)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.agriculturalLand)
+        })
+        .attr('fill', agricCol);
 
     landSquaresGroup
-     .append('rect')
-     .attr('x', function (d) {
-     return -landAreaScale(d.otherLand)
-     })
-     .attr('y', function (d) {
-     return 0;
-     })
-     .attr('width', function (d) {
-     return landAreaScale(d.otherLand)
-     })
-     .attr('height', function (d) {
-     return landAreaScale(d.otherLand)
-     })
-     .attr('fill', otherCol);
+        .append('rect')
+        .attr('class','arable-square')
+        .attr('x', function (d) {
+            return -landAreaScale(d.arableLand)
+        })
+        .attr('y', function (d) {
+            return -landAreaScale(d.arableLand)
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.arableLand)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.arableLand)
+        })
+        .attr('fill', arableCol);
 
     landSquaresGroup
-     .append('rect')
-     .attr('x', function (d) {
-     return 0;
-     })
-     .attr('y', function (d) {
-     return 0;
-     })
-     .attr('width', function (d) {
-     return landAreaScale(d.urbanLand)
-     })
-     .attr('height', function (d) {
-     return landAreaScale(d.urbanLand)
-     })
-     .attr('fill', urbanCol);
+        .append('rect')
+        .attr('class','other-square')
+        .attr('x', function (d) {
+            return -landAreaScale(d.otherLand)
+        })
+        .attr('y', function (d) {
+            return 0;
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.otherLand)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.otherLand)
+        })
+        .attr('fill', otherCol);
+
+    landSquaresGroup
+        .append('rect')
+        .attr('class','urban-square')
+        .attr('x', function (d) {
+            return 0;
+        })
+        .attr('y', function (d) {
+            return 0;
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.urbanLand)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.urbanLand)
+        })
+        .attr('fill', urbanCol);
 
 
      degradedSquareGroup
@@ -537,9 +562,10 @@ function drawCrowdingSquares(countryCrowding){
         .attr("height", 1)
         .attr("width", 1)
         .attr('preserveAspectRatio',"xMidYMid slice")
-        .attr("xlink:href", function(d){ return './images/test.png'});  //replace with link text built using countryCrowding, when imgs avail
+        .attr("xlink:href", function(d){ return './images/'+ Math.floor(countryCrowding.peoplePerKm) +'.png'});  //replace with link text built using countryCrowding, when imgs avail
 
     svg.append('rect')
+        .attr('class','crowding-fill')
         .attr('x',function(d){
             return -50
         })
@@ -552,7 +578,7 @@ function drawCrowdingSquares(countryCrowding){
         .attr('height',function(d){
             return 100
         })
-        .attr('transform','translate(' + centerScaleX(.6) + ',' + centerScaleY(.4) + ')')
+        .attr('transform','translate(' + centerScaleX(centerCoords.crowdingSquares[0]) + ',' + centerScaleY(centerCoords.crowdingSquares[1]) + ')')
         .attr('fill', 'url(#test-pattern)');
 
     svg.append('rect')
@@ -568,7 +594,7 @@ function drawCrowdingSquares(countryCrowding){
         .attr('height',function(d){
             return 100
         })
-        .attr('transform','translate(' + centerScaleX(.6) + ',' + centerScaleY(.4) + ')')
+        .attr('transform','translate(' + centerScaleX(centerCoords.crowdingSquares[0]) + ',' + centerScaleY(centerCoords.crowdingSquares[1]) + ')')
         .attr('fill', 'none')
         .attr('stroke-width',1)
         .attr('stroke','gray');
@@ -579,7 +605,9 @@ function drawCrowdingSquares(countryCrowding){
 function drawFoodBars(countryFoodBalance){
 
     console.log(countryFoodBalance);
+
     svg.append('rect')
+        .attr('class','imports-bar')
         .attr('x',function(d){
             return 0
         })
@@ -590,15 +618,17 @@ function drawFoodBars(countryFoodBalance){
             return 25
         })
         .attr('height',function(d){
+
             console.log(foodBalanceScale(countryFoodBalance[0].importQuantity));
             return foodBalanceScale(countryFoodBalance[0].importQuantity);
         })
-        .attr('transform','translate(' + centerScaleX(.06) + ',' + centerScaleY(.7) + ')')
+        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar1[0]) + ',' + centerScaleY(centerCoords.foodBar1[1]) + ')')
         .attr('fill','teal')
         .attr('fill-opacity',.3);
 
 
     svg.append('rect')
+        .attr('class','produced-bar')
         .attr('x',function(d){
             return 0
         })
@@ -612,11 +642,12 @@ function drawFoodBars(countryFoodBalance){
             console.log(countryFoodBalance[0].importQuantity);
             return foodBalanceScale(countryFoodBalance[0].produced);
         })
-        .attr('transform','translate(' + centerScaleX(.06) + ',' + centerScaleY(.7) + ')')
+        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar1[0]) + ',' + centerScaleY(centerCoords.foodBar1[1]) + ')')
         .attr('fill','purple')
         .attr('fill-opacity',.3);
 
     svg.append('rect')
+        .attr('class','exports-bar')
         .attr('x',function(d){
             return 0
         })
@@ -629,11 +660,12 @@ function drawFoodBars(countryFoodBalance){
         .attr('height',function(d){
             return foodBalanceScale(countryFoodBalance[0].exportQuantity);
         })
-        .attr('transform','translate(' + centerScaleX(.16) + ',' + centerScaleY(.7) + ')')
+        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar2[0]) + ',' + centerScaleY(centerCoords.foodBar2[1]) + ')')
         .attr('fill','green')
         .attr('fill-opacity',.3);
 
     svg.append('rect')
+        .attr('class','used-food-bar')
         .attr('x',function(d){
             return 0
         })
@@ -646,11 +678,12 @@ function drawFoodBars(countryFoodBalance){
         .attr('height',function(d){
             return foodBalanceScale(countryFoodBalance[0].usedFood);
         })
-        .attr('transform','translate(' + centerScaleX(.16) + ',' + centerScaleY(.7) + ')')
+        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar2[0]) + ',' + centerScaleY(centerCoords.foodBar2[1]) + ')')
         .attr('fill','magenta')
         .attr('fill-opacity',.3);
 
     svg.append('rect')
+        .attr('class','used-nonfood-bar')
         .attr('x',function(d){
             return 0
         })
@@ -663,12 +696,13 @@ function drawFoodBars(countryFoodBalance){
         .attr('height',function(d){
             return foodBalanceScale(countryFoodBalance[0].usedNonFood);
         })
-        .attr('transform','translate(' + centerScaleX(.16) + ',' + centerScaleY(.7) + ')')
+        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar2[0]) + ',' + centerScaleY(centerCoords.foodBar2[1]) + ')')
         .attr('fill','blue')
         .attr('fill-opacity',.3);
 
 
     svg.append('rect')
+        .attr('class','waste-bar')
         .attr('x',function(d){
             return 0
         })
@@ -681,7 +715,7 @@ function drawFoodBars(countryFoodBalance){
         .attr('height',function(d){
             return foodBalanceScale(countryFoodBalance[0].waste);
         })
-        .attr('transform','translate(' + centerScaleX(.16) + ',' + centerScaleY(.7) + ')')
+        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar2[0]) + ',' + centerScaleY(centerCoords.foodBar2[1]) + ')')
         .attr('fill','orange    ')
         .attr('fill-opacity',.3);
 }
@@ -690,9 +724,10 @@ function drawCalories(countryCalories){
     console.log(countryCalories)
 
     svg.append('circle')
+        .attr('class','calories-circ')
         .attr('cx',0)
         .attr('cy',0)
-        .attr('transform','translate(' + centerScaleX(.4) + ',' + centerScaleY(.8) + ')')
+        .attr('transform','translate(' + centerScaleX(centerCoords.calories[0]) + ',' + centerScaleY(centerCoords.calories[1]) + ')')
         .attr('r',calorieScale(countryCalories[0].total.avgPerCapFoodSupply))
         .attr('fill','orange')
 
@@ -701,6 +736,284 @@ function drawCalories(countryCalories){
 function drawPCLandUse(){
 
 }
+
+
+
+function updateDrawings(countryYearUpdate, balanceUpdate, pcLandUpdate){
+
+    svg.selectAll('.squares-group').data(countryYearUpdate);
+    svg.selectAll('.degradedSquares-group').data(countryYearUpdate);
+    svg.selectAll('.stats-group').data(countryYearUpdate);
+    svg.selectAll('.pop-bars').data(countryYearUpdate);
+
+
+    d3.selectAll('.agriculture-square')
+        .data(countryYearUpdate)
+        .attr('x', function (d) {
+            return -landAreaScale(d.agriculturalLand)
+        })
+        .attr('y', function (d) {
+            return -landAreaScale(d.agriculturalLand)
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.agriculturalLand)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.agriculturalLand)
+        });
+
+    d3.selectAll('.forest-square')
+        .data(countryYearUpdate)
+        .attr('x', function (d) {
+            return 0;
+        })
+        .attr('y', function (d) {
+            return -landAreaScale(d.forestArea)
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.forestArea)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.forestArea)
+        });
+
+    d3.selectAll('.urban2050-square')
+        .data(countryYearUpdate)
+        .attr('x', function (d) {
+            return -1;
+        })
+        .attr('y', function (d) {
+            return -.5;
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.urbanLand2050)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.urbanLand2050)
+        });
+
+    d3.selectAll('.arable-square')
+        .data(countryYearUpdate)
+        .attr('x', function (d) {
+            return -landAreaScale(d.arableLand)
+        })
+        .attr('y', function (d) {
+            return -landAreaScale(d.arableLand)
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.arableLand)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.arableLand)
+        });
+
+    d3.selectAll('.other-square')
+        .data(countryYearUpdate)
+        .attr('x', function (d) {
+            return -landAreaScale(d.otherLand)
+        })
+        .attr('y', function (d) {
+            return 0;
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.otherLand)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.otherLand)
+        });
+
+    d3.selectAll('.urban-square')
+        .data(countryYearUpdate)
+        .attr('x', function (d) {
+            return 0;
+        })
+        .attr('y', function (d) {
+            return 0;
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.urbanLand)
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.urbanLand)
+        });
+
+
+
+    /////////////////////////////////////////////
+    //Pop bars
+    /////////////////////////////////////////////
+
+    d3.selectAll('.total-pop-bar')
+        .data(countryYearUpdate)
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', function(d){
+            return popLineScale(d.totalPop);
+        })
+        .attr('height', function(d){
+            return 5;//popScale(d.totalPop);
+        });
+
+    d3.selectAll('.urban-pop-bar')
+        .data(countryYearUpdate)
+        .attr('x', 0)
+        .attr('y', 0) //+ popScale(d.totalPop)-popScale(d.urbanPop)})
+        .attr('width', function(d){
+            return popLineScale(d.urbanPop);
+        })
+        .attr('height', function(d){
+            return 5;//popScale(d.urbanPop);
+        });
+
+    d3.selectAll('.pop-2050-bar')
+        .data(countryYearUpdate)
+        .attr('x', 0)
+        .attr('y', 0)// + popScale(d.totalPop)-popScale(d.totalPop2050)})
+        .attr('width', function(d){
+            return popLineScale(d.totalPop2050);
+        })
+        .attr('height', function(d){
+            return 5;//popScale(d.totalPop2050);
+        });
+
+
+
+    /////////////////////////////////////////////
+    //Crowding boxes
+    /////////////////////////////////////////////
+
+    //not sure why, but patterns don't appear to be updated on resetting xlink values and re-assigning fill parameters.
+    //Instead, have to remove the pattern altogether and start over.
+    d3.selectAll('defs').remove();
+
+    var pattern = svg.append("defs")
+        .append("pattern")
+        .attr('id',function(d){ return 'test-pattern';})
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr('patternContentUnits',"objectBoundingBox")
+        .attr('viewBox',"0 0 1 1")
+        .attr('preserveAspectRatio',"xMidYMid slice")
+        .append('image')
+        .attr("height", 1)
+        .attr("width", 1)
+        .attr('preserveAspectRatio',"xMidYMid slice")
+        .attr("xlink:href", function(d){ return './images/'+ Math.floor(countryYearUpdate[0].peoplePerKm) +'.png'});  //replace with link text built using countryCrowding, when imgs avail
+
+    d3.selectAll('.crowding-fill')
+        .attr('fill', 'url(#test-pattern)');
+
+
+
+    /////////////////////////////////////////////
+    //Food Bars
+    /////////////////////////////////////////////
+
+    d3.selectAll('.imports-bar')
+        .attr('x',function(d){
+            return 0
+        })
+        .attr('y',function(d){
+            return 0
+        })
+        .attr('width',function(d){
+            return 25
+        })
+        .attr('height',function(d){
+            return foodBalanceScale(balanceUpdate[0].importQuantity);
+        })
+
+    d3.selectAll('.produced-bar')
+        .attr('x',function(d){
+            return 0
+        })
+        .attr('y',function(d){
+            return foodBalanceScale(balanceUpdate[0].importQuantity);
+        })
+        .attr('width',function(d){
+            return 25
+        })
+        .attr('height',function(d){
+            console.log(balanceUpdate[0].importQuantity);
+            return foodBalanceScale(balanceUpdate[0].produced);
+        })
+
+    d3.selectAll('.exports-bar')
+        .attr('x',function(d){
+            return 0
+        })
+        .attr('y',function(d){
+            return 0
+        })
+        .attr('width',function(d){
+            return 25
+        })
+        .attr('height',function(d){
+            return foodBalanceScale(balanceUpdate[0].exportQuantity);
+        })
+
+    d3.selectAll('.used-food-bar')
+        .attr('x',function(d){
+            return 0
+        })
+        .attr('y',function(d){
+            return foodBalanceScale(balanceUpdate[0].exportQuantity);
+        })
+        .attr('width',function(d){
+            return 25
+        })
+        .attr('height',function(d){
+            return foodBalanceScale(balanceUpdate[0].usedFood);
+        })
+
+    d3.selectAll('.used-nonfood-bar')
+        .attr('x',function(d){
+            return 0
+        })
+        .attr('y',function(d){
+            return foodBalanceScale(balanceUpdate[0].usedFood) + foodBalanceScale(balanceUpdate[0].exportQuantity);
+        })
+        .attr('width',function(d){
+            return 25
+        })
+        .attr('height',function(d){
+            return foodBalanceScale(balanceUpdate[0].usedNonFood);
+        })
+
+    d3.selectAll('.waste-bar')
+        .attr('x',function(d){
+            return 0
+        })
+        .attr('y',function(d){
+            return foodBalanceScale(balanceUpdate[0].usedFood) + foodBalanceScale(balanceUpdate[0].exportQuantity) +foodBalanceScale(balanceUpdate[0].usedNonFood);
+        })
+        .attr('width',function(d){
+            return 25
+        })
+        .attr('height',function(d){
+            return foodBalanceScale(balanceUpdate[0].waste);
+        })
+
+
+
+
+
+    /////////////////////////////////////////////
+    //Calories
+    /////////////////////////////////////////////
+
+    d3.selectAll('.calories-circ')
+        .attr('r',calorieScale(pcLandUpdate[0].total.avgPerCapFoodSupply));
+
+
+    /////////////////////////////////////////////
+    //Land Use Requirements
+    /////////////////////////////////////////////
+
+
+
+}
+
 
 
 

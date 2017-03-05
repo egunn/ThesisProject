@@ -260,8 +260,12 @@ queue()
 
         //console.log(countryTable);
 
+        var testSort = countryTable.sort(function(a,b){
+            return a.country.toLowerCase().localeCompare(b.country.toLowerCase());
+        });
+
         //parse country list for dropdown
-        countryTable.forEach(function (n) {
+        testSort.forEach(function (n) {
             d3.select(".countryDropdown") //class in the html file
                 .append("option") //it has to be called this name
                 .html(n.FULLNAME) //what is going to be written in the text
