@@ -41,10 +41,11 @@ typeCol = 'gray';//'#ecd9c6';
 mapCol = '#b2a394';
 mapHighlightCol = '#e8e1da';/*'#e0cebc';*/
 
-tracker = {country:"US", init:true,year:1975};
+tracker = {country:{l:"US",r:"CN"}, init:true, year:1975, view:"overview",mode:"sbs",varType:"population"};
 importedData = [];
 balanceData =[];
 pcLandUse=[];
+dropdownValues = []; //global used to populate the dropdown selections
 
 /*
  var forestSize = d3.scaleLinear().range([1,10]).domain([1,10]);
@@ -100,33 +101,69 @@ var b2 = $('<button />', {
 
 b2.appendTo('#navbar-container').addClass('nav-button');
 
-//append select element (will populate later with d3)
-//http://stackoverflow.com/questions/4814512/how-to-create-dropdown-list-dynamically-using-jquery
-var s = $('<select/>'); //class=""
-s.appendTo('#navbar-container').addClass('type-list form-control countryDropdown');
+addDropdown();
 
-//add default option to dropdown menu (otherwise, won't show US as first selection)
-d3.select(".countryDropdown") //class in the html file
-    .append("option") //it has to be called this name
-    .html("United States") //what is going to be written in the text
-    .attr("value", "US");
+function addDropdown(){
 
-//set up change function for dropdown
-d3.select(".countryDropdown").on("change", function () {
-    console.log(this.value);
-    countryDispatch.call("changeCountry", this, this.value);
-});
+    //append select element (will populate later with d3)
+    //http://stackoverflow.com/questions/4814512/how-to-create-dropdown-list-dynamically-using-jquery
+    var s = $('<select/>'); //class=""
+    s.appendTo('#navbar-container').addClass('type-list form-control countryDropdown').attr('id',function(){
+        if (tracker.init == true){
+            return "left-dropdown";
+        }
+        else{
+            return "right-dropdown";
+        }
+    });
+
+
+    if (tracker.init == true){
+        //add default option to dropdown menu (otherwise, won't show US as first selection)
+        d3.select("#left-dropdown") //class in the html file
+            .append("option") //it has to be called this name
+            .html("United States") //what is going to be written in the text
+            .attr("value", "US");
+
+        //set up change function for dropdown
+        d3.select("#left-dropdown").on("change", function () {
+            console.log(this.value);
+            countryDispatch.call("changeCountry", this, this.value,"left");
+        });
+    }
+    else{
+        //add default option to dropdown menu (otherwise, won't show US as first selection)
+        d3.select("#right-dropdown") //class in the html file
+            .append("option") //it has to be called this name
+            .html("United States") //what is going to be written in the text
+            .attr("value", "US");
+
+        //set up change function for dropdown
+        d3.select("#right-dropdown").on("change", function () {
+            console.log(this.value);
+            countryDispatch.call("changeCountry", this, this.value,"right");
+        });
+    }
+
 
 //set up dispatcher for the dropdown
-countryDispatch = d3.dispatch('changeCountry');
+    countryDispatch = d3.dispatch('changeCountry');
 
 //dispatch function updates the selected country and calls the update function when dropdown item is selected
-countryDispatch.on("changeCountry", function (countrySelected, i) { //country is the value of the option selected in the dropdown
+    countryDispatch.on("changeCountry", function (countrySelected, whichDropdown) { //country is the value of the option selected in the dropdown
 
-    console.log(countrySelected);
-    tracker.country = countrySelected;
-    updateData();
-});
+        if(whichDropdown == "left"){
+            tracker.country.l = countrySelected;
+        }
+        else if (whichDropdown == "right"){
+            tracker.country.r = countrySelected;
+        }
+
+        updateData();
+    });
+
+}
+
 
 //auto-hide bottom navbar to open up screen space
 d3.select('.to-collapse').attr('class','to-collapse out');
@@ -139,7 +176,6 @@ d3.select('.collapse-button').html('Show Nav');
 
  function dataLoaded(soilData) {
  console.log(soilData);
-
 
  }*/
 
@@ -191,11 +227,11 @@ function updateData() {
     //console.log(byCountry.filter(function(d){return d}).group().top(Infinity));  //same as above
     //console.log(byCountry.filterExact("Argentina").top(Infinity));  //returns all years for Argentina, as objects
 
-    var countryPop = byCountry.filterExact(tracker.country).top(Infinity);
+    var countryPop = byCountry.filterExact(tracker.country.l).top(Infinity);
 
     //get data for Argentina in 2010
     //console.log(byCountry.filterExact(tracker.country).top(Infinity).filter(function(d){return d.year == '2010';}));
-    var countryYear = byCountry.filterExact(tracker.country).top(Infinity).filter(function(d){return d.year == tracker.year;});
+    var countryYear = byCountry.filterExact(tracker.country.l).top(Infinity).filter(function(d){return d.year == tracker.year;});
 
     var pcRegionYear = pcByRegion.filterExact(tracker.region).top(Infinity).filter(function(d){return d.year == tracker.year;});
 
@@ -206,15 +242,15 @@ function updateData() {
 
     countryArray = databyCountry.top(Infinity).slice();
 
-    var testSort = countryArray.sort(function(a,b){
+    dropdownValues = countryArray.sort(function(a,b){
         //needs a case-insensitive alphabetical sort
         return a.country.toLowerCase().localeCompare(b.country.toLowerCase());
     });
 
 
     //parse country list for dropdown
-    testSort.forEach(function (n) {
-        d3.select(".countryDropdown") //class in the html file
+    dropdownValues.forEach(function (n) {
+        d3.select("#left-dropdown") //class in the html file
             .append("option") //it has to be called this name
             .html(n.FULLNAME) //what is going to be written in the text
             .attr("value", n.NAME); //what is going to be written in value
@@ -229,21 +265,65 @@ function updateData() {
 
     //Math.max(balanceData.map(function(o){return o.total;}))
 
-    countryBalance = balanceData.filter(function(d){return d.countryCode == tracker.country && d.year == tracker.year});
+    countryBalance = balanceData.filter(function(d){return d.countryCode == tracker.country.l && d.year == tracker.year});
+
+    console.log(tracker.view);
 
     if (tracker.init == true){
-        drawPopBars(countryYear);
-        drawLandSquares(countryYear[0]);
-        drawCrowdingSquares(countryYear[0]);
-        drawFoodBars(countryBalance);
-        drawCalories(pcRegionYear);
-        //drawLandReqts
+        if (tracker.view == "overview"){
+            drawPopBars(countryYear);
+            drawLandSquares(countryYear[0]);
+            drawCrowdingSquares(countryYear[0]);
+            drawFoodBars(countryBalance);
+            drawCalories(pcRegionYear);
+            //drawLandReqts
+        }
+        else if (tracker.view == "compare"){
+            svg.selectAll('*').remove();
+
+            console.log(tracker.mode, tracker.varType);
+            if(tracker.mode == "sbs"){
+                if(tracker.varType == "population"){
+                    console.log(countryYear);
+                    drawPopBars(countryYear);
+                    drawCrowdingSquares(countryYear[0]);
+                }
+                else if(tracker.varType == "food"){
+                    drawFoodBars(countryBalance);
+                    drawCalories(pcRegionYear);
+                    //drawLandReqts
+                }
+                else if(tracker.varType == "land"){
+                    drawLandSquares(countryYear[0]);
+                }
+            }
+            else if(tracker.mode == "rank"){
+                if(tracker.varType == "population"){
+
+                }
+                else if(tracker.varType == "food"){
+
+                }
+                else if(tracker.varType == "land"){
+
+                }
+            }
+
+
+        }
 
         tracker.init = false;
     }
 
     else {
-        updateDrawings(countryYear, countryBalance, pcRegionYear);
+
+        updatePopBars(countryYear);
+        updateLandSquares(countryYear);
+        updateCrowdingSquares(countryYear);
+        updateFoodBars(countryBalance);
+        updateCalories(pcRegionYear);
+        //updateLandReqts()
+
     }
 
 
@@ -266,14 +346,36 @@ centers = [
 
 //controls transform/translate properties of each subdrawing
 centerCoords = {
-    popBars:[.06,.1],
-    landSquares:[.2,.4],
-    degradedSquares:[.4,.4],
-    crowdingSquares:[.6,.4],
-    foodBar1:[.06,.7],
-    foodBar2:[.16,.7],
-    calories:[.4,.8],
-    perCapita:[.6,.8]
+    overview: {
+        popBars: [.06, .1],
+        landSquares: [.2, .4],
+        degradedSquares: [.4, .4],
+        crowdingSquares: [.6, .4],
+        foodBar1: [.06, .7],
+        foodBar2: [.16, .7],
+        calories: [.4, .8],
+        perCapita: [.6, .8]
+    },
+    sbs: {
+        popBars: [.06, .1],
+        landSquares: [.2, .4],
+        degradedSquares: [.4, .4],
+        crowdingSquares: [.13, .4],
+        foodBar1: [.06, .1],
+        foodBar2: [.16, .1],
+        calories: [.4, .2],
+        perCapita: [.6, .1]
+    },
+    rank: {
+        popBars: [.06, .1],
+        landSquares: [.2, .4],
+        degradedSquares: [.4, .4],
+        crowdingSquares: [.6, .4],
+        foodBar1: [.06, .7],
+        foodBar2: [.16, .7],
+        calories: [.4, .8],
+        perCapita: [.6, .8]
+    }
 };
 
 svg.selectAll('.center-dots')
@@ -292,9 +394,28 @@ svg.selectAll('.center-dots')
 
 function drawPopBars(dataIn){
 
+    var translateX;
+    var translateY;
+
+    if (tracker.view == "overview"){
+        translateX = centerScaleX(centerCoords.overview.popBars[0]);
+        translateY = centerScaleY(centerCoords.overview.popBars[1]);
+    }
+    else if (tracker.view == "compare"){
+        if (tracker.mode == "sbs"){
+            translateX = centerScaleX(centerCoords.sbs.popBars[0]);
+            translateY = centerScaleY(centerCoords.sbs.popBars[1]);
+        }
+        else if(tracker.mode == "rank"){
+            translateX = centerScaleX(centerCoords.rank.popBars[0]);
+            translateY = centerScaleY(centerCoords.rank.popBars[1]);
+        }
+    }
+
+
     var popBars = svg.append('g')
         .attr('class','pop-bars')
-        .attr('transform','translate(' + centerScaleX(centerCoords.popBars[0]) + ',' + centerScaleY(centerCoords.popBars[1]) + ')')
+        .attr('transform','translate(' + translateX + ',' + translateY + ')')
         .data(dataIn);
 
     popBars
@@ -355,6 +476,34 @@ function drawLandSquares(countryObject){
 
     console.log(countryObject);
 
+    var translateX;
+    var translateY;
+    var translateXdeg;
+    var translateYdeg;
+
+    if (tracker.view == "overview"){
+        console.log("overview");
+        translateX = centerScaleX(centerCoords.overview.landSquares[0]);
+        translateY = centerScaleY(centerCoords.overview.landSquares[1]);
+        translateXdeg = centerScaleX(centerCoords.overview.degradedSquares[0]);
+        translateYdeg = centerScaleY(centerCoords.overview.degradedSquares[1]);
+    }
+    else if (tracker.view == "compare"){
+        console.log("compare");
+        if (tracker.mode == "sbs"){
+            translateX = centerScaleX(centerCoords.sbs.landSquares[0]);
+            translateY = centerScaleY(centerCoords.sbs.landSquares[1]);
+            translateXdeg = centerScaleX(centerCoords.sbs.degradedSquares[0]);
+            translateYdeg = centerScaleY(centerCoords.sbs.degradedSquares[1]);
+        }
+        else if(tracker.mode == "rank"){
+            translateX = centerScaleX(centerCoords.rank.landSquares[0]);
+            translateY = centerScaleY(centerCoords.rank.landSquares[1]);
+            translateXdeg = centerScaleX(centerCoords.rank.degradedSquares[0]);
+            translateYdeg = centerScaleY(centerCoords.rank.degradedSquares[1]);
+        }
+    }
+
     //can't bind to an object - need to put it in an array first
     var testArray = [];
     testArray.push(countryObject);
@@ -363,20 +512,19 @@ function drawLandSquares(countryObject){
     d3.selectAll('.squares-group').remove();
     d3.selectAll('.stats-group').remove();
 
-
     var landSquaresGroup = svg.selectAll('.squares-group')
         .data(testArray)
         .enter()
         .append('g')
         .attr('class', 'squares-group')
-        .attr('transform', 'translate(' + centerScaleX(centerCoords.landSquares[0]) + ',' + centerScaleY(centerCoords.landSquares[1]) + ')');
+        .attr('transform', 'translate(' + translateX + ',' + translateY + ')');
 
     var degradedSquareGroup = svg.selectAll('.degradedSquares-group')
         .data(testArray)
         .enter()
         .append('g')
         .attr('class', 'degraded-squares-group')
-        .attr('transform', 'translate(' + centerScaleX(centerCoords.degradedSquares[0]) + ',' + centerScaleY(centerCoords.degradedSquares[1]) + ')');
+        .attr('transform', 'translate(' + translateXdeg + ',' + translateYdeg + ')');
 
     var statsGroup = svg.selectAll('.stats-group')
         .data(testArray)
@@ -548,7 +696,25 @@ function drawLandSquares(countryObject){
 
 function drawCrowdingSquares(countryCrowding){
 
-    console.log(Math.floor(countryCrowding.peoplePerKm));
+    var translateX;
+    var translateY;
+
+    if (tracker.view == "overview"){
+        console.log("overview");
+        translateX = centerScaleX(centerCoords.overview.crowdingSquares[0]);
+        translateY = centerScaleY(centerCoords.overview.crowdingSquares[1]);
+    }
+    else if (tracker.view == "compare"){
+        console.log("compare");
+        if (tracker.mode == "sbs"){
+            translateX = centerScaleX(centerCoords.sbs.crowdingSquares[0]);
+            translateY = centerScaleY(centerCoords.sbs.crowdingSquares[1]);
+        }
+        else if(tracker.mode == "rank"){
+            translateX = centerScaleX(centerCoords.rank.crowdingSquares[0]);
+            translateY = centerScaleY(centerCoords.rank.crowdingSquares[1]);
+        }
+    }
 
     var pattern = svg.append("defs")
         .append("pattern")
@@ -578,7 +744,7 @@ function drawCrowdingSquares(countryCrowding){
         .attr('height',function(d){
             return 100
         })
-        .attr('transform','translate(' + centerScaleX(centerCoords.crowdingSquares[0]) + ',' + centerScaleY(centerCoords.crowdingSquares[1]) + ')')
+        .attr('transform','translate(' + translateX + ',' + translateY + ')')
         .attr('fill', 'url(#test-pattern)');
 
     svg.append('rect')
@@ -594,7 +760,7 @@ function drawCrowdingSquares(countryCrowding){
         .attr('height',function(d){
             return 100
         })
-        .attr('transform','translate(' + centerScaleX(centerCoords.crowdingSquares[0]) + ',' + centerScaleY(centerCoords.crowdingSquares[1]) + ')')
+        .attr('transform','translate(' + translateX + ',' + translateY + ')')
         .attr('fill', 'none')
         .attr('stroke-width',1)
         .attr('stroke','gray');
@@ -604,7 +770,34 @@ function drawCrowdingSquares(countryCrowding){
 
 function drawFoodBars(countryFoodBalance){
 
-    console.log(countryFoodBalance);
+
+    var translateX1;
+    var translateY1;
+    var translateX2;
+    var translateY2;
+
+    if (tracker.view == "overview"){
+        console.log("overview");
+        translateX1 = centerScaleX(centerCoords.overview.foodBar1[0]);
+        translateY1 = centerScaleY(centerCoords.overview.foodBar1[1]);
+        translateX2 = centerScaleX(centerCoords.overview.foodBar2[0]);
+        translateY2 = centerScaleY(centerCoords.overview.foodBar2[1]);
+    }
+    else if (tracker.view == "compare"){
+        console.log("compare");
+        if (tracker.mode == "sbs"){
+            translateX1 = centerScaleX(centerCoords.sbs.foodBar1[0]);
+            translateY1 = centerScaleY(centerCoords.sbs.foodBar1[1]);
+            translateX2 = centerScaleX(centerCoords.sbs.foodBar2[0]);
+            translateY2 = centerScaleY(centerCoords.sbs.foodBar2[1]);
+        }
+        else if(tracker.mode == "rank"){
+            translateX1 = centerScaleX(centerCoords.rank.foodBar1[0]);
+            translateY1 = centerScaleY(centerCoords.rank.foodBar1[1]);
+            translateX2 = centerScaleX(centerCoords.rank.foodBar2[0]);
+            translateY2 = centerScaleY(centerCoords.rank.foodBar2[1]);;
+        }
+    }
 
     svg.append('rect')
         .attr('class','imports-bar')
@@ -622,7 +815,7 @@ function drawFoodBars(countryFoodBalance){
             console.log(foodBalanceScale(countryFoodBalance[0].importQuantity));
             return foodBalanceScale(countryFoodBalance[0].importQuantity);
         })
-        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar1[0]) + ',' + centerScaleY(centerCoords.foodBar1[1]) + ')')
+        .attr('transform','translate(' + translateX1 + ',' + translateY1 + ')')
         .attr('fill','teal')
         .attr('fill-opacity',.3);
 
@@ -642,7 +835,7 @@ function drawFoodBars(countryFoodBalance){
             console.log(countryFoodBalance[0].importQuantity);
             return foodBalanceScale(countryFoodBalance[0].produced);
         })
-        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar1[0]) + ',' + centerScaleY(centerCoords.foodBar1[1]) + ')')
+        .attr('transform','translate(' + translateX1 + ',' + translateY1 + ')')
         .attr('fill','purple')
         .attr('fill-opacity',.3);
 
@@ -660,7 +853,7 @@ function drawFoodBars(countryFoodBalance){
         .attr('height',function(d){
             return foodBalanceScale(countryFoodBalance[0].exportQuantity);
         })
-        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar2[0]) + ',' + centerScaleY(centerCoords.foodBar2[1]) + ')')
+        .attr('transform','translate(' + translateX2 + ',' + translateY2 + ')')
         .attr('fill','green')
         .attr('fill-opacity',.3);
 
@@ -678,7 +871,7 @@ function drawFoodBars(countryFoodBalance){
         .attr('height',function(d){
             return foodBalanceScale(countryFoodBalance[0].usedFood);
         })
-        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar2[0]) + ',' + centerScaleY(centerCoords.foodBar2[1]) + ')')
+        .attr('transform','translate(' + translateX2 + ',' + translateY2 + ')')
         .attr('fill','magenta')
         .attr('fill-opacity',.3);
 
@@ -696,7 +889,7 @@ function drawFoodBars(countryFoodBalance){
         .attr('height',function(d){
             return foodBalanceScale(countryFoodBalance[0].usedNonFood);
         })
-        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar2[0]) + ',' + centerScaleY(centerCoords.foodBar2[1]) + ')')
+        .attr('transform','translate(' + translateX2 + ',' + translateY2 + ')')
         .attr('fill','blue')
         .attr('fill-opacity',.3);
 
@@ -715,7 +908,7 @@ function drawFoodBars(countryFoodBalance){
         .attr('height',function(d){
             return foodBalanceScale(countryFoodBalance[0].waste);
         })
-        .attr('transform','translate(' + centerScaleX(centerCoords.foodBar2[0]) + ',' + centerScaleY(centerCoords.foodBar2[1]) + ')')
+        .attr('transform','translate(' + translateX2 + ',' + translateY2 + ')')
         .attr('fill','orange    ')
         .attr('fill-opacity',.3);
 }
@@ -723,11 +916,32 @@ function drawFoodBars(countryFoodBalance){
 function drawCalories(countryCalories){
     console.log(countryCalories)
 
+    var translateX;
+    var translateY;
+
+    if (tracker.view == "overview"){
+        console.log("overview");
+        translateX = centerScaleX(centerCoords.overview.calories[0]);
+        translateY = centerScaleY(centerCoords.overview.calories[1]);
+    }
+    else if (tracker.view == "compare"){
+        console.log("compare");
+        if (tracker.mode == "sbs"){
+            translateX = centerScaleX(centerCoords.sbs.calories[0]);
+            translateY = centerScaleY(centerCoords.sbs.calories[1]);
+        }
+        else if(tracker.mode == "rank"){
+            translateX = centerScaleX(centerCoords.rank.calories[0]);
+            translateY = centerScaleY(centerCoords.rank.calories[1]);
+        }
+    }
+
+
     svg.append('circle')
         .attr('class','calories-circ')
         .attr('cx',0)
         .attr('cy',0)
-        .attr('transform','translate(' + centerScaleX(centerCoords.calories[0]) + ',' + centerScaleY(centerCoords.calories[1]) + ')')
+        .attr('transform','translate(' + translateX + ',' + translateY + ')')
         .attr('r',calorieScale(countryCalories[0].total.avgPerCapFoodSupply))
         .attr('fill','orange')
 
@@ -739,15 +953,17 @@ function drawPCLandUse(){
 
 
 
-function updateDrawings(countryYearUpdate, balanceUpdate, pcLandUpdate){
+//********************************************************
+//  UPDATE functions
+//********************************************************
 
+function updateLandSquares(countryYearUpdate){
     svg.selectAll('.squares-group').data(countryYearUpdate);
     svg.selectAll('.degradedSquares-group').data(countryYearUpdate);
     svg.selectAll('.stats-group').data(countryYearUpdate);
-    svg.selectAll('.pop-bars').data(countryYearUpdate);
 
 
-    d3.selectAll('.agriculture-square')
+    d3.selectAll ('.agriculture-square')
         .data(countryYearUpdate)
         .attr('x', function (d) {
             return -landAreaScale(d.agriculturalLand)
@@ -837,11 +1053,9 @@ function updateDrawings(countryYearUpdate, balanceUpdate, pcLandUpdate){
             return landAreaScale(d.urbanLand)
         });
 
-
-
-    /////////////////////////////////////////////
-    //Pop bars
-    /////////////////////////////////////////////
+}
+function updatePopBars(countryYearUpdate){
+    svg.selectAll('.pop-bars').data(countryYearUpdate);
 
     d3.selectAll('.total-pop-bar')
         .data(countryYearUpdate)
@@ -876,12 +1090,9 @@ function updateDrawings(countryYearUpdate, balanceUpdate, pcLandUpdate){
             return 5;//popScale(d.totalPop2050);
         });
 
+}
 
-
-    /////////////////////////////////////////////
-    //Crowding boxes
-    /////////////////////////////////////////////
-
+function updateCrowdingSquares(countryYearUpdate){
     //not sure why, but patterns don't appear to be updated on resetting xlink values and re-assigning fill parameters.
     //Instead, have to remove the pattern altogether and start over.
     d3.selectAll('defs').remove();
@@ -904,10 +1115,9 @@ function updateDrawings(countryYearUpdate, balanceUpdate, pcLandUpdate){
         .attr('fill', 'url(#test-pattern)');
 
 
+}
+function updateFoodBars(balanceUpdate){
 
-    /////////////////////////////////////////////
-    //Food Bars
-    /////////////////////////////////////////////
 
     d3.selectAll('.imports-bar')
         .attr('x',function(d){
@@ -994,27 +1204,21 @@ function updateDrawings(countryYearUpdate, balanceUpdate, pcLandUpdate){
             return foodBalanceScale(balanceUpdate[0].waste);
         })
 
-
-
-
-
-    /////////////////////////////////////////////
-    //Calories
-    /////////////////////////////////////////////
+}
+function updateCalories(pcLandUpdate){
 
     d3.selectAll('.calories-circ')
         .attr('r',calorieScale(pcLandUpdate[0].total.avgPerCapFoodSupply));
 
-
-    /////////////////////////////////////////////
-    //Land Use Requirements
-    /////////////////////////////////////////////
-
-
+}
+function updateLandReqts(){
 
 }
 
 
+//********************************************************
+// Click events
+//********************************************************
 
 
 function overviewClicked(){
@@ -1022,14 +1226,99 @@ function overviewClicked(){
 
     d3.selectAll('#overview-button').classed('selected', true);
     d3.selectAll('#compare-button').classed('selected', false);
+    d3.selectAll('#right-dropdown').remove();
+
+    tracker.init = true;
+    tracker.view = "overview";
 }
 
 
 function compareClicked(){
     console.log('compare clicked');
 
-    d3.selectAll('#compare-button').classed('selected', true);
-    d3.selectAll('#overview-button').classed('selected', false);
+    if (tracker.view == "overview"){
+
+        d3.selectAll('#compare-button').classed('selected', true);
+        d3.selectAll('#overview-button').classed('selected', false);
+
+
+        addDropdown();
+
+        //parse country list for dropdown
+        dropdownValues.forEach(function (n) {
+            d3.select("#right-dropdown") //class in the html file
+                .append("option") //it has to be called this name
+                .html(n.FULLNAME) //what is going to be written in the text
+                .attr("value", n.NAME); //what is going to be written in value
+            //.style('background','blue'); //change background color (useful for styling multiple levels of aggregation)
+        });
+
+        console.log(d3.selectAll('.radio'));
+
+        //if (d3.selectAll('.radio'))
+
+        $('<br>').appendTo('#body-text');
+
+        $('<input />', { type: 'radio', class:"radio", id:"sbs-radio", name:"mode"}).appendTo('#body-text').attr('checked',true);
+        $('<label />', { 'for': "sbs-radio", text: "Side-by-side comparison" }).appendTo('#body-text');
+
+        $('<br>').appendTo('#body-text');
+
+        $('<input />', { type: 'radio', class:"radio", id:"rank-radio", name:"mode"}).appendTo('#body-text').attr('checked',false);
+        $('<label />', { 'for': "rank-radio", text: "All countries (ranking)" }).appendTo('#body-text');
+
+        $('<br><br>').appendTo('#body-text');
+
+        $('<input />', { type: 'radio', class:"radio", id:"pop-radio", name:"varType"}).appendTo('#body-text').attr('checked',true);
+        $('<label />', { 'for': "pop-radio", text: "Population and crowding" }).appendTo('#body-text');
+
+        $('<br>').appendTo('#body-text');
+
+        $('<input />', { type: 'radio', class:"radio", id:"land-radio", name:"varType"}).appendTo('#body-text').attr('checked',false);
+        $('<label />', { 'for': "land-radio", text: "Land usage and degradation" }).appendTo('#body-text');
+
+        $('<br>').appendTo('#body-text');
+
+        $('<input />', { type: 'radio', class:"radio", id:"food-radio", name:"varType"}).appendTo('#body-text').attr('checked',false);
+        $('<label />', { 'for': "food-radio", text: "Food consumption and land use" }).appendTo('#body-text');
+
+        //add event listener to radio buttons
+        $(".radio").change(function () {
+
+            console.log(this, d3.select(this).attr('id'));
+
+            if ($("#pop-radio").attr("checked")) {
+                $("#land-radio").attr("checked",false);
+                $("#food-radio").attr("checked",false);
+                $('#pop-radioedit:input').removeAttr('disabled');
+            }
+            else {
+                $('#pop-radioedit:input').attr('disabled', 'disabled');
+            }
+
+            if (d3.select(this).attr('id') == "land-radio"){
+                tracker.varType = "land";
+                updateData();
+            }
+            else if (d3.select(this).attr('id') == "food-radio"){
+                tracker.varType = "food";
+                updateData();
+            }
+            else if (d3.select(this).attr('id') == "pop-radio"){
+                tracker.varType = "population";
+                updateData();
+            }
+
+
+        });
+
+    }
+
+    tracker.init = true;
+    tracker.view = "compare";
+
+    updateData();
+
 }
 
 

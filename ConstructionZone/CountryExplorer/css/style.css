@@ -90,7 +90,7 @@ a{
     /*font-weight: bolder;*/
     word-spacing: 4px;
     padding-left: 0px;
-    padding-right: 75px;
+    padding-right: 55px;
     padding-top: 7px;
 }
 
@@ -117,7 +117,7 @@ a{
 
 .countryDropdown {
     display: inline-block;
-    width: 20%;
+    width: 15%;
     border: none;
     background: gainsboro;
     color: #3b3b3b;
@@ -471,4 +471,11 @@ input[type="range"]::-webkit-slider-thumb {
     -moz-border-radius: 20px;
     border-radius: 20px;
     background-color: gainsboro;
+}
+
+.radio{ /*being overwritten by less for some reason - jQuery append??*/
+    display: inline-block;
+    margin-right:6px !important;
+    margin-top:-2px !important;
+    vertical-align:middle !important;
 }
