@@ -1,7 +1,7 @@
 //setup resize event listener on window (resizeView defined in view js file, since it contains d3 updates)
 //window.addEventListener('resize', resizeView, false);
 
-var margin = {t:50,r:50,b:50,l:50},
+var margin = {t:50,r:50,b:50,l:0},
     width = document.getElementById('map').clientWidth,
     height = document.getElementById('map').clientHeight;
 
@@ -9,7 +9,7 @@ var margin = {t:50,r:50,b:50,l:50},
 console.log(width, height);
 
 var active = d3.select(null);
-var zoomedTracker = false;
+zoomedTracker = false;
 
 var map = d3.select('.canvas')
     .append('svg')
@@ -19,7 +19,7 @@ var map = d3.select('.canvas')
     //class to make it responsive
     .classed("svg-content-responsive", true)
     .append('g').attr('class','map')
-    //.attr('transform','translate('+margin.l+','+margin.t+')')
+    .attr('transform','translate('+margin.l+','+margin.t+')')
     .on("click", stopped, true);
 
 
@@ -31,7 +31,7 @@ map.append("rect")
     .attr("class", "rect-background")
     .attr('width',width)
     .attr('height',height)
-    //.attr('transform','translate('+margin.l+','+margin.t+')')
+    .attr('transform','translate('+margin.l+','+margin.t+')')
     .on("click", reset);
 
 var lngLatBoston = [-71.0589,42.3601]
@@ -121,6 +121,8 @@ queue()
             .attr('fill','purple')
             .on('mouseover',function(d){
 
+
+                console.log(zoomedTracker);
                 if (zoomedTracker == false){
 
                     d3.select(this).transition().attr('fill-opacity',1).attr('r',5);
@@ -198,9 +200,9 @@ function clicked(d) {
 }
 
 function reset() {
-
     zoomedTracker = false;
-    console.log('reset');
+
+    console.log('reset',zoomedTracker);
     active.classed("active", false);
     active = d3.select(null);
 
@@ -211,7 +213,13 @@ function reset() {
 }
 
 function zoomed() {
-    zoomedTracker = true;
+    if (d3.event.transform.k == 8){
+        zoomedTracker = true;
+    }
+    else {
+        zoomedTracker = false;
+    }
+
     g.style("stroke-width", 1.5 / d3.event.transform.k + "px");
     // g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")"); // not in d3 v4
     g.attr("transform", d3.event.transform); // updated for d3 v4

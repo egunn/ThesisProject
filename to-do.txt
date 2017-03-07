@@ -12,6 +12,9 @@ move slider and div creation to jQuery to work with default template
 add slider labels for years
 negative value otherLand US 2010??
 reshape foodbalance data
+s/u to filter and pass left and right arrays for side by side mode
+add bar charts (need to pass entire country array, not just country-year)
+
 
 Soil Degradation:
 add pie chart to show % degradation classes? 

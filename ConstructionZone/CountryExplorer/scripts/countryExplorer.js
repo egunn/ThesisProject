@@ -188,8 +188,8 @@ queue()
     .await(function (err, soilData, balanceDataIn, pcLandUseIn) {
 
         //balanceData.filter(function(d){return d.countryName == tracker.country});
-        importedData = soilData;
-        balanceData = balanceDataIn;
+        //importedData = soilData;
+        //balanceData = balanceDataIn;
         pcLandUse = pcLandUseIn;
 
         updateData();
@@ -199,52 +199,68 @@ queue()
 function updateData() {
 
     //set up initial crossfilter
-    var cf = crossfilter(importedData);
+    //var cf = crossfilter(importedData);
 
     var pc = crossfilter(pcLandUse);
 
+
     //add a dimension using the year value
-    var byYear = cf.dimension(function (d) {
-        return +d.year;
-    });
+    // var byYear = cf.dimension(function (d) {
+    //     return +d.year;
+    // });
+
 
     var pcByYear = pc.dimension(function (d) {
         return +d.year;
     });
 
+    //pcLandUse.forEach(function(d){console.log(d.fullname)});
+
+
+    var pcByCountry = pc.dimension(function (d) {
+        return d.countryCode;
+    });
+
+    /*
     //add another dimension that groups by country
     var byCountry = cf.dimension(function (d) {
         //console.log(d);
         return d.NAME;
     });
-
-    var pcByRegion = pc.dimension(function (d) {
-        return d.region;
-    });
+    */
 
     //console.log(byCountry.top(Infinity));  //returns the entire original array of objects
     //console.log(byCountry.group().top(Infinity));  //returns an array of 197 countries, with counts for each (no objects)
     //console.log(byCountry.filter(function(d){return d}).group().top(Infinity));  //same as above
     //console.log(byCountry.filterExact("Argentina").top(Infinity));  //returns all years for Argentina, as objects
 
-    var countryPop = byCountry.filterExact(tracker.country.l).top(Infinity);
+    //var countryPop = byCountry.filterExact(tracker.country.l).top(Infinity);
 
     //get data for Argentina in 2010
     //console.log(byCountry.filterExact(tracker.country).top(Infinity).filter(function(d){return d.year == '2010';}));
-    var countryYear = byCountry.filterExact(tracker.country.l).top(Infinity).filter(function(d){return d.year == tracker.year;});
+    //var countryYear = byCountry.filterExact(tracker.country.l).top(Infinity).filter(function(d){return d.year == tracker.year;});
 
-    var pcRegionYear = pcByRegion.filterExact(tracker.region).top(Infinity).filter(function(d){return d.year == tracker.year;});
+    var pcYear = pcByCountry.top(Infinity).filter(function(d){return d.year == tracker.year;});
+    var pcCountryYearL = pcByCountry.filterExact(tracker.country.l).top(Infinity).filter(function(d){return d.year == tracker.year;});
 
-    var data2010 = byYear.filterExact("2010").top(Infinity);  //return an array with all countries with objects from 2015
-    var databyCountry = byCountry.filter(function(d) {
-        return d;
-    });
+    //console.log(pcByCountry.filterExact('US').top(Infinity));
 
-    countryArray = databyCountry.top(Infinity).slice();
+    //console.log(tracker.country.l, tracker.year);
+    console.log(pcCountryYearL);
 
-    dropdownValues = countryArray.sort(function(a,b){
+    //var data2010 = byYear.filterExact("2010").top(Infinity);  //return an array with all countries with objects from 2015
+    //var databyCountry = byCountry.filter(function(d) {
+    //    return d;
+    //});
+
+
+    //countryArray = pcCountryYear.top(Infinity).slice();
+
+    //console.log(pcCountryYear);
+
+    dropdownValues = pcYear.sort(function(a,b){
         //needs a case-insensitive alphabetical sort
-        return a.country.toLowerCase().localeCompare(b.country.toLowerCase());
+        return a.fullname.toLowerCase().localeCompare(b.fullname.toLowerCase());
     });
 
 
@@ -252,9 +268,16 @@ function updateData() {
     dropdownValues.forEach(function (n) {
         d3.select("#left-dropdown") //class in the html file
             .append("option") //it has to be called this name
-            .html(n.FULLNAME) //what is going to be written in the text
-            .attr("value", n.NAME); //what is going to be written in value
-            //.style('background','blue'); //change background color (useful for styling multiple levels of aggregation)
+            .html(n.fullname) //what is going to be written in the text
+            .attr("value", n.countryCode) //what is going to be written in value
+            .style('background',function(){
+                if(n.dataType == 'country'){
+                    return 'none';
+                }
+                else{
+                    return 'gray';
+                }
+            }); //change background color (useful for styling multiple levels of aggregation)
     });
 
 
@@ -265,17 +288,19 @@ function updateData() {
 
     //Math.max(balanceData.map(function(o){return o.total;}))
 
-    countryBalance = balanceData.filter(function(d){return d.countryCode == tracker.country.l && d.year == tracker.year});
+    //countryBalance = balanceData.filter(function(d){return d.countryCode == tracker.country.l && d.year == tracker.year});
 
-    console.log(tracker.view);
+    //console.log(tracker.view);
+
+    //drawPopBars(pcCountryYearL);
 
     if (tracker.init == true){
         if (tracker.view == "overview"){
-            drawPopBars(countryYear);
-            drawLandSquares(countryYear[0]);
+            drawPopBars(pcCountryYearL);
+            /*drawLandSquares(countryYear[0]);
             drawCrowdingSquares(countryYear[0]);
             drawFoodBars(countryBalance);
-            drawCalories(pcRegionYear);
+            drawCalories(pcRegionYear);*/
             //drawLandReqts
         }
         else if (tracker.view == "compare"){
@@ -317,11 +342,11 @@ function updateData() {
 
     else {
 
-        updatePopBars(countryYear);
-        updateLandSquares(countryYear);
+        updatePopBars(pcCountryYearL);
+        /*updateLandSquares(countryYear);
         updateCrowdingSquares(countryYear);
         updateFoodBars(countryBalance);
-        updateCalories(pcRegionYear);
+        updateCalories(pcRegionYear);*/
         //updateLandReqts()
 
     }
@@ -418,13 +443,15 @@ function drawPopBars(dataIn){
         .attr('transform','translate(' + translateX + ',' + translateY + ')')
         .data(dataIn);
 
+    console.log(dataIn);
+
     popBars
         .append('rect')
         .attr('class','total-pop-bar')
         .attr('x', 0)
         .attr('y', 0)
         .attr('width', function(d){
-            return popLineScale(d.totalPop);
+            return popLineScale(d.lu_totalPop);
         })
         .attr('height', function(d){
             return 5;//popScale(d.totalPop);
@@ -440,7 +467,7 @@ function drawPopBars(dataIn){
         .attr('x', 0)
         .attr('y', 0) //+ popScale(d.totalPop)-popScale(d.urbanPop)})
         .attr('width', function(d){
-            return popLineScale(d.urbanPop);
+            return popLineScale(d.lu_urbanPop);
         })
         .attr('height', function(d){
             return 5;//popScale(d.urbanPop);
@@ -448,8 +475,7 @@ function drawPopBars(dataIn){
         .attr('fill','rgba(50,50, 50,.7)')
         .style('stroke-width', ".5px")
         .attr('stroke','rgb(200,200, 200)')
-        .style('fill-opacity','1')
-        .attr('class','land-area');
+        .style('fill-opacity','1');
 
     popBars
         .append('rect')
@@ -457,7 +483,7 @@ function drawPopBars(dataIn){
         .attr('x', 0)
         .attr('y', 0)// + popScale(d.totalPop)-popScale(d.totalPop2050)})
         .attr('width', function(d){
-            return popLineScale(d.totalPop2050);
+            return popLineScale(d.lu_totalPop2050);
         })
         .attr('height', function(d){
             return 5;//popScale(d.totalPop2050);
@@ -465,8 +491,7 @@ function drawPopBars(dataIn){
         .attr('fill','none')
         .style('stroke-dasharray', ("1.5,2.5"))
         .style('stroke-width', ".5px")
-        .attr('stroke','gray')
-        .attr('class','land-area');
+        .attr('stroke','gray');
 
 
 
@@ -1054,6 +1079,8 @@ function updateLandSquares(countryYearUpdate){
         });
 
 }
+
+
 function updatePopBars(countryYearUpdate){
     svg.selectAll('.pop-bars').data(countryYearUpdate);
 
@@ -1062,7 +1089,7 @@ function updatePopBars(countryYearUpdate){
         .attr('x', 0)
         .attr('y', 0)
         .attr('width', function(d){
-            return popLineScale(d.totalPop);
+            return popLineScale(d.lu_totalPop);
         })
         .attr('height', function(d){
             return 5;//popScale(d.totalPop);
@@ -1073,7 +1100,7 @@ function updatePopBars(countryYearUpdate){
         .attr('x', 0)
         .attr('y', 0) //+ popScale(d.totalPop)-popScale(d.urbanPop)})
         .attr('width', function(d){
-            return popLineScale(d.urbanPop);
+            return popLineScale(d.lu_urbanPop);
         })
         .attr('height', function(d){
             return 5;//popScale(d.urbanPop);
@@ -1084,7 +1111,7 @@ function updatePopBars(countryYearUpdate){
         .attr('x', 0)
         .attr('y', 0)// + popScale(d.totalPop)-popScale(d.totalPop2050)})
         .attr('width', function(d){
-            return popLineScale(d.totalPop2050);
+            return popLineScale(d.lu_totalPop2050);
         })
         .attr('height', function(d){
             return 5;//popScale(d.totalPop2050);
