@@ -407,9 +407,9 @@ footer {
 
 
 .slider-div{
-    padding: 20px 5px 20px 5px;
+    padding: 20px 15px 20px 5px;
     display:-webkit-inline-box;
-    width:90%;
+    width:40%;
 }
 .slider {
     width: 350px;

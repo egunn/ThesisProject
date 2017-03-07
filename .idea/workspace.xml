@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/css/style.css" afterPath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/data/perCapitaLandUseRequirements.json" afterPath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/data/perCapitaLandUseRequirements.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html" afterPath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js" afterPath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/SoilMap/script/script.js" afterPath="$PROJECT_DIR$/ConstructionZone/SoilMap/script/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/to-do.txt" afterPath="$PROJECT_DIR$/to-do.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,11 +27,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="countryExplorer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="countryExplorer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="249" column="0" lean-forward="true" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+            <state relative-caret-position="268">
+              <caret line="89" column="24" lean-forward="false" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="409" column="19" lean-forward="false" selection-start-line="409" selection-start-column="19" selection-end-line="409" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -40,8 +60,8 @@
       <file leaf-file-name="perCapitaLandUseRequirements.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/data/perCapitaLandUseRequirements.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="26979" column="0" lean-forward="false" selection-start-line="26979" selection-start-column="0" selection-end-line="26979" selection-end-column="0" />
+            <state relative-caret-position="7988">
+              <caret line="27438" column="0" lean-forward="false" selection-start-line="27438" selection-start-column="0" selection-end-line="27438" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -60,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>treeData</find>
       <find>pointer</find>
       <find>wrap</find>
       <find>send</find>
@@ -90,6 +109,7 @@
       <find>tracker.country</find>
       <find>dropdownV</find>
       <find>centerCoord</find>
+      <find>dropdow</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -140,15 +160,15 @@
         <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/scrap.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/globalC.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/landPerPerson.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/template.json" />
-        <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/css/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilMap/script/script2.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilMap/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilMap/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilMap/script/script.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/css/style.css" />
       </list>
     </option>
   </component>
@@ -302,6 +322,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThesisProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ConstructionZone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CountryExplorer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -423,12 +465,12 @@
       <workItem from="1488478890767" duration="36823000" />
       <workItem from="1488599345901" duration="7138000" />
       <workItem from="1488671866050" duration="40017000" />
-      <workItem from="1488857692281" duration="4123000" />
+      <workItem from="1488857692281" duration="18318000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="519578000" />
+    <option name="totallyTimeSpent" value="533773000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -721,6 +763,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="446">
           <caret line="317" column="0" lean-forward="false" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -761,25 +804,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="456" column="32" lean-forward="false" selection-start-line="456" selection-start-column="32" selection-end-line="456" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/landPerPerson.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="365">
           <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -813,16 +841,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/data/perCapitaLandUseRequirements.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="26979" column="0" lean-forward="false" selection-start-line="26979" selection-start-column="0" selection-end-line="26979" selection-end-column="0" />
+        <state relative-caret-position="7988">
+          <caret line="27438" column="0" lean-forward="false" selection-start-line="27438" selection-start-column="0" selection-end-line="27438" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="249" column="0" lean-forward="true" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+        <state relative-caret-position="268">
+          <caret line="89" column="24" lean-forward="false" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="409" column="19" lean-forward="false" selection-start-line="409" selection-start-column="19" selection-end-line="409" selection-end-column="19" />
           <folding />
         </state>
       </provider>
