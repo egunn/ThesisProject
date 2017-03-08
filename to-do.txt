@@ -15,6 +15,11 @@ reshape foodbalance data
 s/u to filter and pass left and right arrays for side by side mode
 add bar charts (need to pass entire country array, not just country-year)
 
+rank bars - allow selection of two country bars in different colors
+re-size brush selection when reshuffle function updates graph (currently loses scale connection b/c array doesn't get re-trimmed)
+
+no urban land 2050, degrading land area (vals from soilData_cut should be included for 2003; zero can be used for other years if necessary). Double check that lu_landArea is total from land use calcs. 	heck units! Values seem very far off (double check that sum of B's results w/i a region match the original region total)
+Belgium 1975 crowding ==0??
 
 Soil Degradation:
 add pie chart to show % degradation classes? 

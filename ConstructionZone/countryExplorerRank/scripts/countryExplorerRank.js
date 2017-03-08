@@ -13,6 +13,10 @@ var height2 = document.getElementById('vis').clientHeight - margin2.top - margin
 var extentX;
 var shiftMultiplier = 40;
 
+var globalData;
+var modeTracker = "alph";
+var varTracker = "bal_importQuantity";
+
 console.log(width, height, height2);
 
 //grab svg from template
@@ -25,6 +29,9 @@ var svg = d3.selectAll('#vis');
 //Set up scales and axes, brushes, and area generators
 var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
     x2 = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+
+    //.invert needed for brush doesn't work on a non-continuous scale; make a shadow scale instead
+    contx2 = d3.scaleLinear().range([0, width]),
     y = d3.scaleLinear().range([height, 0]),
     y2 = d3.scaleLinear().range([height2, 0]);
 
@@ -79,7 +86,19 @@ var context = svg.append("g")
     .attr("class", "context")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
+svg.append('circle')
+    .attr('cx',10)
+    .attr('cy',10)
+    .attr('r',5)
+    .attr('fill','green')
+    .on('click',function(){reshuffle('sort')});
 
+svg.append('circle')
+    .attr('cx',10)
+    .attr('cy',50)
+    .attr('r',5)
+    .attr('fill','blue')
+    .on('click',changeVariable);
 
 //import data from GeoJSON and csv files. Use parseData function to load the csv (not necessary for JSONs)
 queue()
@@ -87,8 +106,6 @@ queue()
     //.defer(d3.json, "./nodes.json")
     //wait for a variable to be returned for each file loaded: blocks from blk_group file, neighborhoods from bos_neighborhoods, and income from the parsed acs.csv.
     .await(function (err, data) {
-
-        console.log(data);
 
         var pc = crossfilter(data);
 
@@ -100,18 +117,13 @@ queue()
             return d.countryCode;
         });
 
-        var pcYearL = pcByCountry.top(Infinity).filter(function(d){return d.year == "2000";});
+        var pcYearL = pcByCountry.top(Infinity).filter(function(d){return d.dataType == "country" && d.year == "2000";});
 
         dataLoaded(pcYearL);
 
     });
 
 function dataLoaded(data) {
-    console.log(data);
-
-
-
-    extentX = d3.extent(data, function(d) { return d.countryCode; })[0];
 
     var sorted = data.sort(function(a,b){return a.year-b.year});
     console.log(sorted);
@@ -121,22 +133,17 @@ function dataLoaded(data) {
         return a.fullname.toLowerCase().localeCompare(b.fullname.toLowerCase());
     });
 
-    //data.sort(function(b,a){return b.year-a.year;});
-
-    /*console.log(d3.max(data, function (d) {
-     return +d.totalPop;
-     }));
-
-     console.log(2*d3.max(sorted, function (d) {
-     return +d.exportQuantity;
-     }))*/
-
-
+    globalData = sorted;
 
     //map axes onto data
     x.domain(sorted.map(function (d) {
         return d.countryCode;
     }));
+
+    //assign a continuous domain for brushing and zooming (not used for data).
+    //Make one step for each array entry in dataset, to link brushing to categorical x axis
+    contx2.domain([0,sorted.length]);
+
     y.domain([0,d3.max(sorted, function (d) {
         return +d.bal_importQuantity;
     })]);
@@ -186,10 +193,11 @@ function dataLoaded(data) {
         .attr("class", "axis axis--y")
         .call(yAxis);
 
-    /*context.append("path")
+/*
+    context.append("path")
         .datum(data)
         .attr("class", "area")
-        .attr("d", area2);*/
+        .attr("d", areaUpper);*/
 
     context.append("g")
         .attr("class", "axis axis--x")
@@ -199,7 +207,7 @@ function dataLoaded(data) {
     context.append("g")
         .attr("class", "brush")
         .call(brush)
-        .call(brush.move, x.range());
+        .call(brush.move, contx2.range());
 
     //draw bars for the context menu (small)
     barGroup = context.selectAll(".context-bar")
@@ -212,12 +220,12 @@ function dataLoaded(data) {
         .append("rect")
         .attr("class", "context-bar")
         .attr("x", function (d) {
-            return x(d.countryCode);
+            return x2(d.countryCode);
         })
         .attr("y", function (d) {
             return  y2(d.bal_importQuantity);
         })
-        .attr("width", x.bandwidth())
+        .attr("width", x2.bandwidth())
         .attr("height", function (d) {
             return height2 - y2(d.bal_importQuantity);
         })
@@ -244,40 +252,105 @@ function dataLoaded(data) {
         .attr("height", function (d) {
             return height - y(d.bal_importQuantity);
         })
-        .attr('fill', 'purple');
+        .attr('fill', 'purple')
+        .on('mouseover',function(d){
+            focus.append('text')
+                .attr('class','bar-label-text')
+                .attr('x', width-20)
+                .attr('y', 50)
+                .attr('text-anchor', 'end')
+                .text(d.fullname);
+        })
+        .on('mouseout',function(d){
+            d3.selectAll('.bar-label-text').remove();
+        })
+        .on('click',function(){
+            var bar = d3.select(this);
+            if (bar.attr('fill') == "purple"){
+                bar.attr('fill','orange');
+            }
+            else if (bar.attr('fill') == "orange"){
+                bar.attr('fill','purple');
+            }
 
+        });
 
-    //eventColors =  d3.scaleOrdinal().domain(["weather","culture","technology","agriculture","context","deaths"]).range(["#1b9e77","#d95f02","#7570b3","#e7298a","#66a61e","#e6ab02"]);
+    /*focus.append('rect')
+        .attr('class','data-rect')
+        .attr('x',x("AF"))
+        .attr('y',0)
+        .attr('width',(x("ZW")-x("AF")))
+        .attr('height',200  )
+        .attr('stroke','none')
+        .attr('fill','gray')
+        .attr('fill-opacity',.4);*/
 
-
-/*  //in the example, this rectangle allows dragging of the main chart; found it confusing, and distracted from lower controller bar
-    //leave it out for now.
-    svg.append("rect")
-        .attr("class", "zoom")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        //moved in from css for now - remove to style sheet later!
-        .style('cursor','move')
-        .style('fill','none')
-        .style('pointer-events', 'all')
-        .call(zoom);*/
 
 }
 
 
 function brushed(data) {
 
-    console.log(x2.range);
+    //stores pixel values of beginning and end of brushing box
+    var selection = d3.event.selection;
 
-    console.log('brushed', x2.range(), x2.invert);
+    //y.domain(x.range()).range(x.domain());
+    //b = brush.extent();
+    //console.log('brushed',  contx2(selection[0]) , contx2.invert(selection[0]), contx2.invert(selection[1]) );
+
+    //use the continuous shadow axis to invert the pixel values to scaled axis values
+    //Because the continuous axis is set using the length of the original data array, its values vary between 0 and the length of the array
+    //The invert function therefore gives a decimal value for the bar number
+    boxCoords = [contx2.invert(selection[0]), contx2.invert(selection[1])];
+
+    //update the axis visualization rectangle (debugging only)
+    /*focus.selectAll('.data-rect')
+        .attr('x',selection[0])
+        .attr('width',selection[1]-selection[0]);*/
+
+    //console.log(Math.floor(contx2.invert(selection[0])), Math.floor(contx2.invert(selection[1])));
+
+    //use the inverted selection values to chop out a section of the original data to use as the new domain values
+    var cutData = globalData.slice(Math.floor(contx2.invert(selection[0])), Math.floor(contx2.invert(selection[1])));
+
+    //reset the domain values for the focus bar chart, using the trimmed selection
+    x.domain(cutData.map(function (d) {
+        return d.countryCode;
+    }));
+
+    //reset the axis to match the new values
+    focus.select(".axis--x").call(xAxis);
+
+    //move the bars to their new positions
+    d3.selectAll(".focus-bar")
+        .attr("x", function (d) {
+            //because the range does not include all values in the array, some bars will return undefined. Push them off the screen
+            if (typeof x(d.countryCode) == "undefined"){
+                return -200;
+            }
+            //give the values within the range a coordinate on the axis
+            else{
+                return x(d.countryCode);
+            }
+
+        })
+        .attr("y", function (d) {
+            return y(d.bal_importQuantity);
+        })
+        .attr("width", x.bandwidth())
+        .attr("height", function (d) {
+            return height - y(d.bal_importQuantity);
+        });
+
+/*
+    //console.log('brushed', x2.range(), contx2.invert);
 
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
 
     var s = d3.event.selection || x2.range();
-    //x.domain(s.map(x2.invert, x2));
+    x.domain(s.map(contx2.invert, contx2));
 
-    /*
+
     //reset shift ratio to scale line spacing with zoom
     //ratio to compare width of current brush (s[1]-s[0]) with width of entire axis: x.range()[1]
     shiftMultiplier = 40 * ((s[1]-s[0])/x.range()[1]);
@@ -301,6 +374,7 @@ function brushed(data) {
 }
 
 function zoomed() {
+    console.log('zoomed');
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
     var t = d3.event.transform;
     x.domain(t.rescaleX(x2).domain());
@@ -309,6 +383,80 @@ function zoomed() {
     focus.select(".axis--x").call(xAxis);
     context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
     //context.select(".brush").call(brush.move, y2.range().map(t.invertY, t));
+}
+
+function reshuffle(calledBy){
+    console.log('reshuffle', modeTracker, calledBy);
+
+    //if called by the sort button, toggle the modeTracker
+    if (calledBy == "sort") {
+        if (modeTracker == "alph") {
+            modeTracker = "rank";
+        }
+        else if (modeTracker == "rank") {
+            modeTracker = "alph";
+        }
+    }
+
+    //otherwise, sort the data array, using either the selected variable or the alphabetical listing
+    if (modeTracker == "alph"){
+        globalData = globalData.sort(function(a,b){
+            //needs a case-insensitive alphabetical sort
+            return a.fullname.toLowerCase().localeCompare(b.fullname.toLowerCase());
+        });
+
+    }
+
+    else if (modeTracker == "rank"){
+        globalData = globalData.sort(function(a,b){
+            //needs a case-insensitive alphabetical sort
+            return b[varTracker] - a[varTracker];
+        });
+    }
+
+
+    //reset the view
+    //reset the domain values for the focus bar chart, using the trimmed selection
+    x.domain(globalData.map(function (d) {
+        return d.countryCode;
+    }));
+
+    //reset the axis to match the new values
+    focus.select(".axis--x").call(xAxis);
+
+    //move the bars to their new positions
+    d3.selectAll(".focus-bar")
+        .transition()
+        .attr("x", function (d) {
+            //because the range does not include all values in the array, some bars will return undefined. Push them off the screen
+            if (typeof x(d.countryCode) == "undefined"){
+                return -200;
+            }
+            //give the values within the range a coordinate on the axis
+            else{
+                return x(d.countryCode);
+            }
+
+        })
+        .attr("y", function (d) {
+            return y(d[varTracker]);
+        })
+        .attr("width", x.bandwidth())
+        .attr("height", function (d) {
+            return height - y(d[varTracker]);
+        });
+
+}
+
+
+function changeVariable(){
+    if (varTracker == "bal_importQuantity"){
+        varTracker = "lu_totalPop";
+    }
+    else if (varTracker == "lu_totalPop"){
+        varTracker = "bal_importQuantity";
+    }
+    reshuffle('varChange');
 }
 
 //runs on window resize, calls scale update and draw functions

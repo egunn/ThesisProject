@@ -1045,16 +1045,16 @@ function drawPCLandUse(landReqts){
             return cornerPos
         })
         .attr('width',function(d){
-            return landAreaScale(landReqts[0].pc_perCapLandReq)
+            return landAreaScale(landReqts[0].pc_totalLandReq)
         })
         .attr('height',function(d){
-            return landAreaScale(landReqts[0].pc_perCapLandReq)
+            return landAreaScale(landReqts[0].pc_totalLandReq)
         })
         .attr('transform','translate(' + translateX + ',' + translateY + ')')
         .attr('fill', 'none')
         .attr('stroke-width',1)
         .attr('stroke-dasharray',function(){
-            if (landAreaScale(landReqts[0].pc_perCapLandReq) < 20){
+            if (landAreaScale(landReqts[0].pc_totalLandReq) < 20){
                 return 0;
             }
             else{
@@ -1361,10 +1361,10 @@ function updateLandReqts(landReqts){
             return cornerPos
         })
         .attr('width',function(d){
-            return landAreaScale(landReqts[0].pc_perCapLandReq)
+            return landAreaScale(landReqts[0].pc_totalLandReq)
         })
         .attr('height',function(d){
-            return landAreaScale(landReqts[0].pc_perCapLandReq)
+            return landAreaScale(landReqts[0].pc_totalLandReq)
         });
 
     d3.selectAll('.total-land-rect')
