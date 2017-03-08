@@ -47,7 +47,7 @@ function reloadTemplate() {
     $(document).ready(function(){
         //$.getScript("./scripts/vendor/topojson.js");  //added to HTML template for now
         $.getScript("./scripts/vendor/crossfilter.js");
-        $.getScript("./scripts/countryExplorerRank.js");
+        $.getScript("./scripts/countryExplorerRotated.js");
 
         //add a new button for map updating
         var r = $('<input/>', { type: "button", id: "changeMap", value: "1", onClick: "changeMap()" });
