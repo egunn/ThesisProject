@@ -41,7 +41,7 @@ typeCol = 'gray';//'#ecd9c6';
 mapCol = '#b2a394';
 mapHighlightCol = '#e8e1da';/*'#e0cebc';*/
 
-tracker = {country:{l:"US",r:"CN"}, init:true, year:{l:1975,r:1975}, view:"overview",mode:"sbs",varType:"population"};
+tracker = {country:{l:"US",r:"CN"}, init:true, year:{l:2003,r:1975}, view:"overview",mode:"sbs",varType:"population"};
 importedData = [];
 balanceData =[];
 pcLandUse=[];
@@ -742,21 +742,21 @@ function drawLandSquares(countryObject, graph){
 
 
      degradedSquareGroup
-     .append('rect')
-     .attr('x', function (d) {
-     return landAreaScale(d.lu_degradingArea/2) - d.lu_degradingArea;
-     })
-     .attr('y', function (d) {
-     return landAreaScale(d.lu_degradingArea/2) - d.lu_degradingArea;
-     })
-     .attr('width', function (d) {
-     return d.lu_degradingArea;
-     //return landAreaScale(d.degradingArea)
-     })
-     .attr('height', function (d) {
-     return d.lu_degradingArea;//landAreaScale(d.degradingArea)
-     })
-     .attr('fill', degradCol);
+         .append('rect')
+             .attr('class','degrading-square-' + graph)
+         .attr('x', function (d) {
+            return landAreaScale(d.lu_degradingArea)/2 - landAreaScale(d.lu_degradingArea);
+         })
+         .attr('y', function (d) {
+            return landAreaScale(d.lu_degradingArea)/2 - landAreaScale(d.lu_degradingArea);
+         })
+         .attr('width', function (d) {
+            return landAreaScale(d.lu_degradingArea)
+         })
+         .attr('height', function (d) {
+            return landAreaScale(d.lu_degradingArea)
+         })
+         .attr('fill', degradCol);
 
 }
 
@@ -1185,6 +1185,26 @@ function updateLandSquares(countryYearUpdate, graph){
         .attr('height', function (d) {
             return landAreaScale(d.lu_urbanLand)
         });
+
+
+    d3.selectAll('.degrading-square-' + graph)
+        .data(countryYearUpdate)
+        .attr('x', function (d) {
+           // console.log('update degrading'   )
+            return landAreaScale(d.lu_degradingArea)/2 - d.lu_degradingArea;
+        })
+        .attr('y', function (d) {
+            return landAreaScale(d.lu_degradingArea)/2 - d.lu_degradingArea;
+        })
+        .attr('width', function (d) {
+            return landAreaScale(d.lu_degradingArea);
+        })
+        .attr('height', function (d) {
+            return landAreaScale(d.lu_degradingArea);
+        });
+
+
+
 
 }
 

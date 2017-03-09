@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/data/perCapitaLandUseRequirements.json" afterPath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/data/perCapitaLandUseRequirements.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html" afterPath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js" afterPath="$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRank.js" afterPath="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRank.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRotated.js" afterPath="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRotated.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/testJQuery.js" afterPath="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/testJQuery.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,21 +29,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="countryExplorerRotated.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRotated.js">
+      <file leaf-file-name="countryExplorer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="215" column="3" lean-forward="false" selection-start-line="215" selection-start-column="3" selection-end-line="215" selection-end-column="3" />
+            <state relative-caret-position="270">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testJQuery.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/testJQuery.js">
+      <file leaf-file-name="countryExplorerRank.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRank.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -56,7 +62,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>font-</find>
       <find>.country</find>
       <find>value</find>
       <find>no-</find>
@@ -86,6 +91,7 @@
       <find>brush</find>
       <find>zoom</find>
       <find>width</find>
+      <find>domain</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -136,15 +142,15 @@
         <option value="$PROJECT_DIR$/ConstructionZone/SoilMap/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilMap/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilMap/script/script.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/css/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/template.json" />
         <option value="$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/landUseDashboard.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRank_2.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRotated.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/testJQuery.js" />
+        <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html" />
         <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRank.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/testJQuery.js" />
-        <option value="$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRotated.js" />
       </list>
     </option>
   </component>
@@ -453,12 +459,12 @@
       <workItem from="1488478890767" duration="36823000" />
       <workItem from="1488599345901" duration="7138000" />
       <workItem from="1488671866050" duration="40017000" />
-      <workItem from="1488857692281" duration="42672000" />
+      <workItem from="1488857692281" duration="50144000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="558127000" />
+    <option name="totallyTimeSpent" value="565599000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -788,14 +794,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -828,26 +826,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRank.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="395" column="41" lean-forward="true" selection-start-line="395" selection-start-column="41" selection-end-line="395" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/LandUseDashboard1/scripts/landUseDashboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="276" column="33" lean-forward="true" selection-start-line="256" selection-start-column="4" selection-end-line="276" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1099">
-          <caret line="448" column="0" lean-forward="true" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -860,18 +842,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/testJQuery.js">
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRotated.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="163">
+          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRotated.js">
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="215" column="3" lean-forward="false" selection-start-line="215" selection-start-column="3" selection-end-line="215" selection-end-column="3" />
+        <state relative-caret-position="438">
+          <caret line="57" column="102" lean-forward="false" selection-start-line="57" selection-start-column="102" selection-end-line="57" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/testJQuery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="49" column="50" lean-forward="false" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/countryExplorer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/countryExplorerRank.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>

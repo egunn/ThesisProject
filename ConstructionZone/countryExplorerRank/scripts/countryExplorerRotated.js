@@ -3,34 +3,41 @@
 //setup resize event listener on window (resizeView defined in view js file, since it contains d3 updates)
 window.addEventListener('resize', resizeView, false);
 
-var margin = {top: 8, right: 20, bottom: 110, left: 100};
-var margin2 = {top: 370, right: 20, bottom: 30, left: 100};
+var margin = {top: 20, right: 20, bottom: 110, left: 90};
+var margin2 = {top: 20, right: 20, bottom: 30, left: 20};
 
-var width = document.getElementById('vis').clientWidth - margin.left - margin.right;
+
+//grab svg from template
+var svg = d3.selectAll('#vis')
+    .style('min-height',2000);
+
+var widthContext = 50; //variable for calculating margins and plot heights
+
+var width = document.getElementById('vis').clientWidth - margin.left - margin.right - widthContext;
+var width2 = document.getElementById('vis').clientWidth - margin2.left - margin2.right;
 var height = document.getElementById('vis').clientHeight - margin.top - margin.bottom;
-var height2 = document.getElementById('vis').clientHeight - margin2.top - margin2.bottom;
+
 
 var globalData;
 var modeTracker = "alph";
 var varTracker = "bal_importQuantity";
 
-//grab svg from template
-var svg = d3.selectAll('#vis');
 
 //Set up scales and axes, brushes, and area generators
-var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-    x2 = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+var y = d3.scaleBand().rangeRound([0, height]).padding(0.1),
+    y2 = d3.scaleBand().rangeRound([0, height]).padding(0.1),
 
     //.invert needed for brush doesn't work on a non-continuous scale; make a shadow scale instead
-    contx2 = d3.scaleLinear().range([0, width]),
-    y = d3.scaleLinear().range([height, 0]),
-    y2 = d3.scaleLinear().range([height2, 0]);
+    conty2 = d3.scaleLinear().range([0, height]),
+    x = d3.scaleLinear().range([0, width]),
+    x2 = d3.scaleLinear().range([0, widthContext]);
 
-var xAxis = d3.axisBottom(x);
-var xAxis2 = d3.axisBottom(x2);
 var yAxis = d3.axisLeft(y);
+var yAxis2 = d3.axisLeft(y2);
+var xAxis = d3.axisTop(x);
 
 
+/*
 var brush = d3.brushX() //replace with d3.brush() to add in y-axis brushing
     .extent([[0, 0], [width, height2]])
     .on("brush end", brushed);
@@ -40,6 +47,7 @@ svg.append("defs").append("clipPath")
     .append("rect")
     .attr("width", width)
     .attr("height", height);
+*/
 
 var focus = svg.append("g")
     .attr("class", "focus")
@@ -49,6 +57,7 @@ var context = svg.append("g")
     .attr("class", "context")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
+/*
 //temporary buttons for development
 svg.append('circle')
     .attr('cx',10)
@@ -63,6 +72,7 @@ svg.append('circle')
     .attr('r',5)
     .attr('fill','blue')
     .on('click',changeVariable);
+    */
 
 //import data from GeoJSON and csv files. Use parseData function to load the csv (not necessary for JSONs)
 queue()
@@ -101,39 +111,42 @@ function dataLoaded(data) {
     globalData = sorted;
 
     //map axes onto data
-    x.domain(sorted.map(function (d) {
+    y.domain(sorted.map(function (d) {
         return d.countryCode;
     }));
 
     //assign a continuous domain for brushing and zooming (not used for data).
     //Make one step for each array entry in dataset, to link brushing to categorical x axis
-    contx2.domain([0,sorted.length]);
+    conty2.domain([0,sorted.length]);
 
-    y.domain([0,d3.max(sorted, function (d) {
+    x.domain([0,d3.max(sorted, function (d) {
         return +d.bal_importQuantity;
     })]);
-    x2.domain(x.domain());
     y2.domain(y.domain());
+    x2.domain(x.domain());
 
     focus.append("g")
         .attr("class", "axis axis--x")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .call(xAxis);
 
     focus.append("g")
         .attr("class", "axis axis--y")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .call(yAxis);
 
     context.append("g")
-        .attr("class", "axis axis--x")
-        .attr("transform", "translate(0," + height2 + ")")
-        .call(xAxis2);
+        .attr("class", "axis axis--y")
+        .attr("transform", "translate(" + margin2.left + "," + margin.top + ")")
+        .call(yAxis2);
 
+
+    /*
     context.append("g")
         .attr("class", "brush")
         .call(brush)
         .call(brush.move, contx2.range());
-
+*/
     //draw bars for the context menu (small)
     barGroup = context.selectAll(".context-bar")
         .data(sorted)
@@ -141,23 +154,23 @@ function dataLoaded(data) {
         .append('g')
         .attr('class','context-bargroup');
 
+    //draw bars for the context menu (small)
     barGroup
         .append("rect")
         .attr("class", "context-bar")
-        .attr("x", function (d) {
-            return x2(d.countryCode);
+        .attr("transform", "translate(" + margin2.left + "," + margin.top + ")")
+        .attr("x", x2(0))
+        .attr("y",function (d) {
+            return y2(d.countryCode);
         })
-        .attr("y", function (d) {
-            return  y2(d.bal_importQuantity);
+        .attr("width", function (d) {
+            return x2(d.bal_importQuantity);
         })
-        .attr("width", x2.bandwidth())
-        .attr("height", function (d) {
-            return height2 - y2(d.bal_importQuantity);
-        })
+        .attr("height", y2.bandwidth())
         .attr('fill', '#74a063');
 
 
-    //draw bars for the context menu (small)
+    //draw main bars
     barGroup = focus.selectAll(".focus-bar")
         .data(sorted)
         .enter()
@@ -167,16 +180,17 @@ function dataLoaded(data) {
     barGroup
         .append("rect")
         .attr("class", "focus-bar")
-        .attr("x", function (d) {
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("x", x(0)/*function (d) {
             return x(d.countryCode);
-        })
+        }*/)
         .attr("y", function (d) {
-            return y(d.bal_importQuantity);
+            return y(d.countryCode);//y(d.bal_importQuantity);
         })
-        .attr("width", x.bandwidth())
-        .attr("height", function (d) {
-            return height - y(d.bal_importQuantity);
+        .attr("width", function (d) {
+            return x(d.bal_importQuantity);
         })
+        .attr("height", y.bandwidth())
         .attr('fill', 'purple')
         .on('mouseover',function(d){
             focus.append('text')
@@ -199,6 +213,7 @@ function dataLoaded(data) {
             }
 
         });
+
 
 }
 
