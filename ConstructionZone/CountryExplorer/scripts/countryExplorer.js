@@ -41,11 +41,12 @@ typeCol = 'gray';//'#ecd9c6';
 mapCol = '#b2a394';
 mapHighlightCol = '#e8e1da';/*'#e0cebc';*/
 
-tracker = {country:{l:"US",r:"CN"}, init:true, year:{l:2003,r:1975}, view:"overview",mode:"sbs",varType:"population"};
+tracker = {country:{l:"US",r:"CN"}, init:true, year:{l:2003,r:1975}, view:"overview",mode:"sbs",varType:"population",sort:"alph",sortVar:"bal_importQuantity"};
 importedData = [];
 balanceData =[];
 pcLandUse=[];
 dropdownValues = []; //global used to populate the dropdown selections
+sortData = []; //used to store country-only objects for the rank page sorting
 
 
 centerScaleX = d3.scaleLinear().domain([0, 1]).range([0, width]);
@@ -124,7 +125,6 @@ calorieScale = d3.scaleSqrt().domain([0, 3500]).range([0, 30]);
 popLineScale = d3.scaleLinear().domain([0, 1750000000]).range([0, 1525]);
 foodBalanceScale = d3.scaleLinear().domain([0, 1520000000]).range([0, 150]);  //scaled by hand, to give reasonable output - need to automate
 
-
 //set up scale factors
 x = d3.scaleBand().rangeRound([0, ((width/2)-50)]).padding(0.1);
 y = d3.scaleLinear().rangeRound([height, height/2]);
@@ -132,6 +132,42 @@ y = d3.scaleLinear().rangeRound([height, height/2]);
 foodX = d3.scaleBand().rangeRound([0, ((width/2)-50)]).padding(0.1); //offsets added to keep bars from exiting SVG
 foodY = d3.scaleLinear().rangeRound([height/4, height/2]);//[height/4+30, height/2]);
 foodNeg = d3.scaleLinear().rangeRound([height/2, 3*height/4-30]);//[height/2, 3*height/4-30]);
+
+
+//more scale factors for ranking page bar charts
+
+var rankMargin = {top: 8, right: 20, bottom: 110, left: 100};
+var rankMargin2 = {top: 370, right: 20, bottom: 30, left: 100};
+
+var rankWidth = document.getElementById('vis').clientWidth - rankMargin.left - rankMargin.right;
+var rankHeight = document.getElementById('vis').clientHeight - rankMargin.top - rankMargin.bottom;
+var rankHeight2 = document.getElementById('vis').clientHeight - rankMargin2.top - rankMargin2.bottom;
+
+//Set up scales and axes, brushes, and area generators
+var rankX = d3.scaleBand().rangeRound([0, rankWidth]).padding(0.1),
+    rankX2 = d3.scaleBand().rangeRound([0, rankWidth]).padding(0.1),
+
+    //.invert needed for brush doesn't work on a non-continuous scale; make a shadow scale instead
+    contrankX2 = d3.scaleLinear().range([0, rankWidth]),
+    rankY = d3.scaleLinear().range([rankHeight, 0]),
+    rankY2 = d3.scaleLinear().range([rankHeight2, 0]);
+
+var rankXAxis = d3.axisBottom(rankX);
+var rankXAxis2 = d3.axisBottom(rankX2);
+var rankYAxis = d3.axisLeft(rankY);
+
+var brush,
+    focus,
+    context;
+
+
+
+
+
+
+
+
+
 
 
 //set up navigation buttons and dropdown in top navbar
@@ -310,6 +346,11 @@ function updateData() {
     if (tracker.mode == "sbs"){
         pcCountryYearR = pcByCountry.filterExact(tracker.country.r).top(Infinity).filter(function(d){return d.year == tracker.year.r;});
     }
+    if (tracker.mode == "rank"){
+        //store all country objects in an array for rank page sorting
+        sortData = pcYearL.filter(function(d){return d.dataType == "country";});
+    }
+
 
     //console.log(pcByCountry.filterExact('US').top(Infinity));
 
@@ -348,6 +389,7 @@ function updateData() {
             }); //change background color (useful for styling multiple levels of aggregation)
     });
 
+//**********sortData =
 
 
     //console.log(testSort.slice(0,4));
@@ -400,7 +442,8 @@ function updateData() {
                 }
             }
             else if(tracker.mode == "rank"){
-                if(tracker.varType == "population"){
+                drawRank(sortData);
+                /*if(tracker.varType == "population"){
 
                 }
                 else if(tracker.varType == "food"){
@@ -408,7 +451,7 @@ function updateData() {
                 }
                 else if(tracker.varType == "land"){
 
-                }
+                }*/
             }
 
 
@@ -1086,6 +1129,207 @@ function drawPCLandUse(landReqts){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function drawRank(rankData){
+
+    console.log(rankData);
+
+    brush = d3.brushX() //replace with d3.brush() to add in y-axis brushing
+        .extent([[0, 0], [rankWidth, rankHeight2]])
+        .on("brush end", brushed);
+
+    focus = svg.append("g")
+        .attr("class", "focus")
+        .attr("transform", "translate(" + rankMargin.left + "," + rankMargin.top + ")");
+
+    context = svg.append("g")
+        .attr("class", "context")
+        .attr("transform", "translate(" + rankMargin2.left + "," + rankMargin2.top + ")");
+
+
+    svg.append('circle')
+        .attr('cx',10)
+        .attr('cy',10)
+        .attr('r',5)
+        .attr('fill','green')
+        .on('click',function(){updateRank('sort')});
+
+    /*svg.append('circle')
+        .attr('cx',10)
+        .attr('cy',50)
+        .attr('r',5)
+        .attr('fill','blue')
+        .on('click',changeVariable);*/
+
+
+    var sorted = rankData.sort(function(a,b){return a.year-b.year});
+
+    sorted = rankData.sort(function(a,b){
+        //needs a case-insensitive alphabetical sort
+        return a.fullname.toLowerCase().localeCompare(b.fullname.toLowerCase());
+    });
+
+    sortData = sorted;
+
+    //map axes onto rankData
+    rankX.domain(sorted.map(function (d) {
+        return d.countryCode;
+    }));
+
+    //assign a continuous domain for brushing and zooming (not used for data).
+    //Make one step for each array entry in dataset, to link brushing to categorical x axis
+    contrankX2.domain([0,sorted.length]);
+
+    rankY.domain([0,d3.max(sorted, function (d) {
+        return +d.bal_importQuantity;
+    })]);
+    rankX2.domain(rankX.domain());
+    rankY2.domain(rankY.domain());
+
+
+    focus.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + rankHeight + ")")
+        .call(rankXAxis);
+
+    focus.append("g")
+        .attr("class", "axis axis--y")
+        .call(rankYAxis);
+
+    context.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + rankHeight2 + ")")
+        .call(rankXAxis2);
+
+    context.append("g")
+        .attr("class", "brush")
+        .call(brush)
+        .call(brush.move, contrankX2.range());
+
+    //draw bars for the context menu (small)
+    barGroup = context.selectAll(".context-bar")
+        .data(sorted)
+        .enter()
+        .append('g')
+        .attr('class','context-bargroup');
+
+    barGroup
+        .append("rect")
+        .attr("class", "context-bar")
+        .attr("x", function (d) {
+            return rankX2(d.countryCode);
+        })
+        .attr("y", function (d) {
+            return  rankY2(d.bal_importQuantity);
+        })
+        .attr("width", rankX2.bandwidth())
+        .attr("height", function (d) {
+            return rankHeight2 - rankY2(d.bal_importQuantity);
+        })
+        .attr('fill', '#74a063');
+
+
+    //draw bars for the context menu (small)
+    barGroup = focus.selectAll(".focus-bar")
+        .data(sorted)
+        .enter()
+        .append('g')
+        .attr('class','focus-bargroup');
+
+    barGroup
+        .append("rect")
+        .attr("class", "focus-bar")
+        .attr("x", function (d) {
+            return rankX(d.countryCode);
+        })
+        .attr("y", function (d) {
+            return rankY(d.bal_importQuantity);
+        })
+        .attr("width", rankX.bandwidth())
+        .attr("height", function (d) {
+            return rankHeight - rankY(d.bal_importQuantity);
+        })
+        .attr('fill', 'purple')
+        .on('mouseover',function(d){
+            focus.append('text')
+                .attr('class','bar-label-text')
+                .attr('x', rankWidth-20)
+                .attr('y', 50)
+                .attr('text-anchor', 'end')
+                .text(d.fullname);
+        })
+        .on('mouseout',function(d){
+            d3.selectAll('.bar-label-text').remove();
+        })
+        .on('click',function(){
+            var bar = d3.select(this);
+            if (bar.attr('fill') == "purple"){
+                bar.attr('fill','orange');
+            }
+            else if (bar.attr('fill') == "orange"){
+                bar.attr('fill','purple');
+            }
+
+        });
+
+    /*
+     barGroup.append('text')
+     .attr('class','bar-label-text')
+     .attr("x", function (d) {
+     return x(d.countryCode);
+     })
+     .attr("y", function (d) {
+     return y(d.bal_importQuantity);
+     })
+     .attr('text-anchor', 'begin')
+     .text(function(d){return d.fullname});
+     */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //********************************************************
 //  UPDATE functions
 //********************************************************
@@ -1404,6 +1648,124 @@ function updateLandReqts(landReqts){
 }
 
 
+
+
+function updateRank(calledBy){
+    console.log('reshuffle', tracker.sort, calledBy);
+
+    //if called by the sort button, toggle tracker.sort value
+    if (calledBy == "sort") {
+        if (tracker.sort == "alph") {
+            tracker.sort = "rank";
+        }
+        else if (tracker.sort == "rank") {
+            tracker.sort = "alph";
+        }
+    }
+
+    //otherwise, sort the data array, using either the selected variable or the alphabetical listing
+    if (tracker.sort == "alph"){
+        sortData = sortData.sort(function(a,b){
+            //needs a case-insensitive alphabetical sort
+            return a.fullname.toLowerCase().localeCompare(b.fullname.toLowerCase());
+        });
+
+    }
+
+    else if (tracker.sort == "rank"){
+        sortData = sortData.sort(function(a,b){
+            //needs a case-insensitive alphabetical sort
+            return b[tracker.sortVar] - a[tracker.sortVar];
+        });
+    }
+
+    //reset the domain values for the focus bar chart, using the trimmed selection
+    rankX.domain(sortData.map(function (d) {
+        return d.countryCode;
+    }));
+
+    //reset the axis to match the new values
+    focus.select(".axis--x").call(rankXAxis);
+
+    //move the bars to their new positions
+    d3.selectAll(".focus-bar")
+        .transition()
+        .attr("x", function (d) {
+            //because the range does not include all values in the array, some bars will return undefined. Push them off the screen
+            if (typeof rankX(d.countryCode) == "undefined"){
+                return -200;
+            }
+            //give the values within the range a coordinate on the axis
+            else{
+                return rankX(d.countryCode);
+            }
+
+        })
+        .attr("y", function (d) {
+            return rankY(d[tracker.sortVar]);
+        })
+        .attr("width", rankX.bandwidth())
+        .attr("height", function (d) {
+            return rankHeight - rankY(d[tracker.sortVar]);
+        });
+
+}
+
+
+//********************************************************
+//  Helper functions
+//********************************************************
+
+
+function brushed(rankData) {
+
+    //stores pixel values of beginning and end of brushing box
+    var selection = d3.event.selection;
+
+    //use the continuous shadow axis to invert the pixel values to scaled axis values
+    //Because the continuous axis is set using the length of the original data array, its values vary between 0 and the length of the array
+    //The invert function therefore gives a decimal value for the bar number
+    boxCoords = [contrankX2.invert(selection[0]), contrankX2.invert(selection[1])];
+
+    //use the inverted selection values to chop out a section of the original data to use as the new domain values
+    var cutData = sortData.slice(Math.floor(contrankX2.invert(selection[0])), Math.floor(contrankX2.invert(selection[1])));
+
+    //reset the domain values for the focus bar chart, using the trimmed selection
+    rankX.domain(cutData.map(function (d) {
+        return d.countryCode;
+    }));
+
+    //reset the axis to match the new values
+    focus.select(".axis--x").call(rankXAxis);
+
+    //move the bars to their new positions
+    d3.selectAll(".focus-bar")
+        .attr("x", function (d) {
+            //because the range does not include all values in the array, some bars will return undefined. Push them off the screen
+            if (typeof rankX(d.countryCode) == "undefined"){
+                return -200;
+            }
+            //give the values within the range a coordinate on the axis
+            else{
+                return rankX(d.countryCode);
+            }
+
+        })
+        .attr("y", function (d) {
+            return rankY(d.bal_importQuantity);
+        })
+        .attr("width", rankX.bandwidth())
+        .attr("height", function (d) {
+            return rankHeight - rankY(d.bal_importQuantity);
+        });
+
+}
+
+
+
+
+
+
 //********************************************************
 // Click events
 //********************************************************
@@ -1497,6 +1859,15 @@ function compareClicked(){
             else if (d3.select(this).attr('id') == "pop-radio"){
                 tracker.init = true;
                 tracker.varType = "population";
+                updateData();
+            }
+            else if (d3.select(this).attr('id') == "sbs-radio"){
+
+            }
+            else if (d3.select(this).attr('id') == "rank-radio"){
+                tracker.init = true;
+                tracker.mode = "rank";
+                console.log('rank radio selected');
                 updateData();
             }
 

@@ -10,14 +10,9 @@ var width = document.getElementById('vis').clientWidth - margin.left - margin.ri
 var height = document.getElementById('vis').clientHeight - margin.top - margin.bottom;
 var height2 = document.getElementById('vis').clientHeight - margin2.top - margin2.bottom;
 
-var extentX;
-var shiftMultiplier = 40;
-
 var globalData;
 var modeTracker = "alph";
 var varTracker = "bal_importQuantity";
-
-console.log(width, height, height2);
 
 //grab svg from template
 var svg = d3.selectAll('#vis');
