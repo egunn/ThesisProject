@@ -1,7 +1,6 @@
 //setup resize event listener on window (resizeView defined in view js file, since it contains d3 updates)
 window.addEventListener('resize', resizeView, false);
 
-
 //set some margins and record width and height of window
 margin = {t: 35, r: 0, b: 25, l: 50};
 
@@ -15,6 +14,9 @@ var svg = d3.selectAll('#vis');
 var mapData;
 
 var x, y;
+
+//store template text for re-building side panel later
+var bodyText = d3.selectAll('#body-text').html();
 
 barGroup = svg.append('g')
     .attr('class','bar-group')
@@ -48,6 +50,11 @@ pcLandUse=[];
 dropdownValues = []; //global used to populate the dropdown selections
 sortData = []; //used to store country-only objects for the rank page sorting
 
+//check that sliders and labels agree with tracker default values (can remove when slider built in script rather than HTML)
+d3.selectAll('#slider-left').property("value",tracker.year.l).property('innerHTML',tracker.year.l);
+d3.selectAll('#slider-right').property("value",tracker.year.r).property('innerHTML',tracker.year.r);
+d3.selectAll('#slider-left-label').property('innerHTML',tracker.year.l);
+d3.selectAll('#slider-right-label').property('innerHTML',tracker.year.r);
 
 centerScaleX = d3.scaleLinear().domain([0, 1]).range([0, width]);
 centerScaleY = d3.scaleLinear().domain([0, 1]).range([0, height]);
@@ -79,22 +86,22 @@ centerCoords = {
     sbs: {
         l:{
             popBars: [.06, .1],
-            landSquares: [.2, .4],
-            degradedSquares: [.4, .4],
+            landSquares: [.2, .3],
+            degradedSquares: [.4, .3],
             crowdingSquares: [.13, .4],
             foodBar1: [.06, .1],
             foodBar2: [.16, .1],
-            calories: [.4, .2],
+            calories: [.35, .2],
             perCapita: [.6, .1]
         },
         r:{
             popBars: [.56, .1],
-            landSquares: [.52, .4],
-            degradedSquares: [.54, .4],
+            landSquares: [.75, .3],
+            degradedSquares: [.95, .3],
             crowdingSquares: [.63, .4],
             foodBar1: [.56, .1],
             foodBar2: [.66, .1],
-            calories: [.9, .2],
+            calories: [.85, .2],
             perCapita: [.56, .1]
         }},
     rank: {
@@ -408,6 +415,11 @@ function updateData() {
 
     if (tracker.init == true){
         if (tracker.view == "overview"){
+
+            //slider view can be turned on/off using, but better to move construction/removal to jQuery to use common template
+            //d3.selectAll('.anim-div').style('display','none');
+            //d3.selectAll('.anim-div').style('display','block');
+
             drawPopBars(pcCountryYearL, 'l');
             drawLandSquares(pcCountryYearL, 'l');
             drawCrowdingSquares(pcCountryYearL, 'l');
@@ -443,15 +455,6 @@ function updateData() {
             }
             else if(tracker.mode == "rank"){
                 drawRank(sortData);
-                /*if(tracker.varType == "population"){
-
-                }
-                else if(tracker.varType == "food"){
-
-                }
-                else if(tracker.varType == "land"){
-
-                }*/
             }
 
 
@@ -462,26 +465,31 @@ function updateData() {
 
     else {
 
-        updatePopBars(pcCountryYearL,'l');
-        updateCrowdingSquares(pcCountryYearL, 'l');
-
-        updateLandSquares(pcCountryYearL,'l');
-        updateFoodBars(pcCountryYearL,'l');
-        updateCalories(pcCountryYearL,'l');
-        updateLandReqts(pcCountryYearL,'l');
-
-
-        //if side-by-side mode is on, update the right hand side, too
-        if (tracker.view == "compare" && tracker.mode == "sbs"){
-            updatePopBars(pcCountryYearR,'r');
-            updateCrowdingSquares(pcCountryYearR, 'r');
-
-            updateLandSquares(pcCountryYearR,'r');
-            updateFoodBars(pcCountryYearR,'r');
-            updateCalories(pcCountryYearR,'r');
-            updateLandReqts(pcCountryYearR,'r')
+        if(tracker.mode == "rank"){
+            updateRank(sortData);
         }
 
+        else {
+            updatePopBars(pcCountryYearL,'l');
+            updateCrowdingSquares(pcCountryYearL, 'l');
+
+            updateLandSquares(pcCountryYearL,'l');
+            updateFoodBars(pcCountryYearL,'l');
+            updateCalories(pcCountryYearL,'l');
+            updateLandReqts(pcCountryYearL,'l');
+
+
+            //if side-by-side mode is on, update the right hand side, too
+            if (tracker.view == "compare" && tracker.mode == "sbs"){
+                updatePopBars(pcCountryYearR,'r');
+                updateCrowdingSquares(pcCountryYearR, 'r');
+
+                updateLandSquares(pcCountryYearR,'r');
+                updateFoodBars(pcCountryYearR,'r');
+                updateCalories(pcCountryYearR,'r');
+                updateLandReqts(pcCountryYearR,'r')
+            }
+        }
 
     }
 
@@ -1149,7 +1157,7 @@ function drawRank(rankData){
     console.log(rankData);
 
     brush = d3.brushX() //replace with d3.brush() to add in y-axis brushing
-        .extent([[0, 0], [rankWidth, rankHeight2]])
+        .extent([[0, 0], [rankWidth,rankHeight2]])  //sets the range of values over which selection can occur ([[minX, miny],[maxX,maxy]])
         .on("brush end", brushed);
 
     focus = svg.append("g")
@@ -1159,21 +1167,6 @@ function drawRank(rankData){
     context = svg.append("g")
         .attr("class", "context")
         .attr("transform", "translate(" + rankMargin2.left + "," + rankMargin2.top + ")");
-
-
-    svg.append('circle')
-        .attr('cx',10)
-        .attr('cy',10)
-        .attr('r',5)
-        .attr('fill','green')
-        .on('click',function(){updateRank('sort')});
-
-    /*svg.append('circle')
-        .attr('cx',10)
-        .attr('cy',50)
-        .attr('r',5)
-        .attr('fill','blue')
-        .on('click',changeVariable);*/
 
 
     var sorted = rankData.sort(function(a,b){return a.year-b.year});
@@ -1218,7 +1211,8 @@ function drawRank(rankData){
     context.append("g")
         .attr("class", "brush")
         .call(brush)
-        .call(brush.move, contrankX2.range());
+        //change this line to change the width of the original brushed area: (currently set to the entire range of values)
+        .call(brush.move, contrankX2.range()); // [0,100]);
 
     //draw bars for the context menu (small)
     barGroup = context.selectAll(".context-bar")
@@ -1434,19 +1428,17 @@ function updateLandSquares(countryYearUpdate, graph){
     d3.selectAll('.degrading-square-' + graph)
         .data(countryYearUpdate)
         .attr('x', function (d) {
-           // console.log('update degrading'   )
-            return landAreaScale(d.lu_degradingArea)/2 - d.lu_degradingArea;
+            return landAreaScale(d.lu_degradingArea)/2 - landAreaScale(d.lu_degradingArea);
         })
         .attr('y', function (d) {
-            return landAreaScale(d.lu_degradingArea)/2 - d.lu_degradingArea;
+            return landAreaScale(d.lu_degradingArea)/2 - landAreaScale(d.lu_degradingArea);
         })
         .attr('width', function (d) {
-            return landAreaScale(d.lu_degradingArea);
+            return landAreaScale(d.lu_degradingArea)
         })
         .attr('height', function (d) {
-            return landAreaScale(d.lu_degradingArea);
+            return landAreaScale(d.lu_degradingArea)
         });
-
 
 
 
@@ -1650,18 +1642,9 @@ function updateLandReqts(landReqts){
 
 
 
-function updateRank(calledBy){
-    console.log('reshuffle', tracker.sort, calledBy);
+function updateRank(){
 
-    //if called by the sort button, toggle tracker.sort value
-    if (calledBy == "sort") {
-        if (tracker.sort == "alph") {
-            tracker.sort = "rank";
-        }
-        else if (tracker.sort == "rank") {
-            tracker.sort = "alph";
-        }
-    }
+    //console.log(tracker.sort, tracker.sortVar);
 
     //otherwise, sort the data array, using either the selected variable or the alphabetical listing
     if (tracker.sort == "alph"){
@@ -1672,7 +1655,7 @@ function updateRank(calledBy){
 
     }
 
-    else if (tracker.sort == "rank"){
+    else if (tracker.sort == "value"){
         sortData = sortData.sort(function(a,b){
             //needs a case-insensitive alphabetical sort
             return b[tracker.sortVar] - a[tracker.sortVar];
@@ -1684,8 +1667,16 @@ function updateRank(calledBy){
         return d.countryCode;
     }));
 
+    //rescale y values to new dataset
+    rankY.domain([0,d3.max(sortData, function (d) {
+        return +d[tracker.sortVar];
+    })]);
+    rankX2.domain(rankX.domain());
+    rankY2.domain(rankY.domain());
+
     //reset the axis to match the new values
     focus.select(".axis--x").call(rankXAxis);
+    focus.select(".axis--y").call(rankYAxis);
 
     //move the bars to their new positions
     d3.selectAll(".focus-bar")
@@ -1708,6 +1699,21 @@ function updateRank(calledBy){
         .attr("height", function (d) {
             return rankHeight - rankY(d[tracker.sortVar]);
         });
+
+    //move the bars to their new positions
+    d3.selectAll(".context-bar")
+        .transition()
+        .attr("x", function (d) {
+            return rankX2(d.countryCode);
+        })
+        .attr("y", function (d) {
+            return  rankY2(d[tracker.sortVar]);
+        })
+        .attr("width", rankX2.bandwidth())
+        .attr("height", function (d) {
+            return rankHeight2 - rankY2(d[tracker.sortVar]);
+        });
+
 
 }
 
@@ -1752,12 +1758,13 @@ function brushed(rankData) {
 
         })
         .attr("y", function (d) {
-            return rankY(d.bal_importQuantity);
+            return rankY(d[tracker.sortVar]);
         })
         .attr("width", rankX.bandwidth())
         .attr("height", function (d) {
-            return rankHeight - rankY(d.bal_importQuantity);
+            return rankHeight - rankY(d[tracker.sortVar]);
         });
+
 
 }
 
@@ -1778,8 +1785,21 @@ function overviewClicked(){
     d3.selectAll('#compare-button').classed('selected', false);
     d3.selectAll('#right-dropdown').remove();
 
+    //remove radio buttons and labels
+    d3.selectAll('.radio').remove();
+    d3.selectAll('.radio-label').remove();
+
+    //re-initialize the side panel text (removes additional <br> characters added during append)
+    d3.selectAll('#body-text').html(bodyText);
+
+    //clear entire svg for re-drawing
+    svg.selectAll('*').remove();
+
     tracker.init = true;
     tracker.view = "overview";
+
+    updateData();
+
 }
 
 
@@ -1810,70 +1830,30 @@ function compareClicked(){
         $('<br>').appendTo('#body-text');
 
         $('<input />', { type: 'radio', class:"radio", id:"sbs-radio", name:"mode"}).appendTo('#body-text').attr('checked',true);
-        $('<label />', { 'for': "sbs-radio", text: "Side-by-side comparison" }).appendTo('#body-text');
+        $('<label />', { 'for': "sbs-radio", class:"radio-label", text: "Side-by-side comparison" }).appendTo('#body-text');
 
         $('<br>').appendTo('#body-text');
 
         $('<input />', { type: 'radio', class:"radio", id:"rank-radio", name:"mode"}).appendTo('#body-text').attr('checked',false);
-        $('<label />', { 'for': "rank-radio", text: "All countries (ranking)" }).appendTo('#body-text');
+        $('<label />', { 'for': "rank-radio", class:"radio-label", text: "All countries (ranking)" }).appendTo('#body-text');
 
         $('<br><br>').appendTo('#body-text');
 
         $('<input />', { type: 'radio', class:"radio", id:"pop-radio", name:"varType"}).appendTo('#body-text').attr('checked',true);
-        $('<label />', { 'for': "pop-radio", text: "Population and crowding" }).appendTo('#body-text');
+        $('<label />', { 'for': "pop-radio", class:"radio-label", id:"pop-radio-label", text: "Population and crowding" }).appendTo('#body-text');
 
         $('<br>').appendTo('#body-text');
 
         $('<input />', { type: 'radio', class:"radio", id:"land-radio", name:"varType"}).appendTo('#body-text').attr('checked',false);
-        $('<label />', { 'for': "land-radio", text: "Land usage and degradation" }).appendTo('#body-text');
+        $('<label />', { 'for': "land-radio", class:"radio-label", id:"land-radio-label", text: "Land usage and degradation" }).appendTo('#body-text');
 
         $('<br>').appendTo('#body-text');
 
         $('<input />', { type: 'radio', class:"radio", id:"food-radio", name:"varType"}).appendTo('#body-text').attr('checked',false);
-        $('<label />', { 'for': "food-radio", text: "Food consumption and land use" }).appendTo('#body-text');
+        $('<label />', { 'for': "food-radio", class:"radio-label", id:"food-radio-label", text: "Food consumption and land use" }).appendTo('#body-text');
 
         //add event listener to radio buttons
-        $(".radio").change(function () {
-
-            console.log(this, d3.select(this).attr('id'));
-
-            if ($("#pop-radio").attr("checked")) {
-                $("#land-radio").attr("checked",false);
-                $("#food-radio").attr("checked",false);
-                $('#pop-radioedit:input').removeAttr('disabled');
-            }
-            else {
-                $('#pop-radioedit:input').attr('disabled', 'disabled');
-            }
-
-            if (d3.select(this).attr('id') == "land-radio"){
-                tracker.init = true;  //re-initialize the drawing to set up the new variable
-                tracker.varType = "land";
-                updateData();
-            }
-            else if (d3.select(this).attr('id') == "food-radio"){
-                tracker.init = true;
-                tracker.varType = "food";
-                updateData();
-            }
-            else if (d3.select(this).attr('id') == "pop-radio"){
-                tracker.init = true;
-                tracker.varType = "population";
-                updateData();
-            }
-            else if (d3.select(this).attr('id') == "sbs-radio"){
-
-            }
-            else if (d3.select(this).attr('id') == "rank-radio"){
-                tracker.init = true;
-                tracker.mode = "rank";
-                console.log('rank radio selected');
-                updateData();
-            }
-
-
-        });
-
+        $(".radio").change(radioChange)
     }
 
     tracker.init = true;
@@ -1884,11 +1864,169 @@ function compareClicked(){
 }
 
 
+function radioChange(){
+
+        //console.log(this, d3.select(this).attr('id'));
+
+        if ($("#pop-radio").attr("checked")) {
+            $("#land-radio").attr("checked",false);
+            $("#food-radio").attr("checked",false);
+            $('#pop-radioedit:input').removeAttr('disabled');
+        }
+        else {
+            $('#pop-radioedit:input').attr('disabled', 'disabled');
+        }
+
+        if (d3.select(this).attr('id') == "land-radio"){
+            if (tracker.mode == "sbs"){
+                tracker.init = true;  //re-initialize the drawing to set up the new variable
+
+                //start on 2003, since that's the year we have degrading area for
+                tracker.year.l = "2003";
+                tracker.year.r = "2003";
+
+                //update both sliders to reflect change
+                d3.selectAll('#slider-right').property("value","2003").property('innerHTML','2003');
+                d3.selectAll('#slider-left').property("value","2003").property('innerHTML','2003');
+                d3.selectAll('#slider-left-label').property('innerHTML',tracker.year.l);
+                d3.selectAll('#slider-right-label').property('innerHTML',tracker.year.r);
+            }
+            tracker.varType = "land";
+            tracker.sortVar = "lu_landArea";
+            updateData();
+        }
+        else if (d3.select(this).attr('id') == "food-radio"){
+            if (tracker.mode == "sbs"){
+                tracker.init = true;  //re-initialize the drawing to set up the new variable
+            }
+            tracker.varType = "food";
+            tracker.sortVar = "pc_avgPerCapFoodSupply";
+            updateData();
+        }
+        else if (d3.select(this).attr('id') == "pop-radio"){
+            if (tracker.mode == "sbs"){
+                tracker.init = true;  //re-initialize the drawing to set up the new variable
+            }
+            tracker.varType = "population";
+            tracker.sortVar = "lu_totalPop";
+            updateData();
+        }
+
+        //variable radio buttons only available while in ranking mode (split of prev combined groups)
+        else if (d3.select(this).attr('id') == "crowding-radio"){
+            tracker.varType = "population";
+            tracker.sortVar = "lu_peoplePerSqKm";
+            updateData();
+        }
+        else if (d3.select(this).attr('id') == "degradation-radio"){
+            tracker.varType = "land";
+            tracker.sortVar = "lu_degradingArea";
+
+            //always set year to 2003, since only have degrading land info for that year.
+            tracker.year.l = "2003";
+            //update slider values
+            d3.selectAll('#slider-left').property("value","2003").property('innerHTML','2003');
+            d3.selectAll('#slider-left-label').property('innerHTML',tracker.year.l);
+
+            updateData();
+        }
+        else if (d3.select(this).attr('id') == "land-reqt-radio"){
+            tracker.varType = "food";
+            tracker.sortVar = "pc_totalLandReq";
+            updateData();
+        }
+
+        else if (d3.select(this).attr('id') == "alph-radio"){
+            tracker.sort = "alph";
+            updateRank();
+        }
+        else if (d3.select(this).attr('id') == "value-radio"){
+            tracker.sort = "value";
+            updateRank();
+        }
+
+        //back to generally-available radios
+        else if (d3.select(this).attr('id') == "sbs-radio"){
+            tracker.init = true;
+            tracker.mode = "sbs";
+
+            //remove radio button sort and detailed variable selectors
+            d3.selectAll('.sort-radio').remove();
+            d3.selectAll('.sort-radio-label').remove();
+            d3.selectAll('.var-radio').remove();
+            d3.selectAll('.var-radio-label').remove();
+
+            //replace original radio button names
+            d3.selectAll('#pop-radio-label').text("Population and crowding");
+            d3.selectAll('#food-radio-label').text("Food consumption and land use");
+            d3.selectAll('#land-radio-label').text("Land usage and degradation");
+
+            //reset default sort selection
+            tracker.sort = "alph";
+            tracker.sortVar = "lu_totalPop";
+
+            updateData();
+        }
+        else if (d3.select(this).attr('id') == "rank-radio"){
+            tracker.init = true;
+            tracker.mode = "rank";
+
+            $('<br>').appendTo('#body-text');
+
+            //split radio buttons into separate variables
+            $('<input />', { type: 'radio', class:"radio var-radio", id:"crowding-radio", name:"varType"}).appendTo('#body-text').attr('checked',false);
+            $('<label />', { 'for': "crowding-radio", class:"radio-label var-radio-label", text: "Crowding" }).appendTo('#body-text');
+
+            $('<br>').appendTo('#body-text');
+
+            $('<input />', { type: 'radio', class:"radio var-radio", id:"degradation-radio", name:"varType"}).appendTo('#body-text').attr('checked',false);
+            $('<label />', { 'for': "degradation-radio", class:"radio-label var-radio-label", text: "Land degradation" }).appendTo('#body-text');
+
+            $('<br>').appendTo('#body-text');
+
+            $('<input />', { type: 'radio', class:"radio var-radio", id:"land-reqt-radio", name:"varType"}).appendTo('#body-text').attr('checked',false);
+            $('<label />', { 'for': "land-reqt-radio", class:"radio-label var-radio-label", text: "Land needed to grow food" }).appendTo('#body-text');
+
+            //rename old radio buttons
+            d3.selectAll('#pop-radio-label').text('Population');
+            d3.selectAll('#food-radio-label').text('Daily diet (calories)');
+            d3.selectAll('#land-radio-label').text('Land area');
+
+
+            //Make new radio buttons for sort selection
+            $('<br>').appendTo('#body-text');
+            $('<br>').appendTo('#body-text');
+
+            $('<input />', { type: 'radio', class:"radio sort-radio", id:"alph-radio", name:"sort"}).appendTo('#body-text').attr('checked',true);
+            $('<label />', { 'for': "alph-radio", class:"radio-label sort-radio-label", text: "Alphabetical" }).appendTo('#body-text');
+
+            $('<br>').appendTo('#body-text');
+
+            $('<input />', { type: 'radio', class:"radio sort-radio", id:"value-radio", name:"sort"}).appendTo('#body-text').attr('checked',false);
+            $('<label />', { 'for': "value-radio", class:"radio-label sort-radio-label", text: "Decreasing value" }).appendTo('#body-text');
+
+            //re-apply event listener to radio buttons
+            $(".radio").change(radioChange)
+
+            updateData();
+        }
+
+
+}
+
+
+function buildSlider() {
+
+}
+
+
 //Play button modified from https://jsfiddle.net/bfbun6cc/4/
 //Run the update function when the slider is changed
 d3.select('#slider-left').on('input', function() {
         console.log(this.value);
         tracker.year.l = this.value;
+
+        document.getElementById('slider-left-label').innerHTML = this.value;
         updateData();
 });
 
@@ -1897,6 +2035,7 @@ d3.select('#slider-left').on('input', function() {
 d3.select('#slider-right').on('input', function() {
     console.log(this.value);
     tracker.year.r = this.value;
+    document.getElementById('slider-right-label').innerHTML = this.value;
     updateData();
 });
 

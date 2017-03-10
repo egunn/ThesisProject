@@ -4,22 +4,25 @@ No zero handling in the timeline plot
 timeline labels wrong!
 remove food balance plot
 
-Land Use 1: 
-Needs to be incorporated into another vis?
-
 Country Explorer
 move slider and div creation to jQuery to work with default template
 add slider labels for years
 negative value otherLand US 2010??
-reshape foodbalance data
-s/u to filter and pass left and right arrays for side by side mode
 add bar charts (need to pass entire country array, not just country-year)
 
 rank bars - allow selection of two country bars in different colors
+add highlight bars behind selected data (in case bars are too small to see)
 re-size brush selection when reshuffle function updates graph (currently loses scale connection b/c array doesn't get re-trimmed)
-
-no urban land 2050, degrading land area (vals from soilData_cut should be included for 2003; zero can be used for other years if necessary). Double check that lu_landArea is total from land use calcs. 	heck units! Values seem very far off (double check that sum of B's results w/i a region match the original region total)
-Belgium 1975 crowding ==0??
+default view zooms into subsection of data, rather than plotting the whole bar series
+hide/remove dropdowns in ranking view
+add a year input
+restrict degrading data to 2003
+take out play/stop buttons?
+try changing slider "oninput" to "onchange" to reduce function calls? (Label updates probably still want to be oninput)
+add urban land and pop 2050 to visualizations?
+add alphabetical x-axis labels 
+on show nav, needs to call pageNav function?
+Land degradation/area ranking should be in percent rather than total land area? (or add additional selector)
 
 Soil Degradation:
 add pie chart to show % degradation classes? 
