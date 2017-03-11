@@ -35,10 +35,14 @@
 
             <div class="row vis-row">
                 <div class="col-md-9">
-
-                    <div id="vis-div">
-                        <svg class="vis-svg" id="vis"></svg>
-                        <canvas class="vis-canvas" id="vis-canvas"></canvas>
+                    <div class="svg-row">
+                        <div id="vis-div">
+                            <svg class="vis-svg" id="vis"></svg>
+                            <canvas class="vis-canvas" id="vis-canvas"></canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="anim-div"></div>
                     </div>
 
                 </div>
@@ -48,9 +52,7 @@
                     <div id="body-text"></div>
 
                 </div>
-                <div class="row">
-                    <div class="anim-div"></div>
-                </div>
+
             </div>
 
             <!--

@@ -50,7 +50,7 @@ function reloadTemplate() {
 
     var currPage;
 
-    console.log(tracker);
+    console.log(tracker[0].node);
 
     if (typeof tracker[0].node == "undefined"){
 
@@ -126,11 +126,17 @@ function reloadTemplate() {
         if (typeof currPage != "undefined" && currPage.length > 0){
             console.log(tracker[0].node, currPage[0].page);
 
+            //load Crossfilter for countryExplorer page
+            if (tracker[0].node == "G"){
+                $.getScript("./scripts/vendor/crossfilter.js");
+            }
+
             $.getScript(currPage[0].script);
 
             $.getScript('./scripts/pageNav.js');
         }
         else {
+            //this may fire if the JSON has a syntax error - JSON laod fails silently
             console.log('unknown node')
         }
 

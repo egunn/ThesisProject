@@ -61,6 +61,8 @@ function csvTest(table){
 //based on
 function drawNav(treeData){
 
+    console.log(tracker);
+
     //group to plot bars in
     navGroup = navSvg.append('g')
         .attr('class','nav-group')

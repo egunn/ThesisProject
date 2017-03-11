@@ -243,7 +243,6 @@ function drawNetwork(linkList, nodeList){
         .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'})
         .on('mouseover',function(d){
 
-
             //console.log(d3.select('#' + d.id +'-text-rect').style('fill'));
             //console.log(d3.select('#' + d.id +'-text-rect').attr('fill'));
 
