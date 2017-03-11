@@ -269,7 +269,6 @@ function addDropdown(){
 
 }
 
-
 //auto-hide bottom navbar to open up screen space
 d3.select('.to-collapse').attr('class','to-collapse out');
 d3.select('.collapse-button').html('Show Nav');
@@ -452,9 +451,19 @@ function updateData() {
                     drawLandSquares(pcCountryYearL,'l');
                     drawLandSquares(pcCountryYearR,'r');
                 }
+
+               
+                if (d3.select('#slider-left').node() == null){
+                    makeSlider('left');
+                }
+                if (d3.select('#slider-right').node() == null) {
+                    makeSlider('right');
+                }
             }
             else if(tracker.mode == "rank"){
                 drawRank(sortData);
+                d3.select('#slider-right').remove();
+                d3.select('#slider-right-label').remove();
             }
 
 
@@ -2015,30 +2024,42 @@ function radioChange(){
 }
 
 
-function buildSlider() {
+function makeSlider(side){
+
+    var newDiv = $(".anim-div").append("<div></div>",{class:"slider-div"});
+
+    if(side == "left"){
+        $('<input />', { type: 'range', class:"slider", id:"slider-left", min:"1961", max:"2016", value:"2003", step:"1"}).appendTo(newDiv).attr('checked',false);
+        $('<em/>', { id:"slider-left-label", style:"font-style: normal;", html:"2003"}).appendTo(newDiv);
+
+        //Run the update function when the slider is changed
+        d3.select('#slider-left').on('input', function() {
+            console.log(this.value);
+            tracker.year.l = this.value;
+
+            document.getElementById('slider-left-label').innerHTML = this.value;
+            updateData();
+        });
+    }
+    else if(side == "right"){
+        $('<input />', { type: 'range', class:"slider", id:"slider-right", min:"1961", max:"2016", value:"2003", step:"1"}).appendTo(newDiv).attr('checked',false);
+        $('<em/>', { id:"slider-right-label", style:"font-style: normal;", html:"2003"}).appendTo(newDiv);
+
+        //Run the update function when the slider is changed
+        d3.select('#slider-right').on('input', function() {
+            console.log(this.value);
+            tracker.year.r = this.value;
+            document.getElementById('slider-right-label').innerHTML = this.value;
+            updateData();
+        });
+    }
+
+
 
 }
 
 
 //Play button modified from https://jsfiddle.net/bfbun6cc/4/
-//Run the update function when the slider is changed
-d3.select('#slider-left').on('input', function() {
-        console.log(this.value);
-        tracker.year.l = this.value;
-
-        document.getElementById('slider-left-label').innerHTML = this.value;
-        updateData();
-});
-
-//Play button modified from https://jsfiddle.net/bfbun6cc/4/
-//Run the update function when the slider is changed
-d3.select('#slider-right').on('input', function() {
-    console.log(this.value);
-    tracker.year.r = this.value;
-    document.getElementById('slider-right-label').innerHTML = this.value;
-    updateData();
-});
-
 function playClicked(){
     console.log('play clicked');
 }

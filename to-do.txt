@@ -3,6 +3,7 @@ Category selection has no effect on food balance plot
 No zero handling in the timeline plot
 timeline labels wrong!
 remove food balance plot
+integrate into main site
 
 Country Explorer
 move slider and div creation to jQuery to work with default template
