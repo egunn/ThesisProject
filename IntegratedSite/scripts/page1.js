@@ -30,7 +30,7 @@ function navButtonClicked(value){
 
 
 //read in the passed JSON in object format
-//tracker = JSON.parse(tracker);
+tracker = JSON.parse(tracker);
 
 //set header background color based on narrative selected
 if(tracker[0].narrative == "soil"){

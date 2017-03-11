@@ -63,8 +63,17 @@ a{
 .navbar{
     background: #FAFAFA;
     color: white;
-    min-height: 45px;
     border-width: 0 0 0px;
+}
+
+
+.navbar-fixed-top{
+    min-height: 45px;
+}
+
+
+.navbar-fixed-bottom{
+    min-height: 30px;
 }
 
 /*controls title left padding*/
@@ -83,7 +92,7 @@ a{
     /*font-weight: bolder;*/
     word-spacing: 4px;
     padding-left: 0px;
-    padding-right: 75px;
+    padding-right: 55px;
     padding-top: 7px;
 }
 
@@ -105,6 +114,17 @@ a{
 
 .title {
     padding-top: 100px;
+}
+
+.countryDropdown {
+    display: inline-block;
+    width: 15%;
+    border: none;
+    background: gainsboro;
+    color: #3b3b3b;
+    margin-top: 5px;
+    margin-left: 15px;
+    margin-right: 20px;
 }
 
 .synopsis-col{
@@ -129,6 +149,10 @@ a{
     height:450px; /*need to set this height manually, otherwise pagenav floats in the middle of the screen!*/
 }
 
+/*separated svg and slider into two separate rows inside of vis to get positioning right*/
+.svg-row{
+    height:450px;
+}
 
 .page-nav{
     width:100%;
@@ -228,7 +252,7 @@ button {
     x-align: center;
     text-decoration: none;
     font-size: 14px;
-    border-radius: 8px;
+    border-radius: 5px;
     margin-top: 0px;
     margin-bottom: 20px;
     margin-right: 5px;
@@ -266,9 +290,10 @@ button:focus{
 
 
 .nav-button{
-    background-color: darkgray; /* Green */
-    color:#3b3b3b;/*#555;*/
+    background: gainsboro;
+    color: #3b3b3b;
     margin-bottom: 0px;
+    border: none;
 }
 
 .nav-button.selected{
@@ -348,4 +373,111 @@ footer {
 
 .out{
     height: 0px;
+}
+
+
+
+.animation-div{
+    z-index:3;
+    position:fixed;
+    top:82vh;
+    left:0vw;
+    width:5vw;
+    height:20vh;
+    margin-left:3vw;
+}
+
+.button-div{
+    display:inline-block;
+}
+
+.anim-button{
+    background-color: gainsboro; /* Green */
+    color:gray;
+    margin-bottom: 10px;
+    min-width: 20px;
+    width:50px;
+    padding: 3px 8px 3px 8px;
+    border:none;
+}
+
+
+.anim-button.selected{
+    background-color: #595959;
+    color:#dddcd7;
+}
+
+
+.slider-div{
+    padding: 20px 15px 20px 5px;
+    display:-webkit-inline-box;
+    width:40%;
+}
+.slider {
+    width: 350px;
+    height: 17px;
+    position: relative;
+    margin-top: 25px;
+    margin-bottom: 6px;
+    background: lightgray;
+
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+
+}
+
+.slider .bar {
+    width: 386px;
+    height: 5px;
+    background: lightslategrey;
+    position: absolute;
+    top: 6px;
+    left: 8px;
+
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.slider .highlight {
+    height: 2px;
+    position: absolute;
+    width: 388px;
+    top: 6px;
+    left: 6px;
+
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+
+    background: rgba(255, 255, 255, 0.25);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    background-color: gainsboro;
+    height: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    position: relative;
+    top: 0px;
+    z-index: 1;
+    width: 10px;
+    height: 20px;
+    cursor: pointer;
+
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background-color: gainsboro;
+}
+
+.radio{ /*being overwritten by less for some reason - jQuery append??*/
+    display: inline-block;
+    margin-right:6px !important;
+    margin-top:-2px !important;
+    vertical-align:middle !important;
 }

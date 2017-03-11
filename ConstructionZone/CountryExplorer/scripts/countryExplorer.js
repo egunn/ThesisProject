@@ -452,7 +452,7 @@ function updateData() {
                     drawLandSquares(pcCountryYearR,'r');
                 }
 
-               
+
                 if (d3.select('#slider-left').node() == null){
                     makeSlider('left');
                 }
