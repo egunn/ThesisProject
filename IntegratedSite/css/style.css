@@ -55,6 +55,11 @@ h1 {
     padding-left:0px;
 }
 
+h4 {
+    margin-top:7px;
+    line-height: 1.4em;
+}
+
 a{
     padding-left:15px;
 }
@@ -113,7 +118,8 @@ a{
 }
 
 .title {
-    padding-top: 100px;
+    padding-top: 50px;
+    padding-left: 40px; /*added for left-hand version*/
 }
 
 .countryDropdown {
