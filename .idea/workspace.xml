@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/data/navNodes.json" afterPath="$PROJECT_DIR$/IntegratedSite/data/navNodes.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/data/nodeList.csv" afterPath="$PROJECT_DIR$/IntegratedSite/data/nodeList.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/template.json" afterPath="$PROJECT_DIR$/IntegratedSite/template.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/WorldPop.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/WorldPop.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/to-do.txt" afterPath="$PROJECT_DIR$/to-do.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,31 +24,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="worldFood.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/worldFood.js">
+      <file leaf-file-name="countryExplorer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/countryExplorer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="103" column="23" lean-forward="false" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
+            <state relative-caret-position="399">
+              <caret line="1223" column="8" lean-forward="false" selection-start-line="1223" selection-start-column="8" selection-end-line="1223" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/index.js">
+      <file leaf-file-name="pageNav.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="203" column="32" lean-forward="true" selection-start-line="203" selection-start-column="32" selection-end-line="203" selection-end-column="32" />
+            <state relative-caret-position="193">
+              <caret line="57" column="2" lean-forward="true" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="navNodes.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IntegratedSite/data/navNodes.json">
+      <file leaf-file-name="WorldPop.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/WorldPop.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
+            <state relative-caret-position="206">
+              <caret line="234" column="0" lean-forward="true" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -69,8 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>s.</find>
-      <find>zoom</find>
       <find>domain</find>
       <find>modeTra</find>
       <find>varTracker</find>
@@ -99,6 +95,8 @@
       <find>import-line</find>
       <find>axis</find>
       <find>'photo'</find>
+      <find>.text</find>
+      <find>info-</find>
     </findStrings>
     <replaceStrings>
       <replace>rankX</replace>
@@ -111,7 +109,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ConstructionZone/droppables/scripts/droppables.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/droppables/css/style.css" />
         <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/data/navNodes.json" />
         <option value="$PROJECT_DIR$/ConstructionZone/alternativeIndex/scripts/frontNav.js" />
@@ -162,6 +159,7 @@
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/worldFood.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/scripts/index.js" />
         <option value="$PROJECT_DIR$/IntegratedSite/data/navNodes.json" />
+        <option value="$PROJECT_DIR$/IntegratedSite/scripts/WorldPop.js" />
       </list>
     </option>
   </component>
@@ -412,12 +410,12 @@
       <workItem from="1488671866050" duration="40017000" />
       <workItem from="1488857692281" duration="71991000" />
       <workItem from="1489194050216" duration="10454000" />
-      <workItem from="1489343867908" duration="4514000" />
+      <workItem from="1489343867908" duration="7220000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="602414000" />
+    <option name="totallyTimeSpent" value="605120000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -480,13 +478,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/Ecoregions/scripts/testJQuery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/CountryExplorer/scripts/page1.js" />
     <entry file="file://$PROJECT_DIR$/ConstructionZone/GlobalC/scripts/testJQuery.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -621,6 +612,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
           <caret line="233" column="14" lean-forward="false" selection-start-line="233" selection-start-column="14" selection-end-line="233" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -658,6 +650,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="12" column="15" lean-forward="true" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -679,6 +672,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -708,22 +702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-403">
           <caret line="112" column="12" lean-forward="true" selection-start-line="112" selection-start-column="12" selection-end-line="112" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="57" column="2" lean-forward="true" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/countryExplorer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="2061" column="60" lean-forward="false" selection-start-line="2061" selection-start-column="60" selection-end-line="2061" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -803,18 +781,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/worldFood.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="103" column="23" lean-forward="false" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/template.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="76" lean-forward="false" selection-start-line="10" selection-start-column="76" selection-end-line="10" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/data/navNodes.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -827,10 +805,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSite/data/navNodes.json">
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/worldFood.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
+        <state relative-caret-position="245">
+          <caret line="103" column="23" lean-forward="false" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/countryExplorer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="1223" column="8" lean-forward="false" selection-start-line="1223" selection-start-column="8" selection-end-line="1223" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/pageNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="57" column="2" lean-forward="true" selection-start-line="57" selection-start-column="2" selection-end-line="57" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/WorldPop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="234" column="0" lean-forward="true" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
           <folding />
         </state>
       </provider>

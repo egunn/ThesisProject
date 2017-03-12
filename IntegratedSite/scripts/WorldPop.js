@@ -165,7 +165,7 @@ function dataLoaded(data, events) {
     context.append("g")
         .attr("class", "brush")
         .call(brush)
-        .call(brush.move, x.range());
+        .call(brush.move, [x(0),x(2050)]);//x.range()  //determine width of initial brush selection
 
     eventColors =  d3.scaleOrdinal().domain(["weather","culture","technology","agriculture","context","deaths"]).range(["#1b9e77","#d95f02","#7570b3","#e7298a","#66a61e","#e6ab02"]);
 
@@ -200,6 +200,7 @@ function dataLoaded(data, events) {
         .attr('stroke', function(d){
             return eventColors(d.type);
         })
+        .attr('stroke-width',1.5)
         .attr('stroke-opacity',function(d){
             if(d.priority == 1){
                 return .5;
@@ -221,15 +222,27 @@ function dataLoaded(data, events) {
                 .attr('pointer-events','none')
                 .attr('fill','white');*/
 
+            d3.selectAll('.info-text').remove();
+            d3.selectAll('.info-box').remove();
+
+            var labelX;
+            if(d3.mouse(this)[0] < width-100){
+                labelX = d3.mouse(this)[0] + 2;
+            }
+            else{
+                labelX = d3.mouse(this)[0]-150;
+            }
+
             var infoText = focus.append('text')
                 .attr('class','info-text')
-                .attr('x', x(d.year_Actual))
+                .attr('x', labelX)
                 .attr('y',y(0)/3)
                 .style('text-anchor','begin')
                 .attr('font-size',12)
                 .attr('font-family','WorkSansExtraLight')
                 .attr('fill','gray')
                 .text(null);
+
 
             infoText.transition()
                 .on('end',function(){
@@ -240,29 +253,15 @@ function dataLoaded(data, events) {
                         date = d.year_Actual + " A.D.: "
                     }
 
-                    wrap(d3.select('.info-text').text('test'), date + d.event, 150);
+                    wrap(d3.select('.info-text'), date + d.event, 150);
                 });
 
 
         })
         .on('mouseout',function(d){
-            d3.selectAll('info-text').remove();
-            d3.selectAll('info-box').remove();
+
+
         });
-
-
-/*  //in the example, this rectangle allows dragging of the main chart; found it confusing, and distracted from lower controller bar
-    //leave it out for now.
-    svg.append("rect")
-        .attr("class", "zoom")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        //moved in from css for now - remove to style sheet later!
-        .style('cursor','move')
-        .style('fill','none')
-        .style('pointer-events', 'all')
-        .call(zoom);*/
 
 }
 
@@ -423,6 +422,7 @@ function wrap(text, wordList, width) {
                 .attr("x", x)
                 .attr("y", y)
                 .attr("dy", dy + "em");
+
         while (word = words.pop()) {
             line.push(word);
             tspan.text(line.join(" "));
