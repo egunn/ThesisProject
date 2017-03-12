@@ -1,0 +1,2 @@
+[ {"page":"A","title":"World Food Production", "synopsis":"Agricultural production has been increasing steadily for the past 50 years.", "text":"This chart shows world agricultural production. Source: FAOSTAT", "link":"index.html", "linkText":"Index"},
+  {"page":"B","title":"Page B", "text":"This is a JSON to test text reloading from a file for use in a JS template.", "link":"index.html", "linkText":"Index"}]

@@ -72,7 +72,7 @@
             "children":[
               {"name":"Food Supply",
                 "narrative":{"soil":false, "food":true, "population":true},
-                "photo":"test.png",
+                "photo":"./images/foodprod.png",
                 "nodeID":"E",
                 "position":6,
                 "children":[
@@ -93,7 +93,7 @@
               {
                "name":"Land per Person",
                 "narrative":{"soil":false, "food":false, "population":true},
-                "photo":"test.png",
+                "photo":"./images/landuse.png",
                 "nodeID":"G",
                 "position":5
               }
