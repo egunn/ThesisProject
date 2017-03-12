@@ -103,7 +103,7 @@ var pattern = layerNodes.append("defs")
 
 var introText = svg.append('text')
     .attr('class','init-text')
-    .attr('x', .55*heightNM*(1/illustratorAR))
+    .attr('x', .55*heightNM*(1/illustratorAR) +20)
     .attr('y',.26*heightNM)
     .style('text-anchor','begin')
     .attr('font-size',12)

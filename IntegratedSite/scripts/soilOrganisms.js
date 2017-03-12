@@ -17,28 +17,28 @@ var canvas = d3.select("#vis-canvas")
     .style('height','450px');
 
 var organismData = [
-	{name:"Arthropods", link:"./images/arthropods_2.png",
+	{name:"Arthropods", link:"./images/arthropods.png",
         coords:{relX:.70,relY:.265},
         textCoords:{relX:.766,relY:.208,width:200},
 		text:"Soil arthropods include spiders, mites, millipedes, centipedes, and ants. The smaller species shred and eat plant matter. Larger arthropods often prey on smaller species, and other soil organisms."
 	},
-    {name:"Bacteria", link:"./images/bacteria_2.png",
-        coords:{relX:.423,relY:.76},
+    {name:"Bacteria", link:"./images/bacteria.png",
+        coords:{relX:.426,relY:.76},
         textCoords:{relX:.369,relY:.866,width:300},
 		text:"Most bacteria decompose plant material or minerals, making nutrients available for plants and other organisms. Some bacteria convert nitrogen into a form that is useful for plants. Others are pathogens and cause disease."},
-    {name:"Fungi", link:"./images/fungi_2.png",
-        coords:{relX:.48,relY:.34},
+    {name:"Fungi", link:"./images/fungi.png",
+        coords:{relX:.485,relY:.34},
         textCoords:{relX:.428,relY:.45,width:250},
 		text:"Soil fungi grow in long threads called hyphae, and make mushrooms to release spores. Microscopic hyphae hold soil particles together, improving soil structure. Fungae decompose wood and other materials that bacteria cannot, and extract phosphorus, nitrogen, and other nutrients from soil."},
-    {name:"Invertebrates", link:"./images/invertebrates_2.png",
+    {name:"Invertebrates", link:"./images/invertebrates.png",
         coords:{relX:.70,relY:.64},
         textCoords:{relX:.761,relY:.584,width:180},
 		text:"Earthworms and nematodes are common soil invertebrates. Nematodes are microscopic worms that eat plant roots, bacteria and fungi, or each other. Earthworms are large worms that eat soil, playing a vital role in breaking plant matter down. Their tunnels also help to aerate the soil."},
-    {name:"Plants", link:"./images/plants_2.png",
-        coords:{relX:.43,relY:.13},
+    {name:"Plants", link:"./images/plants.png",
+        coords:{relX:.433,relY:.128},
         textCoords:{relX:.04,relY:.061,width:200},
 		text:"Plants make starches and sugars during photosynthesis. Dead leaves feed bacteria and other organisms in the soil. Plants constantly communicate with their environment using chemical signals and hormones to encourage soil organisms to colonize their roots."},
-    {name:"Protozoa", link:"./images/protozoa_2.png",
+    {name:"Protozoa", link:"./images/protozoa.png",
         coords:{relX:.28,relY:.46},
         textCoords:{relX:.000,relY:.404,width:170},
         text:"Protozoa are small, single-celled organisms, usually ten to a hundred times larger than bacteria. They feed primarily on soil bacteria, but can also eat fungi and soil organic matter as well. When protozoa feed on bacteria, they release nitrogen into the soil, which plants use to grow."}
@@ -71,7 +71,7 @@ var illustratorOffset = width/2 - .5*heightNM*(1/illustratorAR);
 illustratorOffsetY = .04*heightNM; //circles don't start at edge of illustrator diagram - off by 22 px, of 552.
 illustratorScaledRadius =  .077*heightNM; // radius is 42.5/552 px in illustrator, or 7.%%
 
-console.log(heightScale);
+console.log(illustratorScaledRadius);
 
 var organismNodes = svg.selectAll('.organisms')
 	.data(organismData)
@@ -80,17 +80,19 @@ var organismNodes = svg.selectAll('.organisms')
     .attr('transform','translate(' + illustratorOffset + ',' + 0 + ')');
 
 
-
+//http://stackoverflow.com/questions/33895786/image-blurry-when-using-url-fill-pattern-for-svg-circle
+//http://stackoverflow.com/questions/29087113/why-is-my-svg-image-blurry-when-using-a-fill-pattern
 var pattern = organismNodes.append("defs")
     .append("pattern")
     .attr('id',function(d){ return 'pattern-' + d.id;})
     .attr("width", "100%")
-    .attr("height", "100%")
-    .attr('patternContentUnits',"objectBoundingBox")
+    .attr("height", "102%")
+    //.attr('patternContentUnits',"objectBoundingBox")
+    .attr("patternUnits", "objectBoundingBox")
     .attr('viewBox',"0 0 1 1")
-    .attr('preserveAspectRatio',"xMidYMid slice")
+    //.attr('preserveAspectRatio',"xMidYMid slice")
     .append('image')
-    .attr("height", 1)
+    .attr("height", 1)  //appears to set image origin, and possibly scale?
     .attr("width", 1)
     .attr('preserveAspectRatio',"xMidYMid slice")
     .attr("xlink:href", function(d){ return d.link});
