@@ -26,7 +26,7 @@
 
                   <button class="nav-button selected" id="exportButton" onClick="exportClicked()">Exports</button>
                   <button class="nav-button" id="importButton" onClick="importClicked()">Imports</button>
-                  <button class="nav-button" id="balanceButton" onClick="balanceClicked()">Balance</button>
+                  <!-- <button class="nav-button" id="balanceButton" onClick="balanceClicked()">Balance</button> -->
 
                   <select class="type-list form-control countryDropdown">
                         <option id="countryDropdown" value="US">United States</option>
@@ -139,6 +139,7 @@
 <form name="phpFormD" id="phpFormD" method="POST" action="foodFlow.php">
     <input type="hidden" name="tracker">
 </form>
+
 
 <!-- Alt form to load index page -->
 <form name="phpFormZ" id="phpFormZ" method="POST" action="index.php">

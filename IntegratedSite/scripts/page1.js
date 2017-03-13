@@ -87,6 +87,17 @@ function reloadTemplate() {
             currPage = json.filter(function (d) {
                 return tracker[0].node == d.page;
             });
+
+            console.log(currPage);
+        });
+
+
+    }
+    else if(tracker[0].node == "Z"){
+        $.getJSON("template.json", function(json) {
+            currPage = json.filter(function (d) {
+                return tracker[0].node == d.page;
+            });
         });
     }
     else {
@@ -209,11 +220,13 @@ function sendData(tracker)
 
     //check whether node selected is foodFlow
     if(tracker[0].currentNode == "D"){
+        console.log('food flow, phpFormD');
         document.phpFormD.tracker.value = packed;
         document.phpFormD.submit();
     }
     //when index node is selected
-    if(tracker[0].currentNode == "Z"){
+    else if(tracker[0].currentNode == "Z"){
+        console.log('index, phpFormZ');
         document.phpFormZ.tracker=tracker;
         document.phpFormZ.tracker.value = packed;
         document.phpFormZ.submit();

@@ -11,10 +11,30 @@ console.log(tracker);
 //JS function to preprocess and send the data to the server
 function sendData()
 {
+
+
     //convert the JSON object to a string using JS
     packed = JSON.stringify(tracker);
     document.phpForm.tracker.value = packed;
-    document.phpForm.submit();
+    //document.phpForm.submit();
+
+    console.log(tracker);
+
+    //check whether node selected is foodFlow
+    if(tracker[0].currentNode == "D"){
+        console.log('food flow, phpFormD');
+
+        document.phpFormD.tracker.value = packed;
+        document.phpFormD.submit();
+    }
+    else{
+        if (tracker[0].prevNode == "D"){
+            document.phpForm.tracker=tracker;
+        }
+        document.phpForm.tracker.value = packed;
+        document.phpForm.submit();
+    }
+
 }
 
 //****************************************************************************

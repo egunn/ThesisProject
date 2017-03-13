@@ -66,6 +66,12 @@
     <input type="hidden" name="tracker">
 </form>
 
+<!-- Alt form to load Food Flow page -->
+<form name="phpFormD" id="phpFormD" method="POST" action="foodFlow.php">
+    <input type="hidden" name="tracker">
+</form>
+
+
 <!-- link that activates the sendData function and sends the data to the server -->
 <!--<a href="javascript:sendData();">Next page</a>-->
 
