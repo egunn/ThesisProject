@@ -16,32 +16,40 @@
 function navButtonClicked(value){
 
     //d3.select('.to-collapse').attr('class','to-collapse out');
-    var tempClass =  d3.select('.to-collapse').attr('class')
+    var tempClass =  d3.select('.to-collapse').attr('class');
     //console.log(tempClass.substr(tempClass.length-3,tempClass.length));
     if (tempClass.substr(tempClass.length-3,tempClass.length) == "out"){
         d3.select('.to-collapse').attr('class','to-collapse in');
         d3.select('.collapse-button').html('Hide Nav');
+        if(tracker[0].node == "D"){
+            d3.select('.page-nav').style('background','#F8F8F8');
+        }
     }
     else{
         d3.select('.to-collapse').attr('class','to-collapse out');
         d3.select('.collapse-button').html('Show Nav');
+        if(tracker[0].node == "D"){
+            d3.select('.page-nav').style('background','gray');
+        }
     }
 }
 
 
 //read in the passed JSON in object format
 tracker = JSON.parse(tracker);
+if(tracker[0].node != "D"){
 
-//set header background color based on narrative selected
-if(tracker[0].narrative == "soil"){
-    d3.select('#myNavbar').style('background','#f6eff7');//'#eadcef'
-    //d3.select('.page-nav').style('background','#f6eff7');
-}
-else if(tracker[0].narrative == "population"){
-    d3.select('#myNavbar').style('background','#eff8f9');//#edf8f9
-}
-else if(tracker[0].narrative == "food"){
-    d3.select('#myNavbar').style('background','#f9f7ef');//#f9f7ef
+    //set header background color based on narrative selected
+    if(tracker[0].narrative == "soil"){
+        d3.select('#myNavbar').style('background','#f6eff7');//'#eadcef'
+        //d3.select('.page-nav').style('background','#f6eff7');
+    }
+    else if(tracker[0].narrative == "population"){
+        d3.select('#myNavbar').style('background','#eff8f9');//#edf8f9
+    }
+    else if(tracker[0].narrative == "food"){
+        d3.select('#myNavbar').style('background','#f9f7ef');//#f9f7ef
+    }
 }
 
 reloadTemplate();
@@ -72,6 +80,15 @@ function reloadTemplate() {
             $("a#test-link").text(json[1].linkText);
         });
     }*/
+    else if (tracker[0].node == "D"){
+        console.log('food flow');
+
+        $.getJSON("template.json", function(json) {
+            currPage = json.filter(function (d) {
+                return tracker[0].node == d.page;
+            });
+        });
+    }
     else {
         //$('#title').html('Some other page');
 
@@ -122,6 +139,7 @@ function reloadTemplate() {
     //faster without the document ready, but might cause loading problems??
     $(document).ready(function() {
 
+        console.log(currPage, tracker[0].node);
         //$.getScript("./scripts/vendor/topojson.js");  //added to HTML template for now
         if (typeof currPage != "undefined" && currPage.length > 0){
             console.log(tracker[0].node, currPage[0].page);
@@ -131,9 +149,17 @@ function reloadTemplate() {
                 $.getScript("./scripts/vendor/crossfilter.js");
             }
 
-            $.getScript(currPage[0].script);
+            //don't load anything for Food Flow
+            if (tracker[0].node == "D"){
+                console.log('skip script Food flow');
+                $.getScript('./scripts/pageNav.js');
+            }
+            else {
+                $.getScript(currPage[0].script);
 
-            $.getScript('./scripts/pageNav.js');
+                $.getScript('./scripts/pageNav.js');
+            }
+
         }
         else {
             //this may fire if the JSON has a syntax error - JSON laod fails silently
@@ -148,7 +174,7 @@ function reloadTemplate() {
 }
 
 
-
+/*
 function nextClicked(){
     console.log('next clicked');
 
@@ -160,7 +186,7 @@ function nextClicked(){
     }
     reloadTemplate();
 }
-
+*/
 
 
 //JS function to preprocess and send the data to the server
@@ -178,8 +204,29 @@ function sendData(tracker)
 
     //convert the JSON object to a string using JS
     packed = JSON.stringify(tracker);
-    document.phpForm.tracker.value = packed;
-    document.phpForm.submit();
+
+    console.log(tracker);
+
+    //check whether node selected is foodFlow
+    if(tracker[0].currentNode == "D"){
+        document.phpFormD.tracker.value = packed;
+        document.phpFormD.submit();
+    }
+    //when index node is selected
+    if(tracker[0].currentNode == "Z"){
+        document.phpFormZ.tracker=tracker;
+        document.phpFormZ.tracker.value = packed;
+        document.phpFormZ.submit();
+    }
+    else{
+        if (tracker[0].prevNode == "D"){
+            document.phpForm.tracker=tracker;
+        }
+        document.phpForm.tracker.value = packed;
+        document.phpForm.submit();
+    }
+
+
 }
 
 //****************************************************************************

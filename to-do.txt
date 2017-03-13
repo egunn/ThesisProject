@@ -31,7 +31,6 @@ add pie chart to show % degradation classes?
 Ecoregions:
 SVG needs to become responsive
 Map mismatch on window size change
-Make x-axis white (Move axis to front, turn it back to white)
 Try implementing map mesh to speed drawing?
 redo biome definitions mapping
 

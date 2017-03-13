@@ -119,6 +119,16 @@
     <input type="hidden" name="tracker">
 </form>
 
+<!-- Alt form to load Food Flow page -->
+<form name="phpFormD" id="phpFormD" method="POST" action="foodFlow.php">
+    <input type="hidden" name="tracker">
+</form>
+
+<!-- Alt form to load index page -->
+<form name="phpFormZ" id="phpFormZ" method="POST" action="index.php">
+    <input type="hidden" name="tracker">
+</form>
+
 </body>
 
 <script src="./scripts/vendor/d3.v4.2.6.min.js"></script>

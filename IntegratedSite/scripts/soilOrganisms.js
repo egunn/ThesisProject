@@ -82,6 +82,11 @@ var organismNodes = svg.selectAll('.organisms')
 
 //http://stackoverflow.com/questions/33895786/image-blurry-when-using-url-fill-pattern-for-svg-circle
 //http://stackoverflow.com/questions/29087113/why-is-my-svg-image-blurry-when-using-a-fill-pattern
+//http://unmatchedstyle.com/news/svg-and-the-preserveaspectratio-property.php
+//http://stackoverflow.com/questions/25881186/d3-fill-shape-with-image-using-pattern
+//http://stackoverflow.com/questions/27449360/d3-svg-background-blurry
+//http://stackoverflow.com/questions/25881186/d3-fill-shape-with-image-using-pattern
+//switch to svg to avoid blurriness?
 var pattern = organismNodes.append("defs")
     .append("pattern")
     .attr('id',function(d){ return 'pattern-' + d.id;})
