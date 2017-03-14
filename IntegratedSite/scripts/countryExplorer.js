@@ -98,22 +98,22 @@ centerCoords = {
     sbs: {
         l:{
             popBars: [.06, .1],
-            landSquares: [.2, .3],
-            degradedSquares: [.4, .3],
-            crowdingSquares: [.13, .4],
+            landSquares: [.06, .1],
+            degradedSquares: [.33, .1],
+            crowdingSquares: [.06, .2],
             foodBar1: [.06, .1],
-            foodBar2: [.16, .1],
-            calories: [.35, .2],
+            foodBar2: [.15, .1],
+            calories: [.3, .1],
             perCapita: [.6, .1]
         },
         r:{
             popBars: [.56, .1],
-            landSquares: [.75, .3],
-            degradedSquares: [.95, .3],
-            crowdingSquares: [.63, .4],
+            landSquares: [.56, .1],
+            degradedSquares: [.83, .1],
+            crowdingSquares: [.56, .2],
             foodBar1: [.56, .1],
-            foodBar2: [.66, .1],
-            calories: [.85, .2],
+            foodBar2: [.65, .1],
+            calories: [.8, .1],
             perCapita: [.56, .1]
         }},
     rank: {
@@ -517,7 +517,7 @@ function updateData() {
             if(countryTracker.mode == "sbs"){
                 //reset scale factors using max of two countries selected
                 landAreaScale.range([0,width*.18]).domain([0, Math.max(pcCountryYearL[0].lu_landArea,pcCountryYearL[0].pc_totalLandReq,pcCountryYearR[0].lu_landArea,pcCountryYearR[0].pc_totalLandReq)]);
-                popLineScale.range([0,width*.5]).domain([0, pcCountryYearL[0].lu_totalPop,pcCountryYearR[0].lu_totalPop]);
+                popLineScale.range([0,width*.4]).domain([0, Math.max(pcCountryYearL[0].lu_totalPop,pcCountryYearR[0].lu_totalPop)]);
                 foodBalanceScale.range([0,height*.4])
                     .domain(
                         [0,
@@ -607,7 +607,7 @@ function updateData() {
 
                 //reset scale factors using max of two countries selected
                 landAreaScale.range([0,width*.18]).domain([0, Math.max(pcCountryYearL[0].lu_landArea,pcCountryYearL[0].pc_totalLandReq,pcCountryYearR[0].lu_landArea,pcCountryYearR[0].pc_totalLandReq)]);
-                popLineScale.range([0,width*.5]).domain([0, pcCountryYearL[0].lu_totalPop,pcCountryYearR[0].lu_totalPop]);
+                popLineScale.range([0,width*.4]).domain([0, Math.max(pcCountryYearL[0].lu_totalPop,pcCountryYearR[0].lu_totalPop)]);
                 foodBalanceScale.range([0,height*.4])
                     .domain(
                         [0,
@@ -1333,7 +1333,7 @@ function drawPCLandUse(landReqts){
                 return 4;
             }
         })
-        .attr('stroke','green');
+        .attr('stroke','orange');
 
     svg.append('rect')
         .attr('class','total-land-rect')

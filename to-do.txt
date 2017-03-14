@@ -22,7 +22,10 @@ sort decr value not maintained on year update with slider
 switch between rank and sbs not clearing out sidebar yet? <br> before re-appends on re-enter rank section
 problem with multiple function calls when switching between sbs and compare rank (seems worse after leaving alone for a few mins??)
 options appending to dropdowns multiple times!!
+
 need degraded land calc'd for regions and world
+Monaco crowding 16480??
+several countries with 0 people/sq km, eg: Macao, Mayotte, Monaco
 
 Soil Degradation:
 add pie chart to show % degradation classes? 
