@@ -1045,6 +1045,7 @@ function foodClicked() {
     tracker[0].node = "M";
     tracker[0].currentNode = "M";
     tracker[0].visitedNodes.push("M");
+    sendData();
 }
 
 function populationClicked() {
