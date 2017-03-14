@@ -2,8 +2,6 @@ Food Flow:
 Category selection has no effect on food balance plot		
 No zero handling in the timeline plot
 timeline labels wrong!
-remove food balance plot
-integrate into main site
 
 Country Explorer
 add slider labels for years
@@ -23,7 +21,8 @@ Land degradation/area ranking should be in percent rather than total land area? 
 sort decr value not maintained on year update with slider
 switch between rank and sbs not clearing out sidebar yet? <br> before re-appends on re-enter rank section
 problem with multiple function calls when switching between sbs and compare rank (seems worse after leaving alone for a few mins??)
-
+options appending to dropdowns multiple times!!
+need degraded land calc'd for regions and world
 
 Soil Degradation:
 add pie chart to show % degradation classes? 
