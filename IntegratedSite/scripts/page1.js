@@ -115,11 +115,15 @@ function reloadTemplate() {
 
                 $('#body-text').html(currPage[0].text);
 
-                $('#synopsis').html(currPage[0].synopsis);
+                //$('#synopsis').html(currPage[0].synopsis);
 
                 $("a#test-link").prop("href", currPage[0].link);
 
                 $("a#test-link").text(currPage[0].linkText);
+
+                $('#myModalLabel').html(json[0].modalTitle);
+
+                $('#modal-text').html(json[0].modalContent);
             }
             else {
                 console.log('node not found in template file!');

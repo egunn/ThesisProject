@@ -487,3 +487,22 @@ input[type="range"]::-webkit-slider-thumb {
     margin-top:-2px !important;
     vertical-align:middle !important;
 }
+
+
+
+
+.modal-body {
+    z-index:1041;
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+#info-button{
+    display: inline-block;
+    float: right;
+    border: none;
+}
+
+.glyphicon{
+    color:#CCCCCC
+}

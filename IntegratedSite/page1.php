@@ -47,8 +47,14 @@
 
                 </div>
                 <div class="col-md-3">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-default btn-sm" id="info-button" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                    </button>
+                    <br>
+
                     <!-- Put text here -->
-                    <div id="synopsis"></div>
+                    <!--<div id="synopsis"></div> -->
                     <div id="body-text"></div>
 
                 </div>
@@ -129,11 +135,32 @@
     <input type="hidden" name="tracker">
 </form>
 
+
+<!-- Modal - cannot be placed inside a div with fixed position -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body" id="modal-text">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
 <script src="./scripts/vendor/d3.v4.2.6.min.js"></script>
 <script src="./scripts/vendor/topojson.v1.js"></script>
 <script src="./scripts/vendor/jquery-3.1.1.js"></script>
+<script src="./scripts/vendor/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script src="./scripts/vendor/queue.min.js"></script>
 <script src="./scripts/page1.js"></script>
 

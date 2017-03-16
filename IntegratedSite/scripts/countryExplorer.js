@@ -1325,14 +1325,6 @@ function drawPCLandUse(landReqts){
         .attr('transform','translate(' + translateX + ',' + translateY + ')')
         .attr('fill', 'none')
         .attr('stroke-width',1)
-        .attr('stroke-dasharray',function(){
-            if (landAreaScale(landReqts[0].pc_totalLandReq) < 20){
-                return 0;
-            }
-            else{
-                return 4;
-            }
-        })
         .attr('stroke','orange');
 
     svg.append('rect')
@@ -1352,6 +1344,14 @@ function drawPCLandUse(landReqts){
         .attr('transform','translate(' + translateX + ',' + translateY + ')')
         .attr('fill', 'none')
         .attr('stroke-width',1)
+        .attr('stroke-dasharray',function(){
+            if (landAreaScale(landReqts[0].pc_totalLandReq) < 20){
+                return 0;
+            }
+            else{
+                return 4;
+            }
+        })
         .attr('stroke','gainsboro');
 
 }
