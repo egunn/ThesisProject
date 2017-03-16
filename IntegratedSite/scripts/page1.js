@@ -124,6 +124,7 @@ function reloadTemplate() {
                 $('#myModalLabel').html(json[0].modalTitle);
 
                 $('#modal-text').html(json[0].modalContent);
+
             }
             else {
                 console.log('node not found in template file!');

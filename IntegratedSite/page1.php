@@ -136,7 +136,7 @@
 </form>
 
 
-<!-- Modal - cannot be placed inside a div with fixed position -->
+<!-- Info Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -154,6 +154,53 @@
         </div>
     </div>
 </div>
+
+
+<!-- Perspectives Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content modal-content-sbs">
+            <div class="modal-header">
+                <h4 class="modal-title" id="sbs-Modal-l-title">Modal title</h4>
+            </div>
+            <div class="modal-body" id="sbs-Modal-l-text">
+
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default btn-med vote" id="vote-up-button" onClick="voteClicked()">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-med vote" id="vote-down-button" onClick="voteClicked()">
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="modal-content modal-content-sbs">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="sbs-Modal-r-title">Modal title</h4>
+            </div>
+            <div class="modal-body" id="sbs-Modal-l-text">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-med vote" id="vote-up-button" onClick="voteClicked()">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-med vote" id="vote-down-button onClick="voteClicked()"">
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </body>
 

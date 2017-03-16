@@ -23,7 +23,6 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-
 * {
     font-family: "WorkSansLight", Arial, sans-serif;
 }
@@ -169,12 +168,35 @@ h1 {
     overflow-y: auto;
 }
 
+.modal-content-sbs{
+    width:45%;
+    float:left;
+    margin-left: 10px;
+}
+
+.vote{
+    border:none;
+}
 #info-button{
     display: inline-block;
     float: right;
     border: none;
 }
 
-.glyphicon{
-    color:gray;
+
+#perspectives-button{
+    margin-left: -12px;
+    border: none;
+
+    color:#A9A9A9;
 }
+
+
+.glyphicon{
+    color:#CCCCCC;
+}
+
+.glyphicon-comment{
+    padding-right:3px;
+}
+

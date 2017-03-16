@@ -24,6 +24,15 @@ function reloadTemplate() {
             $('#myModalLabel').html(json[0].modalTitle);
 
             $('#modal-text').html(json[0].modalContent);
+
+
+            $('#sbs-Modal-l-title').html(json[0].modalTitle);
+
+            $('#sbs-Modal-l-text').html(json[0].modalContent);
+
+            $('#sbs-Modal-r-title').html(json[0].modalTitle);
+
+            $('#sbs-Modal-r-text').html(json[0].modalContent);
         });
     }
     else if (tracker == 'B'){

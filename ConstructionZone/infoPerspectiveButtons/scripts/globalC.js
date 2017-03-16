@@ -1,3 +1,8 @@
+function voteClicked() {
+    console.log('voted!');
+}
+
+
 //setup resize event listener on window (resizeView defined in view js file, since it contains d3 updates)
 window.addEventListener('resize', resizeView, false);
 
