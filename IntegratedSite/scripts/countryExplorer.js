@@ -309,9 +309,9 @@ function addDropdown(){
         });
 
     }
-    else {
-        if( countryTracker.initDropdown.r == false){
+    if( countryTracker.initDropdown.r == false){
 
+            console.log('append dropdown, saw false')
             //add default option to dropdown menu (otherwise, won't show US as first selection)
             d3.select("#right-dropdown") //class in the html file
                 .append("option") //it has to be called this name
@@ -324,8 +324,8 @@ function addDropdown(){
                 countryDispatch.call("changeCountry", this, this.value,"right");
             });
 
-            countryTracker.initDropdown.r = true;
-        }
+            //countryTracker.initDropdown.r = true;
+        //}
 
 
     }
@@ -1460,6 +1460,7 @@ function drawRank(rankData){
         .append('g')
         .attr('class','context-bargroup');
 
+
     barGroup
         .append("rect")
         .attr("class", "context-bar")
@@ -1485,7 +1486,53 @@ function drawRank(rankData){
 
     barGroup
         .append("rect")
+        .attr("class", "highlight-bar")
+        .attr('id',function(d){
+            return d.countryCode;
+        })
+        .attr("x", function (d) {
+            return rankX(d.countryCode);
+        })
+        .attr("y", function (d) {
+            return 0;//rankY(d.bal_importQuantity);
+        })
+        .attr("width", rankX.bandwidth())
+        .attr("height", function (d) {
+            return rankHeight;//- rankY(d.bal_importQuantity);
+        })
+        .attr('fill', 'transparent')
+        .attr('fill-opacity',.1)
+        //mimic mouse behavior of data bars
+        .on('mouseover',function(d){
+            focus.append('text')
+                .attr('class','bar-label-text')
+                .attr('x', rankWidth-20)
+                .attr('y', 50)
+                .attr('text-anchor', 'end')
+                .text(d.fullname);
+        })
+        .on('mouseout',function(d){
+            d3.selectAll('.bar-label-text').remove();
+        })
+        .on('click',function(d){
+            var bar = d3.select(this);
+            if (bar.attr('fill') == "transparent"){
+                bar.attr('fill','orange');
+                //change color of linked data bar
+                d3.selectAll('.focus-bar').filter("#" +d.countryCode).attr('fill','orange');
+            }
+            else if (bar.attr('fill') == "orange"){
+                bar.attr('fill','transparent');
+                d3.selectAll('.focus-bar').filter("#" +d.countryCode).attr('fill','purple');
+            }
+        });
+
+    barGroup
+        .append("rect")
         .attr("class", "focus-bar")
+        .attr('id',function(d){
+            return d.countryCode;
+        })
         .attr("x", function (d) {
             return rankX(d.countryCode);
         })
@@ -1508,14 +1555,18 @@ function drawRank(rankData){
         .on('mouseout',function(d){
             d3.selectAll('.bar-label-text').remove();
         })
-        .on('click',function(){
+        .on('click',function(d){
             var bar = d3.select(this);
             if (bar.attr('fill') == "purple"){
                 bar.attr('fill','orange');
+                d3.selectAll('.highlight-bar').filter("#" +d.countryCode).attr('fill','orange');
             }
             else if (bar.attr('fill') == "orange"){
                 bar.attr('fill','purple');
+                d3.selectAll('.highlight-bar').filter("#" +d.countryCode).attr('fill','transparent');
             }
+
+
 
         });
 
@@ -1923,6 +1974,29 @@ function updateRank(){
     focus.select(".axis--x").call(rankXAxis);
     focus.select(".axis--y").call(rankYAxis);
 
+
+    //move the bars to their new positions
+    d3.selectAll(".highlight-bar")
+        .transition()
+        .attr("x", function (d) {
+            //because the range does not include all values in the array, some bars will return undefined. Push them off the screen
+            if (typeof rankX(d.countryCode) == "undefined"){
+                return -200;
+            }
+            //give the values within the range a coordinate on the axis
+            else{
+                return rankX(d.countryCode);
+            }
+
+        })
+        .attr("y", function (d) {
+            return 0;
+        })
+        .attr("width", rankX.bandwidth())
+        .attr("height", function (d) {
+            return rankHeight;
+        });
+
     //move the bars to their new positions
     d3.selectAll(".focus-bar")
         .transition()
@@ -2029,6 +2103,7 @@ function overviewClicked(){
     d3.selectAll('#overview-button').classed('selected', true);
     d3.selectAll('#compare-button').classed('selected', false);
     d3.selectAll('#right-dropdown').remove();
+    countryTracker.initDropdown.r = false;
 
     //remove radio buttons and labels
     d3.selectAll('.radio').remove();
@@ -2067,13 +2142,17 @@ function compareClicked(){
         addDropdown();
 
         //parse country list for dropdown
-        dropdownValues.forEach(function (n) {
-            d3.select("#right-dropdown") //class in the html file
-                .append("option") //it has to be called this name
-                .html(n.fullname) //what is going to be written in the text
-                .attr("value", n.countryCode); //what is going to be written in value
-            //.style('background','blue'); //change background color (useful for styling multiple levels of aggregation)
-        });
+        if (countryTracker.initDropdown.r == false){
+            dropdownValues.forEach(function (n) {
+                d3.select("#right-dropdown") //class in the html file
+                    .append("option") //it has to be called this name
+                    .html(n.fullname) //what is going to be written in the text
+                    .attr("value", n.countryCode); //what is going to be written in value
+                //.style('background','blue'); //change background color (useful for styling multiple levels of aggregation)
+            });
+
+            countryTracker.initDropdown.r = true;
+        }
 
         console.log(d3.selectAll('.radio'));
 

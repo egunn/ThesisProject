@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IntegratedSite/images/compaction.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/css/style.css" afterPath="$PROJECT_DIR$/IntegratedSite/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/page1.php" afterPath="$PROJECT_DIR$/IntegratedSite/page1.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/countryExplorer.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/countryExplorer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/scripts/page1.js" afterPath="$PROJECT_DIR$/IntegratedSite/scripts/page1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSite/template.json" afterPath="$PROJECT_DIR$/IntegratedSite/template.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,8 +26,8 @@
       <file leaf-file-name="countryExplorer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/countryExplorer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="326" column="49" lean-forward="false" selection-start-line="326" selection-start-column="49" selection-end-line="326" selection-end-column="49" />
+            <state relative-caret-position="323">
+              <caret line="1518" column="51" lean-forward="true" selection-start-line="1518" selection-start-column="51" selection-end-line="1518" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -41,8 +36,8 @@
       <file leaf-file-name="page1.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/page1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="121" column="62" lean-forward="true" selection-start-line="121" selection-start-column="62" selection-end-line="121" selection-end-column="62" />
+            <state relative-caret-position="124">
+              <caret line="173" column="13" lean-forward="true" selection-start-line="173" selection-start-column="13" selection-end-line="173" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -81,10 +76,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>y</find>
-      <find>rankx</find>
-      <find>ranky</find>
-      <find>rankY</find>
       <find>axis--</find>
       <find>rankH</find>
       <find>rankX2</find>
@@ -111,6 +102,10 @@
       <find>drawRa</find>
       <find>in</find>
       <find>i</find>
+      <find>remove()</find>
+      <find>dropdown</find>
+      <find>initDropdown</find>
+      <find>rank</find>
     </findStrings>
     <replaceStrings>
       <replace>rankX</replace>
@@ -470,12 +465,12 @@
       <workItem from="1489194050216" duration="10454000" />
       <workItem from="1489343867908" duration="20469000" />
       <workItem from="1489426774953" duration="21361000" />
-      <workItem from="1489623126340" duration="16030000" />
+      <workItem from="1489623126340" duration="21011000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="655760000" />
+    <option name="totallyTimeSpent" value="660741000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -899,16 +894,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/page1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="121" column="62" lean-forward="true" selection-start-line="121" selection-start-column="62" selection-end-line="121" selection-end-column="62" />
+        <state relative-caret-position="124">
+          <caret line="173" column="13" lean-forward="true" selection-start-line="173" selection-start-column="13" selection-end-line="173" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSite/scripts/countryExplorer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="326" column="49" lean-forward="false" selection-start-line="326" selection-start-column="49" selection-end-line="326" selection-end-column="49" />
+        <state relative-caret-position="323">
+          <caret line="1518" column="51" lean-forward="true" selection-start-line="1518" selection-start-column="51" selection-end-line="1518" selection-end-column="51" />
           <folding />
         </state>
       </provider>
