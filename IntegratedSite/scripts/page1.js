@@ -117,13 +117,21 @@ function reloadTemplate() {
 
                 //$('#synopsis').html(currPage[0].synopsis);
 
-                $("a#test-link").prop("href", currPage[0].link);
+                //$("a#test-link").prop("href", currPage[0].link);
 
-                $("a#test-link").text(currPage[0].linkText);
+                //$("a#test-link").text(currPage[0].linkText);
 
-                $('#myModalLabel').html(json[0].modalTitle);
+                $('#myModalLabel').html(currPage[0].modalTitle);
 
-                $('#modal-text').html(json[0].modalContent);
+                $('#modal-text').html(currPage[0].modalContent);
+
+                $('#sbs-Modal-l-title').html(currPage[0].perspectiveLTitle);
+
+                $('#sbs-Modal-l-text').html(currPage[0].perspectiveLContent);
+
+                $('#sbs-Modal-r-title').html(currPage[0].perspectiveRTitle);
+
+                $('#sbs-Modal-r-text').html(currPage[0].perspectiveRContent);
 
             }
             else {

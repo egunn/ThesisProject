@@ -57,6 +57,15 @@
                     <!--<div id="synopsis"></div> -->
                     <div id="body-text"></div>
 
+                    <div id="perspectives-div">
+                        <br>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-default btn-med" id="perspectives-button" data-toggle="modal" data-target="#myModal2">
+                            <span class="glyphicon glyphicon-comment"></span> Perspectives
+                        </button>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -184,7 +193,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="sbs-Modal-r-title">Modal title</h4>
             </div>
-            <div class="modal-body" id="sbs-Modal-l-text">
+            <div class="modal-body" id="sbs-Modal-r-text">
 
 
             </div>

@@ -43,7 +43,7 @@ typeCol = 'gray';//'#ecd9c6';
 mapCol = '#b2a394';
 mapHighlightCol = '#e8e1da';/*'#e0cebc';*/
 
-countryTracker = {country:{l:"US",r:"CN"}, init:true, year:{l:2003,r:1975}, view:"overview",mode:"sbs",varType:"population",sort:"alph",sortVar:"bal_importQuantity"};
+countryTracker = {country:{l:"US",r:"CN"}, init:true, initDropdown:{l:false, r:false}, year:{l:2003,r:1975}, view:"overview",mode:"sbs",varType:"population",sort:"alph",sortVar:"bal_importQuantity"};
 importedData = [];
 balanceData =[];
 pcLandUse=[];
@@ -280,6 +280,7 @@ addDropdown();
 
 function addDropdown(){
 
+
     //append select element (will populate later with d3)
     //http://stackoverflow.com/questions/4814512/how-to-create-dropdown-list-dynamically-using-jquery
     var s = $('<select/>'); //class=""
@@ -294,6 +295,7 @@ function addDropdown(){
 
 
     if (countryTracker.init == true){
+
         //add default option to dropdown menu (otherwise, won't show US as first selection)
         d3.select("#left-dropdown") //class in the html file
             .append("option") //it has to be called this name
@@ -305,19 +307,27 @@ function addDropdown(){
             console.log(this.value);
             countryDispatch.call("changeCountry", this, this.value,"left");
         });
-    }
-    else{
-        //add default option to dropdown menu (otherwise, won't show US as first selection)
-        d3.select("#right-dropdown") //class in the html file
-            .append("option") //it has to be called this name
-            .html("China") //what is going to be written in the text
-            .attr("value", "CN");
 
-        //set up change function for dropdown
-        d3.select("#right-dropdown").on("change", function () {
-            console.log(this.value);
-            countryDispatch.call("changeCountry", this, this.value,"right");
-        });
+    }
+    else {
+        if( countryTracker.initDropdown.r == false){
+
+            //add default option to dropdown menu (otherwise, won't show US as first selection)
+            d3.select("#right-dropdown") //class in the html file
+                .append("option") //it has to be called this name
+                .html("China") //what is going to be written in the text
+                .attr("value", "CN");
+
+            //set up change function for dropdown
+            d3.select("#right-dropdown").on("change", function () {
+                console.log(this.value);
+                countryDispatch.call("changeCountry", this, this.value,"right");
+            });
+
+            countryTracker.initDropdown.r = true;
+        }
+
+
     }
 
 
@@ -443,27 +453,34 @@ function updateData() {
 
     //console.log(pcCountryYear);
 
-    dropdownValues = pcYearL.sort(function(a,b){
-        //needs a case-insensitive alphabetical sort
-        return a.fullname.toLowerCase().localeCompare(b.fullname.toLowerCase());
-    });
+    if (countryTracker.init  && countryTracker.initDropdown.l == false){
+
+        console.log(d3.selectAll('#left-dropdown').selectAll('option').node());
+        dropdownValues = pcYearL.sort(function(a,b){
+            //needs a case-insensitive alphabetical sort
+            return a.fullname.toLowerCase().localeCompare(b.fullname.toLowerCase());
+        });
 
 
-    //parse country list for dropdown
-    dropdownValues.forEach(function (n) {
-        d3.select("#left-dropdown") //class in the html file
-            .append("option") //it has to be called this name
-            .html(n.fullname) //what is going to be written in the text
-            .attr("value", n.countryCode) //what is going to be written in value
-            .style('background',function(){
-                if(n.dataType == 'country'){
-                    return 'none';
-                }
-                else{
-                    return 'gray';
-                }
-            }); //change background color (useful for styling multiple levels of aggregation)
-    });
+        //parse country list for dropdown
+        dropdownValues.forEach(function (n) {
+            d3.select("#left-dropdown") //class in the html file
+                .append("option") //it has to be called this name
+                .html(n.fullname) //what is going to be written in the text
+                .attr("value", n.countryCode) //what is going to be written in value
+                .style('background',function(){
+                    if(n.dataType == 'country'){
+                        return 'none';
+                    }
+                    else{
+                        return 'gray';
+                    }
+                }); //change background color (useful for styling multiple levels of aggregation)
+        });
+
+        countryTracker.initDropdown.l = true;
+    }
+
 
 //**********sortData =
 
@@ -484,6 +501,7 @@ function updateData() {
 
 
     if (countryTracker.init == true){
+
         if (countryTracker.view == "overview"){
 
             d3.selectAll('#vis').style('height',550);

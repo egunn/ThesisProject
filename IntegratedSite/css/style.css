@@ -373,14 +373,13 @@ footer {
     width: 100%;
 }
 
-.in {
+.navbar .in {
     height: 140px;
 }
 
-.out{
+.navbar .out{
     height: 0px;
 }
-
 
 
 .animation-div{
@@ -488,8 +487,9 @@ input[type="range"]::-webkit-slider-thumb {
     vertical-align:middle !important;
 }
 
-
-
+#myModal>div{
+    height:100% !important;
+}
 
 .modal-body {
     z-index:1041;
@@ -497,12 +497,34 @@ input[type="range"]::-webkit-slider-thumb {
     overflow-y: auto;
 }
 
+.modal-content-sbs{
+    width:45%;
+    float:left;
+    margin-left: 10px;
+}
+
+.vote{
+    border:none;
+}
 #info-button{
     display: inline-block;
     float: right;
     border: none;
 }
 
+
+#perspectives-button{
+    margin-left: -12px;
+    border: none;
+
+    color:#A9A9A9;
+}
+
+
 .glyphicon{
-    color:#CCCCCC
+    color:#CCCCCC;
+}
+
+.glyphicon-comment{
+    padding-right:3px;
 }
