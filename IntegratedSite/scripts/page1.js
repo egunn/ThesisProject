@@ -164,6 +164,7 @@ function reloadTemplate() {
     $(document).ready(function() {
 
         console.log(currPage, tracker[0].node);
+
         //$.getScript("./scripts/vendor/topojson.js");  //added to HTML template for now
         if (typeof currPage != "undefined" && currPage.length > 0){
             console.log(tracker[0].node, currPage[0].page);
@@ -171,13 +172,14 @@ function reloadTemplate() {
             //load Crossfilter for countryExplorer page
             if (tracker[0].node == "G"){
                 $.getScript("./scripts/vendor/crossfilter.js");
-            }
+            };
 
             //don't load anything for Food Flow
             if (tracker[0].node == "D"){
                 console.log('skip script Food flow');
                 $.getScript('./scripts/pageNav.js');
             }
+            //for anything but Food Flow, just load the script from the file
             else {
                 $.getScript(currPage[0].script);
 
@@ -186,7 +188,7 @@ function reloadTemplate() {
 
         }
         else {
-            //this may fire if the JSON has a syntax error - JSON laod fails silently
+            //this may fire if the JSON has a syntax error - JSON load fails silently
             console.log('unknown node')
         }
 

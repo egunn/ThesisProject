@@ -1,0 +1,91 @@
+year,year_Actual,priority,type,event
+-10000,-10000,1,weather,End of the last ice age
+-9970,-10000,1,culture,"First permanent human settlements, most of the world still hunter-gatherer"
+-9940,-10000,2,technology,Bottle gourd first cultivated and used to carry water
+-9910,-10000,2,technology,First cave drawings
+-9880,-10000,1,agriculture,Agriculture began in southwest Asia
+-9850,-10000,2,context,Wooly mammoth goes extinct
+-9500,-9500,2,agriculture,Wild grasses first harvested in Asia Minor
+-9300,-9300,2,agriculture,Figs cultivated in Jordan River Valley
+-9000,-9000,1,agriculture,First sheep kept in Iraq
+-9030,-9000,2,technology,Copper discovered in Middle East
+-8500,-8500,2,agriculture,Chili pepper and beans domesticated in the Andes
+-7910,-8000,2,context,Wall of Jericho built
+-7940,-8000,1,agriculture,Agriculture began in mesopotamia
+-7970,-8000,1,agriculture,"First crops (wheat, barley, lentils) grown in Syria "
+-8000,-8000,1,agriculture,Pigs were first domesticated in China
+-8030,-8000,1,agriculture,Goats first domesticated in the Middle East
+-8050,-8000,1,agriculture,Dogs were domesticated in Asia
+-8080,-8000,1,agriculture,First evidence of seed storage and animal stocking Peloponnesia
+-7500,-7500,1,agriculture,Cattle farming in the Sahara (grasslands at the time)
+-7230,-7200,2,agriculture,Emmer wheat domesticated
+-7200,-7200,1,agriculture,First cattle and pigs introduced in Turkey
+-7030,-7000,1,agriculture,"Chinese domesticated rice, millet, soybeans and yams"
+-7000,-7000,1,agriculture,Farming began in mesoamerica
+-6970,-7000,2,agriculture,"Red pepper, avocado, bottle gourds and squash domesticated in Guatemala"
+-6940,-7000,1,culture,"First economy established in Crete, based on exchange of sheep, goats, pigs, cattle, and grain"
+-6030,-6000,2,context,Land bridge connecting England and continental Europe disappears
+-6000,-6000,2,agriculture,First beekeeping in Africa and Spain
+-5970,-6000,2,technology,First use of copper in the Middle East
+-5940,-6000,1,agriculture,First wine made in Iraq
+-5600,-5600,1,weather,Desertification of the Sahara
+-5500,-5500,1,agriculture,Agriculture begins in ancient Egypt
+-5530,-5500,2,agriculture,First evidence of cheesemaking in Poland
+-5400,-5400,1,agriculture,Sumerians in Iraq began using irrigation
+-5060,-5000,2,agriculture,Farming present in central and southern Europe
+-5030,-5000,2,agriculture,Maize (corn) domesticated in Mexico
+-5000,-5000,2,context,First proto-writing introduced in ____
+-4970,-5000,2,agriculture,Beer brewing began in Egypt and Mesopotamia
+-4030,-4000,1,technology,Drainage and sewage introduced in the Indus Valley
+-4000,-4000,2,technology,"Dams, canals, stone sculptures in use in Sumeria"
+-3970,-4000,2,technology,Inclined plane and lever invented in Sumeria
+-4530,-4500,1,agriculture,Plough invented in Europe
+-4500,-4500,1,technology,"Wheel invented simultaneously in Mesopotamia (Sumeria), Caucasus, and central Europe "
+-3560,-3500,1,context,Indus script invented in the Indus Valley
+-3530,-3500,1,culture,First cities established in Mesopotamia
+-3500,-3500,2,technology,Tin in use in Mesopotamia
+-3470,-3500,2,technology,First gold  used in the Middle East
+-3440,-3500,1,weather,"""Little ice age"" Otzi the ice man was trapped in a glacier, plants frozen in the ice caps"
+-3100,-3100,1,context,Egypt founded
+-2800,-2800,2,context,Phonetics developed in Sumeria
+-2000,-2000,2,technology,Chariot introduced in central Asia
+-1686,-1686,2,context,Israelites migrate to Egypt
+-1235,-1235,1,context,Athens founded
+-1184,-1184,1,context,Fall of Troy
+-1000,-1000,1,context,Phonecian alphabet invented
+27,27,1,context,Roman empire founded
+30,30,2,context,Roman conquest of Egypt
+64,64,2,context,Great fire of Rome
+105,105,1,technology,Paper invented in China
+165,165,1,deaths,"Antonine plague killed about 30% of the population in Europe, west Asia, and north Africa (5 million people)"
+541,541,1,deaths,Plague of Justinian killed about 40% of the population of Europe (25-50 million people)
+664,664,2,deaths,Plague
+680,680,2,deaths,Plague
+746,746,2,deaths,Plague
+718,718,1,context,Muslim conquest of Spain
+1250,1250,1,deaths,"Mongol conquests  disrupted trade and farming, led to famine in China. Roughly 50% of the population died."
+1315,1315,1,deaths,Great Famine struck northwest Europe
+1334,1334,1,deaths,"Plague brought to China by Mongol invaders, reintroduced to Europe. Roughly 1/3 of the population died (25 million in Europe alone)."
+1346,1346,1,deaths,"Black Death killed 75-100 million, between 30 and 60% of the population of Europe, Asia, and north Africa"
+1492,1492,1,context,"Columbus discovers America, crops exchanged between Old World and New"
+1519,1519,2,deaths,Small pox epidemic 
+1816,1816,2,deaths,Famine in northern hemisphere caused by volcanic winter
+1840,1840,2,technology,Justus von Liebig proposes that artificial fertlizers could replace or supplement manure to increase agricultural yields and reduce costs.
+1842,1842,1,technology,First synthetic phosphate derivatives created for use as fertilizers
+1909,1909,2,technology,"Haber process developed, later used to produce chemical fertilizers"
+1914,1914,1,deaths,"World War I. About 38 million killed, roughly 1.9% of the world population"
+1918,1918,2,deaths,Flu pandemic
+1923,1923,2,technology,Synthetic ammonium sulfate produced as a chemical fertilizer
+1929,1929,2,context,Great Depression
+1930,1930,2,context,Most farms feed 1-3 people per farmer
+1939,1939,1,deaths,"World War II. About 60 million killed, roughly 3% of the world population"
+1940,1940,1,technology,"""Green revolution"" begun to introduce new technologies (hybridized seeds with increased nitrogen-absorbing potential, synthetic fertilizers, and pesticides, and new irrigation and management techniques) into agriculture "
+1940,1940,2,technology,Lord Northbourne presents his Manifesto of Organic Farming 
+1960,1960,2,context,It is estimated that one farmer can supply enough food for 25.8 people
+1960,1960,2,context,96% of land (in the US) planted with hybrid seed
+1970,1970,2,technology,No-till agriculture popularized
+1980,1980,1,technology,First American patent granted for a genetically modified organism (a bacterium for cleaning up oil spills)
+1990,1990,2,context,It is estimated that one farmer can supply enough food for 100 people
+1990,1990,1,technology,"Introduction of biotechnology to agriculture, including genetically modified crops and organisms"
+1996,1996,2,technology,Dolly the Sheep became the first mammal cloned from adult cell
+2015,2015,1,technology,AquaAdvantage Salmon becomes the first genetically modified organism approved for food use by the FDA
