@@ -52,9 +52,9 @@ if(tracker[0].node != "D"){
     }
 }
 
-reloadTemplate();
+//reloadTemplate();
 
-function reloadTemplate() {
+//function reloadTemplate() {
 
 
     //loads script but doesn't run it
@@ -73,7 +73,7 @@ function reloadTemplate() {
         var currPage;
 
 
-        if (typeof tracker[0].node == "undefined"){
+        if (typeof tracker[0].node == "undefined") {
 
             console.log('tracker node is not defined!!');
 
@@ -81,40 +81,34 @@ function reloadTemplate() {
 
         }
 
-        else if (tracker[0].node == "D"){
-            console.log('food flow');
-
-            $.getJSON("template.json", function(json) {
-                currPage = json.filter(function (d) {
-                    return tracker[0].node == d.page;
-                });
-
-                $.getScript('./scripts/pageNav.js');
-            });
-
-
-        }
-        else if(tracker[0].node == "Z"){
-            $.getJSON("template.json", function(json) {
-                currPage = json.filter(function (d) {
-                    return tracker[0].node == d.page;
-                });
-            });
-        }
         else {
-            //$('#title').html('Some other page');
-
-            $.getJSON("template.json", function(json) {
-
-                console.log(json);
-
-                currPage = json.filter(function(d){
+            $.getJSON("template.json", function (json) {
+                currPage = json.filter(function (d) {
                     return tracker[0].node == d.page;
                 });
 
-                console.log(currPage);
+                // if (tracker[0].node == "D"){
+                //     console.log('food flow');
+                //     $.getScript('./scripts/pageNav.js');
+                //
+                // }
+                // else if(tracker[0].node == "Z"){
+                //
+                // }
+                //else {
+                //$('#title').html('Some other page');
 
-                if (typeof currPage != "undefined" && currPage.length > 0){
+                //$.getJSON("template.json", function(json) {
+
+                // console.log(json);
+                //
+                // currPage = json.filter(function(d){
+                //     return tracker[0].node == d.page;
+                // });
+                //
+                // console.log(currPage);
+
+                if (typeof currPage != "undefined" && currPage.length > 0) {
 
                     $('.nav-title').html(currPage[0].title);
 
@@ -138,6 +132,26 @@ function reloadTemplate() {
 
                     $('#sbs-Modal-r-text').html(currPage[0].perspectiveRContent);
 
+                    console.log(tracker[0].node, currPage[0].page);
+
+                    //load Crossfilter for countryExplorer page
+                    if (tracker[0].node == "G") {
+                        $.getScript("./scripts/vendor/crossfilter.js");
+                    }
+                    ;
+
+                    //don't load anything for Food Flow
+                    if (tracker[0].node == "D") {
+                        console.log('skip script Food flow');
+                        $.getScript('./scripts/pageNav.js');
+                    }
+                    //for anything but Food Flow, just load the script from the file
+                    else {
+                        $.getScript(currPage[0].script);
+
+                        $.getScript('./scripts/pageNav.js');
+                    }
+
                 }
                 else {
                     console.log('node not found in template file!');
@@ -152,42 +166,22 @@ function reloadTemplate() {
                     $("a#test-link").prop("href", "index.html");
 
                     $("a#test-link").text("Index");
-                }
 
-                //$.getScript("./scripts/vendor/topojson.js");  //added to HTML template for now
-                if (typeof currPage != "undefined" && currPage.length > 0){
-                    console.log(tracker[0].node, currPage[0].page);
-
-                    //load Crossfilter for countryExplorer page
-                    if (tracker[0].node == "G"){
-                        $.getScript("./scripts/vendor/crossfilter.js");
-                    };
-
-                    //don't load anything for Food Flow
-                    if (tracker[0].node == "D"){
-                        console.log('skip script Food flow');
-                        $.getScript('./scripts/pageNav.js');
-                    }
-                    //for anything but Food Flow, just load the script from the file
-                    else {
-                        $.getScript(currPage[0].script);
-
-                        $.getScript('./scripts/pageNav.js');
-                    }
-
-                }
-                else {
                     //this may fire if the JSON has a syntax error - JSON load fails silently
                     console.log('unknown node')
                 }
 
+                //});
+
+
+                // }
+
+                //}
+
             });
-
-
         }
-
     });
-}
+//}
 
 
 

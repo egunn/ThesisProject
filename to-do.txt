@@ -1,8 +1,10 @@
-Info popup boxes! Scrollable modal
-Perspective buttons in sidebar?
+Modal overwrites SVG patterns - fix!!
 
-Food Flow:
-Category selection has no effect on food balance plot		
+Make page nav hidden by default, if height less than my screen 
+Why does opening modal replace all icons with last pattern-fill???
+
+
+Food Flow:		
 No zero handling in the timeline plot
 timeline labels wrong!
 
@@ -21,7 +23,10 @@ Land degradation/area ranking should be in percent rather than total land area? 
 sort decr value not maintained on year update with slider
 switch between rank and sbs not clearing out sidebar yet? <br> before re-appends on re-enter rank section
 problem with multiple function calls when switching between sbs and compare rank (seems worse after leaving alone for a few mins??)
-options appending to dropdowns multiple times!!
+problem with scaling in sbs mode - land area at least, possibly others?
+brushing broken in ranking after multiple interactions (solved on refresh)
+not removing sidebar labels/lind breaks w/ multiple switches between sbs and ranking view
+Rank --> overview --> compare goes to rank, not sbs!
 
 need degraded land calc'd for regions and world
 Monaco crowding 16480??
@@ -39,12 +44,10 @@ redo biome definitions mapping
 Soil organisms:
 Make responsive
 
-Page navigation and alternative index:
-Link index node to page navigation (not in template architecture; need to include an exception to navigate to index.html and pass tracker from page1.php to index.html)
-
 World pop
 resize on page change
 distinguish between prediction, reconstructed data, and World Bank data paths
+tooltip reposition on brushing, disappear when mouse leaves plot
 
 SoilMap
 resize problems on FF getting bigger only

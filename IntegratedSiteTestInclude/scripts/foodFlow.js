@@ -791,7 +791,16 @@ function update(value, impExp, year) {
 
     if (!balanceSelected) {
 
-        d3.csv('data/food' + impExp + '_byYear/food' + impExp + '_' + value + '.csv', function (data) {
+        var caps;
+
+        if (impExp == "exports"){
+            caps = "Exports";
+        }
+        else if (impExp == "imports"){
+            caps = "Imports";
+        }
+
+        d3.csv('data/food' + caps + '_byYear/food' + caps + '_' + value + '.csv', function (data) {
 
             console.log(data);
 
