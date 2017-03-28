@@ -76,24 +76,24 @@ centers = [
 //controls transform/translate properties of each subdrawing
 centerCoords = {
     overview: {
-        popBars: [.06, .11],
-        landSquares: [.4, .9],
+        popBars: [.06, .13],
+        landSquares: [.4, .91],
         degradedSquares: [.7, .9],  //note: these values are based on the default 450 px svg height; for the overview page, expands to 550 px
-        crowdingSquares: [.06, .3],
+        crowdingSquares: [.06, .32],
         foodBar1: [.06, .9],
-        foodBar2: [.16, .9],
-        calories: [.4, .29],
-        perCapita: [.7, .3]
+        foodBar2: [.21, .9],
+        calories: [.4, .31],
+        perCapita: [.7, .32]
     },
     overviewLabels: {
-        popBars: [.06, .08],
-        landSquares: [.4, .85],
-        degradedSquares: [.7, .85],
-        crowdingSquares: [.06, .23],
-        foodBar1: [.06, .85],
-        foodBar2: [.16, .85],
-        calories: [.4, .23],
-        perCapita: [.7, .23]
+        popBars: [.06, .065],
+        landSquares: [.4, .83],
+        degradedSquares: [.7, .83],
+        crowdingSquares: [.06, .25],
+        foodBar1: [.06, .83],
+        foodBar2: [.16, .83],
+        calories: [.4, .25],
+        perCapita: [.7, .25]
     },
     sbs: {
         l:{
@@ -706,6 +706,53 @@ function drawPopBars(dataIn,graph){
     console.log(dataIn);
 
     popBars
+        .append('text')
+        .attr('id','popbarunit-label')
+        .attr('x',function(e){
+            return 0;
+        })
+        .attr('y',function(e){
+            return -7;
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text(function(e){return e.lu_totalPop.toLocaleString() + ' people'});//null);
+
+    popBars
+        .append('text')
+        .attr('id','popbar-urban-label')
+        .attr('x',function(e){
+            return 0;
+        })
+        .attr('y',function(e){
+            return 5+12;
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text('urban');//null);
+
+    //wrap(d3.select('#popbar-urban-label').text('test'), 'urban population', 100);
+
+    popBars
+        .append('text')
+        .attr('id','popbar-urban-label')
+        .attr('x',function(e){
+            return popLineScale(e.lu_urbanPop);
+        })
+        .attr('y',function(e){
+            return 5+12;
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text('rural');//null);
+
+    popBars
         .append('rect')
         .attr('class','total-pop-bar-' + graph)
         .attr('x', 0)
@@ -719,7 +766,39 @@ function drawPopBars(dataIn,graph){
         .attr('fill','rgb(200,200, 200)')
         .style('fill-opacity','1')
         .style('stroke-width', ".5px")
-        .attr('stroke','rgba(200,200, 200,1)');
+        .attr('stroke','rgba(200,200, 200,1)')
+        .on('mouseover', function(d){
+            /*svg
+                .append('rect')
+                .attr('id','hover-label')
+                .attr('x',function(e){
+                    return 0;
+                })
+                .attr('y',function(e){
+                    return 0;
+                })
+                .attr('width',260)
+                .attr('height',112)
+                .attr('fill-opacity',.85)
+                .attr('fill','white');
+
+            svg
+                .append('text')
+                .attr('id','test-hover-text')
+                .attr('x',function(e){
+                    return 0;
+                })
+                .attr('y',function(e){
+                    return 0;
+                })
+                .style('text-anchor','begin')
+                .attr('font-size',12)
+                .attr('fill','gray')
+                .attr('background','white')
+                .text(null);
+
+            wrap(d3.select('#test-hover-text').text('test'), 'population bar test text', 100);*/
+        });
 
     popBars
         .append('rect')
@@ -880,6 +959,8 @@ function drawLandSquares(countryObject, graph){
 
     */
 
+
+
     landSquaresGroup
         .append('rect')
          .attr('class','urban2050-square-' + graph)
@@ -899,6 +980,39 @@ function drawLandSquares(countryObject, graph){
          .attr('stroke', 'grey')
          .attr('stroke-dasharray', '4,4');
 
+
+    landSquaresGroup
+        .append('text')
+        .attr('id','landunit-label')
+        .attr('x',function(e){
+            return squareCentersX-landAreaScale(e.lu_agriculturalLand)
+        })
+        .attr('y',function(e){
+            return -11 + squareCentersY-landAreaScale(e.lu_agriculturalLand)
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text(function(e){return e.lu_landArea.toLocaleString() + ' hectares (total)'});//null);
+
+    landSquaresGroup
+        .append('text')
+        .attr('id','forest-label')
+        .attr('x',function(e){
+            return squareCentersX;
+        })
+        .attr('y',function(e){
+            return squareCentersY-landAreaScale(e.lu_forestArea)
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text('forests');//null);
+
+    //wrap(d3.select('#popbar-urban-label').text('test'), 'urban population', 100);
+
     landSquaresGroup
         .append('rect')
         .attr('class','forest-square-' + graph)
@@ -917,6 +1031,23 @@ function drawLandSquares(countryObject, graph){
         .attr('fill', forestCol);
 
     landSquaresGroup
+        .append('text')
+        .attr('id','agric-label')
+        .attr('x',function(e){
+            return squareCentersX-landAreaScale(e.lu_agriculturalLand)
+        })
+        .attr('y',function(e){
+            return squareCentersX-landAreaScale(e.lu_agriculturalLand)
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text('agricultural land');//null);
+
+    //wrap(d3.select('#popbar-urban-label').text('test'), 'urban population', 100);
+
+    landSquaresGroup
         .append('rect')
         .attr('class','agriculture-square-' + graph)
         .attr('x', function (d) {
@@ -932,6 +1063,25 @@ function drawLandSquares(countryObject, graph){
             return landAreaScale(d.lu_agriculturalLand)
         })
         .attr('fill', agricCol);
+
+
+
+    landSquaresGroup
+        .append('text')
+        .attr('id','arable-label')
+        .attr('x',function(e){
+            return squareCentersX-landAreaScale(e.lu_arableLand)
+        })
+        .attr('y',function(e){
+            return squareCentersY-landAreaScale(e.lu_arableLand)
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text('arable land');//null);
+
+    //wrap(d3.select('#popbar-urban-label').text('test'), 'urban population', 100);
 
     landSquaresGroup
         .append('rect')
@@ -951,6 +1101,24 @@ function drawLandSquares(countryObject, graph){
         .attr('fill', arableCol);
 
     landSquaresGroup
+        .append('text')
+        .attr('id','other-label')
+        .attr('x',function(e){
+            return squareCentersX-landAreaScale(e.lu_otherLand)
+        })
+        .attr('y',function(e){
+            return squareCentersY;
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text('other land');//null);
+
+    //wrap(d3.select('#popbar-urban-label').text('test'), 'urban population', 100);
+
+
+    landSquaresGroup
         .append('rect')
         .attr('class','other-square-' + graph)
         .attr('x', function (d) {
@@ -966,6 +1134,23 @@ function drawLandSquares(countryObject, graph){
             return landAreaScale(d.lu_otherLand)
         })
         .attr('fill', otherCol);
+
+    landSquaresGroup
+        .append('text')
+        .attr('id','urban-label')
+        .attr('x',function(e){
+            return squareCentersX-landAreaScale(e.lu_urbanLand);
+        })
+        .attr('y',function(e){
+            return squareCentersY;
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text('urban land');//null);
+
+    //wrap(d3.select('#popbar-urban-label').text('test'), 'urban population', 100);
 
     landSquaresGroup
         .append('rect')
@@ -984,8 +1169,42 @@ function drawLandSquares(countryObject, graph){
         })
         .attr('fill', urbanCol);
 
+    degradedSquareGroup
+        .append('text')
+        .attr('id','degradedunits-label')
+        .attr('x',function(e){
+            return 0;
+        })
+        .attr('y',function(e){
+            return -7;
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text(function(e){
+            return e.lu_degradingArea.toLocaleString() + ' hectares, ' + 100*(e.lu_degradingArea/e.lu_landArea).toFixed(1)+ '%'
+        });
 
-     degradedSquareGroup
+    degradedSquareGroup
+        .append('text')
+        .attr('id','degraded-label')
+        .attr('x',function(e){
+            return 0;
+        })
+        .attr('y',function(e){
+            return 12+ landAreaScale(e.lu_degradingArea);
+        })
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text(null);
+
+    wrap(d3.select('#degraded-label').text('test'), 'change in degraded land area between 1983 and 2003', 130);
+
+
+    degradedSquareGroup
          .append('rect')
              .attr('class','degrading-square-' + graph)
          .attr('x', function (d) {
@@ -1036,7 +1255,15 @@ function drawCrowdingSquares(countryCrowding, graph){
             .style('font-size', 16)
             .attr('class','crowding-label')
             .attr('fill',typeCol)
-            .text('Crowding (people per sq. km)');
+            .text('Crowding');
+
+        svg.append('text')
+            .attr('x', width*centerCoords.overviewLabels.crowdingSquares[0])
+            .attr('y', -7 + height*centerCoords.overviewLabels.crowdingSquares[1] + 25)
+            .style('font-size', 12)
+            .attr('class','crowdingunits-label')
+            .attr('fill',typeCol)
+            .text(Math.floor(countryCrowding[0].lu_peoplePerSqKm) + ' people per sq. km');
     }
 
 
@@ -1072,6 +1299,20 @@ function drawCrowdingSquares(countryCrowding, graph){
         })
         .attr('transform','translate(' + translateX + ',' + translateY + ')')
         .attr('fill', 'url(#test-pattern-'+ graph+ ')');
+
+    svg
+        .append('text')
+        .attr('id','crowding-label')
+        .attr('x',width*centerCoords.overviewLabels.crowdingSquares[0])
+        .attr('y',width*centerCoords.overviewLabels.crowdingSquares[1]+60)
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .text(null);
+
+    wrap(d3.select('#crowding-label').text('test'), 'box represents 1 sq. km (New York City is a little under 1000 sq. km)', 135);
+
 
     svg.append('rect')
         .attr('x',function(d){
@@ -1132,7 +1373,7 @@ function drawFoodBars(countryFoodBalance, graph){
             .style('font-size', 16)
             .attr('class','food-bars-label')
             .attr('fill',typeCol)
-            .text('Food Balance');
+            .text('Food Balance (tonnes)');
     }
 
 
@@ -1154,6 +1395,108 @@ function drawFoodBars(countryFoodBalance, graph){
         .attr('fill','teal')
         .attr('fill-opacity',.3);
 
+
+    svg
+        .append('text')
+        .attr('id','in-label')
+        .attr('x',0)
+        .attr('y',-7)
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX1 + ',' + translateY1 + ')')
+        .text("In: " +(countryFoodBalance[0].bal_importQuantity + countryFoodBalance[0].bal_produced).toLocaleString());
+
+
+    //wrap(d3.select('#in-label').text('test'), (countryFoodBalance[0].bal_importQuantity + countryFoodBalance[0].bal_produced).toLocaleString() + ' tonnes in', 75);
+
+    svg
+        .append('text')
+        .attr('id','out-label')
+        .attr('x',0)
+        .attr('y',-7)
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX2 + ',' + translateY2 + ')')
+        .text("Out: " +(countryFoodBalance[0].bal_exportQuantity + countryFoodBalance[0].bal_usedFood + countryFoodBalance[0].bal_usedNonFood + countryFoodBalance[0].bal_waste).toLocaleString());
+
+
+    svg
+        .append('text')
+        .attr('id','imports-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(countryFoodBalance[0].bal_importQuantity))
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX1 + ',' + translateY1 + ')')
+        .text('Imports');
+
+    svg
+        .append('text')
+        .attr('id','produced-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(countryFoodBalance[0].bal_importQuantity) + foodBalanceScale(countryFoodBalance[0].bal_produced))
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX1 + ',' + translateY1 + ')')
+        .text('Produced');
+
+    svg
+        .append('text')
+        .attr('id','exports-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(countryFoodBalance[0].bal_exportQuantity))
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX2 + ',' + translateY2 + ')')
+        .text('Exports');
+
+    svg
+        .append('text')
+        .attr('id','usedfood-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(countryFoodBalance[0].bal_exportQuantity)+foodBalanceScale(countryFoodBalance[0].bal_usedFood))
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX2 + ',' + translateY2 + ')')
+        .text('Food used');
+
+    svg
+        .append('text')
+        .attr('id','usednonfood-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(countryFoodBalance[0].bal_exportQuantity)+foodBalanceScale(countryFoodBalance[0].bal_usedFood)+foodBalanceScale(countryFoodBalance[0].bal_usedNonFood))
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX2 + ',' + translateY2 + ')')
+        .text('Non-food uses');
+
+    svg
+        .append('text')
+        .attr('id','waste-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(countryFoodBalance[0].bal_exportQuantity)+foodBalanceScale(countryFoodBalance[0].bal_usedFood)+foodBalanceScale(countryFoodBalance[0].bal_usedNonFood)+foodBalanceScale(countryFoodBalance[0].bal_waste))
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX2 + ',' + translateY2 + ')')
+        .text('Waste');
+
+    //wrap(d3.select('#crowding-label').text('test'), 'box represents 1 sq. km (New York City is a little under 1000 sq. km)', 120);
 
     svg.append('rect')
         .attr('class','produced-bar-'+ graph)
@@ -1277,8 +1620,23 @@ function drawCalories(countryCalories, graph){
             .style('font-size', 16)
             .attr('class','calories-label')
             .attr('fill',typeCol)
-            .text('Calories per person');
+            .text('Food per person');
     }
+
+
+    svg
+        .append('text')
+        .attr('id','waste-label')
+        .attr('x',0)
+        .attr('y',-5)
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX + ',' + translateY + ')')
+        .text(countryCalories[0].pc_avgPerCapFoodSupply + ' calories per day');
+
+    //wrap(d3.select('#crowding-label').text('test'), 'box represents 1 sq. km (New York City is a little under 1000 sq. km)', 120);
 
 
     svg.append('circle')
@@ -1324,6 +1682,47 @@ function drawPCLandUse(landReqts){
             .attr('fill',typeCol)
             .text('Land needed to grow food');
     }
+
+    svg
+        .append('text')
+        .attr('id','pclandunits-label')
+        .attr('x',0)
+        .attr('y',-7)
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX + ',' + translateY + ')')
+        .text(Math.floor(landReqts[0].pc_totalLandReq).toLocaleString() + ' hectares');
+
+    svg
+        .append('text')
+        .attr('id','pcland-label')
+        .attr('x',0)
+        .attr('y',landAreaScale(landReqts[0].pc_totalLandReq)+12)
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX + ',' + translateY + ')')
+        .text('Needed');
+
+    //wrap(d3.select('#crowding-label').text('test'), 'box represents 1 sq. km (New York City is a little under 1000 sq. km)', 120);
+
+
+    svg
+        .append('text')
+        .attr('id','totalland-label')
+        .attr('x',0)
+        .attr('y',landAreaScale(landReqts[0].lu_landArea)+12)
+        .style('text-anchor','begin')
+        .attr('font-size',12)
+        .attr('fill','gray')
+        .attr('background','white')
+        .attr('transform','translate(' + translateX + ',' + translateY + ')')
+        .text('Available');
+
+    //wrap(d3.select('#crowding-label').text('test'), 'box represents 1 sq. km (New York City is a little under 1000 sq. km)', 120);
 
 
     svg.append('rect')
@@ -2452,3 +2851,40 @@ function resizeView() {
     height = document.getElementById('vis').clientHeight;
 
 }
+
+
+
+//from http://stackoverflow.com/questions/24784302/wrapping-text-in-d3
+function wrap(text, wordList, width) {
+    text.each(function () {
+        var text = d3.select(this),
+            words = wordList.split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.15, // ems
+            x = text.attr("x"),
+            y = text.attr("y"),
+            dy = 0, //parseFloat(text.attr("dy")),
+            tspan = text.text(null)
+                .append("tspan")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("dy", dy + "em");
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan")
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                    .text(word);
+            }
+        }
+    });
+}
+

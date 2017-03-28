@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5d96db8-bb20-4800-8f9a-88fc47e2bf8a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IntegratedSiteTestInclude/images/compaction (2).png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/impacts.js" afterPath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/impacts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/page1.js" afterPath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/page1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/soilLayers.js" afterPath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/soilLayers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/soilOrganisms.js" afterPath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/soilOrganisms.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/countryExplorer.js" afterPath="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/countryExplorer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,34 +23,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="page1.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/page1.php">
+      <file leaf-file-name="countryExplorer.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/countryExplorer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            <state relative-caret-position="520">
+              <caret line="235" column="10" lean-forward="true" selection-start-line="235" selection-start-column="10" selection-end-line="235" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testJQuery.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ConstructionZone/testInclude/scripts/testJQuery.js">
+      <file leaf-file-name="soilOrganisms.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/soilOrganisms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="238">
+              <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page1.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/page1.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="163" column="45" lean-forward="true" selection-start-line="163" selection-start-column="45" selection-end-line="163" selection-end-column="45" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -73,13 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rankX</find>
-      <find>.remove()</find>
-      <find>tracker.year</find>
-      <find>slider-left</find>
-      <find>extent</find>
-      <find>brush</find>
-      <find>check</find>
       <find>tracker</find>
       <find>import-line</find>
       <find>axis</find>
@@ -103,6 +79,13 @@
       <find>json</find>
       <find>impExp</find>
       <find>url</find>
+      <find>wrap</find>
+      <find>degrad</find>
+      <find>urban</find>
+      <find>Calories</find>
+      <find>hectare</find>
+      <find>New</find>
+      <find>people</find>
     </findStrings>
     <replaceStrings>
       <replace>rankX</replace>
@@ -115,7 +98,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ConstructionZone/FoodFlow/scripts/index.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/CountryExplorer/template.json" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilMap/script/script2.js" />
         <option value="$PROJECT_DIR$/ConstructionZone/SoilMap/index.html" />
@@ -166,6 +148,7 @@
         <option value="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/impacts.js" />
         <option value="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/soilLayers.js" />
         <option value="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/page1.js" />
+        <option value="$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/countryExplorer.js" />
       </list>
     </option>
   </component>
@@ -383,12 +366,12 @@
       <workItem from="1489343867908" duration="20469000" />
       <workItem from="1489426774953" duration="21361000" />
       <workItem from="1489623126340" duration="28171000" />
-      <workItem from="1490646643621" duration="5954000" />
+      <workItem from="1490646643621" duration="12725000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="673855000" />
+    <option name="totallyTimeSpent" value="680626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -451,13 +434,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/countryExplorerRank/scripts/testJQuery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -469,6 +445,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -565,6 +542,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
           <caret line="234" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -728,14 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/page1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/foodFlow.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
@@ -749,7 +719,7 @@
         <state relative-caret-position="549">
           <caret line="84" column="16" lean-forward="true" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -759,17 +729,7 @@
         <state relative-caret-position="549">
           <caret line="279" column="0" lean-forward="true" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/soilOrganisms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="148" column="25" lean-forward="true" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -779,7 +739,7 @@
         <state relative-caret-position="298">
           <caret line="114" column="25" lean-forward="true" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="25" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -813,15 +773,39 @@
         <state relative-caret-position="549">
           <caret line="163" column="45" lean-forward="true" selection-start-line="163" selection-start-column="45" selection-end-line="163" selection-end-column="45" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ConstructionZone/testInclude/scripts/testJQuery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="481">
+          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/page1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/soilOrganisms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/countryExplorer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="235" column="10" lean-forward="true" selection-start-line="235" selection-start-column="10" selection-end-line="235" selection-end-column="10" />
           <folding />
         </state>
       </provider>
