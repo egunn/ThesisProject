@@ -26,9 +26,12 @@
       <file leaf-file-name="countryExplorer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/countryExplorer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="235" column="10" lean-forward="true" selection-start-line="235" selection-start-column="10" selection-end-line="235" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="456">
+              <caret line="981" column="6" lean-forward="false" selection-start-line="981" selection-start-column="6" selection-end-line="981" selection-end-column="6" />
+              <folding>
+                <marker date="1490671225114" expanded="true" signature="28897:66788" ph="{...}" />
+                <marker date="1490671225114" expanded="true" signature="33152:66785" ph="/*...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,13 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tracker</find>
-      <find>import-line</find>
-      <find>axis</find>
-      <find>'photo'</find>
-      <find>.text</find>
-      <find>info-</find>
-      <find>document</find>
       <find>on</find>
       <find>.on</find>
       <find>text</find>
@@ -86,6 +82,13 @@
       <find>hectare</find>
       <find>New</find>
       <find>people</find>
+      <find>landunit</find>
+      <find>crowdingunits</find>
+      <find>calories per</find>
+      <find>1983</find>
+      <find>degraded-la</find>
+      <find>degradeddefn-la</find>
+      <find>2050</find>
     </findStrings>
     <replaceStrings>
       <replace>rankX</replace>
@@ -366,12 +369,12 @@
       <workItem from="1489343867908" duration="20469000" />
       <workItem from="1489426774953" duration="21361000" />
       <workItem from="1489623126340" duration="28171000" />
-      <workItem from="1490646643621" duration="12725000" />
+      <workItem from="1490646643621" duration="16961000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="680626000" />
+    <option name="totallyTimeSpent" value="684862000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -804,9 +807,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IntegratedSiteTestInclude/scripts/countryExplorer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="235" column="10" lean-forward="true" selection-start-line="235" selection-start-column="10" selection-end-line="235" selection-end-column="10" />
-          <folding />
+        <state relative-caret-position="456">
+          <caret line="981" column="6" lean-forward="false" selection-start-line="981" selection-start-column="6" selection-end-line="981" selection-end-column="6" />
+          <folding>
+            <marker date="1490671225114" expanded="true" signature="28897:66788" ph="{...}" />
+            <marker date="1490671225114" expanded="true" signature="33152:66785" ph="/*...*/" />
+          </folding>
         </state>
       </provider>
     </entry>

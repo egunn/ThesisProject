@@ -77,23 +77,23 @@ centers = [
 centerCoords = {
     overview: {
         popBars: [.06, .13],
-        landSquares: [.4, .91],
-        degradedSquares: [.7, .9],  //note: these values are based on the default 450 px svg height; for the overview page, expands to 550 px
-        crowdingSquares: [.06, .32],
-        foodBar1: [.06, .9],
-        foodBar2: [.21, .9],
-        calories: [.4, .31],
-        perCapita: [.7, .32]
+        landSquares: [.4, .93],
+        degradedSquares: [.7, .92],  //note: these values are based on the default 450 px svg height; for the overview page, expands to 550 px
+        crowdingSquares: [.06, .34],
+        foodBar1: [.06, .92],
+        foodBar2: [.21, .92],
+        calories: [.4, .33],
+        perCapita: [.7, .34]
     },
     overviewLabels: {
         popBars: [.06, .065],
-        landSquares: [.4, .83],
-        degradedSquares: [.7, .83],
-        crowdingSquares: [.06, .25],
-        foodBar1: [.06, .83],
-        foodBar2: [.16, .83],
-        calories: [.4, .25],
-        perCapita: [.7, .25]
+        landSquares: [.4, .85],
+        degradedSquares: [.7, .85],
+        crowdingSquares: [.06, .27],
+        foodBar1: [.06, .85],
+        foodBar2: [.16, .85],
+        calories: [.4, .27],
+        perCapita: [.7, .27]
     },
     sbs: {
         l:{
@@ -739,7 +739,7 @@ function drawPopBars(dataIn,graph){
 
     popBars
         .append('text')
-        .attr('id','popbar-urban-label')
+        .attr('id','popbar-rural-label')
         .attr('x',function(e){
             return popLineScale(e.lu_urbanPop);
         })
@@ -960,7 +960,7 @@ function drawLandSquares(countryObject, graph){
     */
 
 
-
+    /*
     landSquaresGroup
         .append('rect')
          .attr('class','urban2050-square-' + graph)
@@ -979,16 +979,16 @@ function drawLandSquares(countryObject, graph){
          .attr('fill', 'none')
          .attr('stroke', 'grey')
          .attr('stroke-dasharray', '4,4');
-
+    */
 
     landSquaresGroup
         .append('text')
         .attr('id','landunit-label')
         .attr('x',function(e){
-            return squareCentersX-landAreaScale(e.lu_agriculturalLand)
+            return 0
         })
         .attr('y',function(e){
-            return -11 + squareCentersY-landAreaScale(e.lu_agriculturalLand)
+            return -11
         })
         .style('text-anchor','begin')
         .attr('font-size',12)
@@ -1188,12 +1188,12 @@ function drawLandSquares(countryObject, graph){
 
     degradedSquareGroup
         .append('text')
-        .attr('id','degraded-label')
+        .attr('id','degradeddefn-label')
         .attr('x',function(e){
             return 0;
         })
         .attr('y',function(e){
-            return 12+ landAreaScale(e.lu_degradingArea);
+            return 27+ landAreaScale(e.lu_degradingArea);
         })
         .style('text-anchor','begin')
         .attr('font-size',12)
@@ -1201,7 +1201,7 @@ function drawLandSquares(countryObject, graph){
         .attr('background','white')
         .text(null);
 
-    wrap(d3.select('#degraded-label').text('test'), 'change in degraded land area between 1983 and 2003', 130);
+    wrap(d3.select('#degradeddefn-label').text('test'), 'change in degraded land area between 1983 and 2003', 130);
 
 
     degradedSquareGroup
@@ -1261,7 +1261,7 @@ function drawCrowdingSquares(countryCrowding, graph){
             .attr('x', width*centerCoords.overviewLabels.crowdingSquares[0])
             .attr('y', -7 + height*centerCoords.overviewLabels.crowdingSquares[1] + 25)
             .style('font-size', 12)
-            .attr('class','crowdingunits-label')
+            .attr('id','crowdingunits-label')
             .attr('fill',typeCol)
             .text(Math.floor(countryCrowding[0].lu_peoplePerSqKm) + ' people per sq. km');
     }
@@ -1626,7 +1626,7 @@ function drawCalories(countryCalories, graph){
 
     svg
         .append('text')
-        .attr('id','waste-label')
+        .attr('id','calories-label')
         .attr('x',0)
         .attr('y',-5)
         .style('text-anchor','begin')
@@ -2027,6 +2027,73 @@ function updateLandSquares(countryYearUpdate, graph){
 
     d3.selectAll('.squares-group').attr('transform', 'translate(' + (squareCentersX) + ',' + (squareCentersY) + ')');
 
+    //update labels
+    d3.selectAll('#landunit-label')
+        .attr('x',function(e){
+            return 0
+        })
+        .attr('y',function(e){
+            return -11
+        })
+        .text(function(e){return countryYearUpdate[0].lu_landArea.toLocaleString() + ' hectares (total)'});//null);
+
+    d3.selectAll('#forest-label')
+        .attr('x',function(e){
+            return squareCentersX;
+        })
+        .attr('y',function(e){
+            return squareCentersY-landAreaScale(countryYearUpdate[0].lu_forestArea)
+        });
+
+    d3.selectAll('#agric-label')
+        .attr('x',function(e){
+            return squareCentersX-landAreaScale(countryYearUpdate[0].lu_agriculturalLand)
+        })
+        .attr('y',function(e){
+            return squareCentersX-landAreaScale(countryYearUpdate[0].lu_agriculturalLand)
+        });
+
+
+    d3.selectAll('#arable-label')
+        .attr('x',function(e){
+            return squareCentersX-landAreaScale(countryYearUpdate[0].lu_arableLand)
+        })
+        .attr('y',function(e){
+            return squareCentersY-landAreaScale(countryYearUpdate[0].lu_arableLand)
+        });
+
+    d3.selectAll('#other-label')
+        .attr('x',function(e){
+            return squareCentersX-landAreaScale(countryYearUpdate[0].lu_otherLand)
+        })
+        .attr('y',function(e){
+            return squareCentersY;
+        });
+
+    d3.selectAll('#urban-label')
+        .attr('x',function(e){
+            return squareCentersX-landAreaScale(countryYearUpdate[0].lu_urbanLand);
+        })
+        .attr('y',function(e){
+            return squareCentersY;
+        });
+
+    d3.selectAll('#degradedunits-label')
+        .text(function(e){
+            return countryYearUpdate[0].lu_degradingArea.toLocaleString() + ' hectares, ' + 100*(countryYearUpdate[0].lu_degradingArea/countryYearUpdate[0].lu_landArea).toFixed(1)+ '%'
+        });
+
+    d3.selectAll('#degradeddefn-label')
+        .attr('x',function(e){
+            return 0;
+        })
+        .attr('y',function(e){
+            return 27+ landAreaScale(countryYearUpdate[0].lu_degradingArea);
+        });
+
+    wrap(d3.select('#degradeddefn-label').text('test'), 'change in degraded land area between 1983 and 2003', 130);
+
+
 
 
     d3.selectAll ('.agriculture-square-' + graph)
@@ -2143,6 +2210,39 @@ function updateLandSquares(countryYearUpdate, graph){
 function updatePopBars(countryYearUpdate, graph){
     svg.selectAll('.pop-bars-' + graph).data(countryYearUpdate);
 
+    d3.selectAll('#popbarunit-label')
+        .data(countryYearUpdate)
+        .attr('x',function(e){
+            return 0;
+        })
+        .attr('y',function(e){
+            return -7;
+        })
+        .text(function(e){return e.lu_totalPop.toLocaleString() + ' people'});//null);
+
+    d3.selectAll('#popbar-urban-label')
+        .data(countryYearUpdate)
+        .attr('x',function(e){
+            return 0;
+        })
+        .attr('y',function(e){
+            return 5+12;
+        });
+
+
+    d3.selectAll('#popbar-rural-label')
+        .data(countryYearUpdate)
+        .attr('x',function(e){
+            return popLineScale(e.lu_urbanPop);
+        })
+        .attr('y',function(e){
+            return 5+12;
+        });
+
+
+
+
+
     d3.selectAll('.total-pop-bar-' + graph)
         .data(countryYearUpdate)
         .attr('x', 0)
@@ -2185,6 +2285,9 @@ function updateCrowdingSquares(countryYearUpdate, graph){
 
     console.log(graph);
 
+    d3.selectAll('#crowdingunits-label')
+        .text(Math.floor(countryYearUpdate[0].lu_peoplePerSqKm) + ' people per sq. km');
+
     var pattern = svg.append("defs")
         .append("pattern")
         .attr('class','patt-' + graph)
@@ -2207,6 +2310,39 @@ function updateCrowdingSquares(countryYearUpdate, graph){
 }
 function updateFoodBars(balanceUpdate, graph){
 
+
+    d3.selectAll('#in-label')
+        .text("In: " +(balanceUpdate[0].bal_importQuantity + balanceUpdate[0].bal_produced).toLocaleString());
+
+
+    d3.selectAll('#out-label')
+        .text("Out: " +(balanceUpdate[0].bal_exportQuantity + balanceUpdate[0].bal_usedFood + balanceUpdate[0].bal_usedNonFood + balanceUpdate[0].bal_waste).toLocaleString());
+
+
+    d3.selectAll('#imports-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(balanceUpdate[0].bal_importQuantity));
+
+    d3.selectAll('#produced-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(balanceUpdate[0].bal_importQuantity) + foodBalanceScale(balanceUpdate[0].bal_produced));
+
+    d3.selectAll('#exports-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(balanceUpdate[0].bal_exportQuantity));
+
+    d3.selectAll('#usedfood-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(balanceUpdate[0].bal_exportQuantity)+foodBalanceScale(balanceUpdate[0].bal_usedFood));
+
+    d3.selectAll('#usednonfood-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(balanceUpdate[0].bal_exportQuantity)+foodBalanceScale(balanceUpdate[0].bal_usedFood)+foodBalanceScale(balanceUpdate[0].bal_usedNonFood))
+
+    d3.selectAll('#waste-label')
+        .attr('x',30)
+        .attr('y',foodBalanceScale(balanceUpdate[0].bal_exportQuantity)+foodBalanceScale(balanceUpdate[0].bal_usedFood)+foodBalanceScale(balanceUpdate[0].bal_usedNonFood)+foodBalanceScale(balanceUpdate[0].bal_waste))
+
     d3.selectAll('.imports-bar-' + graph)
         .attr('x',function(d){
             return 0
@@ -2219,7 +2355,7 @@ function updateFoodBars(balanceUpdate, graph){
         })
         .attr('height',function(d){
             return foodBalanceScale(balanceUpdate[0].bal_importQuantity);
-        })
+        });
 
     d3.selectAll('.produced-bar-' + graph)
         .attr('x',function(d){
@@ -2295,6 +2431,10 @@ function updateFoodBars(balanceUpdate, graph){
 }
 function updateCalories(pcLandUpdate, graph){
 
+    d3.selectAll('#calories-label')
+        .text(pcLandUpdate[0].pc_avgPerCapFoodSupply + ' calories per day');
+
+
     d3.selectAll('.calories-circ-' + graph)
         .attr('r',calorieScale(pcLandUpdate[0].pc_avgPerCapFoodSupply));
 
@@ -2303,6 +2443,19 @@ function updateLandReqts(landReqts){
 
     console.log(landReqts[0].pc_avgPerCapFoodSupply, landReqts[0].pc_perCapLandReq, landAreaScale(landReqts[0].pc_perCapLandReq))
     var cornerPos = 0;//-landAreaScale(Math.max(landReqts[0].lu_landArea, landReqts[0].pc_perCapLandReq))/2;
+
+
+    d3.selectAll('#pclandunits-label')
+        .text(Math.floor(landReqts[0].pc_totalLandReq).toLocaleString() + ' hectares');
+
+    d3.selectAll('#pcland-label')
+        .attr('x',0)
+        .attr('y',landAreaScale(landReqts[0].pc_totalLandReq)+12);
+
+    d3.selectAll('#totalland-label')
+        .attr('x',0)
+        .attr('y',landAreaScale(landReqts[0].lu_landArea)+12);
+
 
     d3.selectAll('.pc-land-rect')
         .attr('x',function(d){
