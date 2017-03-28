@@ -87,38 +87,11 @@ if(tracker[0].node != "D"){
                     return tracker[0].node == d.page;
                 });
 
-                // if (tracker[0].node == "D"){
-                //     console.log('food flow');
-                //     $.getScript('./scripts/pageNav.js');
-                //
-                // }
-                // else if(tracker[0].node == "Z"){
-                //
-                // }
-                //else {
-                //$('#title').html('Some other page');
-
-                //$.getJSON("template.json", function(json) {
-
-                // console.log(json);
-                //
-                // currPage = json.filter(function(d){
-                //     return tracker[0].node == d.page;
-                // });
-                //
-                // console.log(currPage);
-
                 if (typeof currPage != "undefined" && currPage.length > 0) {
 
                     $('.nav-title').html(currPage[0].title);
 
                     $('#body-text').html(currPage[0].text);
-
-                    //$('#synopsis').html(currPage[0].synopsis);
-
-                    //$("a#test-link").prop("href", currPage[0].link);
-
-                    //$("a#test-link").text(currPage[0].linkText);
 
                     $('#myModalLabel').html(currPage[0].modalTitle);
 
@@ -137,14 +110,14 @@ if(tracker[0].node != "D"){
                     //load Crossfilter for countryExplorer page
                     if (tracker[0].node == "G") {
                         $.getScript("./scripts/vendor/crossfilter.js");
-                    }
-                    ;
+                    };
 
                     //don't load anything for Food Flow
                     if (tracker[0].node == "D") {
                         console.log('skip script Food flow');
                         $.getScript('./scripts/pageNav.js');
                     }
+
                     //for anything but Food Flow, just load the script from the file
                     else {
                         $.getScript(currPage[0].script);
@@ -171,12 +144,6 @@ if(tracker[0].node != "D"){
                     console.log('unknown node')
                 }
 
-                //});
-
-
-                // }
-
-                //}
 
             });
         }

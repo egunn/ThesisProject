@@ -89,7 +89,7 @@ var organismNodes = svg.selectAll('.organisms')
 //switch to svg to avoid blurriness?
 var pattern = organismNodes.append("defs")
     .append("pattern")
-    .attr('id',function(d){ return 'pattern-' + d.id;})
+    .attr('id',function(d){return 'pattern-' + d.name;})
     .attr("width", "100%")
     .attr("height", "102%")
     //.attr('patternContentUnits',"objectBoundingBox")
@@ -100,7 +100,7 @@ var pattern = organismNodes.append("defs")
     .attr("height", 1)  //appears to set image origin, and possibly scale?
     .attr("width", 1)
     .attr('preserveAspectRatio',"xMidYMid slice")
-    .attr("xlink:href", function(d){ return d.link});
+    .attr("xlink:href", function(d){ return  d.link});//'url'+
 
 organismNodes.append('text')
 	.attr('x',function(d,i){
@@ -190,7 +190,7 @@ organismNodes.append('circle')
         // + 150*Math.cos((i+1)*Math.PI/3);
     })
     .attr('r',illustratorScaledRadius)
-    .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'})
+    .style("fill", function(d){ return 'url(#pattern-' + d.name + ')'})
     .on('mouseover',function(d){
         if (d.name == "Fungi"){
 

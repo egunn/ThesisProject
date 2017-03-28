@@ -83,7 +83,7 @@ var impactNodes = svg.selectAll('.impacts')
 
 var pattern = impactNodes.append("defs")
     .append("pattern")
-    .attr('id',function(d){ return 'pattern-' + d.id;})
+    .attr('id',function(d){ return 'pattern-' + d.name;})
     .attr("width", "100%")
     .attr("height", "100%")
     .attr('patternContentUnits',"objectBoundingBox")
@@ -183,7 +183,7 @@ impactNodes.append('circle')
         // + 150*Math.cos((i+1)*Math.PI/3);
     })
     .attr('r',illustratorScaledRadius)
-    .style("fill", function(d){ return 'url(#pattern-' + d.id + ')'})
+    .style("fill", function(d){ return 'url(#pattern-' + d.name + ')'})
     .on('mouseover',function(d){
         if (d.name == "Compaction"){
 

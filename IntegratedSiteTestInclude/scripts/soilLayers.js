@@ -101,9 +101,9 @@ var pattern = layerNodes.append("defs")
     .attr("xlink:href", function(d){ return d.link});
     */
 
-var introText = svg.append('text')
+var introText = layerNodes.append('text')
     .attr('class','init-text')
-    .attr('x', .55*heightNM*(1/illustratorAR) +20)
+    .attr('x', .48*heightNM*(1/illustratorAR))
     .attr('y',.26*heightNM)
     .style('text-anchor','begin')
     .attr('font-size',12)
